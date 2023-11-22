@@ -27,6 +27,7 @@ body {
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .menu-list {
@@ -63,5 +64,14 @@ body {
   margin-bottom: 4px;
 }
 
+
+.enjoy {
+  height: 644px;
+  background-image: url('../assets/images/img-hero.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 40px;
+}
 
   
