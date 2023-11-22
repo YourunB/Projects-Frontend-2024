@@ -1,0 +1,16 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #E1D4C9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+  
