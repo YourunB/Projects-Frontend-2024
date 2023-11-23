@@ -8,7 +8,7 @@ body {
 
 }
 
-* {
+*, *:before, *:after {
   box-sizing: border-box;
 }
 
@@ -64,7 +64,6 @@ body {
   margin-bottom: 4px;
 }
 
-
 .enjoy {
   height: 644px;
   background-image: url('../assets/images/img-hero.jpg');
@@ -72,6 +71,52 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 40px;
+  padding: 100px;
+}
+
+.enjoy__content {
+  width: 530px;
+}
+
+.enjoy__content h1 {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 72px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 105%;
+  color: var(--text-light, #E1D4C9);
+}
+
+.enjoy__content h1 span {
+  font-style: italic;
+  color: var(--text-accent, #B0907A);
+}
+
+.enjoy__content p {
+  margin: 40px 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--text-light, #E1D4C9);
+}
+
+.enjoy__content button {
+  width: 200px;
+  height: 64px;
+  background: var(--background-body, #E1D4C9);
+  border-radius: 100px;
+  border: none;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  color: var(--text-dark, #403F3D);
 }
 
   
