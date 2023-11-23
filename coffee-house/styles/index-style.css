@@ -309,12 +309,89 @@ body {
   display: none;
 }
 
-.slider__bottom_label-btn div {
+.slider__bottom_label-btn {
   width: 40px;
   height: 4px;
+  border-radius: 100px;
   background: var(--border-light, #C1B6AD);
 }
 
-.slider__bottom_input:nth-of-type(1):checked ~ .slider__bottom_label-btn:nth-of-type(1) div {background: var(--border-dark, #665F55);}
-.slider__bottom_input:nth-of-type(2):checked ~ .slider__bottom_label-btn:nth-of-type(2) div {background: var(--border-dark, #665F55);}
-.slider__bottom_input:nth-of-type(3):checked ~ .slider__bottom_label-btn:nth-of-type(3) div {background: var(--border-dark, #665F55);}
+.slider__bottom_input:nth-of-type(1):checked + .slider__bottom_label-btn:nth-of-type(1) {background: var(--border-dark, #665F55);}
+.slider__bottom_input:nth-of-type(2):checked + .slider__bottom_label-btn:nth-of-type(2) {background: var(--border-dark, #665F55);}
+.slider__bottom_input:nth-of-type(3):checked + .slider__bottom_label-btn:nth-of-type(3) {background: var(--border-dark, #665F55);}
+
+.about {
+  margin-top: 144px;
+}
+
+.about h2 {
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark, #403F3D);
+  font-family: Inter;
+  font-size: 59.9px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.about h2 span {
+  font-style: italic;
+  color: var(--text-accent, #B0907A);
+}
+
+.about__gallery {
+  margin-top: 40px;
+  height: 1060px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(64, 1fr);
+}
+
+.about__gallery_image {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.about__gallery_image img {
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  object-fit: cover;
+  transition: 1s;
+}
+
+.about__gallery_box {
+  width: 660px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.about__gallery_left_image:nth-of-type(1) {
+  width: 660px;
+  height: 590px;
+}
+
+.about__gallery_left_image:nth-of-type(2) {
+  width: 660px;
+  height: 430px;
+}
+
+.about__gallery_right_image:nth-of-type(2) {
+  width: 660px;
+  height: 590px;
+}
+
+.about__gallery_right_image:nth-of-type(1) {
+  width: 660px;
+  height: 430px;
+}
+
+.about__gallery_image img:hover {
+  transform: scale(1);
+}
+
