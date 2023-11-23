@@ -12,6 +12,11 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .container {
   max-width: 1440px;
   padding: 20px 40px 40px 40px;
@@ -501,6 +506,7 @@ body {
   padding: 100px;
   display: flex;
   gap: 100px;
+  color: var(--text-light, #E1D4C9);
 }
 
 .footer__smile {
@@ -556,4 +562,39 @@ body {
 
 .footer__button:hover svg {
   stroke: #403F3D;
+}
+
+.footer h3 {
+  margin: 33px 0 40px 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.footer a {
+  display: block;
+  margin: 20px 0;
+  width: 100%;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  display: flex;
+  gap: 9px;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  display: flex;
+  gap: 9px;
 }
