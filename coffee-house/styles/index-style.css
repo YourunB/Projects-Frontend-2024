@@ -444,27 +444,44 @@ body {
   background: none;
   outline: none;
   border: 1px solid var(--border-dark, #665F55);
+  color: var(--text-dark, #403F3D);
   border-radius: 100px;
   width: 200px;
   height: 64px;
-
+  padding-left: 64px;
+  text-align: left;
+  transition: 1s;
 }
 
-.mobile-app__button img {
+.mobile-app__button:hover {
+  background: var(--background-container, #665F55);
+  color: var(--text-light, #E1D4C9);
+}
+
+.mobile-app__button:nth-of-type(1) {
+  margin-right: 16px;
+}
+
+.mobile-app__button svg {
+  transition: 1s;
+  fill: #403F3D;
   position: absolute;
-  left: 20px;
-  bottom: 14px;
+  left: 19px;
+  bottom: 13px;
+}
+
+.mobile-app__button:hover svg {
+  fill: #E1D4C9;
 }
 
 .mobile-app__button span:nth-of-type(1) {
   display: block;
-  color: var(--text-dark, #403F3D);
   font-family: Inter;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .mobile-app__button span:nth-of-type(2) {
@@ -474,5 +491,4 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: 150%;
-  color: var(--text-dark, #403F3D);
 }
