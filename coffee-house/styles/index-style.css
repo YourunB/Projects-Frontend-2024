@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background: #E1D4C9;
+  cursor: default;
 }
 
 *, *:before, *:after {
@@ -49,12 +50,12 @@ a {
   color: var(--text-dark, #403F3D);
 }
 
-.menu-list__item {
+.menu-list__item a{
   cursor: pointer;
   position: relative;
 }
 
-.menu-list__item::after {
+.menu-list__item a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -67,7 +68,7 @@ a {
   transition: 1s;
 }
 
-.menu-list__item:hover::after {
+.menu-list__item a:hover::after {
   left: 0;
   width: 100%;
   opacity: 1;
@@ -457,6 +458,7 @@ a {
   padding-left: 64px;
   text-align: left;
   transition: 1s;
+  cursor: pointer;
 }
 
 .mobile-app__button:hover {
