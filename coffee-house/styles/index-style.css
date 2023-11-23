@@ -50,7 +50,7 @@ a {
 }
 
 .menu-list__item {
-  cursor: default;
+  cursor: pointer;
   position: relative;
 }
 
@@ -87,6 +87,7 @@ a {
   cursor: default;
   position: relative;
   color: var(--text-dark, #403F3D);
+  cursor: pointer;
 }
 
 .header__btn-menu::after {
@@ -575,9 +576,10 @@ a {
 }
 
 .footer a {
+  position: relative;
   display: block;
   margin: 20px 0;
-  width: 100%;
+  width: fit-content;
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -585,6 +587,26 @@ a {
   line-height: 150%;
   display: flex;
   gap: 9px;
+  transition: 1s;
+}
+
+.footer a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  margin: auto;
+  width: 0;
+  opacity: 0;
+  border-bottom: solid 2px #E1D4C9;
+  transition: 1s;
+}
+
+.footer a:hover::after {
+  left: 0;
+  width: 100%;
+  opacity: 1;
 }
 
 .footer p {
@@ -597,4 +619,5 @@ a {
   line-height: 150%;
   display: flex;
   gap: 9px;
+  cursor: default;
 }
