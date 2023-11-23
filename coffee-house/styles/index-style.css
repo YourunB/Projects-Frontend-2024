@@ -218,12 +218,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   height: 640px;
 }
 
 .slider__display {
   text-align: center;
-  margin: 0 40px;
+  margin: 0 38px;
   width: calc(100% - 200px);
   color: var(--text-dark, #403F3D);
 }
@@ -264,10 +265,6 @@ body {
   line-height: 125%;
 }
 
-.slider__bottom {
-  width: 100%;
-}
-
 .slider__controls {
   display: flex;
   justify-content: center;
@@ -299,3 +296,25 @@ body {
 .slider__controls button:hover svg{
   stroke: #E1D4C9;
 }
+
+.slider__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.slider__bottom_input {
+  display: none;
+}
+
+.slider__bottom_label-btn div {
+  width: 40px;
+  height: 4px;
+  background: var(--border-light, #C1B6AD);
+}
+
+.slider__bottom_input:nth-of-type(1):checked ~ .slider__bottom_label-btn:nth-of-type(1) div {background: var(--border-dark, #665F55);}
+.slider__bottom_input:nth-of-type(2):checked ~ .slider__bottom_label-btn:nth-of-type(2) div {background: var(--border-dark, #665F55);}
+.slider__bottom_input:nth-of-type(3):checked ~ .slider__bottom_label-btn:nth-of-type(3) div {background: var(--border-dark, #665F55);}
