@@ -20,7 +20,7 @@ a {
 
 .container {
   max-width: 1440px;
-  padding: 20px 40px 40px 40px;
+  padding: 20px 40px 0 40px;
   left: 0;
   right: 0;
   margin: auto;
@@ -502,6 +502,10 @@ a {
 }
 
 .footer {
+  left: 0;
+  right: 0;
+  margin: 0 auto 40px auto;
+  max-width: 1360px;
   height: 450px;
   width: 100%;
   border-radius: 40px;
