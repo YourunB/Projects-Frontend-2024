@@ -186,8 +186,9 @@ a {
   font-style: italic;
 }
 
-.cofffee {
+.menu__coffee {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 40px;
 }
@@ -200,6 +201,11 @@ a {
   color: var(--text-dark, #403F3D);
   border: solid 1px #C1B6AD;
   border-radius: 40px;
+  cursor: pointer;
+}
+
+.product:hover .product__image img{
+  transform: scale(1);
 }
 
 .product__image {
