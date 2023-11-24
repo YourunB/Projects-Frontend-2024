@@ -191,6 +191,7 @@ a {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 40px;
+  margin-bottom: 100px;
 }
 
 .product {
@@ -209,8 +210,8 @@ a {
 }
 
 .product__image {
-  width: 310px;
-  height: 310px;
+  width: calc(310px - 2px);
+  height: calc(310px - 2px);
   border-radius: 40px;
   overflow: hidden;
 }
@@ -225,7 +226,7 @@ a {
 }
 
 .product__title {
-  margin: 21px 0 0 0;
+  margin: 20px 0 0 0;
   padding: 0 20px;
   font-family: Inter;
   font-size: 24px;
@@ -235,7 +236,7 @@ a {
 }
 
 .product__description {
-  margin: 13px 0 0 0;
+  margin: 12px 0 0 0;
   padding: 0 20px;
   font-family: Inter;
   font-size: 16px;
@@ -245,7 +246,7 @@ a {
 }
 
 .product__price {
-  margin: 7px 0 0 0;
+  margin: 6px 0 0 0;
   padding: 0 20px;
   font-family: Inter;
   font-size: 24px;
