@@ -115,17 +115,23 @@ a {
 }
 
 .enjoy {
+  position: relative;
   height: 644px;
-  background-image: url('../assets/images/img-hero.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   border-radius: 40px;
   padding: 100px;
 }
 
+.enjoy video {
+  position: absolute;
+  border-radius: 40px;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 .enjoy__content {
   width: 530px;
+  position: absolute;
 }
 
 .enjoy__content h1 {
