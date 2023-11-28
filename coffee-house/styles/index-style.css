@@ -727,3 +727,11 @@ a {
     height: 590px;
   }
 }
+
+@media (max-width: 380px) {
+  body {
+    padding: 20px 16px 40px 16px;
+  }
+
+
+}
