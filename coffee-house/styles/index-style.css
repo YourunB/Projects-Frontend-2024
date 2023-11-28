@@ -780,5 +780,17 @@ a {
     font-weight: 600;
     line-height: 125%;
   }
+
+  .about {
+    margin-top: 100px;
+  }
   
+  .about h2 {
+    font-size: 32px;
+    line-height: 125%;
+  }
+
+  .about__gallery_image img {
+    transform: scale(1.23);
+  }
 }
