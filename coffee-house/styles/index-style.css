@@ -643,14 +643,21 @@ a {
   cursor: default;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1375px) {
+
+  .container {
+    min-height: (100vh - 736px);
+  }
+
   .mobile-app {
     height: auto;
     flex-wrap: wrap;
   }
 
   .mobile-app img {
-   padding-left: 29px;
+   left: 0;
+   right: 0;
+   margin: auto;
   }
 
   .mobile-app__content {
@@ -659,15 +666,18 @@ a {
 
   .footer {
     flex-wrap: wrap;
-    gap: 69px;
     padding: 100px 60px;
+    height: 736px;
   }
   .footer__contacts {
-    max-width: 1300px;
+    max-width: 1375px;
     width: 100%;
   }
+  .footer__contacts h3 {
+    margin-top: 1px;
+  }
   .footer__smile {
-    max-width: 1300px;
+    max-width: 1375px;
     width: 100%;
   }
 }
