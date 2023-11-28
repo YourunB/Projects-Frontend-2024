@@ -635,3 +635,14 @@ a {
   gap: 9px;
   cursor: default;
 }
+
+@media (max-width: 768px) {
+
+  .header__btn-menu {
+    display: none;
+  }
+
+  .menu-list {
+    display: none;
+  }
+}
