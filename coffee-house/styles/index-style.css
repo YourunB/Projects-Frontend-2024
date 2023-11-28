@@ -136,7 +136,8 @@ a {
 }
 
 .enjoy__content {
-  width: 530px;
+  max-width: 530px;
+  width: calc(100% - 32px);
   position: absolute;
 }
 
@@ -731,6 +732,20 @@ a {
 @media (max-width: 380px) {
   body {
     padding: 20px 16px 40px 16px;
+  }
+
+  .enjoy {
+    height: 552px;
+    padding: 60px 16px;
+  }
+
+  .enjoy__content {
+    height: auto;
+  }
+
+  .enjoy__content h1 {
+    font-size: 42px;
+    line-height: 115%;
   }
 
 
