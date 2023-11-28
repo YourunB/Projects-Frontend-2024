@@ -815,4 +815,15 @@ a {
   .mobile-app img {
     width: 348px;
   }
+
+  .footer {
+    height: 526px;
+    padding: 60px 16px;
+    gap: 34px;
+  }
+
+  .footer__smile h2 {
+    font-size: 32px;
+    line-height: 125%;
+  }
 }
