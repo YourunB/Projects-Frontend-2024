@@ -7,6 +7,7 @@ body {
   padding: 0;
   background: #E1D4C9;
   cursor: default;
+  padding: 20px 40px 0 40px;
 }
 
 *, *:before, *:after {
@@ -20,7 +21,6 @@ a {
 
 .container {
   max-width: 1440px;
-  padding: 20px 40px 0 40px;
   left: 0;
   right: 0;
   margin: auto;
@@ -521,7 +521,7 @@ a {
   right: 0;
   margin: 0 auto 40px auto;
   max-width: 1360px;
-  height: 450px;
+  min-height: 450px;
   width: 100%;
   border-radius: 40px;
   background: var(--background-container, #665F55);
@@ -643,7 +643,7 @@ a {
   cursor: default;
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1300px) {
   .mobile-app {
     height: auto;
     flex-wrap: wrap;
@@ -654,6 +654,20 @@ a {
   }
 
   .mobile-app__content {
+    width: 100%;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    gap: 69px;
+    padding: 100px 60px;
+  }
+  .footer__contacts {
+    max-width: 1300px;
+    width: 100%;
+  }
+  .footer__smile {
+    max-width: 1300px;
     width: 100%;
   }
 }
