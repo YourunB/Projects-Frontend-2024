@@ -163,6 +163,10 @@ a {
   border: 1px solid #665F55;
 }
 
+.menu__controls_btn:disabled {
+  cursor: default;
+}
+
 .menu__controls_btn:hover img {
   background: #E1D4C9;
 }
