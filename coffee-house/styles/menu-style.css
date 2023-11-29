@@ -7,6 +7,7 @@ body {
   padding: 0;
   background: #E1D4C9;
   cursor: default;
+  padding: 20px 40px 0 40px;
 }
 
 *, *:before, *:after {
@@ -20,11 +21,10 @@ a {
 
 .container {
   max-width: 1440px;
-  padding: 20px 40px 0 40px;
   left: 0;
   right: 0;
   margin: auto;
-  min-height: calc(100vh - 490px);
+  min-height: calc(100vh - 450px);
   background: #E1D4C9;
 }
 
@@ -279,7 +279,7 @@ a {
   right: 0;
   margin: 0 auto 40px auto;
   max-width: 1360px;
-  height: 450px;
+  min-height: 450px;
   width: 100%;
   border-radius: 40px;
   background: var(--background-container, #665F55);
@@ -401,6 +401,29 @@ a {
   cursor: default;
 }
 
+@media (max-width: 1375px) {
+  .container {
+    min-height: (100vh - 736px);
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    padding: 100px 60px;
+    height: 736px;
+  }
+  .footer__contacts {
+    max-width: 1375px;
+    width: 100%;
+  }
+  .footer__contacts h3 {
+    margin-top: -2px;
+  }
+  .footer__smile {
+    max-width: 1375px;
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     margin-bottom: 16px;
@@ -432,7 +455,7 @@ a {
 
   .refresh-btn {
     display: block;
-    margin-bottom: 100px;
+    margin-bottom: 99px;
   }
 
 }
