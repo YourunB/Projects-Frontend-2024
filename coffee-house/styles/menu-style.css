@@ -167,6 +167,10 @@ a {
   background: #E1D4C9;
 }
 
+.menu__controls_btn:disabled {
+  cursor: default;
+}
+
 .menu h1 {
   left: 0;
   right: 0;
