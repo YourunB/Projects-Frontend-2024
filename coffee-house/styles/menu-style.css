@@ -193,7 +193,7 @@ a {
 .menu__coffee {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 40px;
   margin-bottom: 100px;
 }
@@ -384,4 +384,33 @@ a {
   display: flex;
   gap: 9px;
   cursor: default;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .header__btn-menu {
+    display: none;
+  }
+
+  .header__burger-menu {
+    margin-top: -2px;
+    display: block;
+  }
+
+  .menu-list {
+    display: none;
+  }
+
+  .product:nth-of-type(5),
+  .product:nth-of-type(6),
+  .product:nth-of-type(7),
+  .product:nth-of-type(8) {
+    display: none;
+  }
+
+  
+
 }
