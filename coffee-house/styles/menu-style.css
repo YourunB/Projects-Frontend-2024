@@ -259,6 +259,21 @@ a {
   line-height: 125%;
 }
 
+.refresh-btn {
+  border-radius: 50%;
+  border: 1px solid var(--border-dark, #665F55);
+  width: 60px;
+  height: 60px;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+}
+
 .footer {
   left: 0;
   right: 0;
@@ -411,6 +426,13 @@ a {
     display: none;
   }
 
-  
+  .menu__coffee {
+    margin-bottom: 41px;
+  }
+
+  .refresh-btn {
+    display: block;
+    margin-bottom: 100px;
+  }
 
 }
