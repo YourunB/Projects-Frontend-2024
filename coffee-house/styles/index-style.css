@@ -813,6 +813,10 @@ a {
     width: 348px;
   }
 
+  .container {
+    min-height: (100vh - 526px);
+  }
+
   .footer {
     height: 526px;
     padding: 60px 16px;
