@@ -836,3 +836,12 @@ a {
     opacity: 1;
   }
 }
+
+@media (hover: none) {
+  .enjoy__content_button span {
+    transform: translate(-80%, -50%);
+  }
+  .enjoy__content_button::after {
+    opacity: 1;
+  }
+}
