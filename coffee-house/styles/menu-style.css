@@ -20,7 +20,7 @@ a {
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 1360px;
   left: 0;
   right: 0;
   margin: auto;
@@ -33,7 +33,7 @@ a {
   align-items: center;
   gap: 10px;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .menu-list {
