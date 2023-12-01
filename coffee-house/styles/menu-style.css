@@ -415,6 +415,15 @@ a {
   .product:nth-of-type(8) {
     display: none;
   }
+
+  .refresh-btn {
+    display: block;
+    margin-bottom: 99px;
+  }
+
+  .menu__coffee {
+    margin-bottom: 41px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -433,15 +442,6 @@ a {
 
   .menu-list {
     display: none;
-  }
-
-  .menu__coffee {
-    margin-bottom: 41px;
-  }
-
-  .refresh-btn {
-    display: block;
-    margin-bottom: 99px;
   }
 }
 
