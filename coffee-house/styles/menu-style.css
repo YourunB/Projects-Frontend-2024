@@ -8,6 +8,7 @@ body {
   background: #E1D4C9;
   cursor: default;
   padding: 20px 40px 0 40px;
+  overflow: hidden;
 }
 
 *, *:before, *:after {
@@ -112,6 +113,7 @@ a {
   background: none;
   position: relative;
   transition: 1s;
+  cursor: pointer;
 }
 
 .header__burger-menu::before {
@@ -471,10 +473,6 @@ a {
   }
 }
 
-.scroll-off {
-  overflow: hidden;
-}
-
 @media (max-width: 768px) {
   .header {
     margin-bottom: 16px;
@@ -491,14 +489,16 @@ a {
   }
 
   nav {
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 100%;
+    top: 84px;
     width: 100%;
+    height: 0;
     z-index: 100;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .menu-list {
+    height: calc(100vh - 84px);
     text-align: center;
     display: block;
     color: var(--text-dark, #403F3D);
@@ -508,9 +508,10 @@ a {
     font-weight: 600;
     line-height: 125%;
     padding-top: 17px;
-    height: 100vh;
+    padding-bottom: 5px;
     background: var(--background-body, #E1D4C9);
-    transform: translateX(100%);
+    transform: translateX(120%);
+    transition: 1s;
   }
 
   .menu-list__item {
@@ -618,4 +619,16 @@ a {
     width: 100%;
     opacity: 1;
   }
+}
+
+.scroll-off {
+  overflow: hidden;
+}
+
+.nav-height {
+  height: auto;
+}
+
+.show-menu {
+  transform: translateX(0);
 }
