@@ -8,6 +8,7 @@ body {
   background: #E1D4C9;
   cursor: default;
   padding: 20px 40px 0 40px;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {
@@ -68,6 +69,10 @@ a {
   transition: 1s;
 }
 
+.menu-list__item:last-of-type {
+  display: none;
+}
+
 .header__btn-menu {
   font-family: Inter;
   font-size: 16px;
@@ -113,6 +118,7 @@ a {
   background: none;
   position: relative;
   transition: 1s;
+  cursor: pointer;
 }
 
 .header__burger-menu::before {
@@ -723,8 +729,43 @@ a {
     display: flex;
   }
 
+  nav {
+    position: fixed;
+    left: 0;
+    top: 84px;
+    width: 100%;
+    z-index: 100;
+  }
   .menu-list {
-    display: none;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 84px);
+    text-align: center;
+    display: block;
+    color: var(--text-dark, #403F3D);
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%;
+    padding-top: 17px;
+    padding-bottom: 5px;
+    background: var(--background-body, #E1D4C9);
+    transform: translateX(120%);
+    transition: 1s;
+  }
+
+  .menu-list__item {
+    margin: 60px 0;
+  }
+
+  .menu-list__item:last-child {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
   }
 }
 
@@ -847,6 +888,30 @@ a {
   }
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {background-color: #E1D4C9;}
+*::-webkit-scrollbar-track:hover {background-color: #E1D4C9;}
+*::-webkit-scrollbar-track:active {background-color: #E1D4C9;}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #e2b793; 
+}
+*::-webkit-scrollbar-thumb:hover {background-color: #deb089;}
+*::-webkit-scrollbar-thumb:active {background-color: #e19a5f;}
+
+.scroll-off {
+  overflow: hidden;
+}
+
+.show-menu {
+  transform: translateX(0);
+}
+
 @media (hover: hover) {
   .menu-list__item a:hover::after {
     left: 0;
@@ -901,6 +966,10 @@ a {
     left: 0;
     width: 100%;
     opacity: 1;
+  }
+
+  .scroll-off {
+    margin-right: 5px;
   }
 }
 

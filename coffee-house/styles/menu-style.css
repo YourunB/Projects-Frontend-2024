@@ -498,7 +498,6 @@ a {
     top: 84px;
     width: 100%;
     z-index: 100;
-    overflow-x: hidden;
   }
   .menu-list {
     position: fixed;
@@ -604,10 +603,6 @@ a {
 
 .scroll-off {
   overflow: hidden;
-}
-
-.nav-height {
-  height: auto;
 }
 
 .show-menu {
