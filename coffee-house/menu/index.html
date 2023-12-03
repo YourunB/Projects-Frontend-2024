@@ -19,19 +19,22 @@
     <header class="header">
       <a href="../"><img src="../assets/images/svg/logo.svg" alt="Logo"></a>
 
-      <nav>
-        <ul class="menu-list">
+      <nav id="nav">
+        <ul class="menu-list" id="menu">
           <li class="menu-list__item"><a href="../#favourites-coffee">Favorite coffee</a></li>
           <li class="menu-list__item"><a href="../#about">About</a></li>
           <li class="menu-list__item"><a href="../#mobile-app">Mobile app</a></li>
           <li class="menu-list__item"><a href="#contact-us">Contact us</a></li>
+          <li class="menu-list__item">Menu <img src="../assets/images/svg/coffee-cup-burger.svg" alt="Coffee"></li>
         </ul>
       </nav>
 
       <div class="header__btn-menu">
         <span>Menu</span>
-        <img src="../assets/images/svg/coffe-cup.svg" alt="Coffee">
+        <img src="../assets/images/svg/coffe-cup.svg" class="menu-list__item_coffee" alt="Coffee">
       </div>
+
+      <button class="header__burger-menu" id="btn-burger-menu"></button>
     </header>
 
     <section class="menu">
@@ -115,6 +118,7 @@
           <p class="product__price">$6.50</p>
         </div>
       </div>
+      <button class="refresh-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.8883 13.5C21.1645 18.3113 17.013 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C16.1006 2 19.6248 4.46819 21.1679 8" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 8H21.4C21.7314 8 22 7.73137 22 7.4V3" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </section>
 
   </div>
@@ -133,6 +137,8 @@
       <p><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_217_1736)"><path d="M10 5L10 10L15 10" stroke="#E1D4C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.0003 18.3333C14.6027 18.3333 18.3337 14.6023 18.3337 9.99996C18.3337 5.39759 14.6027 1.66663 10.0003 1.66663C5.39795 1.66663 1.66699 5.39759 1.66699 9.99996C1.66699 14.6023 5.39795 18.3333 10.0003 18.3333Z" stroke="#E1D4C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_217_1736"><rect width="20" height="20" fill="white"/></clipPath></defs></svg>Mon-Sat: 9:00 AM – 23:00 PM</p>
     </div>
   </footer>
+
+  <script src="../scripts/menu-page.js"></script>
 
 </body>
 </html>
