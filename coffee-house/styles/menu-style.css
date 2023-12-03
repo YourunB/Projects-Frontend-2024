@@ -111,6 +111,7 @@ a {
   border: 1px solid var(--border-dark, #665F55);
   background: none;
   position: relative;
+  transition: 1s;
 }
 
 .header__burger-menu::before {
@@ -123,6 +124,7 @@ a {
   left: 12px;
   top: 16px;
   border-radius: 100px;
+  transition: 1s;
 }
 
 .header__burger-menu::after {
@@ -135,6 +137,17 @@ a {
   left: 12px;
   top: 24px;
   border-radius: 100px;
+  transition: 1s;
+}
+
+.header__burger-menu_click::before {
+  top: 20px;
+  rotate: 45deg;
+}
+
+.header__burger-menu_click::after {
+  top: 20px;
+  rotate: -45deg;
 }
 
 .menu {
