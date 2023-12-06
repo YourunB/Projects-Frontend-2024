@@ -355,12 +355,6 @@ a {
   stroke: #403F3D;
 }
 
-.slider__controls:disabled {
-  cursor: pointer;
-  opacity: 0.5;
-  transition: 0.5;
-}
-
 .slider__bottom {
   width: 100%;
   display: flex;
@@ -1005,4 +999,15 @@ a {
   .enjoy__content_button::after {
     opacity: 1;
   }
+}
+
+.slider__controls:disabled {
+  cursor: default;
+  opacity: 0.5;
+  background: none;
+  transition: 0.5;
+}
+
+.slider__controls:disabled svg {
+  stroke: #403F3D;
 }

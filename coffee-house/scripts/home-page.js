@@ -42,18 +42,18 @@ setTimeout(()=>{ startTimer(); }, 60);
 
 btnSliderLeft.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
-    case 1: sliderSlides.classList.add('slide3'); sliderSlides.classList.add('slide2'); sliderIndicator[0].classList.remove('fill-indicator'); sliderIndicator[2].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
-    case 2: sliderSlides.classList.remove('slide2'); sliderIndicator[1].classList.remove('fill-indicator'); sliderIndicator[0].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
-    case 3: sliderSlides.classList.remove('slide3'); sliderIndicator[2].classList.remove('fill-indicator'); sliderIndicator[1].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 1: btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000); sliderSlides.classList.add('slide3'); sliderSlides.classList.add('slide2'); sliderIndicator[0].classList.remove('fill-indicator'); sliderIndicator[2].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 2: btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000); sliderSlides.classList.remove('slide2'); sliderIndicator[1].classList.remove('fill-indicator'); sliderIndicator[0].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 3: btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000); sliderSlides.classList.remove('slide3'); sliderIndicator[2].classList.remove('fill-indicator'); sliderIndicator[1].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     default: break;
   }
 });
 
 btnSliderRight.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
-    case 1: sliderSlides.classList.add('slide2'); sliderIndicator[0].classList.remove('fill-indicator'); sliderIndicator[1].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
-    case 2: sliderSlides.classList.add('slide3'); sliderIndicator[1].classList.remove('fill-indicator'); sliderIndicator[2].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
-    case 3: sliderSlides.classList.remove('slide2'); sliderSlides.classList.remove('slide3'); sliderIndicator[2].classList.remove('fill-indicator'); sliderIndicator[0].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 1: btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000); sliderSlides.classList.add('slide2'); sliderIndicator[0].classList.remove('fill-indicator'); sliderIndicator[1].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 2: btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000); sliderSlides.classList.add('slide3'); sliderIndicator[1].classList.remove('fill-indicator'); sliderIndicator[2].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 3: btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000); sliderSlides.classList.remove('slide2'); sliderSlides.classList.remove('slide3'); sliderIndicator[2].classList.remove('fill-indicator'); sliderIndicator[0].classList.add('fill-indicator'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     default: break;
   }
 });
