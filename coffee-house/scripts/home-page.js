@@ -2,6 +2,7 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('menu');
 const body = document.body;
 const btnBurger = document.getElementById('btn-burger-menu');
+const sliderSlides = document.getElementById('btn-slider-left');
 const btnSliderLeft = document.getElementById('btn-slider-left');
 const btnSliderRight = document.getElementById('btn-slider-right');
 
@@ -22,4 +23,8 @@ btnBurger.addEventListener('click', () => {
     btnBurger.classList.add('header__burger-menu_click')
     body.classList.add('scroll-off');
   }
+});
+
+btnSliderLeft.addEventListener('click', () => {
+
 });
