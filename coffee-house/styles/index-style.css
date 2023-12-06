@@ -286,6 +286,7 @@ a {
 .slides-wrapper {
   display: flex;
   gap: 50%;
+  transition: 1s;
 }
 
 .slide2 {transform: translateX(-150%);}

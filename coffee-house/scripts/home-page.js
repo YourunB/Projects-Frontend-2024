@@ -26,9 +26,17 @@ btnBurger.addEventListener('click', () => {
 });
 
 btnSliderLeft.addEventListener('click', () => {
-  sliderSlides.classList.remove('slide2')
+  switch (sliderSlides.classList.length) {
+    case 2: sliderSlides.classList.remove('slide2'); break;
+    case 3: sliderSlides.classList.remove('slide3'); break;
+    default: break;
+  }
 });
 
 btnSliderRight.addEventListener('click', () => {
-  sliderSlides.classList.add('slide2')
+  switch (sliderSlides.classList.length) {
+    case 1: sliderSlides.classList.add('slide2'); break;
+    case 2:sliderSlides.classList.add('slide3'); break;
+    default: break;
+  }
 });
