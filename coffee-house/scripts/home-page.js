@@ -25,18 +25,31 @@ btnBurger.addEventListener('click', () => {
   }
 });
 
+let timerSlider = null;
+function startTimer() {timerSlider = setInterval(() => {
+    switch (sliderSlides.classList.length) {
+      case 1: sliderSlides.classList.add('slide2'); break;
+      case 2: sliderSlides.classList.add('slide3'); break;
+      case 3: sliderSlides.classList.remove('slide2'); sliderSlides.classList.remove('slide3'); break;
+      default: break;
+    }
+  }, 3000)
+}
+
+startTimer();
+
 btnSliderLeft.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
-    case 2: sliderSlides.classList.remove('slide2'); break;
-    case 3: sliderSlides.classList.remove('slide3'); break;
+    case 2: sliderSlides.classList.remove('slide2'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 3: sliderSlides.classList.remove('slide3'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     default: break;
   }
 });
 
 btnSliderRight.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
-    case 1: sliderSlides.classList.add('slide2'); break;
-    case 2:sliderSlides.classList.add('slide3'); break;
+    case 1: sliderSlides.classList.add('slide2'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 2:sliderSlides.classList.add('slide3'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     default: break;
   }
 });
