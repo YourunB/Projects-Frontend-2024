@@ -145,8 +145,6 @@ sliderSlides.addEventListener('mouseover', debounce(()=>{
     mouseInsideSlide = true;
     clearInterval(timerIndicator);
     clearInterval(timerSlider);
-
-    console.log('Вошел')
   }
 }, 250));
 
@@ -154,8 +152,6 @@ sliderSlides.addEventListener('mouseout', debounce(()=>{
   if (mouseInsideSlide === true) {
     mouseInsideSlide = false;
     startIndicator(sliderSlides.classList.length, true);
-    
-    console.log('Вышел')
   }
 }, 250));
 
