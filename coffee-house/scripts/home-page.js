@@ -40,6 +40,7 @@ startTimer();
 
 btnSliderLeft.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
+    case 1: break;
     case 2: sliderSlides.classList.remove('slide2'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     case 3: sliderSlides.classList.remove('slide3'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
     default: break;
@@ -49,7 +50,8 @@ btnSliderLeft.addEventListener('click', () => {
 btnSliderRight.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
     case 1: sliderSlides.classList.add('slide2'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
-    case 2:sliderSlides.classList.add('slide3'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 2: sliderSlides.classList.add('slide3'); clearInterval(timerSlider); setInterval(timerSlider); startTimer(); break;
+    case 3: break;
     default: break;
   }
 });
