@@ -284,9 +284,7 @@ a {
 }
 
 .slider__display_slide img {
-  max-width: 480px;
-  width: 100%;
-  min-width: 348px;
+  width: 480px;
 }
 
 .slider__display_slide h3 {
@@ -881,6 +879,12 @@ a {
   .footer__smile h2 {
     font-size: 32px;
     line-height: 125%;
+  }
+}
+
+@media (max-width: 600px) {
+  .slider__display_slide img {
+    width: 348px;
   }
 }
 
