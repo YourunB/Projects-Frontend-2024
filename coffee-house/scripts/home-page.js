@@ -73,19 +73,19 @@ startTimer();
 btnSliderLeft.addEventListener('click', () => {
   switch (sliderSlides.classList.length) {
     case 1:
-      btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000);
+      btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000);
       clearInterval(timerSlider); startTimer();
       sliderSlides.classList.add('slide3'); sliderSlides.classList.add('slide2');
       resetIndicator(1); startIndicator(3);
       break;
     case 2:
-      btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000);
+      btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000);
       clearInterval(timerSlider); startTimer();
       sliderSlides.classList.remove('slide2');
       resetIndicator(2); startIndicator(1);
       break;
     case 3:
-      btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000);
+      btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000);
       clearInterval(timerSlider); startTimer();
       sliderSlides.classList.remove('slide3');
       resetIndicator(3); startIndicator(2);
