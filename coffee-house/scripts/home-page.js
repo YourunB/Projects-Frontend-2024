@@ -30,14 +30,12 @@ let timerSlider = null;
 let timerIndicator = null;
 let widthIndicator = 0;
 
-function throttle(func, time) {
-  let timer = null;
-  return function(...args) {
-    if (timer) return
-    timer = setTimeout(() => {
+function debounce(func, time) {
+  let timeout = null;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
       func(...args);
-      clearTimeout(timer);
-      timer = null;
     }, time);
   }
 }
@@ -142,18 +140,22 @@ btnSliderRight.addEventListener('click', () => {
 
 let mouseInsideSlide = false;
 
-sliderSlides.addEventListener('mouseover', throttle(()=>{
+sliderSlides.addEventListener('mouseover', debounce(()=>{
   if (mouseInsideSlide === false) {
     mouseInsideSlide = true;
     clearInterval(timerIndicator);
     clearInterval(timerSlider);
+
+    console.log('Вошел')
   }
 }, 250));
 
-sliderSlides.addEventListener('mouseout', throttle(()=>{
+sliderSlides.addEventListener('mouseout', debounce(()=>{
   if (mouseInsideSlide === true) {
     mouseInsideSlide = false;
     startIndicator(sliderSlides.classList.length, true);
+    
+    console.log('Вышел')
   }
 }, 250));
 
