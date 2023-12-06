@@ -2,6 +2,8 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('menu');
 const body = document.body;
 const btnBurger = document.getElementById('btn-burger-menu');
+const btnSliderLeft = document.getElementById('btn-slider-left');
+const btnSliderRight = document.getElementById('btn-slider-right');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
