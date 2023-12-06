@@ -30,6 +30,18 @@ let timerSlider = null;
 let timerIndicator = null;
 let widthIndicator = 0;
 
+function throttle(func, time) {
+  let timer = null
+  return function(...args) {
+    if (timer) return
+    timer = setTimeout(() => {
+      func(...args)
+      clearTimeout(timer)
+      timer = null
+    }, time)
+  }
+}
+
 function resetIndicator(slide) {
   clearInterval(timerIndicator);
   sliderIndicator[slide - 1].style.width = 0;
@@ -120,6 +132,26 @@ btnSliderRight.addEventListener('click', () => {
   }
 });
 
-sliderSlides.addEventListener('mouseover', () => {
-  clearInterval(timerSlider);
-});
+let mouseInsideSlide = false;
+
+sliderSlides.addEventListener('mouseover', throttle(()=>{
+  if (mouseInsideSlide === false) {
+    mouseInsideSlide = true;
+    const slide = sliderSlides.classList.length;
+    const pos = (sliderIndicator[slide - 1].style.width === 0) ? sliderIndicator[slide - 1].style.width : sliderIndicator[slide - 1].style.width.slice(0, -2);
+    clearInterval(timerIndicator);
+    clearInterval(timerSlider);
+
+    console.log('Вошел')
+    
+    sliderSlides.addEventListener('mouseout', throttle(()=>{
+      if (mouseInsideSlide === true) {
+        mouseInsideSlide = false;
+        console.log('Вышел')
+      }
+    }, 250));
+    
+  }
+}, 250));
+
+
