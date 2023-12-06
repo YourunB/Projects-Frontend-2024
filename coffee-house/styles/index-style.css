@@ -376,6 +376,12 @@ a {
   display: block;
   height: 100%;
   width: 0;
+  transition: 0.5s;
+}
+
+.fill-indicator {
+  width: 100%;
+  transition: 6s;
 }
 
 .about {

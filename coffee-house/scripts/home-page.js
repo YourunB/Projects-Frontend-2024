@@ -5,6 +5,7 @@ const btnBurger = document.getElementById('btn-burger-menu');
 const sliderSlides = document.getElementById('slider-slides');
 const btnSliderLeft = document.getElementById('btn-slider-left');
 const btnSliderRight = document.getElementById('btn-slider-right');
+const sliderIndicator = document.getElementsByClassName('slider__bottom_position_time');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
@@ -26,14 +27,15 @@ btnBurger.addEventListener('click', () => {
 });
 
 let timerSlider = null;
+setTimeout(()=>{sliderIndicator[0].classList.add('fill-indicator');}, 10);
 function startTimer() {timerSlider = setInterval(() => {
     switch (sliderSlides.classList.length) {
-      case 1: sliderSlides.classList.add('slide2'); break;
-      case 2: sliderSlides.classList.add('slide3'); break;
-      case 3: sliderSlides.classList.remove('slide2'); sliderSlides.classList.remove('slide3'); break;
+      case 1: sliderSlides.classList.add('slide2'); sliderIndicator[0].classList.remove('fill-indicator'); sliderIndicator[1].classList.add('fill-indicator'); break;
+      case 2: sliderSlides.classList.add('slide3'); sliderIndicator[1].classList.remove('fill-indicator'); sliderIndicator[2].classList.add('fill-indicator'); break;
+      case 3: sliderSlides.classList.remove('slide2'); sliderSlides.classList.remove('slide3'); sliderIndicator[2].classList.remove('fill-indicator'); sliderIndicator[0].classList.add('fill-indicator'); break;
       default: break;
     }
-  }, 3000)
+  }, 6000)
 }
 
 startTimer();
