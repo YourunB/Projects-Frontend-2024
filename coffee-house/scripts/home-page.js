@@ -2,7 +2,7 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('menu');
 const body = document.body;
 const btnBurger = document.getElementById('btn-burger-menu');
-const sliderSlides = document.getElementById('btn-slider-left');
+const sliderSlides = document.getElementById('slider-slides');
 const btnSliderLeft = document.getElementById('btn-slider-left');
 const btnSliderRight = document.getElementById('btn-slider-right');
 
@@ -26,5 +26,9 @@ btnBurger.addEventListener('click', () => {
 });
 
 btnSliderLeft.addEventListener('click', () => {
+  sliderSlides.classList.remove('slide2')
+});
 
+btnSliderRight.addEventListener('click', () => {
+  sliderSlides.classList.add('slide2')
 });
