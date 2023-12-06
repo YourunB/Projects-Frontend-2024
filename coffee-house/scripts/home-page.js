@@ -31,14 +31,14 @@ let timerIndicator = null;
 let widthIndicator = 0;
 
 function throttle(func, time) {
-  let timer = null
+  let timer = null;
   return function(...args) {
     if (timer) return
     timer = setTimeout(() => {
-      func(...args)
-      clearTimeout(timer)
-      timer = null
-    }, time)
+      func(...args);
+      clearTimeout(timer);
+      timer = null;
+    }, time);
   }
 }
 
@@ -48,16 +48,18 @@ function resetIndicator(slide) {
   widthIndicator = 0;
 }
 
-function startIndicator(slide) {
+function startIndicator(slide, restart = false) {
   timerIndicator = setInterval(()=>{
     widthIndicator += 4;
     if (sliderIndicator[slide - 1].style.width !== '40px') sliderIndicator[slide - 1].style.width = widthIndicator + 'px';
+    if (restart === true && widthIndicator === 40) startTimer(true);
   }, 550);
 }
 
 startIndicator(1);
 
-function startTimer() {timerSlider = setInterval(() => {
+function startTimer(restart = false) {
+  function showSlide() {
     switch (sliderSlides.classList.length) {
       case 1:
         btnSliderRight.disabled = true; setTimeout(()=>{ btnSliderRight.disabled = false; }, 1000);
@@ -77,7 +79,13 @@ function startTimer() {timerSlider = setInterval(() => {
       default:
         break;
     }
-  }, 6000)
+  }
+  
+  if (restart === true) {
+    showSlide();
+    startTimer();
+  }
+  else timerSlider = setInterval(() => { showSlide(); }, 6000);
 }
 
 startTimer();
@@ -137,20 +145,15 @@ let mouseInsideSlide = false;
 sliderSlides.addEventListener('mouseover', throttle(()=>{
   if (mouseInsideSlide === false) {
     mouseInsideSlide = true;
-    const slide = sliderSlides.classList.length;
-    const pos = (sliderIndicator[slide - 1].style.width === 0) ? sliderIndicator[slide - 1].style.width : sliderIndicator[slide - 1].style.width.slice(0, -2);
     clearInterval(timerIndicator);
     clearInterval(timerSlider);
+  }
+}, 250));
 
-    console.log('Вошел')
-    
-    sliderSlides.addEventListener('mouseout', throttle(()=>{
-      if (mouseInsideSlide === true) {
-        mouseInsideSlide = false;
-        console.log('Вышел')
-      }
-    }, 250));
-    
+sliderSlides.addEventListener('mouseout', throttle(()=>{
+  if (mouseInsideSlide === true) {
+    mouseInsideSlide = false;
+    startIndicator(sliderSlides.classList.length, true);
   }
 }, 250));
 
