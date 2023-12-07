@@ -465,10 +465,10 @@ a {
     width: 310px;
   }
 
-  .product:nth-of-type(5),
-  .product:nth-of-type(6),
-  .product:nth-of-type(7),
-  .product:nth-of-type(8) {
+  .menu__products .product:nth-of-type(5),
+  .menu__products .product:nth-of-type(6),
+  .menu__products .product:nth-of-type(7),
+  .menu__products .product:nth-of-type(8) {
     display: none;
   }
 

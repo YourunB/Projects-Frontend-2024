@@ -2,6 +2,9 @@ const nav = document.getElementById('nav');
 const menu = document.getElementById('menu');
 const body = document.body;
 const btnBurger = document.getElementById('btn-burger-menu');
+const btnCoffee = document.getElementById('btn-coffee');
+const btnTea = document.getElementById('btn-coffee');
+const btnDessert = document.getElementById('btn-coffee');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
