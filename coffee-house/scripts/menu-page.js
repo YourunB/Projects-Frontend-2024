@@ -41,13 +41,17 @@ function toogleStateBtns(active, disable1, disable2) {
 }
 
 function toogleStateBlocks(active, disable1, disable2) {
-  disable1.classList.add('unvisible');
-  disable2.classList.add('unvisible');;
-  active.classList.remove('unvisible');
-}
+  disable1.classList.add('hide');
+  setTimeout(()=>{ disable1.classList.add('unvisible'); }, 500);
 
-function checkQuantityProducts() {
-  
+  disable2.classList.add('hide');
+  setTimeout(()=>{ disable2.classList.add('unvisible'); }, 500);
+
+  setTimeout(()=>{
+    active.classList.remove('unvisible');
+    disable1.classList.remove('hide');
+    disable2.classList.remove('hide');
+  }, 500);
 }
 
 btnTea.addEventListener('click', ()=>{
@@ -95,11 +99,13 @@ window.addEventListener('resize', () => {
     if (checkedBlock === 'coffee' && showQuantityProduct > 4) {
       const products = document.getElementsByClassName('product__coffee');
       Array.from(products).forEach(product => product.classList.add('product__coffee-hide'));
+      showQuantityProduct = 4;
       btnRefresh.classList.remove('unvisible');
     }
     if (checkedBlock === 'dessert' && showQuantityProduct > 4) {
       const products = document.getElementsByClassName('product__dessert');
       Array.from(products).forEach(product => product.classList.add('product__dessert-hide'));
+      showQuantityProduct = 4;
       btnRefresh.classList.remove('unvisible');
     }
   }

@@ -309,11 +309,17 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 4px;
   left: 0;
   right: 0;
   margin: auto;
   display: none;
   cursor: pointer;
+  transition: 1s;
+}
+
+.refresh-btn svg {
+  stroke: #403F3D;
   transition: 1s;
 }
 
@@ -635,6 +641,10 @@ a {
   
   .refresh-btn:hover {
     background: #665F55;
+  }
+
+  .refresh-btn:hover svg {
+    stroke: #E1D4C9;
   }
   
   .footer__button:hover {
