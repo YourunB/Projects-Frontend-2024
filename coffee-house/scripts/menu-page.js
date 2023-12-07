@@ -5,6 +5,9 @@ const btnBurger = document.getElementById('btn-burger-menu');
 const btnCoffee = document.getElementById('btn-coffee');
 const btnTea = document.getElementById('btn-tea');
 const btnDessert = document.getElementById('btn-dessert');
+const blockTea = document.getElementById('tea-block');
+const blockDessert = document.getElementById('dessert-block');
+const blockCoffee = document.getElementById('coffee-block');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
