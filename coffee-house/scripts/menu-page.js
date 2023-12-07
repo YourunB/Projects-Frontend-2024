@@ -9,6 +9,8 @@ const blockTea = document.getElementById('tea-block');
 const blockDessert = document.getElementById('dessert-block');
 const blockCoffee = document.getElementById('coffee-block');
 const btnRefresh = document.getElementById('btn-refresh');
+let checkedBlock = 'coffee';
+let showQuantityProduct = 4;
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
@@ -39,19 +41,9 @@ function toogleStateBtns(active, disable1, disable2) {
 }
 
 function toogleStateBlocks(active, disable1, disable2) {
-  disable1.classList.remove('show');
-  disable1.classList.add('hide');
-  setTimeout(()=>{disable1.classList.add('unvisible');}, 500);
-  
-  disable2.classList.remove('show');
-  disable2.classList.add('hide');
-  setTimeout(()=>{disable2.classList.add('unvisible');}, 500);
-
-  setTimeout(()=>{
-    active.classList.remove('hide');
-    active.classList.add('show');
-    active.classList.remove('unvisible');
-  }, 500);
+  disable1.classList.add('unvisible');
+  disable2.classList.add('unvisible');;
+  active.classList.remove('unvisible');
 }
 
 function checkQuantityProducts() {
@@ -61,14 +53,24 @@ function checkQuantityProducts() {
 btnTea.addEventListener('click', ()=>{
   toogleStateBtns(btnTea, btnCoffee, btnDessert);
   toogleStateBlocks(blockTea, blockCoffee, blockDessert);
+  checkedBlock = 'tea';
+  showQuantityProduct = 4;
 });
 
 btnCoffee.addEventListener('click', ()=>{
   toogleStateBtns(btnCoffee, btnTea, btnDessert);
   toogleStateBlocks(blockCoffee, blockTea, blockDessert);
+  checkedBlock = 'coffee';
+  showQuantityProduct = 4;
 });
 
 btnDessert.addEventListener('click', ()=>{
   toogleStateBtns(btnDessert, btnTea, btnCoffee);
   toogleStateBlocks(blockDessert, blockTea, blockCoffee);
+  checkedBlock = 'dessert';
+  showQuantityProduct = 4;
+});
+
+btnRefresh.addEventListener('click', ()=>{
+  console.log(checkedBlock);
 });

@@ -239,7 +239,6 @@ a {
   justify-content: center;
   gap: 40px;
   margin-bottom: 100px;
-  opacity: 0;
 }
 
 .product {
@@ -466,12 +465,8 @@ a {
     width: 310px;
   }
 
-  .menu__products .product:nth-of-type(5),
-  .menu__products .product:nth-of-type(6),
-  .menu__products .product:nth-of-type(7),
-  .menu__products .product:nth-of-type(8) {
-    display: none;
-  }
+  .product__coffee-hide { display: none; }
+  .product__dessert-hide { display: none; }
 
   .refresh-btn {
     display: block;
