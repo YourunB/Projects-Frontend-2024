@@ -156,4 +156,15 @@ sliderSlides.addEventListener('mouseout', debounce(()=>{
   }
 }, 250));
 
+sliderDisplay.addEventListener('touchstart', (event) => {
+  touchstartX = event.changedTouches[0].screenX;
+}, false);
 
+sliderDisplay.addEventListener('touchend', (event) => {
+  touchendX = event.changedTouches[0].screenX;
+  swipeSlide();
+}, false);
+
+function swipeSlide() {
+
+}
