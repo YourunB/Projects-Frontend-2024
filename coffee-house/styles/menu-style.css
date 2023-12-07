@@ -25,7 +25,7 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  min-height: calc(100vh - 450px);
+  min-height: calc(100vh - 490px);
   background: #E1D4C9;
 }
 
@@ -321,7 +321,7 @@ a {
   right: 0;
   margin: 0 auto 40px auto;
   max-width: 1360px;
-  min-height: 450px;
+  height: 450px;
   width: 100%;
   border-radius: 40px;
   background: var(--background-container, #665F55);

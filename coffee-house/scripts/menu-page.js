@@ -8,6 +8,7 @@ const btnDessert = document.getElementById('btn-dessert');
 const blockTea = document.getElementById('tea-block');
 const blockDessert = document.getElementById('dessert-block');
 const blockCoffee = document.getElementById('coffee-block');
+const btnRefresh = document.getElementById('btn-refresh');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
@@ -51,6 +52,10 @@ function toogleStateBlocks(active, disable1, disable2) {
     active.classList.add('show');
     active.classList.remove('unvisible');
   }, 500);
+}
+
+function checkQuantityProducts() {
+  
 }
 
 btnTea.addEventListener('click', ()=>{
