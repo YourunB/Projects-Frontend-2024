@@ -3,8 +3,8 @@ const menu = document.getElementById('menu');
 const body = document.body;
 const btnBurger = document.getElementById('btn-burger-menu');
 const btnCoffee = document.getElementById('btn-coffee');
-const btnTea = document.getElementById('btn-coffee');
-const btnDessert = document.getElementById('btn-coffee');
+const btnTea = document.getElementById('btn-tea');
+const btnDessert = document.getElementById('btn-dessert');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
@@ -23,4 +23,25 @@ btnBurger.addEventListener('click', () => {
     btnBurger.classList.add('header__burger-menu_click')
     body.classList.add('scroll-off');
   }
+});
+
+function toogleStateBtns(active, disable1, disable2) {
+  active.classList.add('menu__controls_btn_clicked');
+  active.disabled = true;
+  disable1.classList.remove('menu__controls_btn_clicked');
+  disable1.disabled = false;
+  disable2.classList.remove('menu__controls_btn_clicked');
+  disable2.disabled = false;
+}
+
+btnTea.addEventListener('click', ()=>{
+  toogleStateBtns(btnTea, btnCoffee, btnDessert);
+});
+
+btnCoffee.addEventListener('click', ()=>{
+  toogleStateBtns(btnCoffee, btnTea, btnDessert);
+});
+
+btnDessert.addEventListener('click', ()=>{
+  toogleStateBtns(btnDessert, btnTea, btnCoffee);
 });
