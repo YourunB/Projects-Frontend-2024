@@ -250,6 +250,8 @@ a {
   border: solid 1px #C1B6AD;
   border-radius: 40px;
   cursor: pointer;
+  opacity: 0;
+  animation: show 0.5s forwards;
 }
 
 .product__image {

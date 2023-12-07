@@ -62,6 +62,7 @@ btnCoffee.addEventListener('click', ()=>{
   toogleStateBlocks(blockCoffee, blockTea, blockDessert);
   checkedBlock = 'coffee';
   showQuantityProduct = 4;
+  btnRefresh.classList.remove('unvisible');
 });
 
 btnDessert.addEventListener('click', ()=>{
@@ -69,8 +70,37 @@ btnDessert.addEventListener('click', ()=>{
   toogleStateBlocks(blockDessert, blockTea, blockCoffee);
   checkedBlock = 'dessert';
   showQuantityProduct = 4;
+  btnRefresh.classList.remove('unvisible');
 });
 
 btnRefresh.addEventListener('click', ()=>{
-  console.log(checkedBlock);
+  if (document.body.getBoundingClientRect().width <= 1330) {
+    if (checkedBlock === 'coffee' && showQuantityProduct === 4) {
+      const products = document.getElementsByClassName('product__coffee-hide');
+      Array.from(products).forEach(product => product.classList.remove('product__coffee-hide'));
+      showQuantityProduct = 8;
+      btnRefresh.classList.add('unvisible');
+    }
+    if (checkedBlock === 'dessert' && showQuantityProduct === 4) {
+      const products = document.getElementsByClassName('product__dessert-hide');
+      Array.from(products).forEach(product => product.classList.remove('product__dessert-hide'));
+      showQuantityProduct = 8;
+      btnRefresh.classList.add('unvisible');
+    }
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (document.body.getBoundingClientRect().width <= 1330) {
+    if (checkedBlock === 'coffee' && showQuantityProduct > 4) {
+      const products = document.getElementsByClassName('product__coffee');
+      Array.from(products).forEach(product => product.classList.add('product__coffee-hide'));
+      btnRefresh.classList.remove('unvisible');
+    }
+    if (checkedBlock === 'dessert' && showQuantityProduct > 4) {
+      const products = document.getElementsByClassName('product__dessert');
+      Array.from(products).forEach(product => product.classList.add('product__dessert-hide'));
+      btnRefresh.classList.remove('unvisible');
+    }
+  }
 });
