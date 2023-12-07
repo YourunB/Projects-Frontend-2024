@@ -38,9 +38,19 @@ function toogleStateBtns(active, disable1, disable2) {
 }
 
 function toogleStateBlocks(active, disable1, disable2) {
-  active.classList.remove('unvisible');
-  disable1.classList.add('unvisible');
-  disable2.classList.add('unvisible');
+  disable1.classList.remove('show');
+  disable1.classList.add('hide');
+  setTimeout(()=>{disable1.classList.add('unvisible');}, 500);
+  
+  disable2.classList.remove('show');
+  disable2.classList.add('hide');
+  setTimeout(()=>{disable2.classList.add('unvisible');}, 500);
+
+  setTimeout(()=>{
+    active.classList.remove('hide');
+    active.classList.add('show');
+    active.classList.remove('unvisible');
+  }, 500);
 }
 
 btnTea.addEventListener('click', ()=>{

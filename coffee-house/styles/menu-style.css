@@ -239,7 +239,7 @@ a {
   justify-content: center;
   gap: 40px;
   margin-bottom: 100px;
-  animation: 1s show;
+  opacity: 0;
 }
 
 .product {
@@ -658,6 +658,9 @@ a {
     margin-right: 5px;
   }
 }
+
+.show {  animation: 0.5s show forwards; }
+.hide {  animation: 0.5s hide forwards; }
 
 @keyframes show {
   0% {opacity: 0;}
