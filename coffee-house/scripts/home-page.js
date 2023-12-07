@@ -89,7 +89,7 @@ function startTimer(restart = false) {
 
 startTimer();
 
-btnSliderLeft.addEventListener('click', () => {
+function changeSlideLeft() {
   switch (sliderSlides.classList.length) {
     case 1:
       btnSliderLeft.disabled = true; setTimeout(()=>{btnSliderLeft.disabled = false;},1000);
@@ -112,9 +112,9 @@ btnSliderLeft.addEventListener('click', () => {
     default:
       break;
   }
-});
+}
 
-btnSliderRight.addEventListener('click', () => {
+function changeSlideRight() {
   switch (sliderSlides.classList.length) {
     case 1:
       btnSliderRight.disabled = true; setTimeout(()=>{btnSliderRight.disabled = false;},1000);
@@ -137,6 +137,14 @@ btnSliderRight.addEventListener('click', () => {
     default:
       break;
   }
+}
+
+btnSliderLeft.addEventListener('click', () => {
+  changeSlideLeft();
+});
+
+btnSliderRight.addEventListener('click', () => {
+  changeSlideRight();
 });
 
 let mouseInsideSlide = false;
@@ -166,5 +174,11 @@ sliderDisplay.addEventListener('touchend', (event) => {
 }, false);
 
 function swipeSlide() {
+  if (touchendX < touchstartX) { //Left
+    changeSlideRight();
+  }
 
+  if (touchendX > touchstartX) { //Right
+    changeSlideLeft();
+  }
 }
