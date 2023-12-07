@@ -6,6 +6,7 @@ const sliderSlides = document.getElementById('slider-slides');
 const btnSliderLeft = document.getElementById('btn-slider-left');
 const btnSliderRight = document.getElementById('btn-slider-right');
 const sliderIndicator = document.getElementsByClassName('slider__bottom_position_time');
+const sliderDisplay = document.getElementById('slider-display');
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
