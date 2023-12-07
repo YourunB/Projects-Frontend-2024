@@ -443,13 +443,11 @@ a {
 .modal {
   position: fixed;
   z-index: 201;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  width: 800px;
-  height: 504px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
   background: #E1D4C9;
   padding: 16px;
   border-radius: 40px;
@@ -672,7 +670,26 @@ a {
   }
 }
 
+@media (max-width: 880px) {
+  .modal {
+    max-width: 688px;
+  }
+}
+
 @media (max-width: 768px) {
+  .modal {
+    max-width: 342px;
+  }
+
+  .modal__content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .modal__vision {
+    display: none;
+  }
+
   .header {
     margin-bottom: 16px;
     position: relative;
