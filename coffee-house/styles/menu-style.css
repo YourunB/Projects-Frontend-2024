@@ -432,7 +432,7 @@ a {
 
 @media (max-width: 1375px) {
   .container {
-    min-height: (100vh - 736px);
+    min-height: (100vh - 776px);
   }
 
   .footer {
@@ -568,7 +568,7 @@ a {
   }
 
   .container {
-    min-height: (100vh - 526px);
+    min-height: (100vh - 566px);
   }
 
   .footer {

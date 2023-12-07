@@ -25,7 +25,7 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  min-height: calc(100vh - 450px);
+  min-height: calc(100vh - 490px);
   background: #E1D4C9;
 }
 
@@ -667,7 +667,7 @@ a {
 @media (max-width: 1375px) {
 
   .container {
-    min-height: (100vh - 736px);
+    min-height: (100vh - 776px);
   }
 
   .mobile-app {
@@ -889,7 +889,7 @@ a {
   }
 
   .container {
-    min-height: (100vh - 526px);
+    min-height: (100vh - 566px);
   }
 
   .footer {
