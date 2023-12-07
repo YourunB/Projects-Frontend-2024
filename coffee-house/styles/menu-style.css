@@ -657,3 +657,7 @@ a {
     margin-right: 5px;
   }
 }
+
+.unvisible {
+  display: none;
+}

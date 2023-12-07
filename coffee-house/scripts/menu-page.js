@@ -37,14 +37,23 @@ function toogleStateBtns(active, disable1, disable2) {
   disable2.disabled = false;
 }
 
+function toogleStateBlocks(active, disable1, disable2) {
+  active.classList.remove('unvisible');
+  disable1.classList.add('unvisible');
+  disable2.classList.add('unvisible');
+}
+
 btnTea.addEventListener('click', ()=>{
   toogleStateBtns(btnTea, btnCoffee, btnDessert);
+  toogleStateBlocks(blockTea, blockCoffee, blockDessert);
 });
 
 btnCoffee.addEventListener('click', ()=>{
   toogleStateBtns(btnCoffee, btnTea, btnDessert);
+  toogleStateBlocks(blockCoffee, blockTea, blockDessert);
 });
 
 btnDessert.addEventListener('click', ()=>{
   toogleStateBtns(btnDessert, btnTea, btnCoffee);
+  toogleStateBlocks(blockDessert, blockTea, blockCoffee);
 });
