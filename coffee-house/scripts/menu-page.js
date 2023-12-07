@@ -55,26 +55,37 @@ function toogleStateBlocks(active, disable1, disable2) {
   }, 500);
 }
 
+function resetProducts() {
+  if (showQuantityProduct > 4) {
+    const productsCoffee = document.getElementsByClassName('product__coffee');
+    Array.from(productsCoffee).forEach(product => product.classList.add('product__coffee-hide'));
+    const productsDessert = document.getElementsByClassName('product__dessert');
+    Array.from(productsDessert).forEach(product => product.classList.add('product__dessert-hide'));
+    showQuantityProduct = 4;
+    if (checkedBlock === 'coffee' || checkedBlock === 'dessert') btnRefresh.classList.remove('unvisible');
+  }
+}
+
 btnTea.addEventListener('click', ()=>{
   toogleStateBtns(btnTea, btnCoffee, btnDessert);
   toogleStateBlocks(blockTea, blockCoffee, blockDessert);
   checkedBlock = 'tea';
-  showQuantityProduct = 4;
+  btnRefresh.classList.add('unvisible');
 });
 
 btnCoffee.addEventListener('click', ()=>{
   toogleStateBtns(btnCoffee, btnTea, btnDessert);
   toogleStateBlocks(blockCoffee, blockTea, blockDessert);
+  resetProducts();
   checkedBlock = 'coffee';
-  showQuantityProduct = 4;
   btnRefresh.classList.remove('unvisible');
 });
 
 btnDessert.addEventListener('click', ()=>{
   toogleStateBtns(btnDessert, btnTea, btnCoffee);
   toogleStateBlocks(blockDessert, blockTea, blockCoffee);
+  resetProducts();
   checkedBlock = 'dessert';
-  showQuantityProduct = 4;
   btnRefresh.classList.remove('unvisible');
 });
 
@@ -96,18 +107,5 @@ btnRefresh.addEventListener('click', ()=>{
 });
 
 window.addEventListener('resize', () => {
-  if (document.body.getBoundingClientRect().width <= 1330) {
-    if (checkedBlock === 'coffee' && showQuantityProduct > 4) {
-      const products = document.getElementsByClassName('product__coffee');
-      Array.from(products).forEach(product => product.classList.add('product__coffee-hide'));
-      showQuantityProduct = 4;
-      btnRefresh.classList.remove('unvisible');
-    }
-    if (checkedBlock === 'dessert' && showQuantityProduct > 4) {
-      const products = document.getElementsByClassName('product__dessert');
-      Array.from(products).forEach(product => product.classList.add('product__dessert-hide'));
-      showQuantityProduct = 4;
-      btnRefresh.classList.remove('unvisible');
-    }
-  }
+  if (document.body.getBoundingClientRect().width <= 1330) resetProducts();
 });

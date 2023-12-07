@@ -27,6 +27,7 @@ a {
   margin: auto;
   min-height: calc(100vh - 510px);
   background: #E1D4C9;
+  margin-bottom: 100px;
 }
 
 .header {
@@ -238,7 +239,6 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 100px;
 }
 
 .product {
@@ -478,11 +478,10 @@ a {
 
   .refresh-btn {
     display: block;
-    margin-bottom: 99px;
   }
 
   .menu__products {
-    margin-bottom: 41px;
+    margin-bottom: 40px;
   }
 }
 
