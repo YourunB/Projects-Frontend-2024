@@ -233,7 +233,7 @@ a {
   font-style: italic;
 }
 
-.menu__coffee {
+.menu__products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -454,7 +454,7 @@ a {
 
 @media (max-width: 1330px) {
 
-  .menu__coffee {
+  .menu__products {
     max-width: 1000px;
     left: 0;
     right: 0;
@@ -477,7 +477,7 @@ a {
     margin-bottom: 99px;
   }
 
-  .menu__coffee {
+  .menu__products {
     margin-bottom: 41px;
   }
 }
