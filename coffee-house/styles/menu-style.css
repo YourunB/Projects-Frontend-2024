@@ -357,10 +357,11 @@ a {
 }
 
 .footer__button {
+  display: inline-block;
   width: 60px;
   height: 60px;
   background: none;
-  padding: 18px;
+  padding: 17px;
   border-radius: 100px;
   border: 1px solid var(--border-light, #C1B6AD);
   outline: none;
@@ -387,7 +388,7 @@ a {
   line-height: 125%;
 }
 
-.footer a {
+.footer__contacts a {
   position: relative;
   display: block;
   margin: 20px 0;
@@ -402,7 +403,7 @@ a {
   transition: 1s;
 }
 
-.footer a::after {
+.footer__contacts a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -646,7 +647,7 @@ a {
     stroke: #403F3D;
   }
   
-  .footer a:hover::after {
+  .footer__contacts a:hover::after {
     left: 0;
     width: 100%;
     opacity: 1;
