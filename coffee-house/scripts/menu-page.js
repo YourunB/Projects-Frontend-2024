@@ -48,6 +48,7 @@ function toogleStateBlocks(active, disable1, disable2) {
   setTimeout(()=>{ disable2.classList.add('unvisible'); }, 500);
 
   setTimeout(()=>{
+    active.classList.add('show');
     active.classList.remove('unvisible');
     disable1.classList.remove('hide');
     disable2.classList.remove('hide');

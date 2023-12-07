@@ -25,7 +25,7 @@ a {
   left: 0;
   right: 0;
   margin: auto;
-  min-height: calc(100vh - 490px);
+  min-height: calc(100vh - 510px);
   background: #E1D4C9;
 }
 
@@ -667,7 +667,7 @@ a {
 @media (max-width: 1375px) {
 
   .container {
-    min-height: (100vh - 776px);
+    min-height: calc(100vh - 796px);
   }
 
   .mobile-app {
@@ -790,7 +790,7 @@ a {
 @media (max-width: 720px) {
 
   body {
-    padding: 20px 16px 40px 16px;
+    padding: 20px 16px 0 16px;
   }
 
   .enjoy {
@@ -889,7 +889,7 @@ a {
   }
 
   .container {
-    min-height: (100vh - 566px);
+    min-height: calc(100vh - 586px);
   }
 
   .footer {
