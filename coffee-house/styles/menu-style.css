@@ -207,14 +207,6 @@ a {
   background: #E1D4C9;
 }
 
-.menu__controls_btn:disabled {
-  cursor: default;
-}
-
-.menu__controls_btn:disabled {
-  cursor: default;
-}
-
 .menu h1 {
   left: 0;
   right: 0;
@@ -503,7 +495,24 @@ a {
   gap: 8px;
 }
 
-.modal__content_size span{
+.modal__content_size_name {
+  display: block;
+  width: 100%;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.modal__content_additives {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.modal__content_additives_name {
   display: block;
   width: 100%;
   font-family: Inter;
@@ -514,7 +523,56 @@ a {
 }
 
 .modal__content_button {
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px 7px 7.5px;
+  background: none;
+  border-radius: 100px;
+  border: 1px solid #C1B6AD;
+  color: var(--text-dark, #403F3D);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  transition: 0.5s;
+}
+
+.modal__content_button span:nth-of-type(1) {
+  border-radius: 100px;
+  background: var(--border-light, #C1B6AD);
+  width: 30px;
+  height: 30px;
+  padding-top: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-dark, #403F3D);
+  transition: 0.5s;
+}
+
+.modal__content_button span:nth-of-type(2) {
+  margin-top: 2px;
+  transition: 0.1s;
+}
+
+.modal__content_total {
+  display: flex;
+  justify-content: space-between;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  color:#403F3D;
+  margin-top: 20px;
+}
+
+.modal__content_notification {
+  display: flex;
+  gap: 8px;
 }
 
 @media (max-width: 1375px) {
@@ -740,9 +798,40 @@ a {
     opacity: 1;
   }
 
+  .modal__content_button:hover {
+    cursor: pointer;
+    color: #E1D4C9;
+    border-color: #665F55;
+    background: #665F55;
+  }
+  
+  .modal__content_button:hover span:nth-of-type(1) {
+    background: #E1D4C9;
+  }
+
   .scroll-off {
     margin-right: 5px;
   }
+}
+
+.menu__controls_btn:disabled {
+  cursor: default;
+}
+
+.menu__controls_btn:disabled {
+  cursor: default;
+}
+
+.modal__content_button:disabled {
+  cursor: default;
+  color: #E1D4C9;
+  border-color: #665F55;
+  background: #665F55;
+  transition: 0.5s;
+}
+
+.modal__content_button:disabled span:nth-of-type(1) {
+  background: #E1D4C9;
 }
 
 .show {  animation: 0.5s show forwards; }
