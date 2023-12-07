@@ -239,6 +239,7 @@ a {
   justify-content: center;
   gap: 40px;
   margin-bottom: 100px;
+  animation: 1s show;
 }
 
 .product {
@@ -656,6 +657,16 @@ a {
   .scroll-off {
     margin-right: 5px;
   }
+}
+
+@keyframes show {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes hide {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
 }
 
 .unvisible {
