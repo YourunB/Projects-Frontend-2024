@@ -144,6 +144,12 @@ function toogleBtnSizeDisabled(btn1, btn2, btn3) {
   btn3.disabled = false;
 }
 
+function clearActiveBtn() {
+  btnModalAdditives1.classList.remove('modal__content_button_active');
+  btnModalAdditives2.classList.remove('modal__content_button_active');
+  btnModalAdditives3.classList.remove('modal__content_button_active');
+}
+
 btnModalSize1.addEventListener('click', () => {
   costSize = 0;
   calcPrice();
@@ -184,6 +190,10 @@ btnModalAdditives3.addEventListener('click', () => {
 });
 
 function closeModal() {
+  costAdditives = 0;
+  costSize = 0;
+  price = 0;
+  clearActiveBtn();
   document.body.classList.remove('scroll-off');
   modalWindow.classList.add('unvisible');
   modalOverlay.classList.add('unvisible');
