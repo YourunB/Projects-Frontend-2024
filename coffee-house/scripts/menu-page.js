@@ -169,12 +169,12 @@ const products = document.getElementsByClassName('product');
 
 Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
-    const position = event.currentTarget.dataset.number - 1;
+    const position = event.currentTarget.dataset.number;
     const imageUrl = (event.currentTarget.childNodes[1].childNodes[1].src) ? event.currentTarget.childNodes[1].childNodes[1].src : '../assets/images/menu/no-image.jpg';
     openModal(imageUrl, productsArr[position]);
 
-
-    console.log(productsArr[position].sizes.s.size)
     console.log(position)
+    console.log(productsArr[position].sizes.s.size)
+
   });
 });
