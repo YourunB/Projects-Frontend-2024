@@ -12,6 +12,10 @@ const btnRefresh = document.getElementById('btn-refresh');
 let checkedBlock = 'coffee';
 let showQuantityProduct = 4;
 
+const modalWindow = document.getElementById('modal-window');
+const modalOverlay = document.getElementById('overlay');
+const btnModalClose = document.getElementById('btn-modal-close');
+
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
     if (event.target.nodeName === 'LI' || event.target.nodeName === 'A') {
@@ -109,3 +113,18 @@ btnRefresh.addEventListener('click', ()=>{
 window.addEventListener('resize', () => {
   if (document.body.getBoundingClientRect().width <= 1330) resetProducts();
 });
+
+//-----------------Modal window
+
+function closeModal() {
+  modalWindow.classList.add('unvisible');
+  modalOverlay.classList.add('unvisible');
+}
+
+function openModal() {
+  modalWindow.classList.remove('unvisible');
+  modalOverlay.classList.remove('unvisible');
+}
+
+modalOverlay.addEventListener('click', () => { closeModal(); });
+btnModalClose.addEventListener('click', () => { closeModal(); });
