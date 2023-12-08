@@ -17,6 +17,7 @@ const modalOverlay = document.getElementById('overlay');
 const btnModalClose = document.getElementById('btn-modal-close');
 const modalImage = document.getElementById('modal-image');
 const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
 let productsArr;
 
 btnBurger.addEventListener('click', () => {
@@ -127,7 +128,8 @@ function closeModal() {
 
 function openModal(imageUrl, title) {
   modalImage.src = imageUrl;
-  modalTitle.textContent = '';
+  modalTitle.textContent = title;
+  modalDescription.textContent = description;
 
   document.body.classList.add('scroll-off');
   modalWindow.classList.remove('unvisible');
@@ -151,10 +153,11 @@ const products = document.getElementsByClassName('product');
 
 Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
-    const position = event.currentTarget.dataset.number;
+    const position = event.currentTarget.dataset.number - 1;
     const imageUrl = (event.currentTarget.childNodes[1].childNodes[1].src) ? event.currentTarget.childNodes[1].childNodes[1].src : '../assets/images/menu/no-image.jpg';
     const title = productsArr[position].name;
-    openModal(imageUrl, title);
+    const description = productsArr[position].description;
+    openModal(imageUrl, title, description);
 
 
     console.log(productsArr[position].name)
