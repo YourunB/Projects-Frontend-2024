@@ -15,6 +15,7 @@ let showQuantityProduct = 4;
 const modalWindow = document.getElementById('modal-window');
 const modalOverlay = document.getElementById('overlay');
 const btnModalClose = document.getElementById('btn-modal-close');
+let productsArr;
 
 btnBurger.addEventListener('click', () => {
   menu.addEventListener('click', (event) => {
@@ -125,6 +126,16 @@ function openModal() {
   modalWindow.classList.remove('unvisible');
   modalOverlay.classList.remove('unvisible');
 }
+
+function getAllProducts() {
+  fetch('../assets/json/products.json')
+  .then((response) => response.json())
+  .then((data) => {
+    productsArr = data;
+  });
+}
+
+getAllProducts();
 
 modalOverlay.addEventListener('click', () => { closeModal(); });
 btnModalClose.addEventListener('click', () => { closeModal(); });
