@@ -149,7 +149,7 @@ const products = document.getElementsByClassName('product');
 
 Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
-    const imageUrl = event.currentTarget.childNodes[1].childNodes[1].src;
+    const imageUrl = (event.currentTarget.childNodes[1].childNodes[1].src) ? event.currentTarget.childNodes[1].childNodes[1].src : '../assets/images/menu/no-image.jpg';
     openModal(imageUrl);
     console.log(event.currentTarget.dataset.number)
   });
