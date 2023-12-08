@@ -162,6 +162,26 @@ btnModalSize3.addEventListener('click', () => {
   toogleBtnSizeDisabled(btnModalSize3, btnModalSize1, btnModalSize2);
 });
 
+btnModalAdditives1.addEventListener('click', () => {
+  if (btnModalAdditives1.classList.value === 'modal__content_button') costAdditives += 0.50;
+  else costAdditives -= 0.50;
+  calcPrice();
+  btnModalAdditives1.classList.toggle('modal__content_button_active');
+});
+
+btnModalAdditives2.addEventListener('click', () => {
+  if (btnModalAdditives2.classList.value === 'modal__content_button') costAdditives += 0.50;
+  else costAdditives -= 0.50;
+  calcPrice();
+  btnModalAdditives2.classList.toggle('modal__content_button_active');
+});
+
+btnModalAdditives3.addEventListener('click', () => {
+  if (btnModalAdditives3.classList.value === 'modal__content_button') costAdditives += 0.50;
+  else costAdditives -= 0.50;
+  calcPrice();
+  btnModalAdditives3.classList.toggle('modal__content_button_active');
+});
 
 function closeModal() {
   document.body.classList.remove('scroll-off');

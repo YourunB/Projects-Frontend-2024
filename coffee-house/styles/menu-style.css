@@ -880,6 +880,18 @@ a {
   }
 }
 
+.modal__content_button_active {
+  transition: 0.5s;
+  cursor: pointer;
+  color: #E1D4C9;
+  border-color: #665F55;
+  background: #665F55;
+}
+
+.modal__content_button_active span:nth-of-type(1) {
+  background: #E1D4C9;
+}
+
 .menu__controls_btn:disabled {
   cursor: default;
 }
