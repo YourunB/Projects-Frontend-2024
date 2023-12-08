@@ -15,6 +15,7 @@ let showQuantityProduct = 4;
 const modalWindow = document.getElementById('modal-window');
 const modalOverlay = document.getElementById('overlay');
 const btnModalClose = document.getElementById('btn-modal-close');
+const modalImage = document.getElementById('modal-image');
 let productsArr;
 
 btnBurger.addEventListener('click', () => {
@@ -118,11 +119,15 @@ window.addEventListener('resize', () => {
 //-----------------Modal window
 
 function closeModal() {
+  document.body.classList.remove('scroll-off');
   modalWindow.classList.add('unvisible');
   modalOverlay.classList.add('unvisible');
 }
 
-function openModal() {
+function openModal(imageUrl) {
+  modalImage.src = imageUrl;
+
+  document.body.classList.add('scroll-off');
   modalWindow.classList.remove('unvisible');
   modalOverlay.classList.remove('unvisible');
 }
@@ -144,7 +149,8 @@ const products = document.getElementsByClassName('product');
 
 Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
-    openModal();
-    console.log(event.currentTarget)
+    const imageUrl = event.currentTarget.childNodes[1].childNodes[1].src;
+    openModal(imageUrl);
+    console.log(event.currentTarget.dataset.number)
   });
 });
