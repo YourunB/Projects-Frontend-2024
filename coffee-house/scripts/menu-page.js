@@ -9,6 +9,7 @@ const blockTea = document.getElementById('tea-block');
 const blockDessert = document.getElementById('dessert-block');
 const blockCoffee = document.getElementById('coffee-block');
 const btnRefresh = document.getElementById('btn-refresh');
+
 let checkedBlock = 'coffee';
 let showQuantityProduct = 4;
 
@@ -25,6 +26,8 @@ const btnModalAdditives1 = document.getElementById('btn-modal-additives1');
 const btnModalAdditives2 = document.getElementById('btn-modal-additives2');
 const btnModalAdditives3 = document.getElementById('btn-modal-additives3');
 const btnModalClose = document.getElementById('btn-modal-close');
+
+const products = document.getElementsByClassName('product');
 let productsArr;
 
 btnBurger.addEventListener('click', () => {
@@ -127,6 +130,39 @@ window.addEventListener('resize', () => {
 
 //-----------------Modal window
 
+let costSize = 0;
+let costAdditives = 0;
+let price = 0;
+
+function calcPrice() {
+  modalPrice.textContent = (price + costSize + costAdditives).toFixed(2);
+}
+
+function toogleBtnSizeDisabled(btn1, btn2, btn3) {
+  btn1.disabled = true;
+  btn2.disabled = false;
+  btn3.disabled = false;
+}
+
+btnModalSize1.addEventListener('click', () => {
+  costSize = 0;
+  calcPrice();
+  toogleBtnSizeDisabled(btnModalSize1, btnModalSize2, btnModalSize3);
+});
+
+btnModalSize2.addEventListener('click', () => {
+  costSize = 0.50;
+  calcPrice();
+  toogleBtnSizeDisabled(btnModalSize2, btnModalSize1, btnModalSize3);
+});
+
+btnModalSize3.addEventListener('click', () => {
+  costSize = 1.00;
+  calcPrice();
+  toogleBtnSizeDisabled(btnModalSize3, btnModalSize1, btnModalSize2);
+});
+
+
 function closeModal() {
   document.body.classList.remove('scroll-off');
   modalWindow.classList.add('unvisible');
@@ -138,13 +174,14 @@ function openModal(imageUrl, obj) {
   modalTitle.textContent = obj.title;
   modalDescription.textContent = obj.description;
   modalPrice.textContent = obj.price;
+  price = Number(obj.price);
 
   btnModalSize1.childNodes[1].textContent = obj.sizes.s.size;
   btnModalSize2.childNodes[1].textContent = obj.sizes.s.size;
   btnModalSize2.childNodes[1].textContent = obj.sizes.s.size;
 
   btnModalAdditives1.childNodes[1].textContent = obj.additives[0].name;
-  btnModalAdditives2.childNodes[1].textContent = obj.additives[1].name;;
+  btnModalAdditives2.childNodes[1].textContent = obj.additives[1].name;
   btnModalAdditives3.childNodes[1].textContent = obj.additives[2].name;
 
   document.body.classList.add('scroll-off');
@@ -162,19 +199,13 @@ function getAllProducts() {
 
 getAllProducts();
 
-modalOverlay.addEventListener('click', () => { closeModal(); });
-btnModalClose.addEventListener('click', () => { closeModal(); });
-
-const products = document.getElementsByClassName('product');
-
 Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
     const position = event.currentTarget.dataset.number;
     const imageUrl = (event.currentTarget.childNodes[1].childNodes[1].src) ? event.currentTarget.childNodes[1].childNodes[1].src : '../assets/images/menu/no-image.jpg';
     openModal(imageUrl, productsArr[position]);
-
-    console.log(position)
-    console.log(productsArr[position].sizes.s.size)
-
   });
 });
+
+modalOverlay.addEventListener('click', () => { closeModal(); });
+btnModalClose.addEventListener('click', () => { closeModal(); });
