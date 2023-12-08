@@ -128,3 +128,12 @@ function openModal() {
 
 modalOverlay.addEventListener('click', () => { closeModal(); });
 btnModalClose.addEventListener('click', () => { closeModal(); });
+
+const products = document.getElementsByClassName('product');
+
+Array.from(products).forEach(product => {
+  product.addEventListener('click', (event) => {
+    openModal();
+    console.log(event.currentTarget)
+  });
+});
