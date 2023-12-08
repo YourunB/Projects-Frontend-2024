@@ -135,7 +135,7 @@ let costAdditives = 0;
 let price = 0;
 
 function calcPrice() {
-  modalPrice.textContent = (price + costSize + costAdditives).toFixed(2);
+  modalPrice.textContent = '$' + (price + costSize + costAdditives).toFixed(2);
 }
 
 function toogleBtnSizeDisabled(btn1, btn2, btn3) {
@@ -193,17 +193,25 @@ function closeModal() {
   costAdditives = 0;
   costSize = 0;
   price = 0;
-  clearActiveBtn();
-  document.body.classList.remove('scroll-off');
-  modalWindow.classList.add('unvisible');
-  modalOverlay.classList.add('unvisible');
+
+  modalWindow.classList.add('hide');
+  modalOverlay.classList.add('hide-overlay');
+  setTimeout(()=>{
+    toogleBtnSizeDisabled(btnModalSize1, btnModalSize2, btnModalSize3);
+    clearActiveBtn();
+    document.body.classList.remove('scroll-off');
+    modalWindow.classList.add('unvisible');
+    modalOverlay.classList.add('unvisible');
+    modalWindow.classList.remove('hide');
+    modalOverlay.classList.remove('hide-overlay');
+  }, 500);
 }
 
 function openModal(imageUrl, obj) {
   modalImage.src = imageUrl;
   modalTitle.textContent = obj.title;
   modalDescription.textContent = obj.description;
-  modalPrice.textContent = obj.price;
+  modalPrice.textContent = '$' + obj.price;
   price = Number(obj.price);
 
   btnModalSize1.childNodes[1].textContent = obj.sizes.s.size;
