@@ -17,9 +17,13 @@ const modalOverlay = document.getElementById('overlay');
 const modalImage = document.getElementById('modal-image');
 const modalTitle = document.getElementById('modal-title');
 const modalDescription = document.getElementById('modal-description');
+const modalPrice = document.getElementById('modal-price');
 const btnModalSize1 = document.getElementById('btn-modal-size1');
 const btnModalSize2 = document.getElementById('btn-modal-size2');
 const btnModalSize3 = document.getElementById('btn-modal-size3');
+const btnModalAdditives1 = document.getElementById('btn-modal-additives1');
+const btnModalAdditives2 = document.getElementById('btn-modal-additives2');
+const btnModalAdditives3 = document.getElementById('btn-modal-additives3');
 const btnModalClose = document.getElementById('btn-modal-close');
 let productsArr;
 
@@ -129,20 +133,20 @@ function closeModal() {
   modalOverlay.classList.add('unvisible');
 }
 
-function openModal(imageUrl, title, description) {
+function openModal(imageUrl, obj) {
   modalImage.src = imageUrl;
-  modalTitle.textContent = title;
-  modalDescription.textContent = description;
+  modalTitle.textContent = obj.title;
+  modalDescription.textContent = obj.description;
+  modalPrice.textContent = obj.price;
 
-  if (checkedBlock === 'coffee' || checkedBlock === 'tea') {
-    btnModalSize1.childNodes[1].textContent = '200 ml';
-    btnModalSize2.childNodes[1].textContent = '300 ml';
-    btnModalSize3.childNodes[1].textContent = '400 ml';
-  } else {
-    btnModalSize1.childNodes[1].textContent = '50 g';
-    btnModalSize2.childNodes[1].textContent = '100 g';
-    btnModalSize3.childNodes[1].textContent = '200 g';
-  }
+  btnModalSize1.childNodes[1].textContent = obj.sizes.s.size;
+  btnModalSize2.childNodes[1].textContent = obj.sizes.s.size;
+  btnModalSize2.childNodes[1].textContent = obj.sizes.s.size;
+
+  btnModalAdditives1.childNodes[1].textContent = obj.additives[0].name;
+  btnModalAdditives2.childNodes[1].textContent = obj.additives[1].name;;
+  btnModalAdditives3.childNodes[1].textContent = obj.additives[2].name;
+
   document.body.classList.add('scroll-off');
   modalWindow.classList.remove('unvisible');
   modalOverlay.classList.remove('unvisible');
@@ -167,12 +171,10 @@ Array.from(products).forEach(product => {
   product.addEventListener('click', (event) => {
     const position = event.currentTarget.dataset.number - 1;
     const imageUrl = (event.currentTarget.childNodes[1].childNodes[1].src) ? event.currentTarget.childNodes[1].childNodes[1].src : '../assets/images/menu/no-image.jpg';
-    const title = productsArr[position].name;
-    const description = productsArr[position].description;
-    openModal(imageUrl, title, description);
+    openModal(imageUrl, productsArr[position]);
 
 
-    console.log(productsArr[position].name)
+    console.log(productsArr[position].sizes.s.size)
     console.log(position)
   });
 });
