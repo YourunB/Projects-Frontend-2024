@@ -673,26 +673,13 @@ a {
   }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 860px) {
   .modal {
     max-width: 688px;
   }
 }
 
 @media (max-width: 768px) {
-  .modal {
-    max-width: 342px;
-  }
-
-  .modal__content {
-    width: 100%;
-    padding: 0;
-  }
-
-  .modal__vision {
-    display: none;
-  }
-
   .header {
     margin-bottom: 16px;
     position: relative;
@@ -758,6 +745,21 @@ a {
     border-bottom: solid 2px #403F3D;
     transition: 1s;
     width: 143px;
+  }
+}
+
+@media (max-width: 750px) {
+  .modal {
+    max-width: 342px;
+  }
+
+  .modal__content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .modal__vision {
+    display: none;
   }
 }
 

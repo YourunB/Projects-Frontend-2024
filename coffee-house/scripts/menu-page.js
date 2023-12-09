@@ -209,7 +209,7 @@ function closeModal() {
 
 function openModal(imageUrl, obj) {
   modalImage.src = imageUrl;
-  modalTitle.textContent = obj.title;
+  modalTitle.textContent = obj.name;
   modalDescription.textContent = obj.description;
   modalPrice.textContent = '$' + obj.price;
   price = Number(obj.price);
