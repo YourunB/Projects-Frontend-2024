@@ -150,7 +150,7 @@ btnSliderRight.addEventListener('click', () => {
 let mouseInsideSlide = false;
 
 sliderSlides.addEventListener('mouseover', debounce(()=>{
-  if (mouseInsideSlide === false) {
+  if (mouseInsideSlide === false && navigator.maxTouchPoints === 0) {
     mouseInsideSlide = true;
     clearInterval(timerIndicator);
     clearInterval(timerSlider);
@@ -158,7 +158,7 @@ sliderSlides.addEventListener('mouseover', debounce(()=>{
 }, 250));
 
 sliderSlides.addEventListener('mouseout', debounce(()=>{
-  if (mouseInsideSlide === true) {
+  if (mouseInsideSlide === true && navigator.maxTouchPoints === 0) {
     mouseInsideSlide = false;
     startIndicator(sliderSlides.classList.length, true);
   }
