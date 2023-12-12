@@ -817,8 +817,10 @@ a {
   }
   
   .slider__display {
-    margin: 0 38px;
     width: 348px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .slider__display_slide img {
