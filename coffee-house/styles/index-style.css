@@ -774,6 +774,7 @@ a {
     background: var(--background-body, #E1D4C9);
     transform: translateX(120%);
     transition: 1s;
+    overflow: auto;
   }
 
   .menu-list__item {
