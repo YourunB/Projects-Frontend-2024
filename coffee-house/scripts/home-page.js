@@ -165,10 +165,13 @@ sliderSlides.addEventListener('mouseout', debounce(()=>{
 }, 250));
 
 sliderDisplay.addEventListener('touchstart', (event) => {
+  clearInterval(timerIndicator);
+  clearInterval(timerSlider);
   touchstartX = event.changedTouches[0].screenX;
 }, false);
 
 sliderDisplay.addEventListener('touchend', (event) => {
+  startIndicator(sliderSlides.classList.length, true);
   touchendX = event.changedTouches[0].screenX;
   swipeSlide();
 }, false);
