@@ -214,6 +214,7 @@ function resetGame() {
 
 gameSectionKeyboard.addEventListener('click', (event) => {
   checkChar(event.target.textContent.toUpperCase(), event.target);
+  audioPress.play();
 });
 
 window.addEventListener('keydown', (event) => {
@@ -223,7 +224,10 @@ window.addEventListener('keydown', (event) => {
   for (let i = 0; i < arrBtns.length; i += 1) {
     if (arrBtns[i].textContent === charBtn && !arrBtns[i].disabled) clickBtn = arrBtns[i];
   }
-  if (clickBtn !== undefined) checkChar(charBtn, clickBtn);
+  if (clickBtn !== undefined) {
+    audioPress.play();
+    checkChar(charBtn, clickBtn);
+  }
 });
 
 modalBtn.addEventListener('click', () => {
