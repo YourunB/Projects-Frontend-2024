@@ -3,6 +3,14 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .wrapper-sky {
   min-height: 100vh;
   width: 100%;
