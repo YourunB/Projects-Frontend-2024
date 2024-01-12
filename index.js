@@ -46,6 +46,14 @@ const audioSucces = document.createElement('audio');
 audioSucces.src = './assets/audio/succes.mp3';
 document.body.append(audioSucces);
 
+const audioWin = document.createElement('audio');
+audioWin.src = './assets/audio/win.mp3';
+document.body.append(audioWin);
+
+const audioLose = document.createElement('audio');
+audioLose.src = './assets/audio/lose.mp3';
+document.body.append(audioLose);
+
 const audioMusic = document.createElement('audio');
 audioMusic.loop = true;
 audioMusic.src = './assets/audio/music.mp3';
@@ -179,6 +187,7 @@ function checkResult() {
     modalAnswer.textContent = arrQuestions[questionNumber][1];
     modal.classList.remove('modal_unvisible');
     overlay.classList.remove('overlay_unvisible');
+    audioLose.play();
     return;
   }
   const answerChars = gameSectionAnswer.getElementsByClassName('game-section__answer__char');
@@ -189,6 +198,7 @@ function checkResult() {
     modalAnswer.textContent = arrQuestions[questionNumber][1];
     modal.classList.remove('modal_unvisible');
     overlay.classList.remove('overlay_unvisible');
+    audioWin.play();
   }
 }
 
