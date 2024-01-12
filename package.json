@@ -1,9 +1,10 @@
 {
   "scripts": {
     "start": "npm run lite",
-    "lite" : "lite-server"
+    "lite": "lite-server"
   },
   "devDependencies": {
+    "eslint": "^8.56.0",
     "lite-server": "^2.6.1"
   }
 }
