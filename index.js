@@ -239,4 +239,11 @@ startDisplayBtn.addEventListener('click', () => {
     startDisplay.classList.add('start-display_unvisible');
   }, 1990);
   createGame();
+  setTimeout(() => {
+    wrapperSky.classList.add('wrapper-sky_slow-change-sky');
+    wrapperSkySun.classList.add('wrapper-sky__sun_show');
+  }, 1000);
+  setTimeout(() => {
+    wrapperSky.classList.add('wrapper-sky_day');
+  }, 3000)
 });

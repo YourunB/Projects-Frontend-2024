@@ -81,6 +81,14 @@ body {
   z-index: -10;
   left: 0;
   top: 0;
+  background: black;
+}
+
+.wrapper-sky_slow-change-sky {
+  animation: change-sky 3s forwards;
+}
+
+.wrapper-sky_day {
   background: linear-gradient(149deg, rgb(53, 147, 255) 0%, rgb(177, 216, 255) 42%, rgb(255, 255, 226) 72%, rgb(163, 193, 255) 100%);
   animation: sky 12s infinite linear;
   background-size: 100000%; 
@@ -96,7 +104,13 @@ body {
   border-radius: 50%;
   background: white;
   box-shadow: 0 0 30px 30px rgba(250, 255, 160, 0.5);
+  transform: translate(200px, -200px);
+  transition: 1s;
   animation: sun linear 3s infinite;
+}
+
+.wrapper-sky__sun_show {
+  transform: translate(0, 0);
 }
 
 .wrapper-desert {
@@ -299,6 +313,15 @@ body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes change-sky {
+  0% {
+    background: black;
+  }
+  100% {
+    background: white;
   }
 }
 
