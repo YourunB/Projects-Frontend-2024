@@ -61,6 +61,20 @@ body {
   gap: 20px;
 }
 
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0.5;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.overlay_unvisible {
+  display: none;
+}
+
 .modal {
   position: fixed;
   z-index: 101;

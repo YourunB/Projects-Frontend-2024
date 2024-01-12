@@ -31,6 +31,10 @@ const container = document.createElement('main');
 container.className = 'container';
 document.body.append(container);
 
+const overlay = document.createElement('div');
+overlay.className = 'overlay overlay_unvisible';
+document.body.append(overlay);
+
 const modal = document.createElement('div');
 modal.className = 'modal modal_unvisible';
 container.append(modal);
