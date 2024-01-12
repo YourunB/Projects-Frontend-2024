@@ -106,16 +106,10 @@ function checkChar(char, btn) {
         }
       }
     } else {
-      changeMove();
+      countMove += 1;
+      gameSectionGuessesMove.textContent = `${countMove} / 6`;
       gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
     }
-  }
-}
-
-function changeMove() {
-  if (countMove < 6) {
-    countMove += 1;
-    gameSectionGuessesMove.textContent = `${countMove} / 6`;
   }
 }
 
