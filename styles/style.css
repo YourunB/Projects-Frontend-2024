@@ -22,6 +22,17 @@ body {
   background: black;
 }
 
+.start-display__img {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform-origin: 0% 0%;
+  transform: rotate(-5deg);
+  animation: rope ease-in-out 6s infinite;
+}
+
 .wrapper-sky {
   min-height: 100vh;
   width: 100%;
@@ -217,5 +228,17 @@ body {
   100% {
     background: rgb(253, 255, 219);
     box-shadow: 0 0 30px 30px rgba(250, 255, 160, 0.5);
+  }
+}
+
+@keyframes rope {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
   }
 }

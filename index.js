@@ -19,6 +19,11 @@ const startDisplay = document.createElement('div');
 startDisplay.className = 'start-display';
 document.body.append(startDisplay);
 
+const startDisplayImg = document.createElement('img');
+startDisplayImg.className = 'start-display__img';
+startDisplayImg.src = `./assets/images/rope.png`;
+startDisplay.append(startDisplayImg);
+
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
 document.body.append(wrapperSky);
