@@ -15,3 +15,15 @@ document.body.append(wrapperDesert);
 const container = document.createElement('main');
 container.className = 'container';
 document.body.append(container);
+
+const gallowsSection = document.createElement('section');
+gallowsSection.className = 'gallows-section';
+container.append(gallowsSection);
+
+for (let i = 0; i <= 6; i += 1) {
+  const gallowsSectionImg = document.createElement('img');
+  if (i === 0) gallowsSectionImg.className = 'gallows-section__img';
+  else gallowsSectionImg.className = 'gallows-section__img gallows-section__img_unvisible';
+  gallowsSectionImg.src = `./assets/images/gallows${i}.png`;
+  gallowsSection.append(gallowsSectionImg);
+}

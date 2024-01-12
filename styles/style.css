@@ -56,6 +56,22 @@ body {
   margin: auto;
 }
 
+.gallows-section {
+  position: relative;
+  max-width: 400px;
+  height: 440px;
+  width: 100%;
+}
+
+.gallows-section__img {
+  position: absolute;
+  width: 100%;
+}
+
+.gallows-section__img_unvisible {
+  visibility: hidden;
+}
+
 @keyframes sky {
   0% {
     background-position: 80% 0%;
