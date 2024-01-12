@@ -61,6 +61,39 @@ body {
   gap: 20px;
 }
 
+.modal {
+  position: fixed;
+  z-index: 101;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 300px;
+  text-align: center;
+}
+
+.modal_unvisible {
+  display: none;
+ }
+
+.modal__title {
+  width: 100%;
+}
+
+.modal__answer {
+  width: 100%;
+}
+
+.modal__btn {
+  border: solid 2px gray;
+  border-radius: 5px;
+  padding: 5px;
+  color: gray;
+  background: none;
+}
+
 .gallows-section {
   position: relative;
   max-width: 400px;

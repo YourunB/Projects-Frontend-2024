@@ -31,6 +31,23 @@ const container = document.createElement('main');
 container.className = 'container';
 document.body.append(container);
 
+const modal = document.createElement('div');
+modal.className = 'modal modal_unvisible';
+container.append(modal);
+
+const modalTitle = document.createElement('h3');
+modalTitle.className = 'modal__title';
+modal.append(modalTitle);
+
+const modalAnswer = document.createElement('p');
+modalAnswer.className = 'modal__answer';
+modal.append(modalAnswer);
+
+const modalBtn = document.createElement('button');
+modalBtn.className = 'modal__btn';
+modalBtn.textContent = 'Play again'
+modal.append(modalBtn);
+
 const gallowsSection = document.createElement('section');
 gallowsSection.className = 'gallows-section';
 container.append(gallowsSection);
