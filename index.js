@@ -162,10 +162,12 @@ function checkChar(char, btn) {
           charPosition[i].textContent = answer[i];
         }
       }
+      audioSucces.play();
     } else {
       countMove += 1;
       gameSectionGuessesMove.textContent = `${countMove} / 6`;
       gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+      audioFail.play();
     }
     checkResult();
   }
