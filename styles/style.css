@@ -261,6 +261,7 @@ body {
 
 .game-section__keyboard__btn:disabled {
   background: rgba(255, 255, 255, 0.2);
+  animation: press-btn 0.5s forwards;
 }
 
 @keyframes sky {
@@ -329,6 +330,18 @@ body {
   }
 }
 
+@keyframes press-btn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (hover:hover) {
   .start-display__btn:hover {
     cursor: pointer;
@@ -345,10 +358,5 @@ body {
 
   .game-section__keyboard__btn:hover {
     transform: scale(1.2);
-  }
-  
-  .game-section__keyboard__btn:active {
-    transition: 0.2s;
-    transform: scale(0.8);
   }
 }
