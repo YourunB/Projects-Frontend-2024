@@ -136,6 +136,7 @@ body {
 
 .game-section__answer {
   width: 100%;
+  min-height: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;

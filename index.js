@@ -131,7 +131,46 @@ function checkChar(char, btn) {
       gameSectionGuessesMove.textContent = `${countMove} / 6`;
       gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
     }
+    checkResult();
   }
+}
+
+function checkResult() {
+  if (countMove === 6) {
+    modalTitle.textContent = 'YOU LOSE'
+    modalAnswer.textContent = arrQuestions[questionNumber][1];
+    modal.classList.remove('modal_unvisible');
+    overlay.classList.remove('overlay_unvisible');
+    return;
+  }
+  const answerChars = gameSectionAnswer.getElementsByClassName('game-section__answer__char');
+  let answerWord = ''; 
+  for (let i = 0; i < answerChars.length; i += 1) answerWord += answerChars[i].textContent; 
+  if (answerWord.indexOf('_') === -1) {
+    modalTitle.textContent = 'YOU WIN'
+    modalAnswer.textContent = arrQuestions[questionNumber][1];
+    modal.classList.remove('modal_unvisible');
+    overlay.classList.remove('overlay_unvisible');
+  }
+}
+
+function resetGame() {
+  const btns = gameSectionKeyboard.children;
+  for (let i = 0; i < btns.length; i += 1) {
+    btns[i].disabled = false;
+  }
+  const answerChars = gameSectionAnswer.getElementsByClassName('game-section__answer__char');
+  for (let i = answerChars.length - 1; i >= 0; i -= 1) {
+    answerChars[i].remove();
+  }
+  questionNumber = selectQuestion(0, arrQuestions.length);
+  countMove = 0;
+  gameSectionGuessesMove.textContent = `${countMove} / 6`;
+  setTimeout(() => {
+    modal.classList.add('modal_unvisible');
+    overlay.classList.add('overlay_unvisible');
+    createGame();
+  }, 500);
 }
 
 gameSectionKeyboard.addEventListener('click', (event) => {
@@ -146,6 +185,10 @@ window.addEventListener('keydown', (event) => {
     if (arrBtns[i].textContent === charBtn && !arrBtns[i].disabled) clickBtn = arrBtns[i];
   }
   if (clickBtn !== undefined) checkChar(charBtn, clickBtn);
+});
+
+modalBtn.addEventListener('click', () => {
+  resetGame();
 });
 
 createGame();
