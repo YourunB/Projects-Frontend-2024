@@ -83,7 +83,7 @@ function selectQuestion(min, max) {
 
 function createGame() {
   const answer = arrQuestions[questionNumber][1].split('');
-  answer.forEach((char) => {
+  answer.forEach(() => {
     const gameSectionAnswerChar = document.createElement('span');
     gameSectionAnswerChar.className = 'game-section__answer__char';
     gameSectionAnswerChar.textContent = '_';
