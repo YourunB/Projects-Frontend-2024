@@ -89,6 +89,9 @@ body {
 
 .game-section__answer {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .game-section__hint {
