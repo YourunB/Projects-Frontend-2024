@@ -12,6 +12,10 @@ body {
   box-sizing: inherit;
 }
 
+.button {
+  outline: none;
+}
+
 .start-display {
   position: fixed;
   z-index: 1000;
