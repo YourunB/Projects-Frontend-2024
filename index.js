@@ -1,4 +1,16 @@
 const arrletters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const arrQuestions = [
+  ['Scary green animal', 'CROCODILE'],
+  ['White with long ears', 'RABBIT'],
+  ['The thickest tree on earth', 'BAOBAB'],
+  ['Highest mountain on earth', 'EVEREST'],
+  ['Sank in 1912 year', 'TITANIC'],
+  ['Deepest ocean', 'PACIFIC'],
+  ['Measures air humidity', 'HYDROMETR'],
+  ['The hardest substance in the human body', 'TEETH'],
+  ['First planet from the sun', 'MERCURY'],
+  ['There are six zeros in the number', 'MILLION'],
+];
 
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
