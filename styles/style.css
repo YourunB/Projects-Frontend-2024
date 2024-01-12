@@ -80,6 +80,10 @@ body {
   min-width: 320px;
   width: 100%;
   min-height: 440px;
+  background: yellow;
+  border-radius: 5px;
+  opacity: 0.9;
+  rotate: 6deg;
 }
 
 @keyframes sky {
