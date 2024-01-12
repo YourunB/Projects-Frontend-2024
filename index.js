@@ -95,7 +95,6 @@ function createGame() {
 }
 
 function checkChar(char) {
-  changeMove();
   const answer = arrQuestions[questionNumber][1];
   if (countMove < 6 && answer.indexOf(char) !== -1) {
     const charPosition = document.getElementsByClassName('game-section__answer__char');
@@ -105,7 +104,10 @@ function checkChar(char) {
       }
     }
   } else {
-    if (countMove <= 6) gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+    if (countMove <= 6) {
+      changeMove();
+      gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+    }
   }
 }
 
