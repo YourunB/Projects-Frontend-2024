@@ -95,18 +95,20 @@ function createGame() {
 }
 
 function checkChar(char) {
-  const answer = arrQuestions[questionNumber][1];
-  if (countMove < 6 && answer.indexOf(char) !== -1) {
-    const charPosition = document.getElementsByClassName('game-section__answer__char');
-    for (let i = 0; i < answer.length; i += 1) {
-      if (answer[i].toUpperCase() === char) {
-        charPosition[i].textContent = answer[i];
+  if (arrletters.indexOf(char) !== -1) {
+    const answer = arrQuestions[questionNumber][1];
+    if (countMove < 6 && answer.indexOf(char) !== -1) {
+      const charPosition = document.getElementsByClassName('game-section__answer__char');
+      for (let i = 0; i < answer.length; i += 1) {
+        if (answer[i].toUpperCase() === char) {
+          charPosition[i].textContent = answer[i];
+        }
       }
-    }
-  } else {
-    if (countMove <= 6) {
-      changeMove();
-      gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+    } else {
+      if (countMove <= 6) {
+        changeMove();
+        gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+      }
     }
   }
 }
@@ -120,6 +122,10 @@ function changeMove() {
 
 gameSectionKeyboard.addEventListener('click', (event) => {
   checkChar(event.target.textContent.toUpperCase());
+});
+
+window.addEventListener('keydown', (event) => {
+  checkChar(event.key.toUpperCase());
 });
 
 createGame();
