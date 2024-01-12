@@ -7,3 +7,7 @@ document.body.append(wrapperSky);
 const wrapperDesert = document.createElement('div');
 wrapperDesert.className = 'wrapper-desert';
 document.body.append(wrapperDesert);
+
+const wrapperSkySun = document.createElement('div');
+wrapperSkySun.className = 'wrapper-sky__sun';
+document.body.append(wrapperSkySun);
