@@ -190,11 +190,12 @@ body {
 }
 
 .modal__btn {
-  border: solid 2px gray;
+  border: solid 2px black;
   border-radius: 5px;
   padding: 5px;
-  color: gray;
   background: none;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .gallows-section {
@@ -370,5 +371,14 @@ body {
 
   .game-section__keyboard__btn:hover {
     transform: scale(1.2);
+  }
+
+  .modal__btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal__btn:active {
+    transition: 0.2s;
+    transform: scale(0.9);
   }
 }
