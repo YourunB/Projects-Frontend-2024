@@ -94,8 +94,9 @@ function createGame() {
   gameSectionHint.textContent = `Hint: ${arrQuestions[questionNumber][0]}`;
 }
 
-function checkChar(char) {
+function checkChar(char, btn) {
   if (arrletters.indexOf(char) !== -1) {
+    btn.disabled = true;
     const answer = arrQuestions[questionNumber][1];
     if (countMove < 6 && answer.indexOf(char) !== -1) {
       const charPosition = document.getElementsByClassName('game-section__answer__char');
@@ -121,11 +122,17 @@ function changeMove() {
 }
 
 gameSectionKeyboard.addEventListener('click', (event) => {
-  checkChar(event.target.textContent.toUpperCase());
+  checkChar(event.target.textContent.toUpperCase(), event.target);
 });
 
 window.addEventListener('keydown', (event) => {
-  checkChar(event.key.toUpperCase());
+  const arrBtns = gameSectionKeyboard.children;
+  const charBtn = event.key.toUpperCase();
+  let clickBtn;
+  for (let i = 0; i < arrBtns.length; i += 1) {
+    if (arrBtns[i].textContent === charBtn && !arrBtns[i].disabled) clickBtn = arrBtns[i];
+  }
+  if (clickBtn !== undefined) checkChar(charBtn, clickBtn);
 });
 
 createGame();

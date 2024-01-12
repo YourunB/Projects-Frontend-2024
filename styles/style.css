@@ -131,6 +131,10 @@ body {
   color: gray;
 }
 
+.game-section__keyboard__btn:disabled {
+  background: rgb(189, 189, 189);
+}
+
 @keyframes sky {
   0% {
     background-position: 80% 0%;
