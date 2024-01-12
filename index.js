@@ -13,6 +13,7 @@ const arrQuestions = [
 ];
 
 let questionNumber = selectQuestion(0, arrQuestions.length);
+let countMove = 0;
 
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
@@ -41,6 +42,7 @@ for (let i = 0; i <= 6; i += 1) {
   gallowsSectionImg.src = `./assets/images/gallows${i}.png`;
   gallowsSection.append(gallowsSectionImg);
 }
+const gallowsSectionImg = gallowsSection.getElementsByClassName('gallows-section__img');
 
 const gameSection = document.createElement('section');
 gameSection.className = 'game-section';
@@ -59,10 +61,10 @@ gameSectionGuesses.className = 'game-section__guesses';
 gameSectionGuesses.textContent = 'Incorrect guesses: ';
 gameSection.append(gameSectionGuesses);
 
-const gameSectionGuessesScore = document.createElement('span');
-gameSectionGuessesScore.className = 'game-section__guesses__score';
-gameSectionGuessesScore.textContent = '0 / 6';
-gameSectionGuesses.append(gameSectionGuessesScore);
+const gameSectionGuessesMove = document.createElement('span');
+gameSectionGuessesMove.className = 'game-section__guesses__move';
+gameSectionGuessesMove.textContent = `${countMove} / 6`;
+gameSectionGuesses.append(gameSectionGuessesMove);
 
 const gameSectionKeyboard = document.createElement('div');
 gameSectionKeyboard.className = 'game-section__keyboard';
@@ -91,5 +93,25 @@ function createGame() {
   });
   gameSectionHint.textContent = `Hint: ${arrQuestions[questionNumber][0]}`;
 }
+
+function checkChar(char) {
+  countMove += 1;
+  gameSectionGuessesMove.textContent = `${countMove} / 6`;
+  const answer = arrQuestions[questionNumber][1];
+  if (countMove < 6 && answer.indexOf(char) !== -1) {
+    const charPosition = document.getElementsByClassName('game-section__answer__char');
+    for (let i = 0; i < answer.length; i += 1) {
+      if (answer[i].toUpperCase() === char) {
+        charPosition[i].textContent = answer[i];
+      }
+    }
+  } else {
+    if (countMove <= 6) gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
+  }
+}
+
+gameSectionKeyboard.addEventListener('click', (event) => {
+  checkChar(event.target.textContent.toUpperCase());
+});
 
 createGame();
