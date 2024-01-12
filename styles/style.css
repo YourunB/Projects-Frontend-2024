@@ -3,8 +3,12 @@ body {
   padding: 0;
 }
 
-.wrapper {
+.wrapper-desert {
   min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
   background: url('../assets/images/desert.png') no-repeat 0 bottom;
   background-size: cover;
 }
