@@ -95,10 +95,10 @@ function createGame() {
 }
 
 function checkChar(char, btn) {
-  if (arrletters.indexOf(char) !== -1) {
+  if (arrletters.indexOf(char) !== -1 && countMove < 6) {
     btn.disabled = true;
     const answer = arrQuestions[questionNumber][1];
-    if (countMove < 6 && answer.indexOf(char) !== -1) {
+    if (answer.indexOf(char) !== -1) {
       const charPosition = document.getElementsByClassName('game-section__answer__char');
       for (let i = 0; i < answer.length; i += 1) {
         if (answer[i].toUpperCase() === char) {
@@ -106,10 +106,8 @@ function checkChar(char, btn) {
         }
       }
     } else {
-      if (countMove <= 6) {
-        changeMove();
-        gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
-      }
+      changeMove();
+      gallowsSectionImg[countMove].classList.remove('gallows-section__img_unvisible');
     }
   }
 }
