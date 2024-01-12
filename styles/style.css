@@ -78,12 +78,47 @@ body {
 
 .game-section {
   min-width: 320px;
+  padding: 10px;
   width: 100%;
   min-height: 440px;
   background: yellow;
   border-radius: 5px;
   opacity: 0.9;
   rotate: 6deg;
+}
+
+.game-section__answer {
+  width: 100%;
+}
+
+.game-section__hint {
+  width: 100%;
+}
+
+.game-section__guesses {
+  width: 100%;
+}
+
+.game-section__guesses__score {
+  color: brown;
+  font-weight: 700;
+}
+
+.game-section__keyboard {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.game-section__keyboard__btn {
+  background: none;
+  border: solid 2px gray;
+  border-radius: 3px;
+  width: 30px;
+  height: 30px;
+  color: gray;
 }
 
 @keyframes sky {

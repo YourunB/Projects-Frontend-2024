@@ -43,3 +43,32 @@ for (let i = 0; i <= 6; i += 1) {
 const gameSection = document.createElement('section');
 gameSection.className = 'game-section';
 container.append(gameSection);
+
+const gameSectionAnswer = document.createElement('div');
+gameSectionAnswer.className = 'game-section__answer';
+gameSection.append(gameSectionAnswer);
+
+const gameSectionHint = document.createElement('p');
+gameSectionHint.className = 'game-section__hint';
+gameSection.append(gameSectionHint);
+
+const gameSectionGuesses = document.createElement('p');
+gameSectionGuesses.className = 'game-section__guesses';
+gameSectionGuesses.textContent = 'Incorrect guesses: ';
+gameSection.append(gameSectionGuesses);
+
+const gameSectionGuessesScore = document.createElement('span');
+gameSectionGuessesScore.className = 'game-section__guesses__score';
+gameSectionGuessesScore.textContent = '0 / 6';
+gameSectionGuesses.append(gameSectionGuessesScore);
+
+const gameSectionKeyboard = document.createElement('div');
+gameSectionKeyboard.className = 'game-section__keyboard';
+gameSection.append(gameSectionKeyboard);
+
+arrletters.forEach((letter) => {
+  const gameSectionKeyboardBtn = document.createElement('button');
+  gameSectionKeyboardBtn.className = 'game-section__keyboard__btn';
+  gameSectionKeyboardBtn.textContent = letter;
+  gameSectionKeyboard.append(gameSectionKeyboardBtn);
+})
