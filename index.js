@@ -231,6 +231,7 @@ window.addEventListener('keydown', (event) => {
 });
 
 modalBtn.addEventListener('click', () => {
+  audioPress.play();
   resetGame();
 });
 
