@@ -15,6 +15,10 @@ const arrQuestions = [
 let questionNumber = selectQuestion(0, arrQuestions.length);
 let countMove = 0;
 
+const startDisplay = document.createElement('div');
+startDisplay.className = 'start-display';
+document.body.append(startDisplay);
+
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
 document.body.append(wrapperSky);
