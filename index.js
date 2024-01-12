@@ -83,6 +83,11 @@ const modal = document.createElement('div');
 modal.className = 'modal modal_unvisible';
 container.append(modal);
 
+const modalSalut = document.createElement('img');
+modalSalut.className = 'modal__salut-img';
+modalSalut.src = './assets/images/salut.gif';
+modal.append(modalSalut);
+
 const modalTitle = document.createElement('h3');
 modalTitle.className = 'modal__title';
 modal.append(modalTitle);
@@ -185,6 +190,7 @@ function checkResult() {
   if (countMove === 6) {
     modalTitle.textContent = 'YOU LOSE'
     modalAnswer.textContent = arrQuestions[questionNumber][1];
+    modalSalut.classList.add('modal__salut-img_hidden');
     modal.classList.remove('modal_unvisible');
     overlay.classList.remove('overlay_unvisible');
     audioLose.play();
@@ -198,6 +204,7 @@ function checkResult() {
     modalAnswer.textContent = arrQuestions[questionNumber][1];
     modal.classList.remove('modal_unvisible');
     overlay.classList.remove('overlay_unvisible');
+    modalSalut.classList.remove('modal__salut-img_hidden');
     audioWin.play();
   }
 }

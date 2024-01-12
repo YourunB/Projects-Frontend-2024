@@ -167,7 +167,19 @@ body {
 
 .modal_unvisible {
   display: none;
- }
+}
+
+.modal__salut-img {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal__salut-img_hidden {
+  visibility: hidden;
+}
 
 .modal__title {
   width: 100%;
