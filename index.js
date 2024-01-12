@@ -12,7 +12,7 @@ const arrQuestions = [
   ['There are six zeros in the number', 'MILLION'],
 ];
 
-let questionNumber = selectQuestion(0, arrQuestions.length);
+let questionNumber = selectQuestion(0, arrQuestions.length - 1);
 let countMove = 0;
 
 const startDisplay = document.createElement('div');
@@ -202,7 +202,7 @@ function resetGame() {
   for (let i = 0; i < gallowsSectionImg.length; i += 1) {
     if (i > 0) gallowsSectionImg[i].classList.add('gallows-section__img_unvisible');
   }
-  questionNumber = selectQuestion(0, arrQuestions.length);
+  questionNumber = selectQuestion(0, arrQuestions.length - 1);
   countMove = 0;
   gameSectionGuessesMove.textContent = `${countMove} / 6`;
   setTimeout(() => {
