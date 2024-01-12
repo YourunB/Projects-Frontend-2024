@@ -224,7 +224,7 @@ window.addEventListener('keydown', (event) => {
   for (let i = 0; i < arrBtns.length; i += 1) {
     if (arrBtns[i].textContent === charBtn && !arrBtns[i].disabled) clickBtn = arrBtns[i];
   }
-  if (clickBtn !== undefined) {
+  if (clickBtn !== undefined && modal.classList.value !== 'modal' && startDisplay.classList.value !== 'start-display') {
     audioPress.play();
     checkChar(charBtn, clickBtn);
   }
