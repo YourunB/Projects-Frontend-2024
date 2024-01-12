@@ -242,8 +242,8 @@ startDisplayBtn.addEventListener('click', () => {
   setTimeout(() => {
     wrapperSky.classList.add('wrapper-sky_slow-change-sky');
     wrapperSkySun.classList.add('wrapper-sky__sun_show');
-  }, 1000);
+  }, 990);
   setTimeout(() => {
     wrapperSky.classList.add('wrapper-sky_day');
-  }, 3000)
+  }, 2990)
 });
