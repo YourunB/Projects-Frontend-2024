@@ -250,15 +250,17 @@ body {
 
 .game-section__keyboard__btn {
   background: none;
-  border: solid 2px gray;
+  border: solid 2px black;
   border-radius: 3px;
-  width: 30px;
-  height: 30px;
-  color: gray;
+  font-size: 25px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .game-section__keyboard__btn:disabled {
-  background: rgb(189, 189, 189);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 @keyframes sky {
@@ -339,5 +341,14 @@ body {
     transition: 0.2s;
     transform: scale(0.9);
     box-shadow: 0 0 3px 3px #FFC33D;
+  }
+
+  .game-section__keyboard__btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .game-section__keyboard__btn:active {
+    transition: 0.2s;
+    transform: scale(0.8);
   }
 }
