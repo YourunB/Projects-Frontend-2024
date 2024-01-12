@@ -27,3 +27,7 @@ for (let i = 0; i <= 6; i += 1) {
   gallowsSectionImg.src = `./assets/images/gallows${i}.png`;
   gallowsSection.append(gallowsSectionImg);
 }
+
+const gameSection = document.createElement('section');
+gameSection.className = 'game-section';
+container.append(gameSection);

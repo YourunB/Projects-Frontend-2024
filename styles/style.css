@@ -54,12 +54,16 @@ body {
   left: 0;
   right: 0;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .gallows-section {
   position: relative;
   max-width: 400px;
-  height: 440px;
+  min-height: 440px;
   width: 100%;
 }
 
@@ -70,6 +74,12 @@ body {
 
 .gallows-section__img_unvisible {
   visibility: hidden;
+}
+
+.game-section {
+  min-width: 320px;
+  width: 100%;
+  min-height: 440px;
 }
 
 @keyframes sky {
