@@ -230,4 +230,13 @@ modalBtn.addEventListener('click', () => {
   resetGame();
 });
 
-createGame();
+startDisplayBtn.addEventListener('click', () => {
+  startDisplayBtn.disabled = true;
+  audioPress.play();
+  audioMusic.play();
+  startDisplay.classList.add('start-display_hide');
+  setTimeout(() => {
+    startDisplay.classList.add('start-display_unvisible');
+  }, 1990);
+  createGame();
+});

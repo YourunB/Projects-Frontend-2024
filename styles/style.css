@@ -30,6 +30,14 @@ body {
   overflow: hidden;
 }
 
+.start-display_hide {
+  animation: hide-start-display 2s forwards;
+}
+
+.start-display_unvisible {
+  display: none;
+}
+
 .start-display__img {
   position: fixed;
   z-index: 1001;
@@ -183,7 +191,7 @@ body {
   padding: 10px;
   width: 100%;
   min-height: 440px;
-  background: yellow;
+  backdrop-filter: blur(10px);
   border-radius: 5px;
   opacity: 0.9;
 }
@@ -282,6 +290,15 @@ body {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes hide-start-display {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
