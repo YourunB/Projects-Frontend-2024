@@ -163,6 +163,9 @@ function resetGame() {
   for (let i = answerChars.length - 1; i >= 0; i -= 1) {
     answerChars[i].remove();
   }
+  for (let i = 0; i < gallowsSectionImg.length; i += 1) {
+    if (i > 0) gallowsSectionImg[i].classList.add('gallows-section__img_unvisible');
+  }
   questionNumber = selectQuestion(0, arrQuestions.length);
   countMove = 0;
   gameSectionGuessesMove.textContent = `${countMove} / 6`;
