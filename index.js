@@ -12,6 +12,8 @@ const arrQuestions = [
   ['There are six zeros in the number', 'MILLION'],
 ];
 
+let questionNumber = selectQuestion(0, arrQuestions.length);
+
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
 document.body.append(wrapperSky);
@@ -71,4 +73,23 @@ arrletters.forEach((letter) => {
   gameSectionKeyboardBtn.className = 'game-section__keyboard__btn';
   gameSectionKeyboardBtn.textContent = letter;
   gameSectionKeyboard.append(gameSectionKeyboardBtn);
-})
+});
+
+function selectQuestion(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function createGame() {
+  const answer = arrQuestions[questionNumber][1].split('');
+  answer.forEach((char) => {
+    const gameSectionAnswerChar = document.createElement('span');
+    gameSectionAnswerChar.className = 'game-section__answer__char';
+    gameSectionAnswerChar.textContent = '_';
+    gameSectionAnswer.append(gameSectionAnswerChar);
+  });
+  gameSectionHint.textContent = `Hint: ${arrQuestions[questionNumber][0]}`;
+}
+
+createGame();
