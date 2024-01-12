@@ -34,6 +34,23 @@ startDisplayTitle.className = 'start-display__title';
 startDisplayTitle.textContent = 'HANGMAN';
 startDisplay.append(startDisplayTitle);
 
+const audioPress = document.createElement('audio');
+audioPress.src = './assets/audio/press.mp3';
+document.body.append(audioPress);
+
+const audioFail = document.createElement('audio');
+audioFail.src = './assets/audio/fail.mp3';
+document.body.append(audioFail);
+
+const audioSucces = document.createElement('audio');
+audioSucces.src = './assets/audio/succes.mp3';
+document.body.append(audioSucces);
+
+const audioMusic = document.createElement('audio');
+audioMusic.loop = true;
+audioMusic.src = './assets/audio/music.mp3';
+document.body.append(audioMusic);
+
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
 document.body.append(wrapperSky);
