@@ -29,6 +29,11 @@ startDisplayBtn.className = 'start-display__btn';
 startDisplayBtn.textContent = 'START';
 startDisplay.append(startDisplayBtn);
 
+const startDisplayTitle = document.createElement('h1');
+startDisplayTitle.className = 'start-display__title';
+startDisplayTitle.textContent = 'HANGMAN';
+startDisplay.append(startDisplayTitle);
+
 const wrapperSky = document.createElement('div');
 wrapperSky.className = 'wrapper-sky';
 document.body.append(wrapperSky);
