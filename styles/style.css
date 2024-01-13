@@ -208,11 +208,17 @@ body {
 
 .gallows-section__img {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
 }
 
 .gallows-section__img_unvisible {
   visibility: hidden;
+}
+
+.gallows-section__img:nth-of-type(1) {
+  position: static;
 }
 
 .game-section {
