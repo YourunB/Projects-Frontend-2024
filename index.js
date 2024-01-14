@@ -5,6 +5,8 @@ getAllQuestions();
 let questionNumber = selectQuestion(0, arrQuestions.length - 1);
 let countMove = 0;
 
+document.body.className = 'scroll-off';
+
 const startDisplay = document.createElement('div');
 startDisplay.className = 'start-display';
 document.body.append(startDisplay);
@@ -267,6 +269,7 @@ modalBtn.addEventListener('click', () => {
 });
 
 startDisplayBtn.addEventListener('click', () => {
+  document.body.classList.remove('scroll-off');
   startDisplayBtn.disabled = true;
   audioPress.play();
   audioMusic.play();
