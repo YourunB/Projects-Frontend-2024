@@ -2,7 +2,7 @@ const arrletters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O',
 let arrQuestions = [];
 getAllQuestions();
 
-let questionNumber = 0;
+let questionNumber = selectQuestion(0, arrQuestions.length - 1);
 let countMove = 0;
 
 const startDisplay = document.createElement('div');
@@ -165,6 +165,7 @@ function selectQuestion(min, max) {
 }
 
 function createGame() {
+  console.log(arrQuestions[questionNumber][1]);
   const answer = arrQuestions[questionNumber][1].split('');
   answer.forEach(() => {
     const gameSectionAnswerChar = document.createElement('span');
