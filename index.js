@@ -1,18 +1,8 @@
 const arrletters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-const arrQuestions = [
-  ['Scary green animal', 'CROCODILE'],
-  ['White with long ears', 'RABBIT'],
-  ['The thickest tree on earth', 'BAOBAB'],
-  ['Highest mountain on earth', 'EVEREST'],
-  ['Sank in 1912 year', 'TITANIC'],
-  ['Deepest ocean', 'PACIFIC'],
-  ['Measures air humidity', 'HYDROMETR'],
-  ['The hardest substance in the human body', 'TEETH'],
-  ['First planet from the sun', 'MERCURY'],
-  ['There are six zeros in the number', 'MILLION'],
-];
+let arrQuestions = [];
+getAllQuestions();
 
-let questionNumber = selectQuestion(0, arrQuestions.length - 1);
+let questionNumber = 0;
 let countMove = 0;
 
 const startDisplay = document.createElement('div');
@@ -159,6 +149,14 @@ arrletters.forEach((letter) => {
   gameSectionKeyboardBtn.textContent = letter;
   gameSectionKeyboard.append(gameSectionKeyboardBtn);
 });
+
+function getAllQuestions() {
+  fetch('../assets/json/questions.json')
+  .then((response) => response.json())
+  .then((data) => {
+    arrQuestions = [...data];
+  });
+}
 
 function selectQuestion(min, max) {
   min = Math.ceil(min);
