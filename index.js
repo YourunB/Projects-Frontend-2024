@@ -24,8 +24,16 @@ startDisplayImg.className = 'start-display__img';
 startDisplayImg.src = `./assets/images/rope.png`;
 startDisplay.append(startDisplayImg);
 
+const startDisplayLoading = document.createElement('div');
+startDisplayLoading.className = 'start-display__loading';
+startDisplay.append(startDisplayLoading);
+
+const startDisplayLoadingLine = document.createElement('div');
+startDisplayLoadingLine.className = 'start-display__loading__line';
+startDisplayLoading.append(startDisplayLoadingLine);
+
 const startDisplayBtn = document.createElement('button');
-startDisplayBtn.className = 'start-display__btn';
+startDisplayBtn.className = 'start-display__btn start-display__btn_unvisible';
 startDisplayBtn.textContent = 'START';
 startDisplay.append(startDisplayBtn);
 
@@ -104,6 +112,11 @@ modal.append(modalBtn);
 const gallowsSection = document.createElement('section');
 gallowsSection.className = 'gallows-section';
 container.append(gallowsSection);
+
+setTimeout(() => {
+  startDisplayLoading.classList.add('start-display__loading_unvisible');
+  startDisplayBtn.classList.remove('start-display__btn_unvisible');
+}, 4000);
 
 for (let i = 0; i <= 6; i += 1) {
   const gallowsSectionImg = document.createElement('img');

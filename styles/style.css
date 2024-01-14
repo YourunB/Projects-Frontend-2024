@@ -53,6 +53,27 @@ body {
   animation: rope ease-in-out 6s infinite;
 }
 
+.start-display__loading {
+  width: 80%;
+  border: solid 2px white;
+  height: 20px;
+  border-radius: 8px;
+  animation: hide-start-display forwards 2s;
+  animation-delay: 2s;
+}
+
+.start-display__loading__line {
+  width: 0;
+  height: 100%;
+  border-radius: 6px;
+  background: #FFC33D;
+  animation: load 4s forwards;
+}
+
+.start-display__loading_unvisible {
+  display: none;
+}
+
 .start-display__btn {
   z-index: 1003;
   background: none;
@@ -63,6 +84,12 @@ body {
   height: 100px;
   border-radius: 50%;
   transition: 1s;
+  opacity: 0;
+  animation: show 1s forwards;
+}
+
+.start-display__btn_unvisible {
+  display: none;
 }
 
 .start-display__title {
@@ -364,6 +391,24 @@ body {
   }
 }
 
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media (hover:hover) {
   .start-display__btn:hover {
     cursor: pointer;
@@ -384,6 +429,7 @@ body {
 
   .modal__btn:hover {
     transform: scale(1.1);
+    color: #FFC33D;
   }
   
   .modal__btn:active {
