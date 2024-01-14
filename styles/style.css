@@ -129,6 +129,8 @@ body {
 .container {
   height: 100vh;
   max-width: 1440px;
+  padding: 10px;
+  box-sizing: border-box;
   width: 100%;
   left: 0;
   right: 0;
@@ -201,8 +203,7 @@ body {
 
 .gallows-section {
   position: relative;
-  max-width: 700px;
-  min-height: 550px;
+  align-self: flex-end;
   width: 100%;
 }
 
@@ -275,6 +276,7 @@ body {
   font-size: 25px;
   width: 42px;
   height: 42px;
+  padding: 0;
   cursor: pointer;
   transition: 1s;
 }
@@ -387,5 +389,71 @@ body {
   .modal__btn:active {
     transition: 0.2s;
     transform: scale(0.9);
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .game-section {
+    order: 0;
+    max-width: 570px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .game-section__answer__char {
+    width: 30px;
+    height: 30px;
+  }
+
+  .game-section__keyboard__btn {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .gallows-section {
+    order: 1;
+    align-self: center;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallows-section {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 410px) {
+  body {
+    font-size: 15px;
+  }
+
+  .game-section__answer__char {
+    width: 25px;
+    height: 25px;
+  }
+
+  .game-section__keyboard__btn {
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .gallows-section {
+    max-width: 380px;
   }
 }
