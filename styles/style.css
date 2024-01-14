@@ -133,8 +133,8 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 20px;
 }
@@ -223,6 +223,7 @@ body {
 
 .game-section {
   min-width: 320px;
+  box-sizing: border-box;
   padding: 10px;
   width: 100%;
   backdrop-filter: blur(10px);
@@ -272,8 +273,8 @@ body {
   border: solid 2px black;
   border-radius: 3px;
   font-size: 25px;
-  width: 28px;
-  height: 28px;
+  width: 42px;
+  height: 42px;
   cursor: pointer;
   transition: 1s;
 }
