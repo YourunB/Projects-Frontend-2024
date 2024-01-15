@@ -9,7 +9,12 @@ const arrQuestions = [
   ['Measures air humidity', 'HYDROMETR'],
   ['The hardest substance in the human body', 'TEETH'],
   ['First planet from the sun', 'MERCURY'],
-  ['There are six zeros in the number', 'MILLION']
+  ['There are six zeros in the number', 'MILLION'],
+  ['Planet with rings', 'SATURN'],
+  ['King of the Beasts', 'LION'],
+  ['The fastest beast', 'CHEETAH'],
+  ['Largest hot desert', 'SAHARA'],
+  ['Animal - ship of the desert', 'CAMEL']
 ]
 
 let questionNumber = selectQuestion(0, arrQuestions.length - 1);
