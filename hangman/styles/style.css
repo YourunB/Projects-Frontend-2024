@@ -533,3 +533,19 @@ body {
     max-width: 380px;
   }
 }
+
+@media (max-height: 260px) {
+  .start-display__title {
+    font-size: 20px;
+  }
+
+  .start-display__img {
+    display: none;
+  }
+}
+
+@media (max-height: 180px) {
+  .start-display__title {
+    display: none;
+  }
+}
