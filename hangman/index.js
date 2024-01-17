@@ -96,11 +96,6 @@ const audioLose = document.createElement("audio");
 audioLose.src = "./assets/audio/lose.mp3";
 document.body.append(audioLose);
 
-const audioMusic = document.createElement("audio");
-audioMusic.loop = true;
-audioMusic.src = "./assets/audio/music.mp3";
-document.body.append(audioMusic);
-
 const wrapperSky = document.createElement("div");
 wrapperSky.className = "wrapper-sky";
 document.body.append(wrapperSky);
@@ -324,7 +319,6 @@ startDisplayBtn.addEventListener("click", () => {
   document.body.classList.remove("scroll-off");
   startDisplayBtn.disabled = true;
   audioPress.play();
-  audioMusic.play();
   startDisplay.classList.add("start-display_hide");
   setTimeout(() => {
     startDisplay.classList.add("start-display_unvisible");
