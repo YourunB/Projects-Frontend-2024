@@ -320,6 +320,7 @@ body {
 .game-section__keyboard__btn:disabled {
   background: rgba(255, 255, 255, 0.2);
   animation: press-btn 0.5s forwards;
+  cursor: default;
 }
 
 *::-webkit-scrollbar {
