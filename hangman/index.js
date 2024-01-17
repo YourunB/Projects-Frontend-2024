@@ -205,7 +205,6 @@ function selectQuestion(min, max) {
 }
 
 function createGame() {
-  console.log(arrQuestions[questionNumber][1]);
   const answer = arrQuestions[questionNumber][1].split("");
   answer.forEach(() => {
     const gameSectionAnswerChar = document.createElement("span");
