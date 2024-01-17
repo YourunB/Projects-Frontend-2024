@@ -263,28 +263,8 @@ function checkResult() {
 }
 
 function resetGame() {
-  const btns = gameSectionKeyboard.children;
-  for (let i = 0; i < btns.length; i += 1) {
-    btns[i].disabled = false;
-  }
-  const answerChars = gameSectionAnswer.getElementsByClassName(
-    "game-section__answer__char",
-  );
-  for (let i = answerChars.length - 1; i >= 0; i -= 1) {
-    answerChars[i].remove();
-  }
-  for (let i = 0; i < gallowsSectionImg.length; i += 1) {
-    if (i > 0)
-      gallowsSectionImg[i].classList.add("gallows-section__img_unvisible");
-  }
-  questionNumber = selectQuestion(0, arrQuestions.length - 1);
-  countMove = 0;
-  gameSectionGuessesMove.textContent = `${countMove} / 6`;
-  setTimeout(() => {
-    modal.classList.add("modal_unvisible");
-    overlay.classList.add("overlay_unvisible");
-    createGame();
-  }, 500);
+  location.reload();
+  createGame();
 }
 
 gameSectionKeyboard.addEventListener("click", (event) => {
