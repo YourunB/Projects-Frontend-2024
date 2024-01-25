@@ -61,6 +61,14 @@ li {
   margin: auto;
 }
 
+.game-section {
+  width: 100%;
+}
+
+.controls-section {
+  width: 100%;
+}
+
 footer {
   display: flex;
   align-items: center;

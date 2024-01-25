@@ -28,6 +28,14 @@ const main = document.createElement('main');
 main.classList = 'container';
 document.body.append(main);
 
+const gameSection = document.createElement('section');
+gameSection.classList = 'game-section';
+main.append(gameSection);
+
+const controlsSection = document.createElement('section');
+controlsSection.classList = 'controls-section';
+main.append(controlsSection);
+
 const footer = document.createElement('footer');
 document.body.append(footer);
 
