@@ -23,3 +23,12 @@ menu.append(menuItemResults);
 const menuItemSelectLevel = document.createElement('li');
 menuItemSelectLevel.textContent = 'Select level';
 menu.append(menuItemSelectLevel);
+
+const footer = document.createElement('footer');
+document.body.append(footer);
+
+const footerDev = document.createElement('a');
+footerDev.innerHTML = '&copy; 2024 Yury Butskevich';
+footerDev.href = 'https://github.com/yourunb';
+footerDev.target = '_blank';
+footer.append(footerDev);

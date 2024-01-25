@@ -14,6 +14,22 @@ body {
   color: white;
 }
 
+a {
+  transition: 0.7s;
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 h1 {
   margin: 0;
   padding: 0;
@@ -36,6 +52,13 @@ li {
   transition: 0.7s;
 }
 
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 40px;
+}
+
 @media (hover:hover) {
   li:hover {
     transform: scale(1.1);
@@ -45,5 +68,15 @@ li {
   li:active {
     transition: 0.2s;
     transform: scale(0.8);
+  }
+
+  a:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
+  a:active {
+    transform: scale(0.9);
+    transition: 0.2s;
   }
 }
