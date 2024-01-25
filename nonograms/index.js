@@ -24,6 +24,10 @@ const menuItemSelectLevel = document.createElement('li');
 menuItemSelectLevel.textContent = 'Select level';
 menu.append(menuItemSelectLevel);
 
+const main = document.createElement('main');
+main.classList = 'container';
+document.body.append(main);
+
 const footer = document.createElement('footer');
 document.body.append(footer);
 
