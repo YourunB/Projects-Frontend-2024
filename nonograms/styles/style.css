@@ -4,6 +4,14 @@ body {
   background: rgb(255,255,255);
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(225,239,255,1) 100%);
   color: black;
+  cursor: default;
+  user-select: none;
+}
+
+.body_dark {
+  background: rgb(0,17,89);
+  background: radial-gradient(circle, rgba(0,17,89,1) 0%, rgba(0,0,0,1) 100%);
+  color: white;
 }
 
 h1 {
@@ -11,8 +19,31 @@ h1 {
   padding: 0;
 }
 
-.body_dark {
-  background: rgb(0,17,89);
-  background: radial-gradient(circle, rgba(0,17,89,1) 0%, rgba(0,0,0,1) 100%);
-  color: white;
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+li {
+  transition: 0.7s;
+}
+
+@media (hover:hover) {
+  li:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  li:active {
+    transition: 0.2s;
+    transform: scale(0.8);
+  }
 }
