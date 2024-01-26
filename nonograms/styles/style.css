@@ -130,6 +130,7 @@ footer {
   width: 30px;
   height: 30px;
   border: solid black 1px;
+  cursor: pointer;
 }
 
 .game-table__row__cell_checked {
