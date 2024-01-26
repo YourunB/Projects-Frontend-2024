@@ -325,9 +325,8 @@ function checkResult() {
   const arrResult = [];
   for (let i = 0; i < currentLvl.length; i += 1) {
     for (let j = 0; j < currentLvl[i].length; j += 1) {
-      if (currentLvl[i][j] === 1 && tableRow[i].children[j + 1].dataset.checked !== '1') {
-        return;
-      }
+      if (currentLvl[i][j] === 1 && tableRow[i].children[j + 1].dataset.checked !== '1') return;
+      if (currentLvl[i][j] === 0 && tableRow[i].children[j + 1].dataset.checked !== '0') return;
       console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
