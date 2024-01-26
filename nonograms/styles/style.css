@@ -37,6 +37,7 @@ h3 {
 
 header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   height: 40px;
@@ -52,6 +53,14 @@ ul {
 
 li {
   transition: 0.7s;
+}
+
+.back-img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .container {

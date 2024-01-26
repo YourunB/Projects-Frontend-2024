@@ -21,8 +21,13 @@ menuItemResults.textContent = 'Results';
 menu.append(menuItemResults);
 
 const menuItemSelectLevel = document.createElement('li');
-menuItemSelectLevel.textContent = 'Select level';
+menuItemSelectLevel.textContent = 'Levels';
 menu.append(menuItemSelectLevel);
+
+const backImg = document.createElement('img');
+backImg.src = './assets/images/lines.png';
+backImg.classList = 'back-img';
+document.body.append(backImg);
 
 const main = document.createElement('main');
 main.classList = 'container';
