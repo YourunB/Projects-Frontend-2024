@@ -129,8 +129,20 @@ function addHint(arr) {
 
 }
 
-window.addEventListener('contextmenu', (event) => {
+document.body.addEventListener('click', (event) => {
   event.preventDefault();
+  if (event.target.classList[0] === 'game-table__row__cell') {
+    event.target.classList.toggle('game-table__row__cell_checked');
+    event.target.classList.remove('game-table__row__cell_cross');
+  }
+});
+
+document.body.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+  if (event.target.classList[0] === 'game-table__row__cell') {
+    event.target.classList.remove('game-table__row__cell_checked');
+    event.target.classList.toggle('game-table__row__cell_cross');
+  }
 });
 
 createTable(lvl0);

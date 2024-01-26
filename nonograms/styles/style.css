@@ -85,6 +85,13 @@ footer {
   width: 30px;
   height: 30px;
   border: solid black 1px;
+}
+
+.game-table__row__cell_checked {
+  background: black;
+}
+
+.game-table__row__cell_cross {
   background: url('../assets/images/svg/cross.svg') no-repeat center center;
 }
 
