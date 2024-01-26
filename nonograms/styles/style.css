@@ -77,14 +77,24 @@ footer {
   height: 40px;
 }
 
-.game-table {
-  border: solid 1px red;
-}
+.game-table {}
 
-.game-table td {
+.game-table__row {}
+
+.game-table__row__cell {
   width: 30px;
   height: 30px;
   border: solid black 1px;
+  background: url('../assets/images/svg/cross.svg') no-repeat center center;
+}
+
+.game-table__top-hint {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.game-table__row-hint {
+  text-align: right;
 }
 
 @media (hover:hover) {

@@ -121,7 +121,7 @@ function addHint(arr) {
     for (let j = 0; j < arrRotate[i].length; j += 1) {
       if (arrRotate[i][j] === 1) countInCol += 1;
       if ((arrRotate[i][j] === 0 || arrRotate[i][j + 1] === undefined) && countInCol !== 0) {
-        tophint[i].textContent += `${countInCol} `;
+        tophint[i].innerHTML = `${countInCol}<br>` + tophint[i].innerHTML;
         countInCol = 0;
       }
     }
@@ -129,4 +129,4 @@ function addHint(arr) {
 
 }
 
-createTable(lvl2);
+createTable(lvl0);
