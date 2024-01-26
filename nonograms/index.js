@@ -84,7 +84,7 @@ const lvl = [
 ];
 
 let maxLvl = 2;
-let currentLvl = 0;
+let currentLvl = lvl[4];
 
 function createTable(arr) {
   const table = document.createElement('table');
@@ -95,7 +95,7 @@ function createTable(arr) {
     let classRow = 'game-table__row';
     const row = document.createElement('tr');
     if (i === 0) classRow = 'game-table__top'
-    else row.setAttribute('data-row', i - 1);
+    //else row.setAttribute('data-row', i - 1);
     row.classList = classRow;
     table.append(row);
 
@@ -104,7 +104,8 @@ function createTable(arr) {
       if (i === 0 && j !== 0) cell.classList = 'game-table__top-hint';
       if (j === 0 && i !== 0) cell.classList = 'game-table__row-hint';
       if (j !== 0 && i !== 0) {
-        cell.setAttribute('data-cell', j - 1);
+        cell.setAttribute('data-checked', 0);
+        cell.setAttribute('data-cross', 0);
         cell.classList = 'game-table__row__cell';
       }
       row.append(cell);
@@ -143,11 +144,35 @@ function addHint(arr) {
 
 }
 
+function checkResult() {
+  const tableRow = document.getElementsByClassName('game-table__row');
+  const tableCell = document.getElementsByClassName('game-table__row__cell');
+
+  //console.log(tableRow[0].dataset.row)
+
+  const arrResult = [];
+  for (let i = 0; i < currentLvl.length; i += 1) {
+    for (let j = 0; j < currentLvl[i].length; j += 1) {
+      if (currentLvl[i][j] === 1 && tableRow[i].children[j + 1].dataset.checked !== '1') {
+        return;
+      }
+      console.log(tableRow[i].children[j + 1].dataset.checked === '1');
+    }
+  }
+  alert('You win!');
+}
+
 document.body.addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.classList[0] === 'game-table__row__cell') {
     event.target.classList.toggle('game-table__row__cell_checked');
     event.target.classList.remove('game-table__row__cell_cross');
+    event.target.setAttribute('data-cross', 0);
+
+    if (event.target.classList.value.includes('game-table__row__cell_checked')) event.target.setAttribute('data-checked', 1);
+    else event.target.setAttribute('data-checked', 0);
+
+    checkResult();
   }
 });
 
@@ -156,7 +181,13 @@ document.body.addEventListener('contextmenu', (event) => {
   if (event.target.classList[0] === 'game-table__row__cell') {
     event.target.classList.remove('game-table__row__cell_checked');
     event.target.classList.toggle('game-table__row__cell_cross');
+    event.target.setAttribute('data-checked', 0);
+    
+    if (event.target.classList.value.includes('game-table__row__cell_cross')) event.target.setAttribute('data-cross', 1);
+    else event.target.setAttribute('data-cross', 0);
+
+    checkResult();
   }
 });
 
-createTable(lvl[4]);
+createTable(currentLvl);
