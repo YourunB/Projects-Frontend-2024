@@ -103,7 +103,7 @@ function createTable(arr) {
 function addHint(arr) {
   const tophint = document.getElementsByClassName('game-table__top-hint');
   const leftHint = document.getElementsByClassName('game-table__row-hint');
-  
+
   for (let i = 0; i < arr.length; i += 1) {
     let countInRow = 0;
     for (let j = 0; j < arr[i].length; j += 1) {
@@ -114,6 +114,19 @@ function addHint(arr) {
       }
     }
   }
+
+  const arrRotate = arr[0].map((v, i) => arr.map(row => row[i]).reverse());
+  for (let i = 0; i < arrRotate.length; i += 1) {
+    let countInCol = 0;
+    for (let j = 0; j < arrRotate[i].length; j += 1) {
+      if (arrRotate[i][j] === 1) countInCol += 1;
+      if ((arrRotate[i][j] === 0 || arrRotate[i][j + 1] === undefined) && countInCol !== 0) {
+        tophint[i].textContent += `${countInCol} `;
+        countInCol = 0;
+      }
+    }
+  }
+
 }
 
-createTable(lvl0);
+createTable(lvl2);
