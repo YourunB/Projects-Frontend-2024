@@ -40,13 +40,13 @@ const modalLvlTitle = document.createElement('h3');
 modalLvlTitle.textContent = 'SELECT LEVEL';
 modalLvl.append(modalLvlTitle);
 
-
 for (let i = 0; i < 15; i += 1) {
   const lvlName = document.createElement('p');
   if (i >= 0 && i < 5) lvlName.textContent = `TASK ${i + 1} - 5x5`;
   if (i >= 5 && i < 10) lvlName.textContent = `TASK ${i + 1} - 10x10`;
   if (i >= 10 && i < 15) lvlName.textContent = `TASK ${i + 1} - 15x15`;
   lvlName.classList = 'modal-lvl__task';
+  lvlName.setAttribute('data-task', i);
   modalLvl.append(lvlName);
 }
 
@@ -67,8 +67,7 @@ footerDev.href = 'https://github.com/yourunb';
 footerDev.target = '_blank';
 footer.append(footerDev);
 
-const selectLvlInModal = modalLvl.getElementsByClassName('modal-lvl__task');
-const lvl = [
+const lvls = [
   [
     [0, 0, 1, 0, 0],
     [0, 1, 1, 1, 0],
@@ -107,7 +106,7 @@ const lvl = [
 ];
 
 let maxLvl = 2;
-let currentLvl = lvl[4];
+let currentLvl = lvls[4];
 
 function createTable(arr) {
   const table = document.createElement('table');
@@ -185,6 +184,15 @@ function checkResult() {
   alert('You win!');
 }
 
+modalLvl.addEventListener('click', (event) => {
+  const lvlsInModal = modalLvl.getElementsByClassName('modal-lvl__task');
+  if (event.target.classList.value.includes('modal-lvl__task')) {
+    const lvl = event.target.dataset.task;
+    currentLvl = lvls[lvl]
+    createTable(currentLvl);
+  }
+});
+
 document.body.addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.classList[0] === 'game-table__row__cell') {
@@ -212,5 +220,3 @@ document.body.addEventListener('contextmenu', (event) => {
     checkResult();
   }
 });
-
-createTable(currentLvl);
