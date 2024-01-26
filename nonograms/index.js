@@ -97,6 +97,23 @@ function createTable(arr) {
     }
   }
 
+  addHint(arr);
+}
+
+function addHint(arr) {
+  const tophint = document.getElementsByClassName('game-table__top-hint');
+  const leftHint = document.getElementsByClassName('game-table__row-hint');
+  
+  for (let i = 0; i < arr.length; i += 1) {
+    let countInRow = 0;
+    for (let j = 0; j < arr[i].length; j += 1) {
+      if (arr[i][j] === 1) countInRow += 1;
+      if ((arr[i][j] === 0 || arr[i][j + 1] === undefined) && countInRow !== 0) {
+        leftHint[i].textContent += `${countInRow} `;
+        countInRow = 0;
+      }
+    }
+  }
 }
 
 createTable(lvl0);
