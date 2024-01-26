@@ -57,6 +57,7 @@ li {
 
 .back-img {
   position: fixed;
+  z-index: -1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -64,7 +65,7 @@ li {
 }
 
 .container {
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 120px);
   padding: 20px 0;
   max-width: 1440px;
   margin: auto;
