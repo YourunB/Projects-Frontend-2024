@@ -44,3 +44,59 @@ footerDev.innerHTML = '&copy; 2024 Yury Butskevich';
 footerDev.href = 'https://github.com/yourunb';
 footerDev.target = '_blank';
 footer.append(footerDev);
+
+const lvl0 = [
+  [0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0],
+  [1, 1, 0, 1, 1],
+  [0, 1, 1, 1, 0],
+  [0, 0, 1, 0, 0],
+];
+
+const lvl1 = [
+  [1, 0, 0, 0, 1],
+  [0, 1, 0, 1, 0],
+  [0, 0, 1, 0, 0],
+  [0, 1, 0, 1, 0],
+  [1, 0, 0, 0, 1],
+];
+
+const lvl2 = [
+  [1, 0, 1, 0, 1],
+  [0, 1, 1, 1, 0],
+  [0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0],
+  [1, 0, 1, 0, 1],
+];
+
+let maxLvl = 2;
+let currentLvl = 0;
+
+function createTable(arr) {
+  const table = document.createElement('table');
+  table.classList = 'game-table';
+  gameSection.append(table);
+
+  for (let i = 0; i <= arr.length; i += 1) {
+    let classRow = 'game-table__row';
+    const row = document.createElement('tr');
+    if (i === 0) classRow = 'game-table__top'
+    else row.setAttribute('data-row', i - 1);
+    row.classList = classRow;
+    table.append(row);
+
+    for (let j = 0; j <= arr.length; j += 1) {
+      const cell = document.createElement('td');
+      if (i === 0 && j !== 0) cell.classList = 'game-table__top-hint';
+      if (j === 0 && i !== 0) cell.classList = 'game-table__row-hint';
+      if (j !== 0 && i !== 0) {
+        cell.setAttribute('data-cell', j - 1);
+        cell.classList = 'game-table__row__cell';
+      }
+      row.append(cell);
+    }
+  }
+
+}
+
+createTable(lvl0);

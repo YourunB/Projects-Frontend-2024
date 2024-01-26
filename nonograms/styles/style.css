@@ -77,6 +77,16 @@ footer {
   height: 40px;
 }
 
+.game-table {
+  border: solid 1px red;
+}
+
+.game-table td {
+  width: 30px;
+  height: 30px;
+  border: solid black 1px;
+}
+
 @media (hover:hover) {
   li:hover {
     transform: scale(1.1);
