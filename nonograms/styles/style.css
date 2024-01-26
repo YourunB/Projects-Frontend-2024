@@ -2,7 +2,7 @@ body {
   padding: 20px;
   margin: 0;
   background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(225,239,255,1) 100%);
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(225,239,255,1) 100%);
   color: black;
   cursor: default;
   user-select: none;
@@ -25,9 +25,14 @@ a {
 }
 
 h1,
-h3 {
+h3,
+p {
   margin: 0;
   padding: 0;
+}
+
+h3 {
+  text-align: center;
 }
 
 header {
@@ -92,6 +97,11 @@ li {
   transform: translate(-50%, -50%);
 }
 
+.modal-lvl__task {
+  transition: 0.7s;
+  padding: 2px;
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -146,5 +156,18 @@ footer {
   a:active {
     transform: scale(0.9);
     transition: 0.2s;
+  }
+
+  .modal-lvl__task:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: 0 0 3px rgb(0, 184, 201);
+    border-radius: 5px;
+  }
+  
+  .modal-lvl__task:active {
+    transition: 0.2s;
+    transform: scale(0.95);
+    background: rgb(0, 184, 201);
   }
 }

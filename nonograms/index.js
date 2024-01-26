@@ -40,17 +40,15 @@ const modalLvlTitle = document.createElement('h3');
 modalLvlTitle.textContent = 'SELECT LEVEL';
 modalLvl.append(modalLvlTitle);
 
-const easyLvl = document.createElement('p');
-easyLvl.textContent = '5x5';
-modalLvl.append(easyLvl);
 
-const midLvl = document.createElement('p');
-midLvl.textContent = '10x10';
-modalLvl.append(midLvl);
-
-const hardLvl = document.createElement('p');
-hardLvl.textContent = '15x15';
-modalLvl.append(hardLvl);
+for (let i = 0; i < 15; i += 1) {
+  const lvlName = document.createElement('p');
+  if (i >= 0 && i < 5) lvlName.textContent = `TASK ${i + 1} - 5x5`;
+  if (i >= 5 && i < 10) lvlName.textContent = `TASK ${i + 1} - 10x10`;
+  if (i >= 10 && i < 15) lvlName.textContent = `TASK ${i + 1} - 15x15`;
+  lvlName.classList = 'modal-lvl__task';
+  modalLvl.append(lvlName);
+}
 
 const gameSection = document.createElement('section');
 gameSection.classList = 'game-section';
@@ -69,6 +67,7 @@ footerDev.href = 'https://github.com/yourunb';
 footerDev.target = '_blank';
 footer.append(footerDev);
 
+const selectLvlInModal = modalLvl.getElementsByClassName('modal-lvl__task');
 const lvl = [
   [
     [0, 0, 1, 0, 0],
