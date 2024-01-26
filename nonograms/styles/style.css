@@ -137,6 +137,14 @@ footer {
   background: black;
 }
 
+.body_dark .game-table__row__cell {
+  border-color: white;
+}
+
+.body_dark .game-table__row__cell_checked {
+  background: white;
+}
+
 .game-table__row__cell_cross {
   background: url('../assets/images/svg/cross.svg') no-repeat center center;
 }
