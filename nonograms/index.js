@@ -184,11 +184,18 @@ function checkResult() {
   alert('You win!');
 }
 
+function deleteTable() {
+  const table = gameSection.getElementsByTagName('table');
+  if (table[0] !== undefined) {
+    table[0].remove();
+  }
+}
+
 modalLvl.addEventListener('click', (event) => {
   const lvlsInModal = modalLvl.getElementsByClassName('modal-lvl__task');
   if (event.target.classList.value.includes('modal-lvl__task')) {
-    const lvl = event.target.dataset.task;
-    currentLvl = lvls[lvl]
+    deleteTable();
+    currentLvl = lvls[event.target.dataset.task]
     createTable(currentLvl);
   }
 });
