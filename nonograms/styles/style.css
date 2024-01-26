@@ -110,7 +110,9 @@ footer {
   height: 40px;
 }
 
-.game-table {}
+.game-table {
+  border-collapse: collapse;
+}
 
 .game-table__row {}
 
@@ -135,6 +137,10 @@ footer {
 
 .game-table__row-hint {
   text-align: right;
+}
+
+.unvisible {
+  display: none;
 }
 
 @media (hover:hover) {
