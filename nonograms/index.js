@@ -28,6 +28,30 @@ const main = document.createElement('main');
 main.classList = 'container';
 document.body.append(main);
 
+const overlay = document.createElement('div');
+overlay.classList = 'overlay';
+document.body.append(overlay);
+
+const modalLvl = document.createElement('div');
+modalLvl.classList = 'modal-lvl';
+document.body.append(modalLvl);
+
+const modalLvlTitle = document.createElement('h3');
+modalLvlTitle.textContent = 'SELECT LEVEL';
+modalLvl.append(modalLvlTitle);
+
+const easyLvl = document.createElement('p');
+easyLvl.textContent = '5x5';
+modalLvl.append(easyLvl);
+
+const midLvl = document.createElement('p');
+midLvl.textContent = '10x10';
+modalLvl.append(midLvl);
+
+const hardLvl = document.createElement('p');
+hardLvl.textContent = '15x15';
+modalLvl.append(hardLvl);
+
 const gameSection = document.createElement('section');
 gameSection.classList = 'game-section';
 main.append(gameSection);
