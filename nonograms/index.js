@@ -129,4 +129,8 @@ function addHint(arr) {
 
 }
 
+window.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+});
+
 createTable(lvl0);
