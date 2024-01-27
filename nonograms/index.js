@@ -1,3 +1,25 @@
+const startDisplay = document.createElement("div");
+startDisplay.className = "start-display";
+document.body.append(startDisplay);
+
+const startDisplayTitle = document.createElement("h1");
+startDisplayTitle.className = "start-display__title";
+startDisplayTitle.textContent = "NONOGRAMS";
+startDisplay.append(startDisplayTitle);
+
+const startDisplayLoading = document.createElement("div");
+startDisplayLoading.className = "start-display__loading";
+startDisplay.append(startDisplayLoading);
+
+const startDisplayLoadingLine = document.createElement("div");
+startDisplayLoadingLine.className = "start-display__loading__line";
+startDisplayLoading.append(startDisplayLoadingLine);
+
+const startDisplayBtn = document.createElement("button");
+startDisplayBtn.className = "start-display__btn";
+startDisplayBtn.textContent = "START";
+startDisplay.append(startDisplayBtn);
+
 const header = document.createElement('header');
 document.body.append(header);
 
