@@ -55,6 +55,24 @@ for (let i = 0; i < 15; i += 1) {
   modalLvl.append(lvlName);
 }
 
+const modalWin = document.createElement('div');
+modalWin.classList = 'modal-win unvisible';
+document.body.append(modalWin);
+
+const modalWinTitle = document.createElement('h3');
+modalWinTitle.classList = 'modal-win__title';
+modalWinTitle.innerHTML = 'Congratulations!<br>You win';
+modalWin.append(modalWinTitle);
+
+const modalWinMessage = document.createElement('p');
+modalWinMessage.classList = 'modal-win__message';
+modalWin.append(modalWinMessage);
+
+const btnPlayAgain = document.createElement('button');
+btnPlayAgain.classList = 'btn';
+btnPlayAgain.textContent = 'PLAY AGAIN';
+modalWin.append(btnPlayAgain);
+
 const btnRandom = document.createElement('button');
 btnRandom.textContent = 'RANDOM TASK';
 btnRandom.classList = 'btn';
@@ -365,7 +383,9 @@ function checkResult() {
       console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
-  alert('You win!');
+  modalWin.classList.remove('unvisible');
+  modalWinMessage.textContent = `Game time: ${timer.textContent}`;
+  overlay.classList.remove('unvisible');
 }
 
 function deleteTable() {

@@ -139,6 +139,29 @@ li {
   margin-bottom: 5px;
 }
 
+.modal-win {
+  min-width: 300px;
+  min-height: 200px;
+  padding: 20px;
+  background: inherit;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: fixed;
+  z-index: 101;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.modal-win__title {
+  line-height: 2rem;
+}
+
+.modal-win__message {
+  margin: 10px 0;
+}
+
 .btn {
   background: none;
   border: solid 2px black;
