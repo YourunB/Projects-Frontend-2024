@@ -6,6 +6,7 @@ body {
   color: black;
   cursor: default;
   user-select: none;
+  font-family: "Cinzel", serif;
 }
 
 .body_dark {
