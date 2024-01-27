@@ -60,6 +60,15 @@ btnRandom.textContent = 'RANDOM TASK';
 btnRandom.classList = 'btn';
 modalLvl.append(btnRandom);
 
+const timerSection = document.createElement('section');
+timerSection.classList = 'timer-section';
+main.append(timerSection);
+
+const timer = document.createElement('p');
+timer.textContent = '00:00';
+timer.classList = 'timer-section__timer';
+timerSection.append(timer);
+
 const gameSection = document.createElement('section');
 gameSection.classList = 'game-section';
 main.append(gameSection);

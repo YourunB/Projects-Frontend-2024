@@ -71,6 +71,20 @@ li {
   margin: auto;
 }
 
+.timer-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+}
+
+.timer-section__timer {
+  font-weight: 700;
+  width: 40px;
+}
+
 .game-section {
   min-height: 500px;
   width: 100%;
