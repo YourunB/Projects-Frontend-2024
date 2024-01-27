@@ -42,10 +42,6 @@ const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.append(overlay);
 
-const modalResults = document.createElement('div');
-modalResults.classList = 'modal-results unvisible';
-document.body.append(modalResults);
-
 const modalSolution = document.createElement('div');
 modalSolution.classList = 'modal-solution unvisible';
 document.body.append(modalSolution);
@@ -59,6 +55,15 @@ const modalSolutionTitle = document.createElement('h3');
 modalSolutionTitle.textContent = 'TASK SOLUTION';
 modalSolutionTitle.classList = 'modal-solution__title';
 modalSolution.append(modalSolutionTitle);
+
+const modalResults = document.createElement('div');
+modalResults.classList = 'modal-results unvisible';
+document.body.append(modalResults);
+
+const btnCloseModalResults = document.createElement('img');
+btnCloseModalResults.src = './assets/images/svg/cross.svg';
+btnCloseModalResults.classList = 'close-img';
+modalResults.append(btnCloseModalResults);
 
 const modalResultsTitle = document.createElement('h3');
 modalResultsTitle.classList = 'modal-results__title';
@@ -625,4 +630,9 @@ btnCloseModalSolution.addEventListener('click', () => {
   deleteSolution();
   overlay.classList.add('unvisible');
   modalSolution.classList.add('unvisible');
+});
+
+btnCloseModalResults.addEventListener('click', () => {
+  overlay.classList.add('unvisible');
+  modalResults.classList.add('unvisible');
 });
