@@ -67,7 +67,7 @@ overlay.classList = 'overlay';
 document.body.append(overlay);
 
 const modalTheme = document.createElement('div');
-modalTheme.classList = 'modal-theme unvisible';
+modalTheme.classList = 'modal-theme show unvisible';
 document.body.append(modalTheme);
 
 const btnCloseModalTheme = document.createElement('img');
@@ -88,7 +88,7 @@ for (let i = 0; i < 5; i += 1) {
 }
 
 const modalSolution = document.createElement('div');
-modalSolution.classList = 'modal-solution unvisible';
+modalSolution.classList = 'modal-solution show unvisible';
 document.body.append(modalSolution);
 
 const btnCloseModalSolution = document.createElement('img');
@@ -102,7 +102,7 @@ modalSolutionTitle.classList = 'modal-solution__title';
 modalSolution.append(modalSolutionTitle);
 
 const modalResults = document.createElement('div');
-modalResults.classList = 'modal-results unvisible';
+modalResults.classList = 'modal-results show unvisible';
 document.body.append(modalResults);
 
 const btnCloseModalResults = document.createElement('img');
@@ -120,7 +120,7 @@ modalResultsContent.classList = 'modal-results__content';
 modalResults.append(modalResultsContent);
 
 const modalLvl = document.createElement('div');
-modalLvl.classList = 'modal-lvl';
+modalLvl.classList = 'modal-lvl show';
 document.body.append(modalLvl);
 
 const btnCloseModalLvl = document.createElement('img');
@@ -565,9 +565,15 @@ modalLvl.addEventListener('click', (event) => {
     currentLvlNumber = event.target.dataset.task
     currentLvl = lvls[currentLvlNumber];
     createTable(currentLvl);
-    modalLvl.classList.add('unvisible');
-    overlay.classList.add('unvisible');
-    btnCloseModalLvl.classList.remove('unvisible');
+    overlay.classList.add('hide');
+    modalLvl.classList.add('hide');
+    setTimeout(()=>{
+      overlay.classList.add('unvisible');
+      modalLvl.classList.add('unvisible');
+      overlay.classList.remove('hide');
+      modalLvl.classList.remove('hide');
+      btnCloseModalLvl.classList.remove('unvisible');
+    }, 990);
   }
 });
 
@@ -577,8 +583,15 @@ btnRandom.addEventListener('click', () => {
   currentLvlNumber = randomTask(0, 14);
   currentLvl = lvls[currentLvlNumber];
   createTable(currentLvl);
-  modalLvl.classList.add('unvisible');
-  overlay.classList.add('unvisible');
+  overlay.classList.add('hide');
+  modalLvl.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalLvl.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalLvl.classList.remove('hide');
+    btnCloseModalLvl.classList.remove('unvisible');
+  }, 990);
 });
 
 btnPlayAgain.addEventListener('click', () => {
@@ -673,24 +686,48 @@ btnSolutuion.addEventListener('click', () => {
 });
 
 btnCloseModalSolution.addEventListener('click', () => {
-  deleteSolution();
-  overlay.classList.add('unvisible');
-  modalSolution.classList.add('unvisible');
+  overlay.classList.add('hide');
+  modalSolution.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalSolution.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalmodalSolutionResults.classList.remove('hide');
+    deleteSolution();
+  }, 990);
 });
 
 btnCloseModalResults.addEventListener('click', () => {
-  overlay.classList.add('unvisible');
-  modalResults.classList.add('unvisible');
+  overlay.classList.add('hide');
+  modalResults.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalResults.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalResults.classList.remove('hide');
+  }, 990);
 });
 
 btnCloseModalLvl.addEventListener('click', () => {
-  overlay.classList.add('unvisible');
-  modalLvl.classList.add('unvisible');
+  overlay.classList.add('hide');
+  modalLvl.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalLvl.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalLvl.classList.remove('hide');
+  }, 990);
 });
 
 btnCloseModalTheme.addEventListener('click', () => {
-  overlay.classList.add('unvisible');
-  modalTheme.classList.add('unvisible');
+  overlay.classList.add('hide');
+  modalTheme.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalTheme.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalTheme.classList.remove('hide');
+  }, 990);
 });
 
 menuItemTheme.addEventListener('click', () => {

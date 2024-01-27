@@ -49,6 +49,11 @@ body {
   overflow: hidden;
 }
 
+.start-display__title {
+  opacity: 0;
+  animation: 1s show linear forwards;
+}
+
 .start-display__loading {
   width: 100%;
   border: solid 2px black;
@@ -532,12 +537,12 @@ footer {
   }
 }
 
-.hide {
-  animation: 1s hide forwards linear;
-}
-
 .show {
   animation: 1s show forwards linear;
+}
+
+.hide {
+  animation: 1s hide forwards linear;
 }
 
 @keyframes zoom {
