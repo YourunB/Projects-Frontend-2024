@@ -371,6 +371,11 @@ function randomTask(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+menuItemSelectLevel.addEventListener('click', () => {
+  modalLvl.classList.remove('unvisible');
+  overlay.classList.remove('unvisible');
+});
+
 modalLvl.addEventListener('click', (event) => {
   if (event.target.classList.value.includes('modal-lvl__task')) {
     deleteTable();
@@ -387,6 +392,11 @@ btnRandom.addEventListener('click', () => {
   createTable(currentLvl);
   modalLvl.classList.add('unvisible');
   overlay.classList.add('unvisible');
+});
+
+btnReset.addEventListener('click', () => {
+  deleteTable();
+  createTable(currentLvl);
 });
 
 document.body.addEventListener('click', (event) => {
