@@ -55,6 +55,11 @@ for (let i = 0; i < 15; i += 1) {
   modalLvl.append(lvlName);
 }
 
+const btnRandom = document.createElement('button');
+btnRandom.textContent = 'RANDOM TASK';
+btnRandom.classList = 'btn';
+modalLvl.append(btnRandom);
+
 const gameSection = document.createElement('section');
 gameSection.classList = 'game-section';
 main.append(gameSection);

@@ -105,11 +105,30 @@ li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .modal-lvl__task {
   transition: 0.7s;
   padding: 2px;
+  text-align: left;
+}
+
+.modal-lvl__task:last-of-type {
+  margin-bottom: 5px;
+}
+
+.btn {
+  background: none;
+  border: solid 2px black;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px orange;
+  transition: 0.7s;
+}
+
+.body_dark .btn {
+  border-color: white;
+  color: white;
 }
 
 footer {
@@ -193,6 +212,18 @@ footer {
   .modal-lvl__task:active {
     transition: 0.2s;
     transform: scale(0.95);
+    background: rgb(0, 184, 201);
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 0 0 2px rgb(0, 184, 201);
+  }
+  
+  .btn:active {
+    transition: 0.2s;
+    transform: scale(0.9);
     background: rgb(0, 184, 201);
   }
 }
