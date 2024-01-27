@@ -42,6 +42,27 @@ const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.append(overlay);
 
+const modalTheme = document.createElement('div');
+modalTheme.classList = 'modal-theme unvisible';
+document.body.append(modalTheme);
+
+const btnCloseModalTheme = document.createElement('img');
+btnCloseModalTheme.src = './assets/images/svg/cross.svg';
+btnCloseModalTheme.classList = 'close-img';
+modalTheme.append(btnCloseModalTheme);
+
+const modalThemeTitle = document.createElement('h3');
+modalThemeTitle.textContent = 'SELECT THEME';
+modalThemeTitle.classList = 'modal-theme__title';
+modalTheme.append(modalThemeTitle);
+
+for (let i = 0; i < 5; i += 1) {
+  const theme = document.createElement('p');
+  theme.textContent = `Theme ${i + 1}`;
+  theme.classList = 'modal-theme__theme';
+  modalTheme.append(theme);
+}
+
 const modalSolution = document.createElement('div');
 modalSolution.classList = 'modal-solution unvisible';
 document.body.append(modalSolution);
@@ -580,10 +601,6 @@ document.body.addEventListener('contextmenu', (event) => {
   }
 });
 
-menuItemTheme.addEventListener('click', () => {
-  document.body.classList.toggle('body_dark');
-});
-
 btnSave.addEventListener('click', () => {
   const table = document.getElementsByClassName('game-section')[0];
   const obj = {
@@ -645,4 +662,35 @@ btnCloseModalResults.addEventListener('click', () => {
 btnCloseModalLvl.addEventListener('click', () => {
   overlay.classList.add('unvisible');
   modalLvl.classList.add('unvisible');
+});
+
+btnCloseModalTheme.addEventListener('click', () => {
+  overlay.classList.add('unvisible');
+  modalTheme.classList.add('unvisible');
+});
+
+menuItemTheme.addEventListener('click', () => {
+  modalTheme.classList.remove('unvisible');
+  overlay.classList.remove('unvisible');
+});
+
+modalTheme.addEventListener('click', (event) => {
+  const theme = modalTheme.getElementsByClassName('modal-theme__theme');
+  switch (event.target) {
+    case theme[0]:
+      document.body.classList = 'body_dark';
+      break;
+    case theme[1]:
+      document.body.classList = 'body_dark-red';
+      break;
+    case theme[2]:
+      document.body.classList = 'body_dark-green';
+      break;
+    case theme[3]:
+      document.body.classList = 'body_light-yellow';
+      break;
+    case theme[4]:
+      document.body.classList = '';
+      break;
+  }
 });

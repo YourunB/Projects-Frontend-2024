@@ -15,6 +15,24 @@ body {
   color: white;
 }
 
+.body_dark-green {
+  background: rgb(31, 89, 0);
+  background: radial-gradient(circle, rgb(12, 89, 0) 0%, rgba(0,0,0,1) 100%);
+  color: rgb(239, 255, 115);
+}
+
+.body_dark-red {
+  background: rgb(89, 0, 0);
+  background: radial-gradient(circle, rgb(89, 0, 0) 0%, rgba(0,0,0,1) 100%);
+  color: rgb(255, 196, 196);
+}
+
+.body_light-yellow {
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(255, 255, 183) 100%);
+  color: rgb(28, 18, 0);
+}
+
 a {
   transition: 0.7s;
   color: inherit;
@@ -160,6 +178,29 @@ li {
   border-width: 1px;
 }
 
+.modal-theme {
+  min-width: 300px;
+  padding: 20px;
+  background: inherit;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: fixed;
+  z-index: 101;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-theme__title {
+  margin-bottom: 10px;
+}
+
+.modal-theme__theme {
+  transition: 0.7s;
+  padding: 2px;
+  text-align: left;
+}
+
 .modal-results {
   min-width: 300px;
   min-height: 200px;
@@ -243,6 +284,21 @@ li {
   color: white;
 }
 
+.body_dark-green .btn {
+  border-color: rgb(239, 255, 115);
+  color: rgb(239, 255, 115);
+}
+
+.body_dark-red .btn {
+  border-color: rgb(255, 196, 196);
+  color: rgb(255, 196, 196);
+}
+
+.body_light-yellow .btn {
+  border-color: rgb(28, 18, 0);
+  color: rgb(28, 18, 0);
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -291,8 +347,35 @@ footer {
   border-color: white;
 }
 
+.body_dark-green .game-table__row__cell,
+.body_dark-green .game-table__row .game-table__row__cell {
+  border-color: rgb(239, 255, 115);
+}
+
+.body_dark-red .game-table__row__cell,
+.body_dark-red .game-table__row .game-table__row__cell {
+  border-color: rgb(255, 196, 196);
+}
+
+.body_light-yellow .game-table__row__cell,
+.body_light-yellow .game-table__row .game-table__row__cell {
+  border-color: rgb(28, 18, 0);
+}
+
 .body_dark .game-table__row__cell_checked {
   background: white;
+}
+
+.body_dark-green .game-table__row__cell_checked {
+  background: rgb(239, 255, 115);
+}
+
+.body_dark-red .game-table__row__cell_checked {
+  background: rgb(255, 196, 196);
+}
+
+.body_light-yellow .game-table__row__cell_checked {
+  background: rgb(28, 18, 0);
 }
 
 .game-table__row__cell_cross {
@@ -368,5 +451,18 @@ footer {
     transition: 0.2s;
     filter: invert(0);
     transform: scale(0.9);
+  }
+  
+  .modal-theme__theme:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: 0 0 0 2px rgb(0, 184, 201);
+    border-radius: 5px;
+  }
+  
+  .modal-theme__theme:active {
+    transition: 0.2s;
+    transform: scale(0.95);
+    background: rgb(0, 184, 201);
   }
 }
