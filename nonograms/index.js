@@ -25,7 +25,7 @@ startDisplay.append(startDisplayBtn);
 const header = document.createElement('header');
 document.body.append(header);
 
-const title = document.createElement('h1');
+const title = document.createElement('h2');
 title.textContent = 'Nonograms';
 header.append(title);
 
@@ -689,11 +689,12 @@ btnCloseModalSolution.addEventListener('click', () => {
   overlay.classList.add('hide');
   modalSolution.classList.add('hide');
   setTimeout(()=>{
+    deleteSolution();
     overlay.classList.add('unvisible');
     modalSolution.classList.add('unvisible');
     overlay.classList.remove('hide');
+    modalSolution.classList.remove('hide');
     modalmodalSolutionResults.classList.remove('hide');
-    deleteSolution();
   }, 990);
 });
 
