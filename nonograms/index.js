@@ -552,7 +552,6 @@ btnReset.addEventListener('click', () => {
 });
 
 document.body.addEventListener('click', (event) => {
-  event.preventDefault();
   if (event.target.classList[0] === 'game-table__row__cell') {
     if (timerGameId === null) timerGame();
     event.target.classList.toggle('game-table__row__cell_checked');
