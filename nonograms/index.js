@@ -29,6 +29,11 @@ backImg.src = './assets/images/lines.png';
 backImg.classList = 'back-img';
 document.body.append(backImg);
 
+const salutImg = document.createElement('img');
+salutImg.src = './assets/images/salut.gif';
+salutImg.classList = 'salut-img unvisible';
+document.body.append(salutImg);
+
 const main = document.createElement('main');
 main.classList = 'container';
 document.body.append(main);
@@ -100,15 +105,15 @@ btnReset.textContent = 'RESET';
 btnReset.classList = 'btn';
 controlsSection.append(btnReset);
 
-const btnSave = document.createElement('button');
-btnSave.textContent = 'SAVE';
-btnSave.classList = 'btn';
-controlsSection.append(btnSave);
-
 const btnSolving = document.createElement('button');
 btnSolving.textContent = 'SOLVING';
 btnSolving.classList = 'btn';
 controlsSection.append(btnSolving);
+
+const btnSave = document.createElement('button');
+btnSave.textContent = 'SAVE GAME';
+btnSave.classList = 'btn';
+controlsSection.append(btnSave);
 
 const btnLastGame = document.createElement('button');
 btnLastGame.textContent = 'LAST GAME';
@@ -386,6 +391,7 @@ function checkResult() {
   modalWin.classList.remove('unvisible');
   modalWinMessage.textContent = `Game time: ${timer.textContent}`;
   overlay.classList.remove('unvisible');
+  salutImg.classList.remove('unvisible');
 }
 
 function deleteTable() {
@@ -449,6 +455,7 @@ btnPlayAgain.addEventListener('click', () => {
   createTable(currentLvl);
   modalWin.classList.add('unvisible');
   overlay.classList.add('unvisible');
+  salutImg.classList.add('unvisible');
 });
 
 btnReset.addEventListener('click', () => {
