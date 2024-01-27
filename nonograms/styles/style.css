@@ -123,7 +123,17 @@ li {
   backdrop-filter: blur(3px);
 }
 
+.close-img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: 0.7s;
+}
+
 .modal-solution {
+  position: relative;
   min-width: 300px;
   padding: 20px;
   background: inherit;
@@ -346,5 +356,17 @@ footer {
     transition: 0.2s;
     transform: scale(0.9);
     background: rgb(0, 184, 201);
+  }
+
+  .close-img:hover {
+    cursor: pointer;
+    filter: invert(1);
+    transform: scale(1.1);
+  }
+  
+  .close-img:active {
+    transition: 0.2s;
+    filter: invert(0);
+    transform: scale(0.9);
   }
 }
