@@ -291,6 +291,7 @@ const lvls = [
 
 let maxLvl = 2;
 let currentLvl = lvls[4];
+let timerGameId = null;
 
 function createTable(arr) {
   const table = document.createElement('table');
@@ -383,7 +384,7 @@ function randomTask(min, max) {
 function timerGame(minStart = 0, secStart = 0) {
   let min = minStart;
   let sec = secStart;
-  setInterval(() => {
+  timerGameId = setInterval(() => {
     sec += 1;
     if (sec >= 60) {
       min += 1;
@@ -393,7 +394,10 @@ function timerGame(minStart = 0, secStart = 0) {
   }, 1000);
 }
 
-timerGame();
+function clearTimerGame() {
+  clearInterval(timerGameId);
+  timerGameId = null;
+}
 
 menuItemSelectLevel.addEventListener('click', () => {
   modalLvl.classList.remove('unvisible');
