@@ -81,6 +81,7 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  animation: zoom 15s infinite ease-in-out;
 }
 
 .salut-img {
@@ -464,5 +465,17 @@ footer {
     transition: 0.2s;
     transform: scale(0.95);
     background: rgb(0, 184, 201);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.5;
+  }
+  100% {
+    scale: 1;
   }
 }
