@@ -397,6 +397,7 @@ function timerGame(minStart = 0, secStart = 0) {
 function clearTimerGame() {
   clearInterval(timerGameId);
   timerGameId = null;
+  timer.textContent = `00:00`;
 }
 
 menuItemSelectLevel.addEventListener('click', () => {
@@ -423,12 +424,14 @@ btnRandom.addEventListener('click', () => {
 });
 
 btnReset.addEventListener('click', () => {
+  clearTimerGame();
   deleteTable();
   createTable(currentLvl);
 });
 
 document.body.addEventListener('click', (event) => {
   event.preventDefault();
+  if (timerGameId === null) timerGame();
   if (event.target.classList[0] === 'game-table__row__cell') {
     event.target.classList.toggle('game-table__row__cell_checked');
     event.target.classList.remove('game-table__row__cell_cross');
@@ -443,6 +446,7 @@ document.body.addEventListener('click', (event) => {
 
 document.body.addEventListener('contextmenu', (event) => {
   event.preventDefault();
+  if (timerGameId === null) timerGame();
   if (event.target.classList[0] === 'game-table__row__cell') {
     event.target.classList.remove('game-table__row__cell_checked');
     event.target.classList.toggle('game-table__row__cell_cross');
