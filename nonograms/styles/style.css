@@ -72,14 +72,21 @@ li {
 }
 
 .game-section {
+  min-height: 500px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .controls-section {
+  padding-top: 20px;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .overlay {

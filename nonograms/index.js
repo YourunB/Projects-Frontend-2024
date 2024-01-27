@@ -68,6 +68,26 @@ const controlsSection = document.createElement('section');
 controlsSection.classList = 'controls-section';
 main.append(controlsSection);
 
+const btnReset = document.createElement('button');
+btnReset.textContent = 'RESET';
+btnReset.classList = 'btn';
+controlsSection.append(btnReset);
+
+const btnSave = document.createElement('button');
+btnSave.textContent = 'SAVE';
+btnSave.classList = 'btn';
+controlsSection.append(btnSave);
+
+const btnSolving = document.createElement('button');
+btnSolving.textContent = 'SOLVING';
+btnSolving.classList = 'btn';
+controlsSection.append(btnSolving);
+
+const btnLastGame = document.createElement('button');
+btnLastGame.textContent = 'LAST GAME';
+btnLastGame.classList = 'btn';
+controlsSection.append(btnLastGame);
+
 const footer = document.createElement('footer');
 document.body.append(footer);
 
