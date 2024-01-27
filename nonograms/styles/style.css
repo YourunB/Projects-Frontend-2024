@@ -55,7 +55,8 @@ body {
   box-shadow: 0 0 0 2px orange;
   height: 20px;
   border-radius: 5px;
-  animation: hide 0;
+  animation: hide 1s forwards;
+  animation-delay: 2s;
 }
 
 .start-display__loading__line {
@@ -74,6 +75,9 @@ body {
   border: solid 2px black;
   box-shadow: 0 0 0 2px orange;
   border-radius: 50%;
+  opacity: 0;
+  animation: show 1s linear forwards;
+  animation-delay: 2.5s;
 }
 
 a {
@@ -439,6 +443,10 @@ footer {
   display: none;
 }
 
+.scroll-off {
+  overflow: hidden;
+}
+
 @media (hover:hover) {
   li:hover {
     transform: scale(1.1);
@@ -529,5 +537,23 @@ footer {
   }
   100% {
     width: 100%;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

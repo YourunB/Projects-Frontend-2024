@@ -1,3 +1,5 @@
+document.body.classList.add('scroll-off');
+
 const startDisplay = document.createElement("div");
 startDisplay.className = "start-display";
 document.body.append(startDisplay);
