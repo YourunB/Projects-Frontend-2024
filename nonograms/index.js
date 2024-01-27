@@ -314,12 +314,11 @@ const lvls = [
 
 let maxLvl = 2;
 let currentLvlNumber = 0;
-let currentLvl = lvls[4];
+let currentLvl = lvls[currentLvlNumber];
 let timerGameId = null;
 
 function createTable(arr) {
   clearTimerGame();
-  timer.textContent = `00:00`;
   const table = document.createElement('table');
   table.classList = 'game-table';
   gameSection.append(table);
@@ -389,9 +388,9 @@ function checkResult() {
       //console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
-  clearTimerGame();
   modalWin.classList.remove('unvisible');
   modalWinMessage.textContent = `Game time: ${timer.textContent}`;
+  clearTimerGame();
   overlay.classList.remove('unvisible');
   salutImg.classList.remove('unvisible');
 }
@@ -425,6 +424,7 @@ function timerGame(minStart = 0, secStart = 0) {
 function clearTimerGame() {
   clearInterval(timerGameId);
   timerGameId = null;
+  timer.textContent = `00:00`;
 }
 
 menuItemSelectLevel.addEventListener('click', () => {
@@ -503,7 +503,7 @@ menuItemTheme.addEventListener('click', () => {
 });
 
 btnSave.addEventListener('click', () => {
-  const table = document.getElementsByClassName('game-table')[0];
+  const table = document.getElementsByClassName('game-section')[0];
   const obj = {
     lvl: Number(currentLvlNumber),
     min: Number(timer.textContent.slice(0, 2)),
@@ -511,4 +511,17 @@ btnSave.addEventListener('click', () => {
     table: table.innerHTML,
   }
   localStorage.setItem('lastGame', JSON.stringify(obj));
+});
+
+btnLastGame.addEventListener('click', () => {
+  clearTimerGame();
+  if (localStorage.getItem('lastGame')) {
+    const data = JSON.parse(localStorage.getItem('lastGame'));
+    console.log(data.table);
+    deleteTable();
+    timerGame(data.min, data.sec);
+    currentLvlNumber = data.lvl;
+    currentLvl = lvls[currentLvlNumber];
+    gameSection.innerHTML = data.table;
+  }
 });
