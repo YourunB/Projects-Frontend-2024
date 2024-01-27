@@ -718,3 +718,11 @@ modalTheme.addEventListener('click', (event) => {
       break;
   }
 });
+
+startDisplayBtn.addEventListener('click', () => {
+  startDisplay.classList.add('hide');
+  setTimeout(() => {
+    startDisplay.classList.add('unvisible');
+    startDisplay.classList.remove('hide');
+  }, 995);
+});

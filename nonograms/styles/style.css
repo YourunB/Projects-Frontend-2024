@@ -78,6 +78,7 @@ body {
   opacity: 0;
   animation: show 1s linear forwards;
   animation-delay: 2.5s;
+  transition: 0.7s;
 }
 
 a {
@@ -484,7 +485,7 @@ footer {
   .btn:hover {
     transform: scale(1.05);
     cursor: pointer;
-    box-shadow: 0 0 0 2px rgb(0, 184, 201);
+    border-color: rgb(0, 184, 201);
   }
   
   .btn:active {
@@ -517,6 +518,26 @@ footer {
     transform: scale(0.95);
     background: rgb(0, 184, 201);
   }
+
+  .start-display__btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    border-color: rgb(0, 184, 201);
+  }
+  
+  .start-display__btn:active {
+    transition: 0.2s;
+    background: rgb(0, 184, 201);
+    transform: scale(0.9);
+  }
+}
+
+.hide {
+  animation: 1s hide forwards linear;
+}
+
+.show {
+  animation: 1s show forwards linear;
 }
 
 @keyframes zoom {
