@@ -205,7 +205,7 @@ footer {
   .modal-lvl__task:hover {
     transform: scale(1.02);
     cursor: pointer;
-    box-shadow: 0 0 3px rgb(0, 184, 201);
+    box-shadow: 0 0 0 2px rgb(0, 184, 201);
     border-radius: 5px;
   }
   
