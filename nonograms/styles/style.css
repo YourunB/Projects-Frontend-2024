@@ -218,13 +218,31 @@ footer {
   border-collapse: collapse;
 }
 
-.game-table__row {}
-
 .game-table__row__cell {
   width: 30px;
   height: 30px;
   border: solid black 1px;
   cursor: pointer;
+}
+
+.game-table__row__cell:nth-of-type(6),
+.game-table__row__cell:nth-of-type(11),
+.game-table__row__cell:nth-of-type(16) {
+  border-right: solid 3px black;
+}
+
+.game-table__row__cell:nth-of-type(2) {
+  border-left: solid 3px black;
+}
+
+.game-table__row:last-of-type .game-table__row__cell,
+.game-table__row:nth-of-type(6) .game-table__row__cell,
+.game-table__row:nth-of-type(11) .game-table__row__cell {
+  border-bottom: solid 3px black;
+}
+
+.game-table__row:nth-of-type(2) .game-table__row__cell {
+  border-top: solid 3px black;
 }
 
 .game-table__row__cell_checked {
