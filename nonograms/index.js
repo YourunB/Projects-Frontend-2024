@@ -78,6 +78,11 @@ const modalLvl = document.createElement('div');
 modalLvl.classList = 'modal-lvl';
 document.body.append(modalLvl);
 
+const btnCloseModalLvl = document.createElement('img');
+btnCloseModalLvl.src = './assets/images/svg/cross.svg';
+btnCloseModalLvl.classList = 'close-img unvisible';
+modalLvl.append(btnCloseModalLvl);
+
 const modalLvlTitle = document.createElement('h3');
 modalLvlTitle.textContent = 'SELECT LEVEL';
 modalLvl.append(modalLvlTitle);
@@ -517,6 +522,7 @@ modalLvl.addEventListener('click', (event) => {
     createTable(currentLvl);
     modalLvl.classList.add('unvisible');
     overlay.classList.add('unvisible');
+    btnCloseModalLvl.classList.remove('unvisible');
   }
 });
 
@@ -635,4 +641,9 @@ btnCloseModalSolution.addEventListener('click', () => {
 btnCloseModalResults.addEventListener('click', () => {
   overlay.classList.add('unvisible');
   modalResults.classList.add('unvisible');
+});
+
+btnCloseModalLvl.addEventListener('click', () => {
+  overlay.classList.add('unvisible');
+  modalLvl.classList.add('unvisible');
 });
