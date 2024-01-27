@@ -313,10 +313,12 @@ const lvls = [
 ];
 
 let maxLvl = 2;
+let currentLvlNumber = 0;
 let currentLvl = lvls[4];
 let timerGameId = null;
 
 function createTable(arr) {
+  clearTimerGame();
   timer.textContent = `00:00`;
   const table = document.createElement('table');
   table.classList = 'game-table';
@@ -433,7 +435,8 @@ menuItemSelectLevel.addEventListener('click', () => {
 modalLvl.addEventListener('click', (event) => {
   if (event.target.classList.value.includes('modal-lvl__task')) {
     deleteTable();
-    currentLvl = lvls[event.target.dataset.task]
+    currentLvlNumber = event.target.dataset.task
+    currentLvl = lvls[currentLvlNumber];
     createTable(currentLvl);
     modalLvl.classList.add('unvisible');
     overlay.classList.add('unvisible');
@@ -443,7 +446,8 @@ modalLvl.addEventListener('click', (event) => {
 btnRandom.addEventListener('click', () => {
   clearTimerGame();
   deleteTable();
-  currentLvl = lvls[randomTask(0, 14)];
+  currentLvlNumber = randomTask(0, 14);
+  currentLvl = lvls[currentLvlNumber];
   createTable(currentLvl);
   modalLvl.classList.add('unvisible');
   overlay.classList.add('unvisible');
@@ -496,4 +500,15 @@ document.body.addEventListener('contextmenu', (event) => {
 
 menuItemTheme.addEventListener('click', () => {
   document.body.classList.toggle('body_dark');
+});
+
+btnSave.addEventListener('click', () => {
+  const table = document.getElementsByClassName('game-table')[0];
+  const obj = {
+    lvl: Number(currentLvlNumber),
+    min: Number(timer.textContent.slice(0, 2)),
+    sec: Number(timer.textContent.slice(-2)),
+    table: table.innerHTML,
+  }
+  localStorage.setItem('lastGame', JSON.stringify(obj));
 });
