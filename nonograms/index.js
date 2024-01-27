@@ -388,11 +388,31 @@ function checkResult() {
       //console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
+  saveResults(tableRow.length, timer.textContent, modalLvl.getElementsByClassName('modal-lvl__task')[currentLvlNumber].textContent);
   modalWin.classList.remove('unvisible');
   modalWinMessage.textContent = `Game time: ${timer.textContent}`;
   clearTimerGame();
   overlay.classList.remove('unvisible');
   salutImg.classList.remove('unvisible');
+}
+
+function saveResults(row, time, task) {
+  const min = Number(timer.textContent.slice(0, 2));
+  const sec = Number(timer.textContent.slice(-2));
+  const timeInSec = min * 60 + sec;
+  let difficult = 'easy';
+  if (row >= 0 && row <= 6) difficult = 'easy difficult';
+  if (row >= 7 && row <= 11) difficult = 'middle difficult';
+  if (row >= 12) difficult = 'hard difficult';
+  if (localStorage.getItem('results')) {
+    const arr = JSON.parse(localStorage.getItem('results'));
+    arr.push([timeInSec, time, task, difficult]);
+    arr.sort(function(a, b) {return a[0] - b[0]});
+    localStorage.setItem('results', JSON.stringify(arr));
+  } else {
+    const arr = [[timeInSec, time, task, difficult]]
+    localStorage.setItem('results', JSON.stringify(arr));
+  }
 }
 
 function deleteTable() {
