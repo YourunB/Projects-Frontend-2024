@@ -12,9 +12,9 @@ const menu = document.createElement('ul');
 menu.id = 'menu';
 nav.append(menu);
 
-const menuItemGeneral = document.createElement('li');
-menuItemGeneral.textContent = 'General';
-menu.append(menuItemGeneral);
+const menuItemTheme = document.createElement('li');
+menuItemTheme.textContent = 'Theme';
+menu.append(menuItemTheme);
 
 const menuItemResults = document.createElement('li');
 menuItemResults.textContent = 'Results';
@@ -431,8 +431,8 @@ btnReset.addEventListener('click', () => {
 
 document.body.addEventListener('click', (event) => {
   event.preventDefault();
-  if (timerGameId === null) timerGame();
   if (event.target.classList[0] === 'game-table__row__cell') {
+    if (timerGameId === null) timerGame();
     event.target.classList.toggle('game-table__row__cell_checked');
     event.target.classList.remove('game-table__row__cell_cross');
     event.target.setAttribute('data-cross', 0);
@@ -446,8 +446,8 @@ document.body.addEventListener('click', (event) => {
 
 document.body.addEventListener('contextmenu', (event) => {
   event.preventDefault();
-  if (timerGameId === null) timerGame();
   if (event.target.classList[0] === 'game-table__row__cell') {
+    if (timerGameId === null) timerGame();
     event.target.classList.remove('game-table__row__cell_checked');
     event.target.classList.toggle('game-table__row__cell_cross');
     event.target.setAttribute('data-checked', 0);
@@ -457,4 +457,8 @@ document.body.addEventListener('contextmenu', (event) => {
 
     checkResult();
   }
+});
+
+menuItemTheme.addEventListener('click', () => {
+  document.body.classList.toggle('body_dark');
 });
