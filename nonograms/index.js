@@ -365,6 +365,12 @@ function deleteTable() {
   }
 }
 
+function randomTask(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 modalLvl.addEventListener('click', (event) => {
   if (event.target.classList.value.includes('modal-lvl__task')) {
     deleteTable();
@@ -373,6 +379,14 @@ modalLvl.addEventListener('click', (event) => {
     modalLvl.classList.add('unvisible');
     overlay.classList.add('unvisible');
   }
+});
+
+btnRandom.addEventListener('click', () => {
+  deleteTable();
+  currentLvl = lvls[randomTask(0, 14)];
+  createTable(currentLvl);
+  modalLvl.classList.add('unvisible');
+  overlay.classList.add('unvisible');
 });
 
 document.body.addEventListener('click', (event) => {
