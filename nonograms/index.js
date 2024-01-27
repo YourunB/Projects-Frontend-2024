@@ -48,7 +48,7 @@ document.body.append(modalResults);
 
 const modalResultsTitle = document.createElement('h3');
 modalResultsTitle.classList = 'modal-results__title';
-modalResultsTitle.textContent = 'TOP RESULTS';
+modalResultsTitle.textContent = 'LAST RESULTS';
 modalResults.append(modalResultsTitle);
 
 const modalResultsContent = document.createElement('p');
@@ -420,7 +420,6 @@ function saveResults(row, time, task) {
   if (localStorage.getItem('results')) {
     const arr = JSON.parse(localStorage.getItem('results'));
     arr.push([timeInSec, time, task, difficult]);
-    arr.sort(function(a, b) {return a[0] - b[0]});
     localStorage.setItem('results', JSON.stringify(arr));
   } else {
     const arr = [[timeInSec, time, task, difficult]]
@@ -565,8 +564,10 @@ menuItemResults.addEventListener('click', () => {
   overlay.classList.remove('unvisible');
   if (localStorage.getItem('results')) {
     const arr = JSON.parse(localStorage.getItem('results'));
-    for (let i = 0; i < arr.length && i < 5; i += 1) {
-      results += `${i + 1}. ${arr[i][1]} ${arr[i][2]} ${arr[i][3]}<br>`;
+    const arrLast = arr.slice(-5);
+    arrLast.sort(function(a, b) {return a[0] - b[0]});
+    for (let i = 0; i < arrLast.length && i < 5; i += 1) {
+      results += `${i + 1}. ${arrLast[i][1]} ${arrLast[i][2]} ${arrLast[i][3]}<br>`;
     }
     modalResultsContent.innerHTML = results;
   } else {
