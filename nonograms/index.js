@@ -380,6 +380,21 @@ function randomTask(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function timerGame(minStart = 0, secStart = 0) {
+  let min = minStart;
+  let sec = secStart;
+  setInterval(() => {
+    sec += 1;
+    if (sec >= 60) {
+      min += 1;
+      sec = 0;
+    }
+    timer.textContent = `${String(min).length === 1 ? '0' + min : min}:${String(sec).length === 1 ? '0' + sec : sec}`;
+  }, 1000);
+}
+
+timerGame();
+
 menuItemSelectLevel.addEventListener('click', () => {
   modalLvl.classList.remove('unvisible');
   overlay.classList.remove('unvisible');
