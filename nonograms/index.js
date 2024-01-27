@@ -42,6 +42,19 @@ const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.append(overlay);
 
+const modalResults = document.createElement('div');
+modalResults.classList = 'modal-results unvisible';
+document.body.append(modalResults);
+
+const modalResultsTitle = document.createElement('h3');
+modalResultsTitle.classList = 'modal-results__title';
+modalResultsTitle.textContent = 'TOP RESULTS';
+modalResults.append(modalResultsTitle);
+
+const modalResultsContent = document.createElement('p');
+modalResultsContent.classList = 'modal-results__content';
+modalResults.append(modalResultsContent);
+
 const modalLvl = document.createElement('div');
 modalLvl.classList = 'modal-lvl';
 document.body.append(modalLvl);
@@ -543,5 +556,20 @@ btnLastGame.addEventListener('click', () => {
     currentLvlNumber = data.lvl;
     currentLvl = lvls[currentLvlNumber];
     gameSection.innerHTML = data.table;
+  }
+});
+
+menuItemResults.addEventListener('click', () => {
+  let results = '';
+  modalResults.classList.remove('unvisible');
+  overlay.classList.remove('unvisible');
+  if (localStorage.getItem('results')) {
+    const arr = JSON.parse(localStorage.getItem('results'));
+    for (let i = 0; i < arr.length && i < 5; i += 1) {
+      results += `${i + 1}. ${arr[i][1]} ${arr[i][2]} ${arr[i][3]}<br>`;
+    }
+    modalResultsContent.innerHTML = results;
+  } else {
+    modalResultsContent.textContent = 'No completed games yet';
   }
 });
