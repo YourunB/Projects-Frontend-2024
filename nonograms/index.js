@@ -118,10 +118,10 @@ btnReset.textContent = 'RESET';
 btnReset.classList = 'btn';
 controlsSection.append(btnReset);
 
-const btnSolving = document.createElement('button');
-btnSolving.textContent = 'SOLVING';
-btnSolving.classList = 'btn';
-controlsSection.append(btnSolving);
+const btnSolutuion = document.createElement('button');
+btnSolutuion.textContent = 'SOLUTION';
+btnSolutuion.classList = 'btn';
+controlsSection.append(btnSolutuion);
 
 const btnSave = document.createElement('button');
 btnSave.textContent = 'SAVE GAME';
