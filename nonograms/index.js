@@ -312,6 +312,7 @@ let currentLvl = lvls[4];
 let timerGameId = null;
 
 function createTable(arr) {
+  timer.textContent = `00:00`;
   const table = document.createElement('table');
   table.classList = 'game-table';
   gameSection.append(table);
@@ -373,16 +374,15 @@ function checkResult() {
   const tableRow = document.getElementsByClassName('game-table__row');
   const tableCell = document.getElementsByClassName('game-table__row__cell');
 
-  //console.log(tableRow[0].dataset.row)
-
   const arrResult = [];
   for (let i = 0; i < currentLvl.length; i += 1) {
     for (let j = 0; j < currentLvl[i].length; j += 1) {
       if (currentLvl[i][j] === 1 && tableRow[i].children[j + 1].dataset.checked !== '1') return;
       if (currentLvl[i][j] === 0 && tableRow[i].children[j + 1].dataset.checked !== '0') return;
-      console.log(tableRow[i].children[j + 1].dataset.checked === '1');
+      //console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
+  clearTimerGame();
   modalWin.classList.remove('unvisible');
   modalWinMessage.textContent = `Game time: ${timer.textContent}`;
   overlay.classList.remove('unvisible');
@@ -417,7 +417,6 @@ function timerGame(minStart = 0, secStart = 0) {
 function clearTimerGame() {
   clearInterval(timerGameId);
   timerGameId = null;
-  timer.textContent = `00:00`;
 }
 
 menuItemSelectLevel.addEventListener('click', () => {
@@ -436,10 +435,19 @@ modalLvl.addEventListener('click', (event) => {
 });
 
 btnRandom.addEventListener('click', () => {
+  clearTimerGame();
   deleteTable();
   currentLvl = lvls[randomTask(0, 14)];
   createTable(currentLvl);
   modalLvl.classList.add('unvisible');
+  overlay.classList.add('unvisible');
+});
+
+btnPlayAgain.addEventListener('click', () => {
+  clearTimerGame();
+  deleteTable();
+  createTable(currentLvl);
+  modalWin.classList.add('unvisible');
   overlay.classList.add('unvisible');
 });
 
