@@ -1,8 +1,12 @@
 body {
   padding: 20px;
   margin: 0;
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgba(225,239,255,1) 100%);
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgb(255, 255, 255) 0%,
+    rgba(225, 239, 255, 1) 100%
+  );
   color: black;
   cursor: default;
   user-select: none;
@@ -10,26 +14,34 @@ body {
 }
 
 .body_dark {
-  background: rgb(0,17,89);
-  background: radial-gradient(circle, rgba(0,17,89,1) 0%, rgba(0,0,0,1) 100%);
+  background: rgb(0, 17, 89);
+  background: radial-gradient(
+    circle,
+    rgba(0, 17, 89, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
   color: white;
 }
 
 .body_dark-green {
   background: rgb(31, 89, 0);
-  background: radial-gradient(circle, rgb(12, 89, 0) 0%, rgba(0,0,0,1) 100%);
+  background: radial-gradient(circle, rgb(12, 89, 0) 0%, rgba(0, 0, 0, 1) 100%);
   color: rgb(239, 255, 115);
 }
 
 .body_dark-red {
   background: rgb(89, 0, 0);
-  background: radial-gradient(circle, rgb(89, 0, 0) 0%, rgba(0,0,0,1) 100%);
+  background: radial-gradient(circle, rgb(89, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   color: rgb(255, 196, 196);
 }
 
 .body_light-yellow {
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(255, 255, 183) 100%);
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 183) 100%
+  );
   color: rgb(28, 18, 0);
 }
 
@@ -288,7 +300,7 @@ li {
   margin: 10px 0;
 }
 
-input[type=checkbox]{
+input[type="checkbox"] {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -305,7 +317,7 @@ label {
 }
 
 label:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
@@ -540,7 +552,7 @@ footer {
 }
 
 .game-table__row__cell_cross {
-  background: url('../assets/images/svg/cross.svg') no-repeat center center;
+  background: url("../assets/images/svg/cross.svg") no-repeat center center;
 }
 
 .game-table__top-hint {
@@ -560,7 +572,7 @@ footer {
   overflow: hidden;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   li:hover {
     transform: scale(1.1);
     cursor: pointer;
@@ -587,7 +599,7 @@ footer {
     box-shadow: 0 0 0 2px rgb(0, 184, 201);
     border-radius: 5px;
   }
-  
+
   .modal-lvl__task:active {
     transition: 0.2s;
     transform: scale(0.95);
@@ -599,7 +611,7 @@ footer {
     cursor: pointer;
     border-color: rgb(0, 184, 201);
   }
-  
+
   .btn:active {
     transition: 0.2s;
     transform: scale(0.9);
@@ -611,20 +623,20 @@ footer {
     filter: invert(1);
     transform: scale(1.1);
   }
-  
+
   .close-img:active {
     transition: 0.2s;
     filter: invert(0);
     transform: scale(0.9);
   }
-  
+
   .modal-theme__theme:hover {
     transform: scale(1.02);
     cursor: pointer;
     box-shadow: 0 0 0 2px rgb(0, 184, 201);
     border-radius: 5px;
   }
-  
+
   .modal-theme__theme:active {
     transition: 0.2s;
     transform: scale(0.95);
@@ -636,7 +648,7 @@ footer {
     transform: scale(1.1);
     border-color: rgb(0, 184, 201);
   }
-  
+
   .start-display__btn:active {
     transition: 0.2s;
     background: rgb(0, 184, 201);
@@ -746,7 +758,7 @@ footer {
 
 @media (max-width: 480px) {
   header {
-   justify-content: center;
+    justify-content: center;
   }
 
   nav {
