@@ -903,6 +903,7 @@ startDisplayBtn.addEventListener('click', () => {
   setTimeout(() => {
     startDisplay.classList.add('unvisible');
     startDisplay.classList.remove('hide');
+    document.body.classList.remove('scroll-off');
   }, 995);
 });
 
