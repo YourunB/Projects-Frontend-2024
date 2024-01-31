@@ -658,7 +658,7 @@ modalLvl.addEventListener('click', (event) => {
       overlay.classList.remove('hide');
       modalLvl.classList.remove('hide');
       btnCloseModalLvl.classList.remove('unvisible');
-    }, 990);
+    }, 490);
   }
 });
 
@@ -677,7 +677,7 @@ btnRandom.addEventListener('click', () => {
     overlay.classList.remove('hide');
     modalLvl.classList.remove('hide');
     btnCloseModalLvl.classList.remove('unvisible');
-  }, 990);
+  }, 490);
 });
 
 btnPlayAgain.addEventListener('click', () => {
@@ -802,7 +802,7 @@ btnCloseModalSolution.addEventListener('click', () => {
     modalSolution.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalSolution.classList.remove('hide');
-  }, 990);
+  }, 490);
 });
 
 btnCloseModalResults.addEventListener('click', () => {
@@ -814,7 +814,7 @@ btnCloseModalResults.addEventListener('click', () => {
     modalResults.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalResults.classList.remove('hide');
-  }, 990);
+  }, 490);
 });
 
 btnCloseModalLvl.addEventListener('click', () => {
@@ -826,7 +826,7 @@ btnCloseModalLvl.addEventListener('click', () => {
     modalLvl.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalLvl.classList.remove('hide');
-  }, 990);
+  }, 490);
 });
 
 btnCloseModalTheme.addEventListener('click', () => {
@@ -838,7 +838,7 @@ btnCloseModalTheme.addEventListener('click', () => {
     modalTheme.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalTheme.classList.remove('hide');
-  }, 990);
+  }, 490);
 });
 
 btnCloseModalSound.addEventListener('click', () => {
@@ -850,7 +850,7 @@ btnCloseModalSound.addEventListener('click', () => {
     modalSound.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalSound.classList.remove('hide');
-  }, 990);
+  }, 490);
 });
 
 menuItemSound.addEventListener('click', () => {
