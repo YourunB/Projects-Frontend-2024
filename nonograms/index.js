@@ -901,31 +901,26 @@ modalTheme.addEventListener("click", (event) => {
       if (document.getElementById("switch6").checked === true)
         audioClick.play();
       document.body.classList = "body_dark";
-      document.documentElement.style.background = "black";
       break;
     case theme[1]:
       if (document.getElementById("switch6").checked === true)
         audioClick.play();
       document.body.classList = "body_dark-red";
-      document.documentElement.style.background = "black";
       break;
     case theme[2]:
       if (document.getElementById("switch6").checked === true)
         audioClick.play();
       document.body.classList = "body_dark-green";
-      document.documentElement.style.background = "black";
       break;
     case theme[3]:
       if (document.getElementById("switch6").checked === true)
         audioClick.play();
       document.body.classList = "body_light-yellow";
-      document.documentElement.style.background = "white";
       break;
     case theme[4]:
       if (document.getElementById("switch6").checked === true)
         audioClick.play();
       document.body.classList = "";
-      document.documentElement.style.background = "white";
       break;
   }
 });
