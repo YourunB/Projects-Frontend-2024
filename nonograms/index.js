@@ -44,6 +44,10 @@ const audioWin = document.createElement("audio");
 audioWin.src = "./assets/audio/win.mp3";
 document.body.append(audioWin);
 
+const audioClick = document.createElement("audio");
+audioClick.src = "./assets/audio/click.mp3";
+document.body.append(audioClick);
+
 const header = document.createElement('header');
 document.body.append(header);
 
@@ -106,7 +110,7 @@ modalSoundTitle.textContent = 'SOUND CONTROL';
 modalSoundTitle.classList = 'modal-sound__title';
 modalSound.append(modalSoundTitle);
 
-for (let i = 0; i < 4; i += 1) {
+for (let i = 0; i < 6; i += 1) {
   const modalSoundBox = document.createElement('div');
   modalSoundBox.classList = 'modal-sound__box';
   modalSound.append(modalSoundBox);
@@ -123,6 +127,8 @@ for (let i = 0; i < 4; i += 1) {
   if (i === 1) modalSoundText.textContent = 'Fill cell';
   if (i === 2) modalSoundText.textContent = 'Unfill cell';
   if (i === 3) modalSoundText.textContent = 'Cross cell';
+  if (i === 4) modalSoundText.textContent = 'Win';
+  if (i === 5) modalSoundText.textContent = 'Click';
   modalSoundBox.append(modalSoundText);
 }
 
@@ -615,12 +621,14 @@ function deleteSolution() {
 }
 
 menuItemSelectLevel.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   modalLvl.classList.remove('unvisible');
   overlay.classList.remove('unvisible');
 });
 
 modalLvl.addEventListener('click', (event) => {
   if (event.target.classList.value.includes('modal-lvl__task')) {
+    if (document.getElementById('switch6').checked === true) audioClick.play();
     deleteTable();
     currentLvlNumber = event.target.dataset.task
     currentLvl = lvls[currentLvlNumber];
@@ -638,6 +646,7 @@ modalLvl.addEventListener('click', (event) => {
 });
 
 btnRandom.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   clearTimerGame();
   deleteTable();
   currentLvlNumber = randomTask(0, 14);
@@ -655,6 +664,7 @@ btnRandom.addEventListener('click', () => {
 });
 
 btnPlayAgain.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   clearTimerGame();
   deleteTable();
   createTable(currentLvl);
@@ -664,6 +674,7 @@ btnPlayAgain.addEventListener('click', () => {
 });
 
 btnReset.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   clearTimerGame();
   deleteTable();
   createTable(currentLvl);
@@ -711,6 +722,7 @@ document.body.addEventListener('contextmenu', (event) => {
 });
 
 btnSave.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   const table = document.getElementsByClassName('game-section')[0];
   const obj = {
     lvl: Number(currentLvlNumber),
@@ -722,6 +734,7 @@ btnSave.addEventListener('click', () => {
 });
 
 btnLastGame.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   clearTimerGame();
   if (localStorage.getItem('lastGame')) {
     const data = JSON.parse(localStorage.getItem('lastGame'));
@@ -735,6 +748,7 @@ btnLastGame.addEventListener('click', () => {
 });
 
 menuItemResults.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   let results = '';
   modalResults.classList.remove('unvisible');
   overlay.classList.remove('unvisible');
@@ -752,12 +766,14 @@ menuItemResults.addEventListener('click', () => {
 });
 
 btnSolutuion.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   createSolution(currentLvl);
   overlay.classList.remove('unvisible');
   modalSolution.classList.remove('unvisible');
 });
 
 btnCloseModalSolution.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   overlay.classList.add('hide');
   modalSolution.classList.add('hide');
   setTimeout(()=>{
@@ -771,6 +787,7 @@ btnCloseModalSolution.addEventListener('click', () => {
 });
 
 btnCloseModalResults.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   overlay.classList.add('hide');
   modalResults.classList.add('hide');
   setTimeout(()=>{
@@ -782,6 +799,7 @@ btnCloseModalResults.addEventListener('click', () => {
 });
 
 btnCloseModalLvl.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   overlay.classList.add('hide');
   modalLvl.classList.add('hide');
   setTimeout(()=>{
@@ -793,6 +811,7 @@ btnCloseModalLvl.addEventListener('click', () => {
 });
 
 btnCloseModalTheme.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   overlay.classList.add('hide');
   modalTheme.classList.add('hide');
   setTimeout(()=>{
@@ -804,6 +823,7 @@ btnCloseModalTheme.addEventListener('click', () => {
 });
 
 btnCloseModalSound.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   overlay.classList.add('hide');
   modalSound.classList.add('hide');
   setTimeout(()=>{
@@ -815,11 +835,13 @@ btnCloseModalSound.addEventListener('click', () => {
 });
 
 menuItemSound.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   modalSound.classList.remove('unvisible');
   overlay.classList.remove('unvisible');
 });
 
 menuItemTheme.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   modalTheme.classList.remove('unvisible');
   overlay.classList.remove('unvisible');
 });
@@ -828,18 +850,23 @@ modalTheme.addEventListener('click', (event) => {
   const theme = modalTheme.getElementsByClassName('modal-theme__theme');
   switch (event.target) {
     case theme[0]:
+      if (document.getElementById('switch6').checked === true) audioClick.play();
       document.body.classList = 'body_dark';
       break;
     case theme[1]:
+      if (document.getElementById('switch6').checked === true) audioClick.play();
       document.body.classList = 'body_dark-red';
       break;
     case theme[2]:
+      if (document.getElementById('switch6').checked === true) audioClick.play();
       document.body.classList = 'body_dark-green';
       break;
     case theme[3]:
+      if (document.getElementById('switch6').checked === true) audioClick.play();
       document.body.classList = 'body_light-yellow';
       break;
     case theme[4]:
+      if (document.getElementById('switch6').checked === true) audioClick.play();
       document.body.classList = '';
       break;
   }
@@ -851,6 +878,7 @@ document.getElementById('switch1').addEventListener('click', () => {
 });
 
 startDisplayBtn.addEventListener('click', () => {
+  if (document.getElementById('switch6').checked === true) audioClick.play();
   audioMusic.play();
   startDisplay.classList.add('hide');
   setTimeout(() => {
@@ -858,3 +886,9 @@ startDisplayBtn.addEventListener('click', () => {
     startDisplay.classList.remove('hide');
   }, 995);
 });
+
+modalSound.addEventListener('click', (event) => {
+  if (event.target.tagName === 'INPUT') {
+    if (document.getElementById('switch6').checked === true) audioClick.play();
+  }
+})
