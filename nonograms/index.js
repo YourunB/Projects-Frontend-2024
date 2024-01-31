@@ -693,7 +693,7 @@ btnLastGame.addEventListener('click', () => {
     currentLvlNumber = data.lvl;
     currentLvl = lvls[currentLvlNumber];
     gameSection.innerHTML = data.table;
-  } else alert('No saved games');
+  }
 });
 
 menuItemResults.addEventListener('click', () => {
