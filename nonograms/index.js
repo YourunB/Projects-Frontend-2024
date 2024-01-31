@@ -103,8 +103,28 @@ modalSound.append(btnCloseModalSound);
 
 const modalSoundTitle = document.createElement('h3');
 modalSoundTitle.textContent = 'SOUND CONTROL';
-modalSoundTitle.classList = 'modal-theme__title';
+modalSoundTitle.classList = 'modal-sound__title';
 modalSound.append(modalSoundTitle);
+
+for (let i = 0; i < 4; i += 1) {
+  const modalSoundBox = document.createElement('div');
+  modalSoundBox.classList = 'modal-sound__box';
+  modalSound.append(modalSoundBox);
+  const modalSoundInput = document.createElement('input');
+  modalSoundInput.type = 'checkbox';
+  modalSoundInput.checked = true;
+  modalSoundInput.id = `switch${i + 1}`;
+  modalSoundBox.append(modalSoundInput);
+  const modalSoundLabel = document.createElement('label');
+  modalSoundLabel.setAttribute('for', `switch${i + 1}`);
+  modalSoundBox.append(modalSoundLabel);
+  const modalSoundText = document.createElement('span');
+  if (i === 0) modalSoundText.textContent = 'Music';
+  if (i === 1) modalSoundText.textContent = 'Fill cell';
+  if (i === 2) modalSoundText.textContent = 'Unfill cell';
+  if (i === 3) modalSoundText.textContent = 'Cross cell';
+  modalSoundBox.append(modalSoundText);
+}
 
 const modalTheme = document.createElement('div');
 modalTheme.classList = 'modal-theme show unvisible';
@@ -658,11 +678,11 @@ document.body.addEventListener('click', (event) => {
 
     if (event.target.classList.value.includes('game-table__row__cell_checked')) {
       event.target.setAttribute('data-checked', 1);
-      audioCheck.play();
+      if (document.getElementById('switch2').checked === true) audioCheck.play();
     }
     else {
       event.target.setAttribute('data-checked', 0);
-      audioUncheck.play();
+      if (document.getElementById('switch3').checked === true) audioUncheck.play();
     }
 
     checkResult();
@@ -679,11 +699,11 @@ document.body.addEventListener('contextmenu', (event) => {
     
     if (event.target.classList.value.includes('game-table__row__cell_cross')) {
       event.target.setAttribute('data-cross', 1);
-      audioCross.play();
+      if (document.getElementById('switch4').checked === true) audioCross.play();
     }
     else {
       event.target.setAttribute('data-cross', 0);
-      audioUncheck.play();
+      if (document.getElementById('switch3').checked === true) audioUncheck.play();
     }
 
     checkResult();
@@ -823,6 +843,11 @@ modalTheme.addEventListener('click', (event) => {
       document.body.classList = '';
       break;
   }
+});
+
+document.getElementById('switch1').addEventListener('click', () => {
+  if (document.getElementById('switch1').checked === true) audioMusic.play();
+  else audioMusic.pause();
 });
 
 startDisplayBtn.addEventListener('click', () => {
