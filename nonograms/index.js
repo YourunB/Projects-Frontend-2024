@@ -96,6 +96,14 @@ const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.append(overlay);
 
+const modalAlert = document.createElement('div');
+modalAlert.classList = 'modal-alert show-alert unvisible';
+document.body.append(modalAlert);
+
+const modalAlertText = document.createElement('div');
+modalAlertText.classList = 'modal-alert__text';
+modalAlert.append(modalAlertText);
+
 const modalSound = document.createElement('div');
 modalSound.classList = 'modal-sound show unvisible';
 document.body.append(modalSound);
@@ -621,6 +629,14 @@ function deleteSolution() {
   }
 }
 
+function showAlert(text) {
+  modalAlertText.textContent = text;
+  modalAlert.classList.remove('unvisible');
+  setTimeout(() => {
+    modalAlert.classList.add('unvisible');
+  }, 995);
+}
+
 menuItemSelectLevel.addEventListener('click', () => {
   if (document.getElementById('switch6').checked === true) audioClick.play();
   modalLvl.classList.remove('unvisible');
@@ -676,6 +692,7 @@ btnPlayAgain.addEventListener('click', () => {
 
 btnReset.addEventListener('click', () => {
   if (document.getElementById('switch6').checked === true) audioClick.play();
+  showAlert('Game has been reset');
   clearTimerGame();
   deleteTable();
   createTable(currentLvl);
@@ -732,12 +749,14 @@ btnSave.addEventListener('click', () => {
     table: table.innerHTML,
   }
   localStorage.setItem('lastGame', JSON.stringify(obj));
+  showAlert('Game saved');
 });
 
 btnLastGame.addEventListener('click', () => {
   if (document.getElementById('switch6').checked === true) audioClick.play();
   clearTimerGame();
   if (localStorage.getItem('lastGame')) {
+    showAlert('Your last game');
     const data = JSON.parse(localStorage.getItem('lastGame'));
     console.log(data.table);
     deleteTable();
@@ -745,7 +764,7 @@ btnLastGame.addEventListener('click', () => {
     currentLvlNumber = data.lvl;
     currentLvl = lvls[currentLvlNumber];
     gameSection.innerHTML = data.table;
-  }
+  } else showAlert('No saved game');
 });
 
 menuItemResults.addEventListener('click', () => {

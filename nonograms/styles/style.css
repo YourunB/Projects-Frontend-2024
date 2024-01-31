@@ -205,6 +205,31 @@ li {
   transition: 0.7s;
 }
 
+.modal-alert {
+  min-width: 300px;
+  min-height: 150px;
+  padding: 20px;
+  background: inherit;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: fixed;
+  z-index: 101;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: 1s show-alert linear forwards;
+}
+
+.modal-alert__text {
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+}
+
 .modal-solution {
   position: relative;
   min-width: 300px;
@@ -647,5 +672,20 @@ footer {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes show-alert {
+  0% {
+    transform: translate(-50%, -40%);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -60%);
+    opacity: 0.3;
   }
 }
