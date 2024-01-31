@@ -758,7 +758,7 @@ btnLastGame.addEventListener('click', () => {
   if (localStorage.getItem('lastGame')) {
     showAlert('Your last game');
     const data = JSON.parse(localStorage.getItem('lastGame'));
-    console.log(data.table);
+    //console.log(data.table);
     deleteTable();
     timerGame(data.min, data.sec);
     currentLvlNumber = data.lvl;
@@ -802,7 +802,6 @@ btnCloseModalSolution.addEventListener('click', () => {
     modalSolution.classList.add('unvisible');
     overlay.classList.remove('hide');
     modalSolution.classList.remove('hide');
-    modalmodalSolutionResults.classList.remove('hide');
   }, 990);
 });
 
