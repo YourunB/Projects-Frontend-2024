@@ -208,6 +208,8 @@ li {
 .modal-alert {
   min-width: 300px;
   min-height: 150px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -233,6 +235,8 @@ li {
 .modal-solution {
   position: relative;
   min-width: 300px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -260,6 +264,8 @@ li {
 
 .modal-sound {
   min-width: 300px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -325,6 +331,8 @@ label:active:after {
 
 .modal-theme {
   min-width: 300px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -349,6 +357,8 @@ label:active:after {
 .modal-results {
   min-width: 300px;
   min-height: 200px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -371,6 +381,8 @@ label:active:after {
 .modal-lvl {
   min-width: 300px;
   min-height: 200px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -396,6 +408,8 @@ label:active:after {
 .modal-win {
   min-width: 300px;
   min-height: 200px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
   padding: 20px;
   background: inherit;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
