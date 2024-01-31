@@ -672,8 +672,7 @@ footer {
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-track:hover,
 *::-webkit-scrollbar-track:active {
-  border-radius: 5px;
-  opacity: 0;
+  background-color: black;
 }
 
 *::-webkit-scrollbar-thumb {
