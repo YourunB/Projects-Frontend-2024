@@ -40,9 +40,9 @@ audioMusic.volume = 0.5;
 audioMusic.loop = true;
 document.body.append(audioMusic);
 
-const audioClick = document.createElement("audio");
-audioClick.src = "./assets/audio/click.mp3";
-document.body.append(audioClick);
+const audioWin = document.createElement("audio");
+audioWin.src = "./assets/audio/win.mp3";
+document.body.append(audioWin);
 
 const header = document.createElement('header');
 document.body.append(header);
@@ -57,6 +57,10 @@ header.append(nav);
 const menu = document.createElement('ul');
 menu.id = 'menu';
 nav.append(menu);
+
+const menuItemSound = document.createElement('li');
+menuItemSound.textContent = 'Sound';
+menu.append(menuItemSound);
 
 const menuItemTheme = document.createElement('li');
 menuItemTheme.textContent = 'Theme';
@@ -87,6 +91,20 @@ document.body.append(main);
 const overlay = document.createElement('div');
 overlay.classList = 'overlay';
 document.body.append(overlay);
+
+const modalSound = document.createElement('div');
+modalSound.classList = 'modal-sound show unvisible';
+document.body.append(modalSound);
+
+const btnCloseModalSound = document.createElement('img');
+btnCloseModalSound.src = './assets/images/svg/cross.svg';
+btnCloseModalSound.classList = 'close-img';
+modalSound.append(btnCloseModalSound);
+
+const modalSoundTitle = document.createElement('h3');
+modalSoundTitle.textContent = 'SOUND CONTROL';
+modalSoundTitle.classList = 'modal-theme__title';
+modalSound.append(modalSoundTitle);
 
 const modalTheme = document.createElement('div');
 modalTheme.classList = 'modal-theme show unvisible';
@@ -763,6 +781,22 @@ btnCloseModalTheme.addEventListener('click', () => {
     overlay.classList.remove('hide');
     modalTheme.classList.remove('hide');
   }, 990);
+});
+
+btnCloseModalSound.addEventListener('click', () => {
+  overlay.classList.add('hide');
+  modalSound.classList.add('hide');
+  setTimeout(()=>{
+    overlay.classList.add('unvisible');
+    modalSound.classList.add('unvisible');
+    overlay.classList.remove('hide');
+    modalSound.classList.remove('hide');
+  }, 990);
+});
+
+menuItemSound.addEventListener('click', () => {
+  modalSound.classList.remove('unvisible');
+  overlay.classList.remove('unvisible');
 });
 
 menuItemTheme.addEventListener('click', () => {
