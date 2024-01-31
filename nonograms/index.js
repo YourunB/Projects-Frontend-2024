@@ -638,8 +638,14 @@ document.body.addEventListener('click', (event) => {
     event.target.classList.remove('game-table__row__cell_cross');
     event.target.setAttribute('data-cross', 0);
 
-    if (event.target.classList.value.includes('game-table__row__cell_checked')) event.target.setAttribute('data-checked', 1);
-    else event.target.setAttribute('data-checked', 0);
+    if (event.target.classList.value.includes('game-table__row__cell_checked')) {
+      event.target.setAttribute('data-checked', 1);
+      audioCheck.play();
+    }
+    else {
+      event.target.setAttribute('data-checked', 0);
+      audioUncheck.play();
+    }
 
     checkResult();
   }
@@ -653,8 +659,14 @@ document.body.addEventListener('contextmenu', (event) => {
     event.target.classList.toggle('game-table__row__cell_cross');
     event.target.setAttribute('data-checked', 0);
     
-    if (event.target.classList.value.includes('game-table__row__cell_cross')) event.target.setAttribute('data-cross', 1);
-    else event.target.setAttribute('data-cross', 0);
+    if (event.target.classList.value.includes('game-table__row__cell_cross')) {
+      event.target.setAttribute('data-cross', 1);
+      audioCross.play();
+    }
+    else {
+      event.target.setAttribute('data-cross', 0);
+      audioUncheck.play();
+    }
 
     checkResult();
   }
