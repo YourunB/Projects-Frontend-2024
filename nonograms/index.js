@@ -536,6 +536,7 @@ function checkResult() {
       //console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
+  if (document.getElementById('switch5').checked === true) audioWin.play();
   saveResults(tableRow.length, timer.textContent, modalLvl.getElementsByClassName('modal-lvl__task')[currentLvlNumber].textContent);
   modalWin.classList.remove('unvisible');
   modalWinMessage.textContent = `Game time: ${timer.textContent}`;
