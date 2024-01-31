@@ -22,6 +22,28 @@ startDisplayBtn.className = "start-display__btn";
 startDisplayBtn.textContent = "START";
 startDisplay.append(startDisplayBtn);
 
+const audioCheck = document.createElement("audio");
+audioCheck.src = "./assets/audio/check.mp3";
+document.body.append(audioCheck);
+
+const audioUncheck = document.createElement("audio");
+audioUncheck.src = "./assets/audio/uncheck.mp3";
+document.body.append(audioUncheck);
+
+const audioCross = document.createElement("audio");
+audioCross.src = "./assets/audio/cross.mp3";
+document.body.append(audioCross);
+
+const audioMusic = document.createElement("audio");
+audioMusic.src = "./assets/audio/music.mp3";
+audioMusic.volume = 0.5;
+audioMusic.loop = true;
+document.body.append(audioMusic);
+
+const audioClick = document.createElement("audio");
+audioClick.src = "./assets/audio/click.mp3";
+document.body.append(audioClick);
+
 const header = document.createElement('header');
 document.body.append(header);
 
@@ -758,6 +780,7 @@ modalTheme.addEventListener('click', (event) => {
 });
 
 startDisplayBtn.addEventListener('click', () => {
+  audioMusic.play();
   startDisplay.classList.add('hide');
   setTimeout(() => {
     startDisplay.classList.add('unvisible');
