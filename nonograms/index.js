@@ -816,6 +816,8 @@ menuItemResults.addEventListener("click", () => {
 
 btnSolutuion.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
+  main.classList.add('hide');
+  document.body.classList.add('scroll-off');
   createSolution(currentLvl);
   overlay.classList.remove("unvisible");
   modalSolution.classList.remove("unvisible");
@@ -831,6 +833,8 @@ btnCloseModalSolution.addEventListener("click", () => {
     modalSolution.classList.add("unvisible");
     overlay.classList.remove("hide");
     modalSolution.classList.remove("hide");
+    main.classList.remove('hide');
+    document.body.classList.remove('scroll-off');
   }, 490);
 });
 
