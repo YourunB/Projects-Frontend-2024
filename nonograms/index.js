@@ -93,7 +93,7 @@ main.classList = "container";
 document.body.append(main);
 
 const overlay = document.createElement("div");
-overlay.classList = "overlay";
+overlay.classList = "overlay unvisible";
 document.body.append(overlay);
 
 const modalAlert = document.createElement("div");
@@ -194,12 +194,12 @@ modalResultsContent.classList = "modal-results__content";
 modalResults.append(modalResultsContent);
 
 const modalLvl = document.createElement("div");
-modalLvl.classList = "modal-lvl show";
+modalLvl.classList = "modal-lvl show unvisible";
 document.body.append(modalLvl);
 
 const btnCloseModalLvl = document.createElement("img");
 btnCloseModalLvl.src = "./assets/images/svg/cross.svg";
-btnCloseModalLvl.classList = "close-img unvisible";
+btnCloseModalLvl.classList = "close-img";
 modalLvl.append(btnCloseModalLvl);
 
 const modalLvlTitle = document.createElement("h3");
@@ -678,7 +678,6 @@ modalLvl.addEventListener("click", (event) => {
       modalLvl.classList.add("unvisible");
       overlay.classList.remove("hide");
       modalLvl.classList.remove("hide");
-      btnCloseModalLvl.classList.remove("unvisible");
     }, 490);
   }
 });
@@ -697,7 +696,6 @@ btnRandom.addEventListener("click", () => {
     modalLvl.classList.add("unvisible");
     overlay.classList.remove("hide");
     modalLvl.classList.remove("hide");
-    btnCloseModalLvl.classList.remove("unvisible");
   }, 490);
 });
 
@@ -937,6 +935,7 @@ document.getElementById("switch1").addEventListener("click", () => {
 startDisplayBtn.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
   audioMusic.play();
+  createTable(currentLvl);
   startDisplay.classList.add("hide");
   setTimeout(() => {
     startDisplay.classList.add("unvisible");
