@@ -444,6 +444,10 @@ label:active:after {
   text-align: center;
 }
 
+.modal-lvl__title {
+  margin-bottom: 10px;
+}
+
 .modal-lvl__task {
   transition: 0.7s;
   padding: 2px;
@@ -482,9 +486,29 @@ label:active:after {
 .btn {
   background: none;
   border: solid 2px black;
-  border-radius: 5px;
-  box-shadow: 0 0 0 2px orange;
+  border-radius: 50%;
   transition: 0.7s;
+  width: 60px;
+  height: 60px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.btn_reset {
+  background-image: url('../assets/images/svg/reset.svg');
+}
+.btn_solution {
+  background-image: url('../assets/images/svg/solution.svg');
+}
+.btn_save {
+  background-image: url('../assets/images/svg/save.svg');
+}
+.btn_load {
+  background-image: url('../assets/images/svg/load.svg');
+}
+.btn_random {
+  background-image: url('../assets/images/svg/random.svg');
 }
 
 .btn:disabled {
@@ -678,7 +702,7 @@ footer {
   .btn:active {
     transition: 0.2s;
     transform: scale(0.9);
-    background: rgb(0, 184, 201);
+    background-color: rgb(0, 184, 201);
   }
 
   .close-img:hover {

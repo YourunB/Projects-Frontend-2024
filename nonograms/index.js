@@ -189,6 +189,7 @@ btnCloseModalLvl.classList = "close-img";
 modalLvl.append(btnCloseModalLvl);
 
 const modalLvlTitle = document.createElement("h3");
+modalLvlTitle.classList = 'modal-lvl__title';
 modalLvlTitle.textContent = "SELECT LEVEL";
 modalLvl.append(modalLvlTitle);
 
@@ -221,8 +222,7 @@ btnPlayAgain.textContent = "PLAY AGAIN";
 modalWin.append(btnPlayAgain);
 
 const btnRandom = document.createElement("button");
-btnRandom.textContent = "RANDOM TASK";
-btnRandom.classList = "btn";
+btnRandom.classList = "btn btn_random";
 modalLvl.append(btnRandom);
 
 const timerSection = document.createElement("section");
@@ -243,23 +243,19 @@ controlsSection.classList = "controls-section";
 main.append(controlsSection);
 
 const btnReset = document.createElement("button");
-btnReset.textContent = "RESET";
-btnReset.classList = "btn";
+btnReset.classList = "btn btn_reset";
 controlsSection.append(btnReset);
 
 const btnSolutuion = document.createElement("button");
-btnSolutuion.textContent = "SOLUTION";
-btnSolutuion.classList = "btn";
+btnSolutuion.classList = "btn btn_solution";
 controlsSection.append(btnSolutuion);
 
 const btnSave = document.createElement("button");
-btnSave.textContent = "SAVE GAME";
-btnSave.classList = "btn";
+btnSave.classList = "btn btn_save";
 controlsSection.append(btnSave);
 
 const btnLastGame = document.createElement("button");
-btnLastGame.textContent = "LAST GAME";
-btnLastGame.classList = "btn";
+btnLastGame.classList = "btn btn_load";
 controlsSection.append(btnLastGame);
 
 const footer = document.createElement("footer");
