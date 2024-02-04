@@ -459,6 +459,8 @@ const lvls = [
 let currentLvlNumber = 0;
 let currentLvl = lvls[currentLvlNumber];
 let timerGameId = null;
+let minStart = 0;
+let secStart = 0;
 
 function createTable(arr) {
   clearTimerGame();
@@ -585,7 +587,7 @@ function randomTask(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function timerGame(minStart = 0, secStart = 0) {
+function timerGame() {
   let min = minStart;
   let sec = secStart;
   timerGameId = setInterval(() => {
@@ -603,6 +605,8 @@ function timerGame(minStart = 0, secStart = 0) {
 function clearTimerGame() {
   clearInterval(timerGameId);
   timerGameId = null;
+  minStart = 0;
+  secStart = 0;
   timer.textContent = `00:00`;
 }
 
@@ -741,8 +745,12 @@ btnLastGame.addEventListener("click", () => {
   if (localStorage.getItem("lastGame")) {
     showAlert("Your last game");
     const data = JSON.parse(localStorage.getItem("lastGame"));
+    minStart = data.min;
+    secStart = data.sec;
+    timer.textContent = `${String(data.min).length === 1 ? "0" + data.min : data.min}:${
+      String(data.sec).length === 1 ? "0" + data.sec : data.sec
+    }`;
     deleteTable();
-    timerGame(data.min, data.sec);
     currentLvlNumber = data.lvl;
     currentLvl = lvls[currentLvlNumber];
     gameSection.innerHTML = data.table;
