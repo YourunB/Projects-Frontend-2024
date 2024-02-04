@@ -161,20 +161,6 @@ for (let i = 0; i < 5; i += 1) {
   modalTheme.append(theme);
 }
 
-const modalSolution = document.createElement("div");
-modalSolution.classList = "modal-solution show unvisible";
-document.body.append(modalSolution);
-
-const btnCloseModalSolution = document.createElement("img");
-btnCloseModalSolution.src = "./assets/images/svg/cross.svg";
-btnCloseModalSolution.classList = "close-img";
-modalSolution.append(btnCloseModalSolution);
-
-const modalSolutionTitle = document.createElement("h3");
-modalSolutionTitle.textContent = "TASK SOLUTION";
-modalSolutionTitle.classList = "modal-solution__title";
-modalSolution.append(modalSolutionTitle);
-
 const modalResults = document.createElement("div");
 modalResults.classList = "modal-results show unvisible";
 document.body.append(modalResults);
@@ -468,7 +454,6 @@ const lvls = [
   ],
 ];
 
-//let maxLvl = 2;
 let currentLvlNumber = 0;
 let currentLvl = lvls[currentLvlNumber];
 let timerGameId = null;
@@ -483,7 +468,6 @@ function createTable(arr) {
     let classRow = "game-table__row";
     const row = document.createElement("tr");
     if (i === 0) classRow = "game-table__top";
-    //else row.setAttribute('data-row', i - 1);
     row.classList = classRow;
     table.append(row);
 
@@ -539,8 +523,6 @@ function addHint(arr) {
 
 function checkResult() {
   const tableRow = document.getElementsByClassName("game-table__row");
-  //const tableCell = document.getElementsByClassName('game-table__row__cell');
-  //const arrResult = [];
 
   for (let i = 0; i < currentLvl.length; i += 1) {
     for (let j = 0; j < currentLvl[i].length; j += 1) {
@@ -554,7 +536,6 @@ function checkResult() {
         tableRow[i].children[j + 1].dataset.checked !== "0"
       )
         return;
-      //console.log(tableRow[i].children[j + 1].dataset.checked === '1');
     }
   }
   if (document.getElementById("switch5").checked === true) audioWin.play();
@@ -679,6 +660,7 @@ modalLvl.addEventListener("click", (event) => {
       overlay.classList.remove("hide");
       modalLvl.classList.remove("hide");
     }, 490);
+    enableBtns();
   }
 });
 
@@ -697,6 +679,7 @@ btnRandom.addEventListener("click", () => {
     overlay.classList.remove("hide");
     modalLvl.classList.remove("hide");
   }, 490);
+  enableBtns();
 });
 
 btnPlayAgain.addEventListener("click", () => {
@@ -715,6 +698,7 @@ btnReset.addEventListener("click", () => {
   clearTimerGame();
   deleteTable();
   createTable(currentLvl);
+  enableBtns();
 });
 
 document.body.addEventListener("click", (event) => {
@@ -778,10 +762,10 @@ btnSave.addEventListener("click", () => {
 btnLastGame.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
   clearTimerGame();
+  enableBtns();
   if (localStorage.getItem("lastGame")) {
     showAlert("Your last game");
     const data = JSON.parse(localStorage.getItem("lastGame"));
-    //console.log(data.table);
     deleteTable();
     timerGame(data.min, data.sec);
     currentLvlNumber = data.lvl;
@@ -812,28 +796,33 @@ menuItemResults.addEventListener("click", () => {
   }
 });
 
+function disableBtns() {
+  btnSave.disabled = true;
+  btnSolutuion.disabled = true;
+}
+
+function enableBtns() {
+  btnSave.disabled = false;
+  btnSolutuion.disabled = false;
+}
+
+function showSolution(arr) {
+  const rows = gameSection.getElementsByClassName('game-table__row');
+  for (let i = 0; i < arr.length; i += 1) {
+    const cells = rows[i].getElementsByClassName('game-table__row__cell');
+    for (let j = 0; j < arr[i].length; j += 1) {
+      if (arr[i][j] === 1) cells[j].classList = 'game-table__row__cell game-table__row__cell_checked';
+      if (arr[i][j] === 0) cells[j].classList = 'game-table__row__cell';
+    }
+  }
+}
+
 btnSolutuion.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
-  main.classList.add('hide');
-  document.body.classList.add('scroll-off');
-  createSolution(currentLvl);
-  overlay.classList.remove("unvisible");
-  modalSolution.classList.remove("unvisible");
-});
-
-btnCloseModalSolution.addEventListener("click", () => {
-  if (document.getElementById("switch6").checked === true) audioClick.play();
-  overlay.classList.add("hide");
-  modalSolution.classList.add("hide");
-  setTimeout(() => {
-    deleteSolution();
-    overlay.classList.add("unvisible");
-    modalSolution.classList.add("unvisible");
-    overlay.classList.remove("hide");
-    modalSolution.classList.remove("hide");
-    main.classList.remove('hide');
-    document.body.classList.remove('scroll-off');
-  }, 490);
+  clearTimerGame();
+  disableBtns();
+  showSolution(currentLvl);
+  gameSection.getElementsByClassName('game-table')[0].classList.add('game-table_block');
 });
 
 btnCloseModalResults.addEventListener("click", () => {

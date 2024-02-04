@@ -450,6 +450,12 @@ label:active:after {
   transition: 0.7s;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
 .body_dark .btn {
   border-color: white;
   color: white;
@@ -481,6 +487,10 @@ footer {
 .game-table {
   border-collapse: collapse;
   overflow: hidden;
+}
+
+.game-table_block {
+  pointer-events: none;
 }
 
 .game-table__row__cell {
