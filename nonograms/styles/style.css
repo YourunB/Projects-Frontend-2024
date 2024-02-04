@@ -698,14 +698,12 @@ footer {
 
   .close-img:hover {
     cursor: pointer;
-    filter: invert(1);
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 
   .close-img:active {
     transition: 0.2s;
-    filter: invert(0);
-    transform: scale(0.9);
+    transform: scale(0.8);
   }
 
   .modal-theme__theme:hover {
