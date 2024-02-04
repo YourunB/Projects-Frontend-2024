@@ -273,36 +273,6 @@ li {
   font-weight: 700;
 }
 
-.modal-solution {
-  position: relative;
-  min-width: 300px;
-  max-height: calc(100vh - 40px);
-  overflow: auto;
-  padding: 20px;
-  background: inherit;
-  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  position: fixed;
-  z-index: 101;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.modal-solution__title {
-  margin-bottom: 10px;
-}
-
-.modal-solution .game-table {
-  pointer-events: none;
-  cursor: default;
-  margin: auto;
-}
-
-.modal-solution .game-table .game-table__row .game-table__row__cell {
-  border-width: 1px;
-}
-
 .modal-sound {
   min-width: 300px;
   max-height: calc(100vh - 40px);
