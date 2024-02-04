@@ -223,6 +223,7 @@ modalWin.append(btnPlayAgain);
 
 const btnRandom = document.createElement("button");
 btnRandom.classList = "btn btn_random";
+btnRandom.title = "Random Level";
 modalLvl.append(btnRandom);
 
 const timerSection = document.createElement("section");
@@ -244,18 +245,22 @@ main.append(controlsSection);
 
 const btnReset = document.createElement("button");
 btnReset.classList = "btn btn_reset";
+btnReset.title = "Reset Game";
 controlsSection.append(btnReset);
 
 const btnSolutuion = document.createElement("button");
 btnSolutuion.classList = "btn btn_solution";
+btnSolutuion.title = "Solution";
 controlsSection.append(btnSolutuion);
 
 const btnSave = document.createElement("button");
 btnSave.classList = "btn btn_save";
+btnSave.title = "Save Game";
 controlsSection.append(btnSave);
 
 const btnLastGame = document.createElement("button");
 btnLastGame.classList = "btn btn_load";
+btnLastGame.title = 'Load Game';
 controlsSection.append(btnLastGame);
 
 const footer = document.createElement("footer");
