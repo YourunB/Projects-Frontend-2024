@@ -675,9 +675,11 @@ footer {
   }
 
   .modal-lvl__task:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px #9d00ff;
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .modal-lvl__task:active {
@@ -707,16 +709,16 @@ footer {
   }
 
   .modal-theme__theme:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
     cursor: pointer;
-    box-shadow: 0 0 0 2px rgb(0, 184, 201);
-    border-radius: 5px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px #9d00ff;
+    border-color: rgba(0, 0, 0, 0);
   }
 
   .modal-theme__theme:active {
     transition: 0.2s;
     transform: scale(0.95);
-    background: rgb(0, 184, 201);
   }
 
   .start-display__btn:hover {
@@ -732,8 +734,8 @@ footer {
 
   .game-section .game-table__row__cell:hover::before {
     content: '';
-    background: rgba(63,94,251,0.3);
-    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
+    background: rgba(63,94,251,0.2);
+    background: radial-gradient(circle, rgba(63,94,251,0.2) 0%, rgba(168,86,205,0.2) 25%);
     position: absolute;
     height: 2000px;
     width: 100%;
@@ -744,8 +746,8 @@ footer {
 
   .game-section .game-table__row__cell:hover::after {
     content: '';
-    background: rgba(63,94,251,0.3);
-    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
+    background: rgba(63,94,251,0.2);
+    background: radial-gradient(circle, rgba(63,94,251,0.2) 0%, rgba(168,86,205,0.2) 25%);
     position: absolute;
     height: 100%;
     width: 2000px;
