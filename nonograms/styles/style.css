@@ -485,7 +485,8 @@ footer {
 }
 
 .game-table {
-  border-collapse: collapse;
+  border-collapse: separate; 
+  border-spacing: 0 0; 
   overflow: hidden;
 }
 
@@ -501,6 +502,19 @@ footer {
   height: 30px;
   border: solid black 1px;
   cursor: pointer;
+}
+
+.game-table__row:nth-of-type(2) .game-table__row__cell:nth-of-type(2) {
+  border-top-left-radius: 8px;
+}
+.game-table__row:nth-of-type(2) .game-table__row__cell:last-of-type {
+  border-top-right-radius: 8px;
+}
+.game-table__row:last-of-type .game-table__row__cell:nth-of-type(2) {
+  border-bottom-left-radius: 8px;
+}
+.game-table__row:last-of-type .game-table__row__cell:last-of-type {
+  border-bottom-right-radius: 8px;
 }
 
 .game-table__row__cell:nth-of-type(6),
