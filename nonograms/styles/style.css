@@ -480,9 +480,11 @@ footer {
 
 .game-table {
   border-collapse: collapse;
+  overflow: hidden;
 }
 
 .game-table__row__cell {
+  position: relative;
   min-width: 30px;
   min-height: 30px;
   width: 30px;
@@ -654,6 +656,23 @@ footer {
     background: rgb(0, 184, 201);
     transform: scale(0.9);
   }
+
+  .game-section .game-table__row:hover {
+    background: rgba(63,94,251,0.3);
+    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
+  }
+  
+  .game-section .game-table__row__cell:hover::before {
+    content: '';
+    background: rgba(63,94,251,0.3);
+    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
+    position: absolute;
+    height: 2000px;
+    width: 100%;
+    left: 0;
+    top: -1000px;
+    z-index: -1;
+  } 
 }
 
 .show {
