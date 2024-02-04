@@ -358,7 +358,7 @@ label:after {
 }
 
 input:checked + label {
-  background: rgb(0, 184, 201);
+  background: #9d00ff;
 }
 
 input:checked + label:after {
@@ -447,10 +447,10 @@ label:active:after {
 }
 
 .modal-lvl__task:first-of-type {
-  border-top: solid 2px rgb(119, 0, 255);
+  border-top: solid 2px #9d00ff;
 } 
 .modal-lvl__task:nth-of-type(5n) {
-  border-bottom: solid 2px rgb(119, 0, 255);
+  border-bottom: solid 2px #9d00ff;
 }
 
 .modal-lvl__task:last-of-type {
@@ -755,6 +755,21 @@ footer {
     top: 0;
     z-index: -1;
   }
+}
+
+.text-shine {
+  background: linear-gradient(
+    to right,
+    #9d00ff 20%,
+    #0008ff 30%,
+    #ff00d4 70%,
+    #37ff00 80%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 500% auto;
+  animation: text-shine 5s ease-in-out infinite alternate;
 }
 
 .show {

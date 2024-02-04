@@ -53,6 +53,7 @@ document.body.append(header);
 
 const title = document.createElement("h2");
 title.textContent = "Nonograms";
+title.classList = "text-shine";
 header.append(title);
 
 const nav = document.createElement("nav");
@@ -115,7 +116,7 @@ modalSound.append(btnCloseModalSound);
 
 const modalSoundTitle = document.createElement("h3");
 modalSoundTitle.textContent = "SOUND CONTROL";
-modalSoundTitle.classList = "modal-sound__title";
+modalSoundTitle.classList = "modal-sound__title text-shine";
 modalSound.append(modalSoundTitle);
 
 for (let i = 0; i < 6; i += 1) {
@@ -151,7 +152,7 @@ modalTheme.append(btnCloseModalTheme);
 
 const modalThemeTitle = document.createElement("h3");
 modalThemeTitle.textContent = "SELECT THEME";
-modalThemeTitle.classList = "modal-theme__title";
+modalThemeTitle.classList = "modal-theme__title text-shine";
 modalTheme.append(modalThemeTitle);
 
 for (let i = 0; i < 5; i += 1) {
@@ -171,7 +172,7 @@ btnCloseModalResults.classList = "close-img";
 modalResults.append(btnCloseModalResults);
 
 const modalResultsTitle = document.createElement("h3");
-modalResultsTitle.classList = "modal-results__title";
+modalResultsTitle.classList = "modal-results__title text-shine";
 modalResultsTitle.textContent = "LAST RESULTS";
 modalResults.append(modalResultsTitle);
 
@@ -189,7 +190,7 @@ btnCloseModalLvl.classList = "close-img";
 modalLvl.append(btnCloseModalLvl);
 
 const modalLvlTitle = document.createElement("h3");
-modalLvlTitle.classList = 'modal-lvl__title';
+modalLvlTitle.classList = 'modal-lvl__title text-shine';
 modalLvlTitle.textContent = "SELECT LEVEL";
 modalLvl.append(modalLvlTitle);
 
@@ -208,7 +209,7 @@ modalWin.classList = "modal-win unvisible";
 document.body.append(modalWin);
 
 const modalWinTitle = document.createElement("h3");
-modalWinTitle.classList = "modal-win__title";
+modalWinTitle.classList = "modal-win__title text-shine";
 modalWinTitle.innerHTML = "Congratulations!<br>You win";
 modalWin.append(modalWinTitle);
 
