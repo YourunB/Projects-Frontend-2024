@@ -61,6 +61,19 @@ body {
   overflow: hidden;
 }
 
+.start-display::before {
+  content: '';
+  background: url('../assets/images/start.png') no-repeat center;
+  background-size: contain;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+  opacity: 0.1;
+}
+
 .start-display__title {
   opacity: 0;
   animation: 1s show linear forwards;
@@ -163,6 +176,30 @@ li {
   padding: 20px 0;
   max-width: 1440px;
   margin: auto;
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  background: url('../assets/images/sakura.png') no-repeat right top;
+  background-size: contain;
+  position: absolute;
+  z-index: -1;
+  top: -60px;
+  width: 100%;
+  height: 50%;
+  transition: 1s;
+  opacity: 0.1;
+}
+
+.container:hover::before{
+  opacity: 0.5;
+}
+
+.body_dark .container::before,
+.body_dark-green .container::before,
+.body_dark-red .container::before {
+  filter: invert(1);
 }
 
 .timer-section {
@@ -505,16 +542,16 @@ footer {
 }
 
 .game-table__row:nth-of-type(2) .game-table__row__cell:nth-of-type(2) {
-  border-top-left-radius: 8px;
+  border-top-left-radius: 5px;
 }
 .game-table__row:nth-of-type(2) .game-table__row__cell:last-of-type {
-  border-top-right-radius: 8px;
+  border-top-right-radius: 5px;
 }
 .game-table__row:last-of-type .game-table__row__cell:nth-of-type(2) {
-  border-bottom-left-radius: 8px;
+  border-bottom-left-radius: 5px;
 }
 .game-table__row:last-of-type .game-table__row__cell:last-of-type {
-  border-bottom-right-radius: 8px;
+  border-bottom-right-radius: 5px;
 }
 
 .game-table__row__cell:nth-of-type(6),
@@ -703,6 +740,10 @@ footer {
     left: -1000px;
     top: 0;
     z-index: -1;
+  }
+
+  .start-display:hover::before{
+    opacity: 0.5;
   }
 }
 
