@@ -657,11 +657,6 @@ footer {
     transform: scale(0.9);
   }
 
-  .game-section .game-table__row:hover {
-    background: rgba(63,94,251,0.3);
-    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
-  }
-  
   .game-section .game-table__row__cell:hover::before {
     content: '';
     background: rgba(63,94,251,0.3);
@@ -672,7 +667,19 @@ footer {
     left: 0;
     top: -1000px;
     z-index: -1;
-  } 
+  }
+
+  .game-section .game-table__row__cell:hover::after {
+    content: '';
+    background: rgba(63,94,251,0.3);
+    background: radial-gradient(circle, rgba(63,94,251,0.3) 0%, rgba(168,86,205,0.3) 25%);
+    position: absolute;
+    height: 100%;
+    width: 2000px;
+    left: -1000px;
+    top: 0;
+    z-index: -1;
+  }
 }
 
 .show {
