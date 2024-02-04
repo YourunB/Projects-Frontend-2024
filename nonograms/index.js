@@ -606,33 +606,6 @@ function clearTimerGame() {
   timer.textContent = `00:00`;
 }
 
-function createSolution(arr) {
-  const table = document.createElement("table");
-  table.classList = "game-table";
-  modalSolution.append(table);
-
-  for (let i = 0; i < arr.length; i += 1) {
-    const row = document.createElement("tr");
-    row.classList = "game-table__row";
-    table.append(row);
-
-    for (let j = 0; j < arr[i].length; j += 1) {
-      const cell = document.createElement("td");
-      if (arr[i][j] === 1)
-        cell.classList = "game-table__row__cell game-table__row__cell_checked";
-      else cell.classList = "game-table__row__cell";
-      row.append(cell);
-    }
-  }
-}
-
-function deleteSolution() {
-  const table = modalSolution.getElementsByTagName("table");
-  if (table[0] !== undefined) {
-    table[0].remove();
-  }
-}
-
 function showAlert(text) {
   modalAlertText.textContent = text;
   modalAlert.classList.remove("unvisible");
