@@ -673,7 +673,7 @@ btnPlayAgain.addEventListener("click", () => {
 
 btnReset.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
-  showAlert("Game has been reset");
+  showAlert("Game reset");
   clearTimerGame();
   deleteTable();
   createTable(currentLvl);
@@ -743,7 +743,7 @@ btnLastGame.addEventListener("click", () => {
   clearTimerGame();
   enableBtns();
   if (localStorage.getItem("lastGame")) {
-    showAlert("Your last game");
+    showAlert("Game loaded");
     const data = JSON.parse(localStorage.getItem("lastGame"));
     minStart = data.min;
     secStart = data.sec;
@@ -806,6 +806,7 @@ btnSolutuion.addEventListener("click", () => {
   disableBtns();
   showSolution(currentLvl);
   gameSection.getElementsByClassName('game-table')[0].classList.add('game-table_block');
+  showAlert("Game solution");
 });
 
 btnCloseModalResults.addEventListener("click", () => {
