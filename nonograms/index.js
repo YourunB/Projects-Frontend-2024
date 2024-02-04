@@ -217,8 +217,8 @@ modalWinMessage.classList = "modal-win__message";
 modalWin.append(modalWinMessage);
 
 const btnPlayAgain = document.createElement("button");
-btnPlayAgain.classList = "btn";
-btnPlayAgain.textContent = "PLAY AGAIN";
+btnPlayAgain.classList = "btn btn_again";
+btnPlayAgain.title = "Play Again";
 modalWin.append(btnPlayAgain);
 
 const btnRandom = document.createElement("button");

@@ -71,7 +71,9 @@ body {
   width: 100%;
   height: 100%;
   transition: 1s;
-  opacity: 0.1;
+  opacity: 0;
+  animation: show 2.5s linear forwards;
+  animation-delay: 0.5s;
 }
 
 .start-display__title {
@@ -82,7 +84,6 @@ body {
 .start-display__loading {
   width: 100%;
   border: solid 2px black;
-  box-shadow: 0 0 0 2px orange;
   height: 20px;
   border-radius: 5px;
   animation: hide 1s forwards;
@@ -93,7 +94,7 @@ body {
   width: 0;
   height: 100%;
   border-radius: 3px;
-  background: rgb(0, 184, 201);
+  background: #f1bc8d;
   animation: load 3s forwards linear;
 }
 
@@ -103,12 +104,12 @@ body {
   background: none;
   font-weight: 700;
   border: solid 2px black;
-  box-shadow: 0 0 0 2px orange;
   border-radius: 50%;
   opacity: 0;
   animation: show 1s linear forwards;
   animation-delay: 2.5s;
   transition: 0.7s;
+  background: white;
 }
 
 a {
@@ -181,7 +182,7 @@ li {
 
 .container::before {
   content: '';
-  background: url('../assets/images/sakura.png') no-repeat right top;
+  background: url('../assets/images/sakura.png') no-repeat left top;
   background-size: contain;
   position: absolute;
   z-index: -1;
@@ -189,17 +190,6 @@ li {
   width: 100%;
   height: 50%;
   transition: 1s;
-  opacity: 0.1;
-}
-
-.container:hover::before{
-  opacity: 0.5;
-}
-
-.body_dark .container::before,
-.body_dark-green .container::before,
-.body_dark-red .container::before {
-  filter: invert(1);
 }
 
 .timer-section {
@@ -223,6 +213,8 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
 }
 
 .controls-section {
@@ -454,6 +446,13 @@ label:active:after {
   text-align: left;
 }
 
+.modal-lvl__task:first-of-type {
+  border-top: solid 2px rgb(119, 0, 255);
+} 
+.modal-lvl__task:nth-of-type(5n) {
+  border-bottom: solid 2px rgb(119, 0, 255);
+}
+
 .modal-lvl__task:last-of-type {
   margin-bottom: 5px;
 }
@@ -510,6 +509,9 @@ label:active:after {
 .btn_random {
   background-image: url('../assets/images/svg/random.svg');
 }
+.btn_again {
+  background-image: url('../assets/images/svg/repeat.svg');
+}
 
 .btn:disabled {
   opacity: 0.5;
@@ -518,23 +520,15 @@ label:active:after {
 }
 
 .body_dark .btn {
-  border-color: white;
-  color: white;
+  filter: invert(1);
 }
 
 .body_dark-green .btn {
-  border-color: rgb(239, 255, 115);
-  color: rgb(239, 255, 115);
+  filter: invert(1);
 }
 
 .body_dark-red .btn {
-  border-color: rgb(255, 196, 196);
-  color: rgb(255, 196, 196);
-}
-
-.body_light-yellow .btn {
-  border-color: rgb(28, 18, 0);
-  color: rgb(28, 18, 0);
+  filter: invert(1);
 }
 
 footer {
@@ -683,26 +677,23 @@ footer {
   .modal-lvl__task:hover {
     transform: scale(1.02);
     cursor: pointer;
-    box-shadow: 0 0 0 2px rgb(0, 184, 201);
     border-radius: 5px;
   }
 
   .modal-lvl__task:active {
     transition: 0.2s;
     transform: scale(0.95);
-    background: rgb(0, 184, 201);
   }
 
   .btn:hover {
     transform: scale(1.05);
     cursor: pointer;
-    border-color: rgb(0, 184, 201);
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
   }
 
   .btn:active {
     transition: 0.2s;
-    transform: scale(0.9);
-    background-color: rgb(0, 184, 201);
+    transform: scale(0.8);
   }
 
   .close-img:hover {
@@ -733,12 +724,11 @@ footer {
   .start-display__btn:hover {
     cursor: pointer;
     transform: scale(1.1);
-    border-color: rgb(0, 184, 201);
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
   }
 
   .start-display__btn:active {
     transition: 0.2s;
-    background: rgb(0, 184, 201);
     transform: scale(0.9);
   }
 
@@ -764,10 +754,6 @@ footer {
     left: -1000px;
     top: 0;
     z-index: -1;
-  }
-
-  .start-display:hover::before{
-    opacity: 0.5;
   }
 }
 
@@ -852,6 +838,15 @@ footer {
   100% {
     transform: translate(-50%, -60%);
     opacity: 0.3;
+  }
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 
