@@ -787,6 +787,7 @@ function disableBtns() {
 function enableBtns() {
   btnSave.disabled = false;
   btnSolutuion.disabled = false;
+  btnLastGame.disabled = false;
 }
 
 function showSolution(arr) {
@@ -804,6 +805,7 @@ btnSolutuion.addEventListener("click", () => {
   if (document.getElementById("switch6").checked === true) audioClick.play();
   clearTimerGame();
   disableBtns();
+  if (!localStorage.getItem("lastGame")) btnLastGame.disabled = true;
   showSolution(currentLvl);
   gameSection.getElementsByClassName('game-table')[0].classList.add('game-table_block');
   showAlert("Game solution");
