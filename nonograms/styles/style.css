@@ -62,8 +62,8 @@ body {
 }
 
 .start-display::before {
-  content: '';
-  background: url('../assets/images/start.png') no-repeat center;
+  content: "";
+  background: url("../assets/images/start.png") no-repeat center;
   background-size: contain;
   position: absolute;
   z-index: -1;
@@ -181,8 +181,8 @@ li {
 }
 
 .container::before {
-  content: '';
-  background: url('../assets/images/sakura.png') no-repeat left top;
+  content: "";
+  background: url("../assets/images/sakura.png") no-repeat left top;
   background-size: contain;
   position: absolute;
   z-index: -1;
@@ -418,7 +418,7 @@ label:active:after {
 
 .modal-lvl__task:first-of-type {
   border-top: solid 2px #9d00ff;
-} 
+}
 .modal-lvl__task:nth-of-type(5n) {
   border-bottom: solid 2px #9d00ff;
 }
@@ -465,22 +465,22 @@ label:active:after {
 }
 
 .btn_reset {
-  background-image: url('../assets/images/svg/reset.svg');
+  background-image: url("../assets/images/svg/reset.svg");
 }
 .btn_solution {
-  background-image: url('../assets/images/svg/solution.svg');
+  background-image: url("../assets/images/svg/solution.svg");
 }
 .btn_save {
-  background-image: url('../assets/images/svg/save.svg');
+  background-image: url("../assets/images/svg/save.svg");
 }
 .btn_load {
-  background-image: url('../assets/images/svg/load.svg');
+  background-image: url("../assets/images/svg/load.svg");
 }
 .btn_random {
-  background-image: url('../assets/images/svg/random.svg');
+  background-image: url("../assets/images/svg/random.svg");
 }
 .btn_again {
-  background-image: url('../assets/images/svg/repeat.svg');
+  background-image: url("../assets/images/svg/repeat.svg");
 }
 
 .btn:disabled {
@@ -510,8 +510,8 @@ footer {
 }
 
 .game-table {
-  border-collapse: separate; 
-  border-spacing: 0 0; 
+  border-collapse: separate;
+  border-spacing: 0 0;
   overflow: hidden;
 }
 
@@ -703,9 +703,13 @@ footer {
   }
 
   .game-section .game-table__row__cell:hover::before {
-    content: '';
-    background: rgba(63,94,251,0.2);
-    background: radial-gradient(circle, rgba(63,94,251,0.2) 0%, rgba(168,86,205,0.2) 25%);
+    content: "";
+    background: rgba(63, 94, 251, 0.2);
+    background: radial-gradient(
+      circle,
+      rgba(63, 94, 251, 0.2) 0%,
+      rgba(168, 86, 205, 0.2) 25%
+    );
     position: absolute;
     height: 2000px;
     width: 100%;
@@ -715,9 +719,13 @@ footer {
   }
 
   .game-section .game-table__row__cell:hover::after {
-    content: '';
-    background: rgba(63,94,251,0.2);
-    background: radial-gradient(circle, rgba(63,94,251,0.2) 0%, rgba(168,86,205,0.2) 25%);
+    content: "";
+    background: rgba(63, 94, 251, 0.2);
+    background: radial-gradient(
+      circle,
+      rgba(63, 94, 251, 0.2) 0%,
+      rgba(168, 86, 205, 0.2) 25%
+    );
     position: absolute;
     height: 100%;
     width: 2000px;

@@ -190,7 +190,7 @@ btnCloseModalLvl.classList = "close-img";
 modalLvl.append(btnCloseModalLvl);
 
 const modalLvlTitle = document.createElement("h3");
-modalLvlTitle.classList = 'modal-lvl__title text-shine';
+modalLvlTitle.classList = "modal-lvl__title text-shine";
 modalLvlTitle.textContent = "SELECT LEVEL";
 modalLvl.append(modalLvlTitle);
 
@@ -261,7 +261,7 @@ controlsSection.append(btnSave);
 
 const btnLastGame = document.createElement("button");
 btnLastGame.classList = "btn btn_load";
-btnLastGame.title = 'Load Game';
+btnLastGame.title = "Load Game";
 controlsSection.append(btnLastGame);
 
 const footer = document.createElement("footer");
@@ -747,9 +747,9 @@ btnLastGame.addEventListener("click", () => {
     const data = JSON.parse(localStorage.getItem("lastGame"));
     minStart = data.min;
     secStart = data.sec;
-    timer.textContent = `${String(data.min).length === 1 ? "0" + data.min : data.min}:${
-      String(data.sec).length === 1 ? "0" + data.sec : data.sec
-    }`;
+    timer.textContent = `${
+      String(data.min).length === 1 ? "0" + data.min : data.min
+    }:${String(data.sec).length === 1 ? "0" + data.sec : data.sec}`;
     deleteTable();
     currentLvlNumber = data.lvl;
     currentLvl = lvls[currentLvlNumber];
@@ -791,12 +791,14 @@ function enableBtns() {
 }
 
 function showSolution(arr) {
-  const rows = gameSection.getElementsByClassName('game-table__row');
+  const rows = gameSection.getElementsByClassName("game-table__row");
   for (let i = 0; i < arr.length; i += 1) {
-    const cells = rows[i].getElementsByClassName('game-table__row__cell');
+    const cells = rows[i].getElementsByClassName("game-table__row__cell");
     for (let j = 0; j < arr[i].length; j += 1) {
-      if (arr[i][j] === 1) cells[j].classList = 'game-table__row__cell game-table__row__cell_checked';
-      if (arr[i][j] === 0) cells[j].classList = 'game-table__row__cell';
+      if (arr[i][j] === 1)
+        cells[j].classList =
+          "game-table__row__cell game-table__row__cell_checked";
+      if (arr[i][j] === 0) cells[j].classList = "game-table__row__cell";
     }
   }
 }
@@ -807,7 +809,9 @@ btnSolutuion.addEventListener("click", () => {
   disableBtns();
   if (!localStorage.getItem("lastGame")) btnLastGame.disabled = true;
   showSolution(currentLvl);
-  gameSection.getElementsByClassName('game-table')[0].classList.add('game-table_block');
+  gameSection
+    .getElementsByClassName("game-table")[0]
+    .classList.add("game-table_block");
   showAlert("Game solution");
 });
 
