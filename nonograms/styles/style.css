@@ -602,6 +602,28 @@ footer {
   background: rgb(28, 18, 0);
 }
 
+.game-table__top-hint:nth-of-type(6),
+.game-table__top-hint:nth-of-type(11) {
+  border-right-width: 3px;
+  border-right-style: solid;
+  border-radius: 0;
+}
+.game-table__top-hint:last-of-type {
+  border-right: none;
+}
+
+.game-table__row:nth-of-type(6) .game-table__row-hint,
+.game-table__row:nth-of-type(11) .game-table__row-hint {
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-radius: 0;
+}
+.game-table__row:last-of-type .game-table__row-hint {
+  border-bottom: none;
+}
+
+
+
 .game-table__row__cell_cross {
   background: url("../assets/images/svg/cross.svg") no-repeat center center;
 }
