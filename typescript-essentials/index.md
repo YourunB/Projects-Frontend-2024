@@ -11,7 +11,7 @@
 <p>8. Organize code using TypeScript namespaces: <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/WAC4MDZN?sharingId=990D6ED34729992B">Badge</a></p>
 
 <p>Badges</p>
-<div>
+<div align="center">
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/WAC4MDZN?sharingId=990D6ED34729992B">
     <img src="https://learn.microsoft.com/en-us/training/achievements/typescript/typescript-get-started.svg" alt="badge" style="width: 100px;">
   </a>
