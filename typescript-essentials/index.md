@@ -100,18 +100,22 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>In TypeScript, interfaces can be used to describe an object, name and parameterize type objects, and compose existing type named objects into new ones.</li>
+  <li>An interface can also be expressed as a type alias using the type keyword.</li>
+  <li>Interfaces can complement each other. The key difference from a type alias is that a type alias cannot be reopened to add new properties, and the interface can be easily extended. Also, a type alias can only describe a union or a tuple.</li>
+  <li>The interface can be used to describe existing JavaScript APIs.</li>
+  <li>To declare an interface, start with the interface keyword with the interface name (identifier).</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Declaring and working with interfaces.</li>
+  <li>Implementation of an interface with various conditions.</li>
+  <li>Declaring and working with interfaces with custom array types.</li>
+  <li>Extending one interface with another interface.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - as a result of completing this module, I will be able to apply what I learned to declare and extend various interfaces in a real project. For example, to create custom types for an application, I can also specify the structure and properties of the data that my application will work with.<p>
 
 <h3 id="develop-typed-functions-by-using-ts">4. Develop typed functions by using TypeScript 
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/8R6PNR3W?sharingId=990D6ED34729992B">
@@ -121,18 +125,22 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>TypeScript makes function development and troubleshooting easier by allowing you to enter parameters and return values.</li>
+  <li>In TypeScript, functions are declared like in JavaScript, the only difference in TypeScript is that here you can add a type note for the parameters and return value of the function.</li>
+  <li>You can define optional parameters in a function by adding a question mark (?) to the end of the parameter name.</li>
+  <li>Optional parameters can also be given default values.</li>
+  <li>Rest parameters are treated as an unlimited number of optional parameters.</li>
+  <li>The type of a function can be defined using a type alias or an interface.</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Declaring and working with functions in TypeScript.</li>
+  <li>Creating functions that have required, optional, default, and rest parameters.</li>
+  <li>Defining function types using type aliases or interfaces.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - having completed this module, I will say that with practice in a real project, I can declare typed functions to create more reliable and useful applications and control the return type of functions, thereby avoiding errors in the operation of functions.<p>
 
 <h3 id="declare-and-instantiate-classes-in-ts">5. Declare and instantiate classes in TypeScript 
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/HYGEXBX8?sharingId=990D6ED34729992B">
@@ -142,18 +150,29 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>In TypeScript, classes are another way to define the shape of an object, in addition to describing object types using interfaces and functions.</li>
+  <li>TypeScript supports the use of getters and setters to intercept access to a property (get, set).</li>
+  <li>In TypeScript, you can control the visibility of class members by adding the public(accessible from outside), private(not accessible from outside), or protected(available in derived classes) keyword</li>
+  <li>To make a property static, use the static keyword before the property or method name.</li>
+  <li>To access a static property instead of this. The syntax is className.propertyName.</li>
+  <li>Using the readonly modifier you can make class properties read-only</li>
+  <li>Overriding is the process that occurs when you create a function in a subclass that has the same name as a function in a base class, but has different functionality.</li>
+  <li>Interface can be used to precisely define the form of a class instance.</li>
+  <li>The main difference between interfaces and classes in any programming language is that classes allow you to define implementation details. Interfaces only define the data structure.</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Declaring and working with classes in TypeScript.</li>
+  <li>Creating and working with class instances in TypeScript.</li>
+  <li>Applying class access modifiers.</li>
+  <li>Defining static properties in a class.</li>
+  <li>Declaring and working with classes that extend other classes.</li>
+  <li>Declaring interfaces to specify the exact form of classes.</li>
+  <li>Correct use of interfaces or classes to define the structure of an object depending on the situation.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - as a result of completing the module, I can now use TypeScript classes in virtually real-life projects, extending the functionality of ES6 by adding special TypeScript features such as type annotations for class members, access modifiers, and the ability to specify required or optional parameters. This gives me the opportunity to make my code more reliable and not get an unexpected error, as a result, create any number of derived objects and extend existing classes with other classes.<p>
 
 <h3 id="define-generics-in-ts">6. Define generics in TypeScript 
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/PTZ3SAE4?sharingId=990D6ED34729992B">
