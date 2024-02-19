@@ -63,6 +63,7 @@
   <li>Installing TypeScript.</li>
   <li>Set up a TypeScript project.</li>
   <li>Compiling a TypeScript file.</li>
+  <li>Understanding how TypeScript is an enhancement to JavaScript for web development.</li>
 </ul>
 
 <p>🛠️ <strong>Practical application</strong> - by studying this module by example, I learned how to create projects using TypeScript, configure TypeScript, and compile files from TypeScript to JavaScript, which in the future will allow me to implement real projects using TypeScript to avoid possible errors inherent in JavaScript.<p>
@@ -88,6 +89,7 @@
   <li>Declaring and working with variables using primitive types.</li>
   <li>Declaring and working with variables using object types.</li>
   <li>Declaring and working with variables using union and intersection types.</li>
+  <li>Understanding the benefits of declaring typed variables in TypeScript.</li>
 </ul>
 
 <p>🛠️ <strong>Practical application</strong> - by completing this module, I can put into practice my knowledge of declaring variables of different types, so in a real project I can type variables and track errors in real time if the values ​​of variables do not match the declared type of those variables. I can also restrict types to specific values ​​or combine multiple types for a variable, depending on the situation.<p>
@@ -169,6 +171,7 @@
   <li>Defining static properties in a class.</li>
   <li>Declaring and working with classes that extend other classes.</li>
   <li>Declaring interfaces to specify the exact form of classes.</li>
+  <li>Understanding how to use TypeScript classes to describe the shape of objects.</li>
   <li>Correct use of interfaces or classes to define the structure of an object depending on the situation.</li>
 </ul>
 
@@ -182,18 +185,23 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>Generics provide a way to tell functions, classes, or interfaces what type to use when called.</li>
+  <li>Generics define one or more type variables to indicate the types that will be passed to the component, enclosed in angle brackets &#60; &#62;.</li>
+  <li>When you use type variables to create generic components, you can only use the properties and methods of the objects available for each type.</li>
+  <li>Generics can be used in an interface declaration by replacing type annotations with type variables. You can declare a generic interface as a function/class type, and you can also declare a generic class without an interface.</li>
+  <li>Using generics is most effective when used with custom types and classes.</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Defining and working with generic functions.</li>
+  <li>Declaring and working with generic interface.</li>
+  <li>Declaring and working with generic class.</li>
+  <li>Understanding use cases for generics.</li>
+  <li>Implementing  general restrictions.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - as a result of studying the module, in practice in a real project, I can use generics to write universal, reusable code, and also, in some cases, refuse to use the type "any". With generics, I can write code that will work the same with values of different types.<p>
 
 <h3 id="access-external-libraries-from-ts">7. Access external libraries from TypeScript 
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/DGQNUV8J?sharingId=990D6ED34729992B">
@@ -203,18 +211,18 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>You can export any declaration by adding the export keyword or importing it using the import keyword.</li>
+  <li>If you want to run the resulting JavaScript code in a web browser, you need to add the JS extension to the file name in the import statement.</li>
+  <li>To compile modules, specify the --module target on the command line or in the tsconfig.js file for the project.</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Organizing code using modules.</li>
+  <li>Importing an external type library.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - as a result of studying the module, in practice in a real project, I can use modules to organize application code and import an external type library, and this approach will allow me to reuse individual modules if necessary and solve the problem of heterogeneous entities and collisions by spreading the code across several files.<p>
 
 <h3 id="organize-code-using-ts-namespaces">8. Organize code using TypeScript namespaces 
   <a target="_blank" href="https://learn.microsoft.com/api/achievements/share/en-us/Yury-1685/WAC4MDZN?sharingId=990D6ED34729992B">
@@ -224,17 +232,22 @@
 
 <p>📝 <strong>Learned:</strong><p>
 <ul>
-  <li></li>
+  <li>Namespaces are a TypeScript-specific way of organizing and classifying code that allows related code to be grouped together.</li>
+  <li>The code inside the namespace is retrieved from the global scope within the namespace. This placement helps avoid naming differences between components in global space names.</li>
+  <li>A new namespace is defined using the namespace keyword followed by the namespace name.</li>
+  <li>Namespaces can be adjusted by using them in multiple TypeScript files. If you have names in multiple files that are related to each other, you need to add reference tags that tell the TypeScript compiler about the relationships between the files.</li>
+  <li>To tell TypeScript about the relationship between files, you need to add the "reference" keyword to the file using triple-slash /// syntax.</li>
+  <li>You can tell the compiler to produce a single JavaScript output file using the --outFile option (tsc --outFile fileName.js fileName.ts).</li>
 </ul>
 
 <p>⚡ <strong>Development skills:</strong><p>
 <ul>
-  <li></li>
+  <li>Implementing single-file namespaces.</li>
+  <li>Implementing multi-file namespaces.</li>
+  <li>Understanding the purpose of namespaces.</li>
+  <li>Understanding the design considerations of using namespaces and modules.</li>
 </ul>
 
-<p>🛠️ <strong>Practical application:</strong><p>
-<ul>
-  <li></li>
-</ul>
+<p>🛠️ <strong>Practical application</strong> - as a result of completing the module, I can now use namespaces practically in a real project to organize TypeScript code, grouping variables, functions, interfaces or classes as needed into specific namespaces. This will allow me to reduce the amount of code in the global scope, reduce the number of naming conflicts and improve code reuse. However, it is worth noting that this approach is outdated and it is better to use modules.<p>
 
 <p>Collection of badges - <a href="#collection-of-badges" title="open module reflections">this</a><p>
