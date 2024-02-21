@@ -5,7 +5,7 @@ interface DataLoad {
     id: string;
 }
 
-function checkElement <T extends HTMLElement> (elementName: string, nodeName: HTMLElement | Document = document): T {
+export function checkElement <T extends HTMLElement> (elementName: string, nodeName: HTMLElement | Document = document): T {
     const element = nodeName.querySelector<T>(elementName);
     if (element != null) return element;
     else throw TypeError;

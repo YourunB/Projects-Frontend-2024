@@ -1,4 +1,5 @@
 import './news.css';
+import { checkElement } from '../sources/sources';
 
 interface DataLoadItem {
     source: {
@@ -11,12 +12,6 @@ interface DataLoadItem {
     url: string;
     author: string;
     publishedAt: string;
-}
-
-function checkElement <T extends HTMLElement> (elementName: string, nodeName: HTMLElement | Document = document): T {
-    const element = nodeName.querySelector<T>(elementName);
-    if (element != null) return element;
-    else throw TypeError;
 }
 
 class News {
