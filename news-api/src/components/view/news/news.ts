@@ -20,7 +20,7 @@ function checkElement <T extends HTMLElement> (elementName: string, nodeName: HT
 }
 
 class News {
-    private draw(data: DataLoadItem[]) {
+    protected draw(data: DataLoadItem[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
