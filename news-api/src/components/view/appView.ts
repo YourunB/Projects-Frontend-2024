@@ -1,7 +1,7 @@
 import News from './news/news';
 import Sources from './sources/sources';
 
-interface DataLoadNews {
+export interface DataLoadNews {
     articles: [{
         source: {
             name: string;
@@ -15,7 +15,8 @@ interface DataLoadNews {
         publishedAt: string;
     }];
 }
-interface DataLoadSources {
+
+export interface DataLoadSources {
     sources: [{
         name: string;
         id: string;

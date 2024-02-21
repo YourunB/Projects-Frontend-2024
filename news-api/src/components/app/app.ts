@@ -1,26 +1,5 @@
 import AppController from '../controller/controller';
-import { AppView } from '../view/appView';
-
-interface DataLoadNews {
-    articles: [{
-        source: {
-            name: string;
-            content: string;
-        };
-        title: string;
-        description: string;
-        urlToImage: string;
-        url: string;
-        author: string;
-        publishedAt: string;
-    }];
-}
-interface DataLoadSources {
-    sources: [{
-        name: string;
-        id: string;
-    }];
-}
+import { AppView, DataLoadNews, DataLoadSources} from '../view/appView';
 
 class App {
     controller: AppController;
