@@ -33,8 +33,8 @@ class App {
     start() {
         const sources = document.querySelector<HTMLElement>('.sources');
         if (!sources) throw TypeError;
-        sources.addEventListener('click', (e) => this.controller.getNews(e, (data: DataLoadNews) => this.view.drawNews(data)));
-        this.controller.getSources((data: DataLoadSources) => this.view.drawSources(data));
+        sources.addEventListener('click', (e) => this.controller.getNews(e, (data: DataLoadNews | void) => { if (data && data !== null) this.view.drawNews(data); }));
+        this.controller.getSources((data: DataLoadSources | void) => { if (data && data !== null) this.view.drawSources(data) });
     }
 }
 
