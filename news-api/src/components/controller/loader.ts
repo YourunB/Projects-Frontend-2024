@@ -1,8 +1,3 @@
-interface CheckResp {
-    endpoint: string;
-    options?: { sources?: string; };
-}
-
 class Loader {
     constructor(protected baseLink: string, protected options?: {sources?: string}) {
         this.baseLink = baseLink;
