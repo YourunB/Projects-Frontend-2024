@@ -12,7 +12,7 @@ export function checkElement <T extends HTMLElement> (elementName: string, nodeN
 }
 
 class Sources {
-    draw(data: DataLoad[]) {
+    public draw(data: DataLoad[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = <HTMLTemplateElement>document.querySelector('#sourceItemTemp');
 
