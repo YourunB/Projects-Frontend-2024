@@ -2,16 +2,16 @@ import './news.css';
 import { checkElement } from '../sources/sources';
 
 interface DataLoadItem {
-    source: {
+    readonly source: {
         name: string;
         content: string;
     };
-    title: string;
-    description: string;
-    urlToImage: string;
-    url: string;
-    author: string;
-    publishedAt: string;
+    readonly title: string;
+    readonly description: string;
+    readonly urlToImage: string;
+    readonly url: string;
+    readonly author: string;
+    readonly publishedAt: string;
 }
 
 class News {
