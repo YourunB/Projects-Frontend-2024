@@ -15,7 +15,7 @@ interface DataLoadItem {
 }
 
 class News {
-    draw(data: DataLoadItem[]) {
+    public draw(data: DataLoadItem[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
