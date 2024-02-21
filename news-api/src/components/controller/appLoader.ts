@@ -2,7 +2,7 @@ import Loader from './loader';
 
 enum ConnectApi {
     connectUrl = 'https://rss-news-api.onrender.com/',
-    connectKey = 'df9e8ba419f048b4aa842ba8ecc75bf3',
+    connectKey = '46d8662dd4a346d5b24e6cbfd2597f5d',
 }
 
 class AppLoader extends Loader {
