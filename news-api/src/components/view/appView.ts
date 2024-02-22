@@ -2,17 +2,17 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export interface DataLoadNews {
-    articles: [{
-        readonly source: {
+    readonly articles: [{
+        source: {
             name: string;
             content: string;
         };
-        readonly title: string;
-        readonly description: string;
-        readonly urlToImage: string;
-        readonly url: string;
-        readonly author: string;
-        readonly publishedAt: string;
+        title: string;
+        description: string;
+        urlToImage: string;
+        url: string;
+        author: string;
+        publishedAt: string;
     }];
 }
 
