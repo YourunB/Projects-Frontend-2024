@@ -58,6 +58,17 @@ main {
     align-items: center;
 }
 
+.btn {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+    transition: 0.7s;
+    padding: 5px;
+    border: solid 2px black;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
 .header__btn-menu {
     position: fixed;
     z-index: 101;
@@ -73,17 +84,11 @@ main {
     z-index: 101;
     left: 10px;
     bottom: 10px;
+    display: none;
 }
 
-.btn {
-    width: 40px;
-    height: 40px;
-    filter: invert(1);
-    transition: 0.7s;
-    padding: 5px;
-    border: solid 2px black;
-    border-radius: 50%;
-    opacity: 0.5;
+.btn-to-top_visible {
+    display: block;
 }
 
 .header__title {
@@ -177,15 +182,13 @@ footer div {
         transform: scale(0.9);
     }
 
-    .header__btn-menu:hover,
-    .btn-to-top:hover {
+    .btn:hover {
         opacity: 1;
         cursor: pointer;
         scale: 1.1;
     }
     
-    .header__btn-menu:active,
-    .btn-to-top:active {
+    .btn:active {
         transition: 0.2s;
         scale: 0.8;
     }
