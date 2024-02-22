@@ -12,7 +12,7 @@
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
     transition: 1s;
-    transform: translateX(520px);
+    transform: translateX(620px);
 }
 
 .sources_show {
@@ -44,6 +44,13 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+@media (max-width: 610px) {
+    .sources {
+        max-width: 100%;
+        width: calc(100% - 10px);
+    }
 }
 
 @media (hover:hover) {

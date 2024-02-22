@@ -14,7 +14,6 @@ body {
     user-select: none;
     padding: 10px;
     margin: 0;
-    overflow-x: hidden;
 }
 
 .scroll-off {
@@ -129,6 +128,7 @@ main {
     position: relative;
     display: flex;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .btn {
@@ -158,7 +158,7 @@ main {
 
 .header__btn-menu {
     position: fixed;
-    z-index: 101;
+    z-index: 150;
     right: 20px;
     animation: right-slide 2s linear;
 }
@@ -169,7 +169,7 @@ main {
 
 .btn-to-top {
     position: sticky;
-    z-index: 101;
+    z-index: 99;
     left: 20px;
     bottom: 20px;
     display: none;
@@ -220,7 +220,7 @@ main {
 .footer {
     height: 100px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
@@ -335,6 +335,22 @@ footer div {
     .header__title:active {
         transition: 0.2s;
         scale: 0.97;
+    }
+}
+
+@media (max-width: 576px) {
+    .header__title {
+        font-size: 25px;
+    }
+
+    .footer__copyright {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer {
+        gap: 0;
+        justify-content: center;
     }
 }
 
