@@ -7,6 +7,8 @@ app.start();
 const windowSources = document.getElementById('window-sources');
 const btnMenu = document.getElementById('btn-menu');
 const btnUp = document.getElementById('btn-to-top');
+const btnChoose = document.getElementById('btn-choose');
+const wrapperChoose = document.getElementById('choose-box');
 
 function showBtnUp() {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
@@ -23,7 +25,13 @@ windowSources?.addEventListener('click', (event) => {
     if (target.classList.value === 'source__item' || target.classList.value === 'source__item-name') {
         windowSources?.classList.toggle('sources_show');
         btnMenu?.classList.toggle('header__btn-menu_rotate');
+        wrapperChoose?.classList.add('choose-box_hide');
     }
+});
+
+btnChoose?.addEventListener('click', () => {
+    windowSources?.classList.toggle('sources_show');
+    btnMenu?.classList.toggle('header__btn-menu_rotate');
 });
 
 btnUp?.addEventListener('click', () => {

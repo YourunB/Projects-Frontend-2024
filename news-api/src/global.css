@@ -91,6 +91,29 @@ main {
     display: block;
 }
 
+.choose-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.choose-box_hide {
+    display: none;
+}
+
+.choose-box__btn {
+    font-size: 30px;
+    border: solid 3px white;
+    width: 150px;
+    height: 150px;
+    background: none;
+    color: inherit;
+    border-radius: 50%;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
+    transition: 0.7s;
+}
+
 .header__title {
     font-size: 40px;
     font-weight: 800;
@@ -191,6 +214,16 @@ footer div {
     .btn:active {
         transition: 0.2s;
         scale: 0.8;
+    }
+
+    .choose-box__btn:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    
+    .choose-box__btn:active {
+        transition: 0.2s;
+        transform: scale(0.9);
     }
 }
 
