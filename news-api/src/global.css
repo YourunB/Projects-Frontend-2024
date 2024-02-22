@@ -42,7 +42,7 @@ main {
 }
 
 .header__btn-menu {
-    position: absolute;
+    position: fixed;
     z-index: 101;
     right: 10px;
     width: 40px;
