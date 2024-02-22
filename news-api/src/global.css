@@ -1,3 +1,13 @@
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+  
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     color: #fff;
     background-color: #17181c;
@@ -6,6 +16,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    user-select: none;
 }
 
 header {
@@ -17,23 +28,71 @@ header h1 {
     font-weight: 800;
 }
 
-footer {
+.footer {
     height: 100px;
+    padding: 10px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: solid 1px white;
+}
+
+.footer p {
+    padding: 0;
+    margin: 0;
+}
+
+footer div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.footer__copyright a {
+    display: block;
+    color: black;
+    text-decoration: inherit;
+    padding: 5px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    border-radius: 5px;
+    height: 45px;
+    background: white;
+    transition: 0.7s;
 }
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+
+.footer__logo {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    height: 45px;
+    transition: 0.7s;
 }
-footer .copyright a {
-    color: #444;
+
+.footer__logo img {
+    height: 100%;
 }
-footer .copyright a:hover {
-    color: #555;
+
+@media (hover:hover) {
+    .footer__logo:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+
+    .footer__copyright a:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+
+    .footer__logo:active,
+    .footer__copyright a:active {
+        transition: 0.2s;
+        transform: scale(0.9);
+    }
 }
-footer .copyright:before {
-    content: '©';
-}
+
