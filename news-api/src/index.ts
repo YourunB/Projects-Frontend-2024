@@ -6,12 +6,15 @@ app.start();
 
 setTheme();
 
+const windowAbout = document.getElementById('window-about');
 const windowSources = document.getElementById('window-sources');
 const wrapperChoose = document.getElementById('choose-box');
+const titleApp = document.getElementById('title-app');
 const btnChoose = document.getElementById('btn-choose');
 const btnMenu = document.getElementById('btn-menu');
 const btnUp = document.getElementById('btn-to-top');
 const btnTheme = document.getElementById('btn-theme');
+const btnCloseAbout = document.getElementById('btn-close-about');
 
 function showBtnUp() {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
@@ -21,6 +24,10 @@ function showBtnUp() {
 function setTheme() {
     if (localStorage.getItem('theme') !== null) document.body.classList.add('light-theme');
     else document.body.classList.remove('light-theme');
+}
+
+function closeAboutWindow() {
+    windowAbout?.classList.remove('about_show')
 }
 
 btnTheme?.addEventListener('click', () => {
@@ -53,6 +60,13 @@ btnUp?.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth',
       });
+});
+
+windowAbout?.addEventListener('click', () => closeAboutWindow());
+btnCloseAbout?.addEventListener('click', () => closeAboutWindow);
+
+titleApp?.addEventListener('click', () => {
+    windowAbout?.classList.add('about_show');
 });
 
 window.addEventListener('scroll', () => {
