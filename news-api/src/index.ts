@@ -66,7 +66,7 @@ windowAbout?.addEventListener('click', (event) => {
     const target = event.target as Element;
     if (target.classList.value === 'about about_show') closeAboutWindow();
 });
-btnCloseAbout?.addEventListener('click', () => closeAboutWindow);
+btnCloseAbout?.addEventListener('click', () => closeAboutWindow());
 
 titleApp?.addEventListener('click', () => {
     windowAbout?.classList.add('about_show');
