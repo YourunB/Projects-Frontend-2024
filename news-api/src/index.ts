@@ -3,3 +3,19 @@ import './global.css';
 
 const app = new App();
 app.start();
+
+const windowSources = document.getElementById('window-sources');
+const btnMenu = document.getElementById('btn-menu');
+
+btnMenu?.addEventListener('click', () => {
+    windowSources?.classList.toggle('sources_show');
+    btnMenu?.classList.toggle('header__btn-menu_rotate');
+});
+
+windowSources?.addEventListener('click', (event) => {
+    const target = event.target as Element;
+    if (target.classList.value === 'source__item' || target.classList.value === 'source__item-name') {
+        windowSources?.classList.toggle('sources_show');
+        btnMenu?.classList.toggle('header__btn-menu_rotate');
+    }
+})

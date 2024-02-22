@@ -41,6 +41,21 @@ main {
     align-items: center;
 }
 
+.header__btn-menu {
+    position: absolute;
+    z-index: 101;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+    transition: 0.7s;
+    padding: 5px;
+}
+
+.header__btn-menu_rotate {
+    transform: rotate(180deg);
+}
+
 .header__title {
     font-size: 40px;
     font-weight: 800;
@@ -130,6 +145,16 @@ footer div {
     .footer__copyright a:active {
         transition: 0.2s;
         transform: scale(0.9);
+    }
+
+    .header__btn-menu:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+    
+    .header__btn-menu:active {
+        transition: 0.2s;
+        scale: 0.8;
     }
 }
 
