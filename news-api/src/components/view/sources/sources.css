@@ -31,6 +31,16 @@
     background: #17181c;
 }
 
+.light-theme .sources {
+    background: white;
+}
+
+.light-theme .source__item {
+    background: white;
+    border: 2px solid black;
+    color: black;
+}
+
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
@@ -42,6 +52,14 @@
         border-color: #3fcc59;
         color: #69db7e;
         box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+        transform: translateY(-0.25em);
+    }
+
+    .light-theme .source__item:hover,
+    .light-theme .source__item:focus {
+        border-color: #008619;
+        color: #008619;
+        box-shadow: 0 0.5em 0.5em -0.4em #008619;
         transform: translateY(-0.25em);
     }
 }
