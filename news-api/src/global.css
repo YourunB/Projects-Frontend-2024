@@ -12,15 +12,27 @@ body {
     color: #fff;
     background-color: #17181c;
     font-family: sans-serif;
+    user-select: none;
+    padding: 10px;
+    margin: 0;
+}
+
+main {
     background-image: url('../assets/images/background.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    user-select: none;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: calc(100vh - 200px - 40px);
+}
+
+.news__item:last-of-type {
+    margin-bottom: 0;
 }
 
 header {
-    padding: 10px 30px;
+    height: 100px;
 }
 
 header h1 {
@@ -30,13 +42,11 @@ header h1 {
 
 .footer {
     height: 100px;
-    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    border-top: solid 1px white;
 }
 
 .footer p {
@@ -78,6 +88,22 @@ footer div {
     height: 100%;
 }
 
+*::-webkit-scrollbar {
+    width: 5px;
+    width: 5px;
+  }
+  
+  *::-webkit-scrollbar-track {background-color: rgba(0, 0, 0, 0);}
+  *::-webkit-scrollbar-track:hover {background-color: rgba(0, 0, 0, 0);}
+  *::-webkit-scrollbar-track:active {background-color: rgba(0, 0, 0, 0);}
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 174, 255, 0.3); 
+  }
+  *::-webkit-scrollbar-thumb:hover {background-color: rgba(0, 174, 255, 0.7);}
+  *::-webkit-scrollbar-thumb:active {background-color: rgba(0, 174, 255, 1);}
+
 @media (hover:hover) {
     .footer__logo:hover {
         cursor: pointer;
@@ -95,4 +121,3 @@ footer div {
         transform: scale(0.9);
     }
 }
-
