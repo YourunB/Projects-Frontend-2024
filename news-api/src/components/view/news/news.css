@@ -54,7 +54,8 @@
 
 .news__item .news__description {
     padding: 1rem;
-    background: #fff;
+    background: #17181c;
+    color: white;
     position: relative;
     z-index: 1;
 }
@@ -140,7 +141,7 @@
         -webkit-transform: skewX(-3deg);
         transform: skewX(-3deg);
         content: '';
-        background: #fff;
+        background: #17181c;
         width: 30px;
         position: absolute;
         left: -10px;
