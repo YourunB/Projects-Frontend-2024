@@ -169,17 +169,14 @@ footer div {
 
 .footer__copyright a {
     display: block;
-    color: black;
+    color: inherit;
     text-decoration: inherit;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-weight: 700;
-    border-radius: 5px;
-    height: 45px;
-    background: white;
     transition: 0.7s;
+}
+
+.footer__year {
+    font-weight: 700;
 }
 
 .footer__logo {
