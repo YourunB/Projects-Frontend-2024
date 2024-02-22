@@ -57,9 +57,9 @@
 
     .light-theme .source__item:hover,
     .light-theme .source__item:focus {
-        border-color: #008619;
-        color: #008619;
-        box-shadow: 0 0.5em 0.5em -0.4em #008619;
+        border-color: #00510f;
+        color: #00510f;
+        box-shadow: 0 0.5em 0.5em -0.4em #00510f;
         transform: translateY(-0.25em);
     }
 }

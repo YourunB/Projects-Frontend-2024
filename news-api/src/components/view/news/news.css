@@ -61,7 +61,7 @@
 }
 
 .light-theme .news__item .news__description {
-    background: #17181c;
+    background: white;
     color: black;
 }
 
@@ -153,6 +153,10 @@
         top: 0;
         bottom: 0;
         z-index: -1;
+    }
+
+    .light-theme     .news__item .news__description:before {
+        background: white;
     }
 
     .news__item.alt {

@@ -190,11 +190,6 @@ footer div {
     transition: 0.7s;
 }
 
-.light-theme .footer__logo,
-.light-theme .footer__copyright a {
-    filter: invert(1);
-}
-
 .footer__logo img {
     height: 100%;
 }
