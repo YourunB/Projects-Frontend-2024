@@ -37,6 +37,50 @@ main {
     animation-delay: 2s;
 }
 
+.about {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+}
+
+.about__container {
+    overflow: auto;
+    max-width: 1440px;
+    height: calc(100vh - 20px);
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.about__container__title {
+    width: 100%;
+    text-align: center;
+}
+
+.about__container p {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.about__container p a {
+    color: #FFD541;
+    display: inline-block;
+    text-decoration: inherit;
+    text-shadow: 0 2px 2px black;
+    transition: 0.7s;
+}
+
+.about__container p img {
+    border-radius: 50%;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
 .mask {
     position: absolute;
     top: 0;
@@ -247,6 +291,16 @@ footer div {
     .choose-box__btn:active {
         transition: 0.2s;
         transform: scale(0.9);
+    }
+
+    .about__container p a:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    
+    .about__container p a:active {
+        transition: 0.2s;
+        transform: scale(0.95);
     }
 }
 
