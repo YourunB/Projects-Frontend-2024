@@ -34,6 +34,7 @@ main {
     min-height: calc(100vh - 200px - 20px);
     opacity: 0;
     animation: show 2s forwards linear;
+    animation-delay: 2s;
 }
 
 .mask {
@@ -67,11 +68,11 @@ main {
     width: 40px;
     height: 40px;
     filter: invert(1);
-    transition: 0.7s;
     padding: 5px;
     border: solid 2px black;
     border-radius: 50%;
     opacity: 0.5;
+    transition: 0.7s;
 }
 
 .light-theme .btn {
@@ -80,7 +81,8 @@ main {
 
 .header__btn-theme {
     position: absolute;
-    right: 60px;
+    right: 70px;
+    animation: right-slide 2s linear;
 }
 
 .header__btn-theme_rotate {
@@ -90,7 +92,8 @@ main {
 .header__btn-menu {
     position: fixed;
     z-index: 101;
-    right: 10px;
+    right: 20px;
+    animation: right-slide 2s linear;
 }
 
 .header__btn-menu_rotate {
@@ -100,8 +103,8 @@ main {
 .btn-to-top {
     position: sticky;
     z-index: 101;
-    left: 10px;
-    bottom: 10px;
+    left: 20px;
+    bottom: 20px;
     display: none;
 }
 
@@ -153,6 +156,7 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    animation: show-fast 3s linear;
 }
 
 .footer p {
@@ -255,8 +259,29 @@ footer div {
     }
 }
 
+@keyframes right-slide {
+    0% {
+        transform: translateX(300px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 @keyframes show {
     0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes show-fast {
+    0% {
+        opacity: 0;
+    }
+    70% {
         opacity: 0;
     }
     100% {
