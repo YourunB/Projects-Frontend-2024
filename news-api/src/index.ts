@@ -4,8 +4,6 @@ import './global.css';
 const app = new App();
 app.start();
 
-setTheme();
-
 const windowAbout = document.getElementById('window-about');
 const windowSources = document.getElementById('window-sources');
 const wrapperChoose = document.getElementById('choose-box');
@@ -22,9 +20,17 @@ function showBtnUp() {
 }
 
 function setTheme() {
-    if (localStorage.getItem('theme') !== null) document.body.classList.add('light-theme');
-    else document.body.classList.remove('light-theme');
+    if (localStorage.getItem('theme') !== null) {
+        document.body.classList.add('light-theme');
+        btnTheme?.classList.add('header__btn-theme_rotate');
+    }
+    else {
+        document.body.classList.remove('light-theme');
+        btnTheme?.classList.remove('header__btn-theme_rotate');
+    }
 }
+
+setTheme();
 
 function closeAboutWindow() {
     windowAbout?.classList.remove('about_show');
