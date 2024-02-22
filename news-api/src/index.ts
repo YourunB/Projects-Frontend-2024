@@ -62,7 +62,10 @@ btnUp?.addEventListener('click', () => {
       });
 });
 
-windowAbout?.addEventListener('click', () => closeAboutWindow());
+windowAbout?.addEventListener('click', (event) => {
+    const target = event.target as Element;
+    if (target.classList.value === 'about about_show') closeAboutWindow();
+});
 btnCloseAbout?.addEventListener('click', () => closeAboutWindow);
 
 titleApp?.addEventListener('click', () => {
