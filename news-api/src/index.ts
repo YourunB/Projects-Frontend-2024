@@ -27,7 +27,8 @@ function setTheme() {
 }
 
 function closeAboutWindow() {
-    windowAbout?.classList.remove('about_show')
+    windowAbout?.classList.remove('about_show');
+    document.body.classList.remove('scroll-off');
 }
 
 btnTheme?.addEventListener('click', () => {
@@ -70,6 +71,7 @@ btnCloseAbout?.addEventListener('click', () => closeAboutWindow());
 
 titleApp?.addEventListener('click', () => {
     windowAbout?.classList.add('about_show');
+    document.body.classList.add('scroll-off');
 });
 
 window.addEventListener('scroll', () => {
