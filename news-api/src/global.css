@@ -98,6 +98,7 @@ main {
 .about__container p img {
     border-radius: 50%;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
+    animation: sleep-rotate infinite linear 6s;
 }
 
 .mask {
@@ -370,5 +371,17 @@ footer div {
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes sleep-rotate {
+    0% {
+        rotate: 5deg;
+    }
+    50% {
+        rotate: -5deg;
+    }
+    100% {
+        rotate: 5deg;
     }
 }
