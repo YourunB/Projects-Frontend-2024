@@ -18,4 +18,4 @@ windowSources?.addEventListener('click', (event) => {
         windowSources?.classList.toggle('sources_show');
         btnMenu?.classList.toggle('header__btn-menu_rotate');
     }
-})
+});
