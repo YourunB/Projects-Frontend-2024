@@ -31,6 +31,16 @@
     background: #17181c;
 }
 
+.sources .source__item.source__item_checked {
+    background: white;
+    color: #17181c;
+}
+
+.light-theme .sources .source__item.source__item_checked {
+    background: #17181c;
+    color: white;
+}
+
 .light-theme .sources {
     background: white;
 }
@@ -68,5 +78,11 @@
         color: #00510f;
         box-shadow: 0 0.5em 0.5em -0.4em #00510f;
         transform: translateY(-0.25em);
+    }
+
+    .source__item:active,
+    .source__item:active {
+        transition: 0.2s;
+        scale: 0.9;
     }
 }

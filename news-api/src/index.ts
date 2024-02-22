@@ -48,9 +48,27 @@ btnMenu?.addEventListener('click', () => {
     btnMenu?.classList.toggle('header__btn-menu_rotate');
 });
 
+function resetCheckedItem() {
+    const newsItems = document.getElementsByClassName('source__item');
+    for (let i = 0; i < newsItems.length; i += 1) {
+        if (newsItems[i].classList.value === 'source__item source__item_checked') {
+            newsItems[i].classList.remove('source__item_checked');
+        }
+    }
+}
+
 windowSources?.addEventListener('click', (event) => {
     const target = event.target as Element;
     if (target.classList.value === 'source__item' || target.classList.value === 'source__item-name') {
+        if (target.classList.value === 'source__item') {
+            resetCheckedItem();
+            const el = event.target as HTMLElement;
+            el.classList.add('source__item_checked');
+        }
+        if (target.classList.value === 'source__item-name') {
+            resetCheckedItem();
+            console.log(target.parentElement?.classList.add('source__item_checked'));
+        }
         windowSources?.classList.toggle('sources_show');
         btnMenu?.classList.toggle('header__btn-menu_rotate');
         wrapperChoose?.classList.add('choose-box_hide');
