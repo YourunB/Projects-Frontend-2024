@@ -23,8 +23,7 @@ function setTheme() {
     if (localStorage.getItem('theme') !== null) {
         document.body.classList.add('light-theme');
         btnTheme?.classList.add('header__btn-theme_rotate');
-    }
-    else {
+    } else {
         document.body.classList.remove('light-theme');
         btnTheme?.classList.remove('header__btn-theme_rotate');
     }
@@ -84,7 +83,7 @@ btnUp?.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth',
-      });
+    });
 });
 
 windowAbout?.addEventListener('click', (event) => {
@@ -101,4 +100,3 @@ titleApp?.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     showBtnUp();
 });
-

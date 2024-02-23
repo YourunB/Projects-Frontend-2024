@@ -2,25 +2,29 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export interface DataLoadNews {
-    readonly articles: [{
-        source: {
-            name: string;
-            content: string;
-        };
-        title: string;
-        description: string;
-        urlToImage: string;
-        url: string;
-        author: string;
-        publishedAt: string;
-    }];
+    readonly articles: [
+        {
+            source: {
+                name: string;
+                content: string;
+            };
+            title: string;
+            description: string;
+            urlToImage: string;
+            url: string;
+            author: string;
+            publishedAt: string;
+        },
+    ];
 }
 
 export interface DataLoadSources {
-    readonly sources: [{
-        name: string;
-        id: string;
-    }];
+    readonly sources: [
+        {
+            name: string;
+            id: string;
+        },
+    ];
 }
 
 export class AppView {

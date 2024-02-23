@@ -21,13 +21,14 @@ class News {
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
         if (!newsItemTemp || !(newsItemTemp instanceof HTMLTemplateElement)) throw TypeError;
-        
+
         news.forEach((item, idx) => {
             const newsClone = newsItemTemp.content.cloneNode(true);
-            
-            const checkNode = <T>(element: T | HTMLElement): element is HTMLElement => element instanceof DocumentFragment;
+
+            const checkNode = <T>(element: T | HTMLElement): element is HTMLElement =>
+                element instanceof DocumentFragment;
             if (!checkNode(newsClone)) throw TypeError;
-            
+
             if (idx % 2) checkElement('.news__item', newsClone).classList.add('alt');
 
             checkElement('.news__meta-photo', newsClone).style.backgroundImage = `url(${

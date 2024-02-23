@@ -1,11 +1,14 @@
 class Loader {
-    constructor(private baseLink: string, private options: object) {
+    constructor(
+        private baseLink: string,
+        private options: object
+    ) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     protected getResp(
-        { endpoint, options = {} }: {endpoint: string, options?: {sources?: string}},
+        { endpoint, options = {} }: { endpoint: string; options?: { sources?: string } },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -23,7 +26,7 @@ class Loader {
         return res;
     }
 
-    protected makeUrl( { options = {}, endpoint }: {options: {sources?: string}, endpoint: string}) {
+    protected makeUrl({ options = {}, endpoint }: { options: { sources?: string }; endpoint: string }) {
         const urlOptions: { [key: string]: string } = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -35,7 +38,7 @@ class Loader {
     }
 
     protected load<T>(method: string, endpoint: string, callback: (data: T) => void, options = {}) {
-        fetch(this.makeUrl({endpoint, options}), { method })
+        fetch(this.makeUrl({ endpoint, options }), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data: T) => callback(data))

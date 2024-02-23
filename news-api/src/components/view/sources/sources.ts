@@ -5,7 +5,10 @@ interface DataLoad {
     id: string;
 }
 
-export function checkElement <T extends HTMLElement> (elementName: string, nodeName: HTMLElement | Document = document): T {
+export function checkElement<T extends HTMLElement>(
+    elementName: string,
+    nodeName: HTMLElement | Document = document
+): T {
     const element = nodeName.querySelector<T>(elementName);
     if (element != null) return element;
     else throw TypeError;
@@ -19,7 +22,8 @@ class Sources {
         data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true);
 
-            const checkNode = <T>(element: T | HTMLElement): element is HTMLElement => element instanceof DocumentFragment;
+            const checkNode = <T>(element: T | HTMLElement): element is HTMLElement =>
+                element instanceof DocumentFragment;
             if (!checkNode(sourceClone)) throw TypeError;
 
             checkElement('.source__item-name', sourceClone).textContent = item.name;

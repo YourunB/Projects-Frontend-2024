@@ -10,7 +10,9 @@
     gap: 10px;
     overflow: auto;
     align-items: center;
-    font: 300 1em 'Fira Sans', sans-serif;
+    font:
+        300 1em 'Fira Sans',
+        sans-serif;
     transition: 1s;
     transform: translateX(620px);
 }
@@ -63,7 +65,7 @@
     }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
     .source__item:hover,
     .source__item:focus {
         border-color: #3fcc59;

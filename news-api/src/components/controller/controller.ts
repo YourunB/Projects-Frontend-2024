@@ -15,8 +15,7 @@ class AppController extends AppLoader {
         const newsContainer = e.currentTarget;
 
         while (target !== newsContainer) {
-
-            const checkNode = <T> (element: T | HTMLElement): element is HTMLElement => element instanceof EventTarget;
+            const checkNode = <T>(element: T | HTMLElement): element is HTMLElement => element instanceof EventTarget;
             if (!checkNode(target)) throw TypeError;
             if (!checkNode(newsContainer)) throw TypeError;
 
