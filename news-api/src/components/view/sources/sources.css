@@ -14,10 +14,12 @@
         300 1em 'Fira Sans',
         sans-serif;
     transition: 1s;
+    opacity: 0;
     transform: translateX(620px);
 }
 
 .sources_show {
+    opacity: 1;
     transform: translateX(0);
 }
 

@@ -50,11 +50,13 @@ main {
     width: 100%;
     height: 100vh;
     padding: 10px;
+    opacity: 0;
     transform: translateY(-120%);
     transition: 1s;
 }
 
 .about_show {
+    opacity: 1;
     transform: translateY(0);
 }
 
