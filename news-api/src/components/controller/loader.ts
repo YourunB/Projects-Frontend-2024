@@ -1,5 +1,5 @@
 class Loader {
-    constructor(private baseLink: string, private options: {}) {
+    constructor(private baseLink: string, private options: object) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -34,11 +34,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    protected load(method: string, endpoint: string, callback: Function, options = {}) {
+    protected load<T>(method: string, endpoint: string, callback: (data: T) => void, options = {}) {
         fetch(this.makeUrl({endpoint, options}), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((data: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }
