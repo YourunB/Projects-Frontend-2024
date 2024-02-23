@@ -32,7 +32,7 @@ class News {
             if (idx % 2) checkElement('.news__item', newsClone).classList.add('alt');
 
             checkElement('.news__meta-photo', newsClone).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
+                item.urlToImage || 'https://github.com/YourunB/Test1/blob/main/images/news_placeholder.jpg?raw=true'
             })`;
             checkElement('.news__meta-author', newsClone).textContent = item.author || item.source.name;
             checkElement('.news__meta-date', newsClone).textContent = item.publishedAt
