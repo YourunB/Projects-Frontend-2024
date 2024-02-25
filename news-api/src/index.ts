@@ -13,6 +13,8 @@ const btnMenu = document.getElementById('btn-menu') as HTMLElement;
 const btnUp = document.getElementById('btn-to-top') as HTMLElement;
 const btnTheme = document.getElementById('btn-theme') as HTMLElement;
 const btnCloseAbout = document.getElementById('btn-close-about') as HTMLElement;
+const btnAnimation = document.getElementById('btn-animation') as HTMLElement;
+const windowClouds = document.getElementById('clouds') as HTMLElement;
 
 function showBtnUp() {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
@@ -90,6 +92,7 @@ windowAbout?.addEventListener('click', (event) => {
     const target = event.target as Element;
     if (target.classList.value === 'about about_show') closeAboutWindow();
 });
+
 btnCloseAbout?.addEventListener('click', () => closeAboutWindow());
 
 titleApp?.addEventListener('click', () => {
@@ -99,4 +102,8 @@ titleApp?.addEventListener('click', () => {
 
 window.addEventListener('scroll', () => {
     showBtnUp();
+});
+
+btnAnimation.addEventListener('click', () => {
+    windowClouds.classList.toggle('clouds_unvisible');
 });

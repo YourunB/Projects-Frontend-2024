@@ -50,6 +50,10 @@ main {
     overflow: hidden;
 }
 
+.clouds_unvisible {
+    display: none;
+}
+
 .clouds img {
     position: absolute;
     left: 0;
@@ -198,6 +202,12 @@ main {
 .header__btn-theme {
     position: absolute;
     right: 70px;
+    animation: right-slide 2s linear;
+}
+
+.header__btn-animation {
+    position: absolute;
+    right: 130px;
     animation: right-slide 2s linear;
 }
 
