@@ -16,12 +16,12 @@ const btnCloseAbout = document.getElementById('btn-close-about') as HTMLElement;
 const btnAnimation = document.getElementById('btn-animation') as HTMLElement;
 const windowClouds = document.getElementById('clouds') as HTMLElement;
 
-function showBtnUp() {
+function showBtnUp(): void {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
     else btnUp?.classList.remove('btn-to-top_visible');
 }
 
-function setTheme() {
+function setTheme(): void {
     if (localStorage.getItem('theme') !== null) {
         document.body.classList.add('light-theme');
         btnTheme?.classList.add('header__btn-theme_rotate');
@@ -33,23 +33,23 @@ function setTheme() {
 
 setTheme();
 
-function closeAboutWindow() {
+function closeAboutWindow(): void {
     windowAbout?.classList.remove('about_show');
     document.body.classList.remove('scroll-off');
 }
 
-btnTheme?.addEventListener('click', () => {
+btnTheme?.addEventListener('click', (): void => {
     if (localStorage.getItem('theme') === null) localStorage.setItem('theme', 'light');
     else localStorage.removeItem('theme');
     setTheme();
 });
 
-btnMenu?.addEventListener('click', () => {
+btnMenu?.addEventListener('click', (): void => {
     windowSources?.classList.toggle('sources_show');
     btnMenu?.classList.toggle('header__btn-menu_rotate');
 });
 
-function resetCheckedItem() {
+function resetCheckedItem(): void {
     const newsItems = document.getElementsByClassName('source__item');
     for (let i = 0; i < newsItems.length; i += 1) {
         if (newsItems[i].classList.value === 'source__item source__item_checked') {
@@ -58,7 +58,7 @@ function resetCheckedItem() {
     }
 }
 
-windowSources?.addEventListener('click', (event) => {
+windowSources?.addEventListener('click', (event): void => {
     const target = event.target as Element;
     if (target.classList.value === 'source__item' || target.classList.value === 'source__item-name') {
         if (target.classList.value === 'source__item') {
@@ -76,34 +76,34 @@ windowSources?.addEventListener('click', (event) => {
     }
 });
 
-btnChoose?.addEventListener('click', () => {
+btnChoose?.addEventListener('click', (): void => {
     windowSources?.classList.toggle('sources_show');
     btnMenu?.classList.toggle('header__btn-menu_rotate');
 });
 
-btnUp?.addEventListener('click', () => {
+btnUp?.addEventListener('click', (): void => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth',
     });
 });
 
-windowAbout?.addEventListener('click', (event) => {
+windowAbout?.addEventListener('click', (event): void => {
     const target = event.target as Element;
     if (target.classList.value === 'about about_show') closeAboutWindow();
 });
 
-btnCloseAbout?.addEventListener('click', () => closeAboutWindow());
+btnCloseAbout?.addEventListener('click', (): void => closeAboutWindow());
 
-titleApp?.addEventListener('click', () => {
+titleApp?.addEventListener('click', (): void => {
     windowAbout?.classList.add('about_show');
     document.body.classList.add('scroll-off');
 });
 
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', (): void => {
     showBtnUp();
 });
 
-btnAnimation.addEventListener('click', () => {
+btnAnimation.addEventListener('click', (): void => {
     windowClouds.classList.toggle('clouds_unvisible');
 });
