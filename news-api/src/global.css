@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
     box-sizing: border-box;
+    min-width: 320px;
 }
 
 *,
@@ -42,11 +43,11 @@ main {
 }
 
 .clouds {
-    position: fixed;
-    top: 110px;
-    left: 10px;
-    width: calc(100% - 20px);
-    height: calc(100vh - 220px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -58,7 +59,7 @@ main {
     position: absolute;
     left: 0;
     top: 0;
-    height: calc(100vh - 220px);
+    height: 100%;
     user-select: none;
     pointer-events: none;
 }
@@ -74,20 +75,6 @@ main {
 }
 .clouds__cloud4 {
     animation: cloud-go 80s infinite linear;
-}
-
-@keyframes cloud-go {
-    0% {
-        opacity: 0;
-        transform: translateX(-90vw);
-    }
-    50% {
-        opacity: 0.9;
-    }
-    100% {
-        transform: translateX(90vw);
-        opacity: 0;
-    }
 }
 
 .about {
@@ -239,7 +226,7 @@ main {
 }
 
 .choose-box {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -423,6 +410,24 @@ footer div {
     }
 }
 
+@media (max-width: 370px) {
+    .header__btn-theme {
+        right: 60px;
+    }
+    .header__btn-animation {
+        right: 110px;
+    }
+    .header__title {
+        font-size: 21px;
+    }
+}
+
+@media (max-height: 460px) {
+    main {
+        min-height: 240px;
+    }
+}
+
 @keyframes top-slide {
     0% {
         transform: translateY(-150px);
@@ -471,5 +476,19 @@ footer div {
     }
     100% {
         rotate: 5deg;
+    }
+}
+
+@keyframes cloud-go {
+    0% {
+        opacity: 0;
+        transform: translateX(-90vw);
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(90vw);
+        opacity: 0;
     }
 }
