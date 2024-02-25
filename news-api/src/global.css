@@ -55,7 +55,7 @@ main {
     left: 0;
     top: 0;
     height: calc(100vh - 220px);
-    user-select: none;    
+    user-select: none;
     pointer-events: none;
 }
 
@@ -75,7 +75,7 @@ main {
 @keyframes cloud-go {
     0% {
         opacity: 0;
-        transform: translateX(-90vw)
+        transform: translateX(-90vw);
     }
     50% {
         opacity: 0.9;

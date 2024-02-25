@@ -40,9 +40,9 @@ class Loader {
     protected load<T>(method: string, endpoint: string, callback: (data: T) => void, options = {}) {
         fetch(this.makeUrl({ endpoint, options }), { method })
             .then(this.errorHandler)
-            .then((res) => res.json())
+            .then((res: Response) => res.json())
             .then((data: T) => callback(data))
-            .catch((err) => console.error(err));
+            .catch((err: unknown) => console.error(err));
     }
 }
 

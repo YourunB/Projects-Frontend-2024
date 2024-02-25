@@ -4,16 +4,16 @@ import Sources from './sources/sources';
 export interface DataLoadNews {
     readonly articles: [
         {
-            source: {
-                name: string;
-                content: string;
+            readonly source: {
+                readonly name: string;
+                readonly content: string;
             };
-            title: string;
-            description: string;
-            urlToImage: string;
-            url: string;
-            author: string;
-            publishedAt: string;
+            readonly title: string;
+            readonly description: string;
+            readonly urlToImage: string;
+            readonly url: string;
+            readonly author: string;
+            readonly publishedAt: string;
         },
     ];
 }

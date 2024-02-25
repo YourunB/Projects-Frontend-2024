@@ -3,8 +3,8 @@ import { checkElement } from '../sources/sources';
 
 interface DataLoadItem {
     readonly source: {
-        name: string;
-        content: string;
+        readonly name: string;
+        readonly content: string;
     };
     readonly title: string;
     readonly description: string;

@@ -4,15 +4,15 @@ import './global.css';
 const app = new App();
 app.start();
 
-const windowAbout = document.getElementById('window-about');
-const windowSources = document.getElementById('window-sources');
-const wrapperChoose = document.getElementById('choose-box');
-const titleApp = document.getElementById('title-app');
-const btnChoose = document.getElementById('btn-choose');
-const btnMenu = document.getElementById('btn-menu');
-const btnUp = document.getElementById('btn-to-top');
-const btnTheme = document.getElementById('btn-theme');
-const btnCloseAbout = document.getElementById('btn-close-about');
+const windowAbout = document.getElementById('window-about') as HTMLElement;
+const windowSources = document.getElementById('window-sources') as HTMLElement;
+const wrapperChoose = document.getElementById('choose-box') as HTMLElement;
+const titleApp = document.getElementById('title-app') as HTMLElement;
+const btnChoose = document.getElementById('btn-choose') as HTMLElement;
+const btnMenu = document.getElementById('btn-menu') as HTMLElement;
+const btnUp = document.getElementById('btn-to-top') as HTMLElement;
+const btnTheme = document.getElementById('btn-theme') as HTMLElement;
+const btnCloseAbout = document.getElementById('btn-close-about') as HTMLElement;
 
 function showBtnUp() {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
