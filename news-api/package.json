@@ -2,11 +2,12 @@
     "name": "news-api",
     "version": "1.0.0",
     "description": "",
+    "type": "module",
     "main": "webpack.base.config.js",
     "scripts": {
         "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
         "build": "webpack --config ./webpack.config.js --env mode=prod",
-        "lint": "eslint **/*.ts"
+        "lint": "eslint src/*.ts"
     },
     "repository": {
         "type": "git",
