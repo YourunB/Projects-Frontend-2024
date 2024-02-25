@@ -41,6 +41,51 @@ main {
     animation-delay: 2s;
 }
 
+.clouds {
+    position: fixed;
+    top: 110px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100vh - 220px);
+    overflow: hidden;
+}
+
+.clouds img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: calc(100vh - 220px);
+    user-select: none;    
+    pointer-events: none;
+}
+
+.clouds__cloud1 {
+    animation: cloud-go 20s infinite linear;
+}
+.clouds__cloud2 {
+    animation: cloud-go 40s infinite linear;
+}
+.clouds__cloud3 {
+    animation: cloud-go 60s infinite linear;
+}
+.clouds__cloud4 {
+    animation: cloud-go 80s infinite linear;
+}
+
+@keyframes cloud-go {
+    0% {
+        opacity: 0;
+        transform: translateX(-90vw)
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(90vw);
+        opacity: 0;
+    }
+}
+
 .about {
     position: fixed;
     z-index: 300;
