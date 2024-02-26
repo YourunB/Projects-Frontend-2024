@@ -39,6 +39,7 @@
 .sources .source__item.source__item_checked {
     background: white;
     color: #17181c;
+    opacity: 1;
 }
 
 .light-theme .sources .source__item.source__item_checked {
@@ -80,11 +81,13 @@
     .light-theme .source__item:focus {
         box-shadow: 0 0.5em 0.5em -0.4em black;
         transform: translateY(-0.25em);
+        opacity: 1;
     }
+}
 
-    .source__item:active,
-    .source__item:active {
-        transition: 0.2s;
-        scale: 0.9;
-    }
+.source__item:active,
+.source__item:active {
+    transition: 0.2s;
+    scale: 0.9;
+    opacity: 1;
 }
