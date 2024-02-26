@@ -15,6 +15,7 @@ const btnTheme = document.getElementById('btn-theme') as HTMLElement;
 const btnCloseAbout = document.getElementById('btn-close-about') as HTMLElement;
 const btnAnimation = document.getElementById('btn-animation') as HTMLElement;
 const windowClouds = document.getElementById('clouds') as HTMLElement;
+const searchInput = document.getElementById('search') as HTMLInputElement;
 
 function showBtnUp(): void {
     if (document.body.getBoundingClientRect().top <= -400) btnUp?.classList.add('btn-to-top_visible');
@@ -106,4 +107,13 @@ window.addEventListener('scroll', (): void => {
 
 btnAnimation.addEventListener('click', (): void => {
     windowClouds.classList.toggle('clouds_unvisible');
+});
+
+const sources = document.getElementsByClassName('source__item') as HTMLCollection;
+searchInput.addEventListener('input', (): void => {
+    for (let i = 0; i < sources.length; i += 1) {
+        if (sources[i].textContent?.toLowerCase()?.indexOf(searchInput.value.toLowerCase()) !== -1)
+            sources[i].classList.remove('source__item_unvisible');
+        else sources[i].classList.add('source__item_unvisible');
+    }
 });
