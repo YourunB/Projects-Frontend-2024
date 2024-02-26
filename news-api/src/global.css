@@ -242,6 +242,8 @@ main {
     border-radius: 50%;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
     transition: 0.7s;
+    opacity: 0.5;
+    backdrop-filter: blur(5px);
 }
 
 .choose-box_hide {
@@ -261,6 +263,7 @@ main {
     transform: translateY(-150px);
     animation: top-slide forwards 2s;
     transition: 0.7s;
+    opacity: 0.5;
 }
 
 .footer {
@@ -291,10 +294,13 @@ footer div {
     text-decoration: inherit;
     font-weight: 700;
     transition: 0.7s;
+    opacity: 0.5;
 }
 
 .footer__year {
     font-weight: 700;
+    transition: 0.7s;
+    opacity: 0.5;
 }
 
 .footer__logo {
@@ -302,6 +308,7 @@ footer div {
     padding: 5px;
     border-radius: 5px;
     height: 45px;
+    opacity: 0.5;
     transition: 0.7s;
 }
 
@@ -339,17 +346,23 @@ footer div {
     .footer__logo:hover {
         cursor: pointer;
         transform: scale(1.1);
+        opacity: 1;
     }
 
     .footer__copyright a:hover {
         cursor: pointer;
         transform: scale(1.05);
+        opacity: 1;
     }
 
     .footer__logo:active,
     .footer__copyright a:active {
         transition: 0.2s;
         transform: scale(0.9);
+    }
+
+    .footer__year:hover {
+        opacity: 1;
     }
 
     .btn:hover {
@@ -366,6 +379,7 @@ footer div {
     .choose-box__btn:hover {
         transform: scale(1.1);
         cursor: pointer;
+        opacity: 1;
     }
 
     .choose-box__btn:active {
@@ -386,6 +400,7 @@ footer div {
     .header__title:hover {
         cursor: pointer;
         scale: 1.03;
+        opacity: 1;
     }
 
     .header__title:active {

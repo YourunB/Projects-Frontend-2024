@@ -25,12 +25,13 @@
 
 .source__item {
     background: none;
-    border: 2px solid #30c5ff;
+    border: 2px solid white;
     border-radius: 5px;
     font: inherit;
     padding: 1em 2em;
-    color: #70d6ff;
+    color: white;
     transition: 0.25s;
+    opacity: 0.5;
     cursor: pointer;
     background: #17181c;
 }
@@ -70,17 +71,14 @@
 @media (hover: hover) {
     .source__item:hover,
     .source__item:focus {
-        border-color: #3fcc59;
-        color: #69db7e;
-        box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+        box-shadow: 0 0.5em 0.5em -0.4em white;
         transform: translateY(-0.25em);
+        opacity: 1;
     }
 
     .light-theme .source__item:hover,
     .light-theme .source__item:focus {
-        border-color: #00510f;
-        color: #00510f;
-        box-shadow: 0 0.5em 0.5em -0.4em #00510f;
+        box-shadow: 0 0.5em 0.5em -0.4em black;
         transform: translateY(-0.25em);
     }
 
