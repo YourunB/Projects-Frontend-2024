@@ -20,3 +20,13 @@ body {
   background-attachment: fixed;
   user-select: none;
 }
+
+.pages-window {
+  transition: 0.5s;
+  opacity: 1;
+}
+
+.pages-window_hide {
+  transition: 0s;
+  opacity: 0;
+}

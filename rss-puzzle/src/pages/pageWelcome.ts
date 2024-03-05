@@ -92,4 +92,8 @@ windowConfirmBtnNo.addEventListener('click', () => {
   windowConfirm.classList.remove('modal-confirm_show');
 });
 
+btnStart.addEventListener('click', () => {
+  location.hash = '#game';
+});
+
 export { pageWelcome, welcomeText, getFirstName, getLastName };

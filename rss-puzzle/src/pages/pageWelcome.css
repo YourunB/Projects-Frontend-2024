@@ -75,7 +75,7 @@
 
 .welcome-box__text {
   border: solid 2px white;
-  background: #6ABDCD;
+  background: #6abdcd;
   max-width: 400px;
   padding: 20px;
   font-size: 20px;
@@ -105,7 +105,7 @@
   transition: 0.7s;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .wrapper-start__btn:hover {
     transform: scale(1.1);
     box-shadow: 0 0 10px 4px greenyellow;
