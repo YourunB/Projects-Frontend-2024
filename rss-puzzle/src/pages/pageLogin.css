@@ -13,7 +13,7 @@
   max-width: 400px;
   border: solid 2px white;
   min-height: 200px;
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,10 @@
   width: 100%;
 }
 
+.page-login__form input:invalid {
+  border-bottom: 2px solid rgb(138, 0, 0);
+}
+
 .page-login__form button {
   background: white;
   color: gray;
@@ -39,6 +43,14 @@
   border: solid 2px white;
   transition: 0.7s;
   outline: none;
+}
+
+.error-validate {
+  color: rgb(138, 0, 0);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 20px;
 }
 
 @media (hover: hover) {
