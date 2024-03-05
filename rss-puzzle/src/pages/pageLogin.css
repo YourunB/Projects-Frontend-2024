@@ -32,12 +32,13 @@
 }
 
 .page-login__form button {
-  background: none;
-  color: white;
+  background: white;
+  color: gray;
   border-radius: 5px;
   padding: 5px 10px;
   border: solid 2px white;
   transition: 0.7s;
+  outline: none;
 }
 
 @media (hover: hover) {
@@ -55,6 +56,6 @@
 .page-login__form button:disabled {
   cursor: default;
   transform: scale(1);
-  color: gray;
   border-color: gray;
+  background: none;
 }
