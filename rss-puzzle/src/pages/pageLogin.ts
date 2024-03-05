@@ -11,12 +11,14 @@ const inputFirstName = document.createElement('input');
 inputFirstName.id = 'input-first-name';
 inputFirstName.placeholder = 'First Name';
 inputFirstName.required = true;
+inputFirstName.autocomplete = 'off';
 formLogin.append(inputFirstName);
 
 const inputLastName = document.createElement('input');
 inputLastName.id = 'input-last-name';
 inputLastName.placeholder = 'Last Name';
 inputLastName.required = true;
+inputLastName.autocomplete = 'off';
 formLogin.append(inputLastName);
 
 const btnLogin = document.createElement('button');
