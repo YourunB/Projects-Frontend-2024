@@ -1,19 +1,29 @@
 import './global.css';
 import { pageLogin } from './pages/pageLogin';
+import { pageWelcome } from './pages/pageWelcome';
 
 const content = document.createElement('main');
 document.body.append(content);
 
 window.addEventListener('load', () => {
-  location.hash = '#login';
-  content.append(pageLogin);
+  if (localStorage.user !== undefined) {
+    location.hash = '#welcome';
+    content.append(pageWelcome);
+  } else {
+    location.hash = '#login';
+    content.append(pageLogin);
+  }
 });
 
 window.addEventListener('hashchange', () => {
-  if (location.hash === '#login') {
+  if (location.hash === '#login' && localStorage.user === undefined) {
     content.innerHTML = '';
     content.append(pageLogin);
-  }
+  } else location.hash = '#welcome';
+  if (location.hash === '#welcome' && localStorage.user !== undefined) {
+    content.innerHTML = '';
+    content.append(pageWelcome);
+  } else location.hash = '#login';
   if (
     location.hash !== '#login' &&
     location.hash !== '#welcome' &&

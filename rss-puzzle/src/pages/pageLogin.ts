@@ -52,6 +52,7 @@ function login() {
     lastName: inputLastName.value,
   };
   localStorage.setItem('user', JSON.stringify(data));
+  location.hash = '#welcome';
 }
 
 function validateInputs() {
