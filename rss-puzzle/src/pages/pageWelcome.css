@@ -25,6 +25,7 @@
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
+  gap: 20px;
   min-height: calc(100vh - 35px - 20px);
   backdrop-filter: blur(5px);
 }
@@ -84,6 +85,38 @@
 .welcome-box__text span {
   color: orange;
   font-weight: 700;
+}
+
+.wrapper-start {
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper-start__btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  outline: none;
+  font-weight: 700;
+  font-size: 20px;
+  background: white;
+  color: gray;
+  border: none;
+  transition: 0.7s;
+}
+
+@media (hover:hover) {
+  .wrapper-start__btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 4px greenyellow;
+    cursor: pointer;
+  }
+}
+
+.wrapper-start__btn:active {
+  transform: scale(0.9);
+  background: greenyellow;
+  transition: 0.2s;
 }
 
 @keyframes slide-english {

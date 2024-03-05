@@ -56,6 +56,16 @@ welcomeText.classList.add('welcome-box__text');
 welcomeText.innerHTML = `Welcome dear <span>${getFirstName()} ${getLastName()}</span>!<br> Have a nice learning experience.`;
 welcomeBox.append(welcomeText);
 
+const wrapperBtnStart = document.createElement('div');
+wrapperBtnStart.classList.add('wrapper-start');
+mainPageWelcome.append(wrapperBtnStart);
+
+const btnStart = document.createElement('button');
+btnStart.classList.add('wrapper-start__btn');
+btnStart.id = 'btn-start';
+btnStart.textContent = 'START';
+wrapperBtnStart.append(btnStart);
+
 const wrapperImage = document.createElement('div');
 wrapperImage.classList.add('wrapper-image');
 mainPageWelcome.append(wrapperImage);
