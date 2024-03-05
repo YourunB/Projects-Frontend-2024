@@ -1,0 +1,56 @@
+.modal-confirm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 2px white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+  color: white;
+  gap: 20px;
+  display: none;
+}
+
+.modal-confirm_show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.modal-confirm p {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.modal-confirm button {
+  background: white;
+  color: gray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: solid 2px white;
+  transition: 0.7s;
+  outline: none;
+}
+
+@media (hover: hover) {
+  .modal-confirm button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
+
+.modal-confirm button:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
+.modal-confirm button:disabled {
+  cursor: default;
+  transform: scale(1);
+  border-color: gray;
+  background: none;
+}
