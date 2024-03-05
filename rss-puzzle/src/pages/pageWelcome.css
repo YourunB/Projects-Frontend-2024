@@ -64,6 +64,22 @@
   animation: slide-english 1s forwards linear;
 }
 
+.welcome-box {
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-box__text {
+  background: white;
+  max-width: 400px;
+  padding: 20px;
+  color: gray;
+  font-size: 20px;
+  text-align: center;
+}
+
 @keyframes slide-english {
   0% {
     transform: translateY(100%);
