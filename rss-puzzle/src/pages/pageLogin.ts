@@ -46,6 +46,14 @@ function checkInputs() {
   else btnLogin.disabled = true;
 }
 
+function login() {
+  const data = {
+    firstName: inputFirstName.value,
+    lastName: inputLastName.value,
+  };
+  localStorage.setItem('user', JSON.stringify(data));
+}
+
 function validateInputs() {
   let validInputCount = 0;
 
@@ -66,6 +74,8 @@ function validateInputs() {
     errorLastName.textContent = '';
     validInputCount += 1;
   }
+
+  if (validInputCount === 2) login();
 }
 
 inputFirstName?.addEventListener('input', () => {
