@@ -1,6 +1,6 @@
 import './global.css';
 import { pageLogin } from './pages/pageLogin';
-import { pageWelcome } from './pages/pageWelcome';
+import { pageWelcome, welcomeText, getFirstName, getLastName } from './pages/pageWelcome';
 
 const content = document.createElement('main');
 document.body.append(content);
@@ -22,6 +22,7 @@ window.addEventListener('hashchange', () => {
   } else location.hash = '#welcome';
   if (location.hash === '#welcome' && localStorage.user !== undefined) {
     content.innerHTML = '';
+    welcomeText.innerHTML = `Welcome dear <span>${getFirstName()} ${getLastName()}</span>!<br> Have a nice learning experience.`;
     content.append(pageWelcome);
   } else location.hash = '#login';
   if (

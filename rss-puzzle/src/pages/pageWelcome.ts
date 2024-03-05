@@ -33,6 +33,29 @@ imagePuzzle.src = 'puzzle.png';
 imagePuzzle.alt = 'Puzzle';
 mainPageWelcome.append(imagePuzzle);
 
+const welcomeBox = document.createElement('div');
+welcomeBox.classList.add('welcome-box');
+mainPageWelcome.append(welcomeBox);
+
+const getFirstName = function getFirstNameFromLocalStorage() {
+  if (localStorage.user !== undefined) {
+    const data = JSON.parse(localStorage.getItem('user') || '{}');
+    return data.firstName;
+  } else return '';
+};
+
+const getLastName = function getLastNameFromLocalStorage() {
+  if (localStorage.user !== undefined) {
+    const data = JSON.parse(localStorage.getItem('user') || '{}');
+    return data.lastName;
+  } else return '';
+};
+
+const welcomeText = document.createElement('p');
+welcomeText.classList.add('welcome-box__text');
+welcomeText.innerHTML = `Welcome dear <span>${getFirstName()} ${getLastName()}</span>!<br> Have a nice learning experience.`;
+welcomeBox.append(welcomeText);
+
 const wrapperImage = document.createElement('div');
 wrapperImage.classList.add('wrapper-image');
 mainPageWelcome.append(wrapperImage);
@@ -59,4 +82,4 @@ windowConfirmBtnNo.addEventListener('click', () => {
   windowConfirm.classList.remove('modal-confirm_show');
 });
 
-export { pageWelcome };
+export { pageWelcome, welcomeText, getFirstName, getLastName };
