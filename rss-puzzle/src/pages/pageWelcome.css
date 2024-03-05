@@ -73,10 +73,10 @@
 }
 
 .welcome-box__text {
-  background: white;
+  border: solid 2px white;
+  background: #6ABDCD;
   max-width: 400px;
   padding: 20px;
-  color: gray;
   font-size: 20px;
   text-align: center;
 }
