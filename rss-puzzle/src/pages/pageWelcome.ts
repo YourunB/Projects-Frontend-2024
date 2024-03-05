@@ -82,4 +82,4 @@ windowConfirmBtnNo.addEventListener('click', () => {
   windowConfirm.classList.remove('modal-confirm_show');
 });
 
-export { pageWelcome };
+export { pageWelcome, welcomeText, getFirstName, getLastName };
