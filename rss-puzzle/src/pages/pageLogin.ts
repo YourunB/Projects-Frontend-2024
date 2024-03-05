@@ -53,6 +53,8 @@ function login() {
   };
   localStorage.setItem('user', JSON.stringify(data));
   location.hash = '#welcome';
+  inputFirstName.value = '';
+  inputLastName.value = '';
 }
 
 function validateInputs() {

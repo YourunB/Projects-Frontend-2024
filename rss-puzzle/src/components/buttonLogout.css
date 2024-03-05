@@ -8,7 +8,7 @@
   transition: 0.7s;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .btn-logout:hover {
     transform: scale(1.1);
     cursor: pointer;
