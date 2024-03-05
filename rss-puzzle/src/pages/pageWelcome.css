@@ -4,3 +4,10 @@
   padding: 0;
   margin: 0;
 }
+
+.page-welcome__header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}

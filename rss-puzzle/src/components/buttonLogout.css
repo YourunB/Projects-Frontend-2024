@@ -1,0 +1,21 @@
+.btn-logout {
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  filter: invert(1);
+  border: solid 2px black;
+  transition: 0.7s;
+}
+
+@media (hover:hover) {
+  .btn-logout:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
+
+.btn-logout:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
