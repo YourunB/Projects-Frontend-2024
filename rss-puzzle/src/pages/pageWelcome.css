@@ -81,6 +81,11 @@
   text-align: center;
 }
 
+.welcome-box__text span {
+  color: orange;
+  font-weight: 700;
+}
+
 @keyframes slide-english {
   0% {
     transform: translateY(100%);

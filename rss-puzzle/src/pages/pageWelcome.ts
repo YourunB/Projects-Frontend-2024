@@ -53,7 +53,7 @@ const getLastName = function getLastNameFromLocalStorage() {
 
 const welcomeText = document.createElement('p');
 welcomeText.classList.add('welcome-box__text');
-welcomeText.innerHTML = `Welcome dear ${getFirstName()} ${getLastName()}!<br> Have a nice learning experience.`;
+welcomeText.innerHTML = `Welcome dear <span>${getFirstName()} ${getLastName()}</span>!<br> Have a nice learning experience.`;
 welcomeBox.append(welcomeText);
 
 const wrapperImage = document.createElement('div');
