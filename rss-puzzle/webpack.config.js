@@ -49,10 +49,10 @@ const baseConfig = {
       patterns: [
         {
           from: path.resolve(__dirname, './src/lingleo'),
-          to: path.resolve(__dirname, './dist/lingleo')
-        }
-      ]
-    })
+          to: path.resolve(__dirname, './dist/lingleo'),
+        },
+      ],
+    }),
   ],
 };
 
