@@ -44,10 +44,9 @@ interface data {
 
 let arrLevels: data;
 let levelData: levelData;
-const currentLevel = 5;
-const currentRound = 2;
-const currentWords = 4;
-//let currentAnswer = '';
+const currentLevel = 1;
+const currentRound = 0;
+const currentWords = 0;
 
 function createGame() {
   const gameBox = document.createElement('div');
@@ -59,6 +58,14 @@ function createGame() {
     gameField.classList.add('game-box__field');
     gameField.setAttribute('data-field', String(i));
     gameBox.append(gameField);
+  }
+}
+
+function movePuzzle(event: Event) {
+  const gameFields = document.getElementsByClassName('game-box__field');
+
+  if (event.target instanceof HTMLElement && event.target.dataset.complete !== 'true') {
+    gameFields[currentWords].append(event.target as HTMLElement);
   }
 }
 
@@ -77,7 +84,11 @@ function createAnswers() {
     word.classList.add('game-answers__word');
     word.textContent = arrWords[i];
     word.style.width = `${100 / arrWords.length}%`;
+    word.dataset.checked = 'false';
     gameAnswers.append(word);
+    word.addEventListener('click', (event) => {
+      movePuzzle(event);
+    });
   }
 }
 

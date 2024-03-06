@@ -30,6 +30,7 @@
   width: 100%;
   height: 60px;
   border-bottom: solid 1px gray;
+  display: flex;
 }
 
 .game-box__field:last-of-type {
@@ -51,4 +52,44 @@
   height: 60px;
   padding: 5px;
   min-width: fit-content;
+  cursor: pointer;
+  transition: 0.5s;
+  opacity: 0;
+  text-shadow: 0 0 5px white;
+  animation: show-puzzle 0.3s linear forwards;
+}
+
+@media (hover:hover) {
+  .game-answers__word:hover {
+    box-shadow: 0 0 4px 4px rgba(41, 180, 175, 0.8);
+  }
+}
+
+.game-answers__word:active {
+  transition: 0.2s;
+  transform: scale(0.8);
+  box-shadow: 0 0 1px 1px rgba(41, 180, 175, 0.6);
+}
+
+@keyframes show-puzzle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1280px) {
+  .game-box,
+  .game-answers {
+    width: 1000px;
+  }
+
+  .game-box__field,
+  .game-answers__word,
+  .game-answers {
+    height: 50px;
+    font-size: 12px;
+  }
 }
