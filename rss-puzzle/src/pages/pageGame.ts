@@ -68,16 +68,17 @@ function createAnswers() {
   mainPageGame.append(gameAnswers);
 
   levelData = arrLevels.rounds[currentRound].words[currentWords];
-  const words = levelData.textExample.split(' ');
+  const arrWords = levelData.textExample.split(' ');
 
-  for (let i = 0; i < words.length; i += 1) {
+  arrWords.sort(() => Math.random() - 0.5);
+
+  for (let i = 0; i < arrWords.length; i += 1) {
     const word = document.createElement('div');
     word.classList.add('game-answers__word');
-    word.textContent = words[i];
-    word.style.width = `${100 / words.length}%`;
+    word.textContent = arrWords[i];
+    word.style.width = `${100 / arrWords.length}%`;
     gameAnswers.append(word);
   }
-  console.log(words);
 }
 
 function getFile(link: string) {
