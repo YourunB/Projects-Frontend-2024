@@ -23,7 +23,7 @@
     ]
   },
   "validate-branch-name": {
-    "pattern": "RSS-PZ-*",
+    "pattern": "feat/RSS-PZ-*",
     "errorMsg": "Error branch"
   },
   "repository": {
