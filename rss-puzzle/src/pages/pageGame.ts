@@ -76,6 +76,7 @@ function createAnswers() {
 
   levelData = arrLevels.rounds[currentRound].words[currentWords];
   const arrWords = levelData.textExample.split(' ');
+  const allWordsLength = arrWords.reduce((sum, word) => sum + word.length, 0);
 
   arrWords.sort(() => Math.random() - 0.5);
 
@@ -83,7 +84,8 @@ function createAnswers() {
     const word = document.createElement('div');
     word.classList.add('game-answers__word');
     word.textContent = arrWords[i];
-    word.style.width = `${100 / arrWords.length}%`;
+    word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
+    word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
     gameAnswers.append(word);
     word.addEventListener('click', (event) => {
