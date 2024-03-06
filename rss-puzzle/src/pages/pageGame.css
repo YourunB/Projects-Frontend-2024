@@ -59,7 +59,7 @@
   animation: show-puzzle 0.3s linear forwards;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .game-answers__word:hover {
     box-shadow: 0 0 4px 4px rgba(41, 180, 175, 0.8);
   }
