@@ -63,9 +63,16 @@ function createGame() {
 
 function movePuzzle(event: Event) {
   const gameFields = document.getElementsByClassName('game-box__field');
+  const gameAnswers = document.getElementsByClassName('game-answers');
 
   if (event.target instanceof HTMLElement && event.target.dataset.complete !== 'true') {
-    gameFields[currentWords].append(event.target as HTMLElement);
+    if (event.target.dataset.checked === 'false') {
+      event.target.dataset.checked = 'true';
+      gameFields[currentWords].append(event.target as HTMLElement);
+    } else {
+      event.target.dataset.checked = 'false';
+      gameAnswers[0].append(event.target as HTMLElement);
+    }
   }
 }
 
