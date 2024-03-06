@@ -84,6 +84,7 @@ function createAnswers() {
     word.classList.add('game-answers__word');
     word.textContent = arrWords[i];
     word.style.width = `${100 / arrWords.length}%`;
+    word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
     gameAnswers.append(word);
     word.addEventListener('click', (event) => {
