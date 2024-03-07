@@ -23,6 +23,11 @@ const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
 
+const btnCheck = document.createElement('button');
+btnCheck.classList.add('controls__btn');
+btnCheck.textContent = 'Check';
+controlsPageGame.append(btnCheck);
+
 const btnContinue = document.createElement('button');
 btnContinue.classList.add('controls__btn');
 btnContinue.textContent = 'Continue';
