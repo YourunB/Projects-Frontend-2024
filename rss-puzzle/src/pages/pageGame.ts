@@ -207,6 +207,30 @@ function nextWords() {
   createAnswers();
 }
 
+function autoComplete() {
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
+  const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
+  const sourceResult = levelData.textExample.split(' ');
+  const result = [];
+
+  for (let i = 0; i < sourceResult.length; i += 1) {
+    for (let j = 0; j < currentPuzzles.length; j += 1) {
+      if (
+        sourceResult[i] === currentPuzzles[j].textContent &&
+        (<HTMLElement>currentPuzzles[j]).dataset.field === currentWords.toString()
+      ) {
+        result.push(currentPuzzles[j]);
+      }
+    }
+  }
+
+  for (let i = 0; i < result.length; i += 1) {
+    gameFields[currentWords].append(result[i]);
+  }
+
+  nextWords();
+}
+
 btnContinue.addEventListener('click', () => {
   btnContinue.disabled = true;
   nextWords();
@@ -215,6 +239,10 @@ btnContinue.addEventListener('click', () => {
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highlighPuzzle();
   if (btnCheck.textContent !== 'Check') nextWords();
+});
+
+btnAutoComplete.addEventListener('click', () => {
+  autoComplete();
 });
 
 export { pageGame };
