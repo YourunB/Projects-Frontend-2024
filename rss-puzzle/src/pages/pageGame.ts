@@ -98,9 +98,11 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
 
   if (levelData.textExample === arrWords.join(' ')) {
     btnCheck.textContent = 'Continue';
+    btnCheck.classList.add('controls__btn_true');
     btnContinue.disabled = false;
   } else {
     btnCheck.textContent = 'Check';
+    btnCheck.classList.remove('controls__btn_true');
     btnContinue.disabled = true;
   }
 
@@ -188,6 +190,7 @@ setTimeout(() => {
 
 function nextWords() {
   btnCheck.textContent = 'Check';
+  btnCheck.classList.remove('controls__btn_true');
   btnCheck.disabled = true;
   currentWords += 1;
   if (currentWords >= 10) {

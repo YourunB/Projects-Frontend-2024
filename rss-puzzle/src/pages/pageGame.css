@@ -36,6 +36,12 @@
   margin: 10px;
 }
 
+.controls__btn_true {
+  border-color: rgb(0, 175, 0);
+  background: rgb(0, 175, 0);
+  box-shadow: 2px 2px 2px 2px rgb(0, 175, 0);
+}
+
 .game-box,
 .game-answers {
   background: white;
