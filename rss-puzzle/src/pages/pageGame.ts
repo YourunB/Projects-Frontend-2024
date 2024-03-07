@@ -11,6 +11,14 @@ const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
 
+const gameBox = document.createElement('div');
+gameBox.classList.add('game-box');
+mainPageGame.append(gameBox);
+
+const gameAnswers = document.createElement('div');
+gameAnswers.classList.add('game-answers');
+mainPageGame.append(gameAnswers);
+
 const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
@@ -55,19 +63,22 @@ interface data {
 let arrLevels: data;
 let levelData: levelData;
 const currentLevel = 1;
-const currentRound = 0;
-const currentWords = 0;
+let currentRound = 0;
+let currentWords = 0;
 
 function createGame() {
-  const gameBox = document.createElement('div');
-  gameBox.classList.add('game-box');
-  mainPageGame.append(gameBox);
-
   for (let i = 0; i < 10; i += 1) {
     const gameField = document.createElement('div');
     gameField.classList.add('game-box__field');
     gameField.setAttribute('data-field', String(i));
     gameBox.append(gameField);
+  }
+}
+
+function clearFields() {
+  const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+  for (let i = allPuzzles.length - 1; i >= 0; i -= 1) {
+    allPuzzles[i].remove();
   }
 }
 
@@ -100,9 +111,6 @@ function movePuzzle(event: Event) {
 
 function createAnswers() {
   btnContinue.disabled = true;
-  const gameAnswers = document.createElement('div');
-  gameAnswers.classList.add('game-answers');
-  mainPageGame.append(gameAnswers);
 
   levelData = arrLevels.rounds[currentRound].words[currentWords];
   const arrWords = levelData.textExample.split(' ');
@@ -139,5 +147,16 @@ setTimeout(() => {
   console.log(arrLevels);
   createAnswers();
 }, 500);
+
+btnContinue.addEventListener('click', () => {
+  btnContinue.disabled = true;
+  currentWords += 1;
+  if (currentWords >= 10) {
+    clearFields();
+    currentWords = 0;
+    currentRound += 1;
+  }
+  createAnswers();
+});
 
 export { pageGame };
