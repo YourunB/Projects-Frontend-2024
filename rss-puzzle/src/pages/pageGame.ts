@@ -211,7 +211,7 @@ function autoComplete() {
   const gameFields = pageGame.getElementsByClassName('game-box__field');
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
   const sourceResult = levelData.textExample.split(' ');
-  const result = [];
+  const result: HTMLElement[] = []; // Здесь вы явно указываете тип
 
   for (let i = 0; i < sourceResult.length; i += 1) {
     for (let j = 0; j < currentPuzzles.length; j += 1) {
@@ -219,16 +219,27 @@ function autoComplete() {
         sourceResult[i] === currentPuzzles[j].textContent &&
         (<HTMLElement>currentPuzzles[j]).dataset.field === currentWords.toString()
       ) {
-        result.push(currentPuzzles[j]);
+        result.push(<HTMLElement>currentPuzzles[j]);
       }
     }
   }
 
+  const fieldNumber = currentWords;
   for (let i = 0; i < result.length; i += 1) {
-    gameFields[currentWords].append(result[i]);
+    setTimeout(() => {
+      gameFields[fieldNumber].append(result[i]);
+    }, i * 200);
+    if (i >= result.length - 1) {
+      setTimeout(() => {
+        nextWords();
+      }, i * 200);
+    }
   }
 
-  nextWords();
+  gameFields[fieldNumber].classList.add('game-box__field_complete');
+  setTimeout(() => {
+    gameFields[fieldNumber].classList.remove('game-box__field_complete');
+  }, 500);
 }
 
 btnContinue.addEventListener('click', () => {
