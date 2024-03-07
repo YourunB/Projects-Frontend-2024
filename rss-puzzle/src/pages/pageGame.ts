@@ -71,6 +71,17 @@ function createGame() {
   }
 }
 
+function checkField(gameFields: HTMLCollectionOf<Element>) {
+  const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
+  const arrWords = [];
+  for (let i = 0; i < arrPuzzles.length; i += 1) {
+    arrWords.push(arrPuzzles[i].textContent);
+  }
+  console.log(levelData);
+  if (levelData.textExample === arrWords.join(' ')) btnContinue.disabled = false;
+  else btnContinue.disabled = true;
+}
+
 function movePuzzle(event: Event) {
   const gameFields = document.getElementsByClassName('game-box__field');
   const gameAnswers = document.getElementsByClassName('game-answers');
@@ -84,9 +95,11 @@ function movePuzzle(event: Event) {
       gameAnswers[0].append(event.target as HTMLElement);
     }
   }
+  checkField(gameFields);
 }
 
 function createAnswers() {
+  btnContinue.disabled = true;
   const gameAnswers = document.createElement('div');
   gameAnswers.classList.add('game-answers');
   mainPageGame.append(gameAnswers);
