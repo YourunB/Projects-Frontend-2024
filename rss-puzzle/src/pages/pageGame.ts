@@ -196,6 +196,8 @@ setTimeout(() => {
 }, 500);
 
 function nextWords() {
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
+  gameFields[currentWords].classList.add('game-box__field_block');
   btnCheck.textContent = 'Check';
   btnCheck.classList.remove('controls__btn_true');
   btnCheck.disabled = true;
@@ -213,6 +215,8 @@ function autoComplete() {
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
   const sourceResult = levelData.textExample.split(' ');
   const result: HTMLElement[] = []; // Здесь вы явно указываете тип
+
+  gameFields[currentWords].classList.add('game-box__field_block');
 
   for (let i = 0; i < sourceResult.length; i += 1) {
     for (let j = 0; j < currentPuzzles.length; j += 1) {

@@ -64,6 +64,10 @@
   transition: 0.5s;
 }
 
+.game-box__field_block {
+  pointer-events: none;
+}
+
 .game-box__field_complete {
   box-shadow: 0 0 2px 2px rgb(0, 175, 0);
 }
