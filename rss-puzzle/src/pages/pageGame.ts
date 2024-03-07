@@ -32,6 +32,7 @@ controlsPageGame.append(btnCheck);
 const btnContinue = document.createElement('button');
 btnContinue.classList.add('controls__btn');
 btnContinue.textContent = 'Continue';
+btnContinue.style.display = 'none';
 btnContinue.disabled = true;
 controlsPageGame.append(btnContinue);
 
@@ -95,8 +96,13 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
     arrWords.push(arrPuzzles[i].textContent);
   }
 
-  if (levelData.textExample === arrWords.join(' ')) btnContinue.disabled = false;
-  else btnContinue.disabled = true;
+  if (levelData.textExample === arrWords.join(' ')) {
+    btnCheck.textContent = 'Continue';
+    btnContinue.disabled = false;
+  } else {
+    btnCheck.textContent = 'Check';
+    btnContinue.disabled = true;
+  }
 
   if (levelData.textExample.split(' ').length === arrPuzzles.length) {
     btnCheck.disabled = false;
@@ -180,8 +186,9 @@ setTimeout(() => {
   createAnswers();
 }, 500);
 
-btnContinue.addEventListener('click', () => {
-  btnContinue.disabled = true;
+function nextWords() {
+  btnCheck.textContent = 'Check';
+  btnCheck.disabled = true;
   currentWords += 1;
   if (currentWords >= 10) {
     clearFields();
@@ -189,10 +196,16 @@ btnContinue.addEventListener('click', () => {
     currentRound += 1;
   }
   createAnswers();
+}
+
+btnContinue.addEventListener('click', () => {
+  btnContinue.disabled = true;
+  nextWords();
 });
 
 btnCheck.addEventListener('click', () => {
-  highlighPuzzle();
+  if (btnCheck.textContent === 'Check') highlighPuzzle();
+  if (btnCheck.textContent !== 'Check') nextWords();
 });
 
 export { pageGame };
