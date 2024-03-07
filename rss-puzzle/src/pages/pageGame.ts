@@ -11,6 +11,24 @@ const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
 
+const gameBox = document.createElement('div');
+gameBox.classList.add('game-box');
+mainPageGame.append(gameBox);
+
+const gameAnswers = document.createElement('div');
+gameAnswers.classList.add('game-answers');
+mainPageGame.append(gameAnswers);
+
+const controlsPageGame = document.createElement('section');
+controlsPageGame.classList.add('controls');
+pageGame.append(controlsPageGame);
+
+const btnContinue = document.createElement('button');
+btnContinue.classList.add('controls__btn');
+btnContinue.textContent = 'Continue';
+btnContinue.disabled = true;
+controlsPageGame.append(btnContinue);
+
 interface levelData {
   audioExample: string;
   id: number;
@@ -45,20 +63,34 @@ interface data {
 let arrLevels: data;
 let levelData: levelData;
 const currentLevel = 1;
-const currentRound = 0;
-const currentWords = 0;
+let currentRound = 0;
+let currentWords = 0;
 
 function createGame() {
-  const gameBox = document.createElement('div');
-  gameBox.classList.add('game-box');
-  mainPageGame.append(gameBox);
-
   for (let i = 0; i < 10; i += 1) {
     const gameField = document.createElement('div');
     gameField.classList.add('game-box__field');
     gameField.setAttribute('data-field', String(i));
     gameBox.append(gameField);
   }
+}
+
+function clearFields() {
+  const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+  for (let i = allPuzzles.length - 1; i >= 0; i -= 1) {
+    allPuzzles[i].remove();
+  }
+}
+
+function checkField(gameFields: HTMLCollectionOf<Element>) {
+  const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
+  const arrWords = [];
+  for (let i = 0; i < arrPuzzles.length; i += 1) {
+    arrWords.push(arrPuzzles[i].textContent);
+  }
+  console.log(levelData);
+  if (levelData.textExample === arrWords.join(' ')) btnContinue.disabled = false;
+  else btnContinue.disabled = true;
 }
 
 function movePuzzle(event: Event) {
@@ -74,12 +106,11 @@ function movePuzzle(event: Event) {
       gameAnswers[0].append(event.target as HTMLElement);
     }
   }
+  checkField(gameFields);
 }
 
 function createAnswers() {
-  const gameAnswers = document.createElement('div');
-  gameAnswers.classList.add('game-answers');
-  mainPageGame.append(gameAnswers);
+  btnContinue.disabled = true;
 
   levelData = arrLevels.rounds[currentRound].words[currentWords];
   const arrWords = levelData.textExample.split(' ');
@@ -116,5 +147,16 @@ setTimeout(() => {
   console.log(arrLevels);
   createAnswers();
 }, 500);
+
+btnContinue.addEventListener('click', () => {
+  btnContinue.disabled = true;
+  currentWords += 1;
+  if (currentWords >= 10) {
+    clearFields();
+    currentWords = 0;
+    currentRound += 1;
+  }
+  createAnswers();
+});
 
 export { pageGame };
