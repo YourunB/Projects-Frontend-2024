@@ -262,22 +262,54 @@ btnAutoComplete.addEventListener('click', () => {
   autoComplete();
 });
 
-mainPageGame.addEventListener('dragstart', (event) => {
+function startMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   if (targetElement.classList.contains('game-answers__word')) {
     targetElement.classList.add('game-answers__word_move');
     (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 3px 3px yellow';
     gameAnswers.style.boxShadow = '0 0 3px 3px yellow';
   }
-});
+}
 
-mainPageGame.addEventListener('dragend', (event) => {
+function endMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   targetElement.classList.remove('game-answers__word_move');
   (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
   gameAnswers.style.boxShadow = '';
-});
+}
 
+function move(event: TouchEvent | MouseEvent) {
+  event.preventDefault();
+  const [moveElement] = mainPageGame.getElementsByClassName('game-answers__word_move');
+  const eventElement =
+    'touches' in event
+      ? (document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY) as HTMLElement)
+      : (event.target as HTMLElement);
+  if (!eventElement || !moveElement) return;
+  const checkMove =
+    (moveElement !== eventElement &&
+      eventElement.classList.contains('game-box__field') &&
+      eventElement.dataset.field === String(currentWords)) ||
+    eventElement.classList.contains('game-answers') ||
+    eventElement.classList.contains('game-answers__word');
+
+  if (!checkMove) return;
+  const nextElement = eventElement === moveElement.nextElementSibling ? eventElement.nextElementSibling : eventElement;
+  if (nextElement && nextElement.parentNode && !eventElement.classList.contains('game-answers__word')) {
+    nextElement.append(moveElement);
+  } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
+    nextElement.before(moveElement);
+  }
+
+  checkField(gameFields);
+}
+
+mainPageGame.addEventListener('touchstart', startMove);
+mainPageGame.addEventListener('touchend', endMove);
+mainPageGame.addEventListener('touchmove', move);
+
+mainPageGame.addEventListener('dragstart', startMove);
+mainPageGame.addEventListener('dragend', endMove);
 mainPageGame.addEventListener('dragover', (event) => {
   event.preventDefault();
   const [moveElement] = mainPageGame.getElementsByClassName('game-answers__word_move');
