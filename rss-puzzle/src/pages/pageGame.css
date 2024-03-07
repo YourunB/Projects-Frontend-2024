@@ -78,6 +78,16 @@
   animation: show-puzzle 0.3s linear forwards;
 }
 
+.game-answers__word_true {
+  box-shadow: 0 0 2px 2px rgb(0, 175, 0);
+  border-color: rgb(0, 175, 0);
+}
+
+.game-answers__word_false {
+  box-shadow: 0 0 2px 2px red;
+  border-color: red;
+}
+
 @media (hover: hover) {
   .game-answers__word:hover {
     box-shadow: 0 0 4px 4px rgba(41, 180, 175, 0.8);

@@ -100,7 +100,7 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
 
   if (levelData.textExample.split(' ').length === arrPuzzles.length) {
     btnCheck.disabled = false;
-  }
+  } else btnCheck.disabled = true;
 }
 
 function movePuzzle(event: Event) {
@@ -150,6 +150,28 @@ function getFile(link: string) {
     });
 }
 
+function highlighPuzzle() {
+  const gameFields = document.getElementsByClassName('game-box__field');
+  const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
+  const correctResult = levelData.textExample.split(' ');
+
+  for (let i = 0; i < allPuzzles.length; i += 1) {
+    if (correctResult[i] === allPuzzles[i].textContent) {
+      allPuzzles[i].classList.add('game-answers__word_true');
+    } else {
+      allPuzzles[i].classList.add('game-answers__word_false');
+    }
+  }
+
+  setTimeout(() => {
+    const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+    for (let i = 0; i < allPuzzles.length; i += 1) {
+      allPuzzles[i].classList.remove('game-answers__word_true');
+      allPuzzles[i].classList.remove('game-answers__word_false');
+    }
+  }, 2000);
+}
+
 getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
 
 createGame();
@@ -167,6 +189,10 @@ btnContinue.addEventListener('click', () => {
     currentRound += 1;
   }
   createAnswers();
+});
+
+btnCheck.addEventListener('click', () => {
+  highlighPuzzle();
 });
 
 export { pageGame };
