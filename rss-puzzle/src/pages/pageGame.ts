@@ -25,6 +25,7 @@ pageGame.append(controlsPageGame);
 
 const btnAutoComplete = document.createElement('button');
 btnAutoComplete.classList.add('controls__btn');
+btnAutoComplete.classList.add('controls__btn_auto');
 btnAutoComplete.textContent = 'Auto Complete';
 controlsPageGame.append(btnAutoComplete);
 
