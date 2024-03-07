@@ -11,6 +11,16 @@ const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
 
+const controlsPageGame = document.createElement('section');
+controlsPageGame.classList.add('controls');
+pageGame.append(controlsPageGame);
+
+const btnContinue = document.createElement('button');
+btnContinue.classList.add('controls__btn');
+btnContinue.textContent = 'Continue';
+btnContinue.disabled = true;
+controlsPageGame.append(btnContinue);
+
 interface levelData {
   audioExample: string;
   id: number;
