@@ -36,10 +36,15 @@
   margin: 10px;
 }
 
+.controls__btn_auto {
+  border-color: rgba(250, 158, 0, 1);
+  box-shadow: 2px 2px 2px 2px rgba(250, 158, 0, 0.3);
+}
+
 .controls__btn_true {
   border-color: rgb(0, 175, 0);
   background: rgb(0, 175, 0);
-  box-shadow: 2px 2px 2px 2px rgb(0, 175, 0);
+  box-shadow: 2px 2px 2px 2px rgba(0, 175, 0, 0.3);
 }
 
 .game-box,
@@ -56,6 +61,15 @@
   height: 60px;
   border-bottom: solid 1px gray;
   display: flex;
+  transition: 0.5s;
+}
+
+.game-box__field_block {
+  pointer-events: none;
+}
+
+.game-box__field_complete {
+  box-shadow: 0 0 2px 2px rgb(0, 175, 0);
 }
 
 .game-box__field:last-of-type {
@@ -102,7 +116,7 @@
   .controls__btn:hover {
     transform: scale(1.1);
     cursor: pointer;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
   }
 }
 

@@ -23,6 +23,12 @@ const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
 
+const btnAutoComplete = document.createElement('button');
+btnAutoComplete.classList.add('controls__btn');
+btnAutoComplete.classList.add('controls__btn_auto');
+btnAutoComplete.textContent = 'Auto Complete';
+controlsPageGame.append(btnAutoComplete);
+
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
 btnCheck.textContent = 'Check';
@@ -143,6 +149,7 @@ function createAnswers() {
     word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
     word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
+    word.dataset.field = `${currentWords}`;
     gameAnswers.append(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
@@ -159,7 +166,7 @@ function getFile(link: string) {
 }
 
 function highlighPuzzle() {
-  const gameFields = document.getElementsByClassName('game-box__field');
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
   const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const correctResult = levelData.textExample.split(' ');
 
@@ -189,6 +196,8 @@ setTimeout(() => {
 }, 500);
 
 function nextWords() {
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
+  gameFields[currentWords].classList.add('game-box__field_block');
   btnCheck.textContent = 'Check';
   btnCheck.classList.remove('controls__btn_true');
   btnCheck.disabled = true;
@@ -201,6 +210,43 @@ function nextWords() {
   createAnswers();
 }
 
+function autoComplete() {
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
+  const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
+  const sourceResult = levelData.textExample.split(' ');
+  const result: HTMLElement[] = []; // Здесь вы явно указываете тип
+
+  gameFields[currentWords].classList.add('game-box__field_block');
+
+  for (let i = 0; i < sourceResult.length; i += 1) {
+    for (let j = 0; j < currentPuzzles.length; j += 1) {
+      if (
+        sourceResult[i] === currentPuzzles[j].textContent &&
+        (<HTMLElement>currentPuzzles[j]).dataset.field === currentWords.toString()
+      ) {
+        result.push(<HTMLElement>currentPuzzles[j]);
+      }
+    }
+  }
+
+  const fieldNumber = currentWords;
+  for (let i = 0; i < result.length; i += 1) {
+    setTimeout(() => {
+      gameFields[fieldNumber].append(result[i]);
+    }, i * 200);
+    if (i >= result.length - 1) {
+      setTimeout(() => {
+        nextWords();
+      }, i * 200);
+    }
+  }
+
+  gameFields[fieldNumber].classList.add('game-box__field_complete');
+  setTimeout(() => {
+    gameFields[fieldNumber].classList.remove('game-box__field_complete');
+  }, 500);
+}
+
 btnContinue.addEventListener('click', () => {
   btnContinue.disabled = true;
   nextWords();
@@ -209,6 +255,10 @@ btnContinue.addEventListener('click', () => {
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highlighPuzzle();
   if (btnCheck.textContent !== 'Check') nextWords();
+});
+
+btnAutoComplete.addEventListener('click', () => {
+  autoComplete();
 });
 
 export { pageGame };
