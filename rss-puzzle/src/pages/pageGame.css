@@ -80,6 +80,7 @@
   margin-top: 30px;
   height: 60px;
   display: flex;
+  transition: 0.5s;
 }
 
 .game-answers__word {
@@ -106,6 +107,11 @@
 .game-answers__word_false {
   box-shadow: 0 0 2px 2px red;
   border-color: red;
+}
+
+.game-answers__word_move {
+  border-color: yellow;
+  box-shadow: 0 0 2px 2px yellow;
 }
 
 @media (hover: hover) {
