@@ -23,6 +23,11 @@ const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
 
+const btnAutoComplete = document.createElement('button');
+btnAutoComplete.classList.add('controls__btn');
+btnAutoComplete.textContent = 'Auto Complete';
+controlsPageGame.append(btnAutoComplete);
+
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
 btnCheck.textContent = 'Check';
@@ -143,6 +148,7 @@ function createAnswers() {
     word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
     word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
+    word.dataset.field = `${currentWords}`;
     gameAnswers.append(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
@@ -159,7 +165,7 @@ function getFile(link: string) {
 }
 
 function highlighPuzzle() {
-  const gameFields = document.getElementsByClassName('game-box__field');
+  const gameFields = pageGame.getElementsByClassName('game-box__field');
   const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const correctResult = levelData.textExample.split(' ');
 
