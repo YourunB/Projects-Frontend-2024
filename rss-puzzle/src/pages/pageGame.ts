@@ -26,6 +26,7 @@ pageGame.append(controlsPageGame);
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
 btnCheck.textContent = 'Check';
+btnCheck.disabled = true;
 controlsPageGame.append(btnCheck);
 
 const btnContinue = document.createElement('button');
@@ -93,9 +94,13 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
   for (let i = 0; i < arrPuzzles.length; i += 1) {
     arrWords.push(arrPuzzles[i].textContent);
   }
-  console.log(levelData);
+
   if (levelData.textExample === arrWords.join(' ')) btnContinue.disabled = false;
   else btnContinue.disabled = true;
+
+  if (levelData.textExample.split(' ').length === arrPuzzles.length) {
+    btnCheck.disabled = false;
+  }
 }
 
 function movePuzzle(event: Event) {
