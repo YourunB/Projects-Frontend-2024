@@ -199,7 +199,6 @@ setTimeout(() => {
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
 function nextWords() {
-  const gameFields = pageGame.getElementsByClassName('game-box__field');
   gameFields[currentWords].classList.add('game-box__field_block');
   btnCheck.textContent = 'Check';
   btnCheck.classList.remove('controls__btn_true');
@@ -214,7 +213,6 @@ function nextWords() {
 }
 
 function autoComplete() {
-  const gameFields = pageGame.getElementsByClassName('game-box__field');
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
   const sourceResult = levelData.textExample.split(' ');
   const result: HTMLElement[] = []; // Здесь вы явно указываете тип
@@ -278,6 +276,28 @@ mainPageGame.addEventListener('dragend', (event) => {
   targetElement.classList.remove('game-answers__word_move');
   (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
   gameAnswers.style.boxShadow = '';
+});
+
+mainPageGame.addEventListener('dragover', (event) => {
+  event.preventDefault();
+  const [moveElement] = mainPageGame.getElementsByClassName('game-answers__word_move');
+  const eventElement = event.target as HTMLElement;
+  const checkMove =
+    (moveElement !== eventElement &&
+      eventElement.classList.contains('game-box__field') &&
+      eventElement.dataset.field === String(currentWords)) ||
+    eventElement.classList.contains('game-answers') ||
+    eventElement.classList.contains('game-answers__word');
+
+  if (!checkMove) return;
+  const nextElement = eventElement === moveElement.nextElementSibling ? eventElement.nextElementSibling : eventElement;
+  if (nextElement && nextElement.parentNode && !eventElement.classList.contains('game-answers__word')) {
+    nextElement.append(moveElement);
+  } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
+    nextElement.before(moveElement);
+  }
+
+  checkField(gameFields);
 });
 
 export { pageGame };
