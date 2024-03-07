@@ -23,6 +23,12 @@ const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
 
+const btnCheck = document.createElement('button');
+btnCheck.classList.add('controls__btn');
+btnCheck.textContent = 'Check';
+btnCheck.disabled = true;
+controlsPageGame.append(btnCheck);
+
 const btnContinue = document.createElement('button');
 btnContinue.classList.add('controls__btn');
 btnContinue.textContent = 'Continue';
@@ -88,9 +94,13 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
   for (let i = 0; i < arrPuzzles.length; i += 1) {
     arrWords.push(arrPuzzles[i].textContent);
   }
-  console.log(levelData);
+
   if (levelData.textExample === arrWords.join(' ')) btnContinue.disabled = false;
   else btnContinue.disabled = true;
+
+  if (levelData.textExample.split(' ').length === arrPuzzles.length) {
+    btnCheck.disabled = false;
+  } else btnCheck.disabled = true;
 }
 
 function movePuzzle(event: Event) {
@@ -140,6 +150,28 @@ function getFile(link: string) {
     });
 }
 
+function highlighPuzzle() {
+  const gameFields = document.getElementsByClassName('game-box__field');
+  const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
+  const correctResult = levelData.textExample.split(' ');
+
+  for (let i = 0; i < allPuzzles.length; i += 1) {
+    if (correctResult[i] === allPuzzles[i].textContent) {
+      allPuzzles[i].classList.add('game-answers__word_true');
+    } else {
+      allPuzzles[i].classList.add('game-answers__word_false');
+    }
+  }
+
+  setTimeout(() => {
+    const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+    for (let i = 0; i < allPuzzles.length; i += 1) {
+      allPuzzles[i].classList.remove('game-answers__word_true');
+      allPuzzles[i].classList.remove('game-answers__word_false');
+    }
+  }, 2000);
+}
+
 getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
 
 createGame();
@@ -157,6 +189,10 @@ btnContinue.addEventListener('click', () => {
     currentRound += 1;
   }
   createAnswers();
+});
+
+btnCheck.addEventListener('click', () => {
+  highlighPuzzle();
 });
 
 export { pageGame };

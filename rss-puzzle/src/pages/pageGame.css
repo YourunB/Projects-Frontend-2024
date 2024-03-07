@@ -19,7 +19,7 @@
   margin: auto;
   max-width: 1440px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,6 +33,7 @@
   color: white;
   border: solid 2px white;
   transition: 0.7s;
+  margin: 10px;
 }
 
 .game-box,
@@ -75,6 +76,16 @@
   opacity: 0;
   text-shadow: 0 0 5px white;
   animation: show-puzzle 0.3s linear forwards;
+}
+
+.game-answers__word_true {
+  box-shadow: 0 0 2px 2px rgb(0, 175, 0);
+  border-color: rgb(0, 175, 0);
+}
+
+.game-answers__word_false {
+  box-shadow: 0 0 2px 2px red;
+  border-color: red;
 }
 
 @media (hover: hover) {
