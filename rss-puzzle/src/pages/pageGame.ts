@@ -150,6 +150,7 @@ function createAnswers() {
     word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
+    word.draggable = true;
     gameAnswers.append(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
@@ -194,6 +195,8 @@ setTimeout(() => {
   console.log(arrLevels);
   createAnswers();
 }, 500);
+
+const gameFields = pageGame.getElementsByClassName('game-box__field');
 
 function nextWords() {
   const gameFields = pageGame.getElementsByClassName('game-box__field');
@@ -259,6 +262,22 @@ btnCheck.addEventListener('click', () => {
 
 btnAutoComplete.addEventListener('click', () => {
   autoComplete();
+});
+
+mainPageGame.addEventListener('dragstart', (event) => {
+  const targetElement = event.target as HTMLElement;
+  if (targetElement.classList.contains('game-answers__word')) {
+    targetElement.classList.add('game-answers__word_move');
+    (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 3px 3px yellow';
+    gameAnswers.style.boxShadow = '0 0 3px 3px yellow';
+  }
+});
+
+mainPageGame.addEventListener('dragend', (event) => {
+  const targetElement = event.target as HTMLElement;
+  targetElement.classList.remove('game-answers__word_move');
+  (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
+  gameAnswers.style.boxShadow = '';
 });
 
 export { pageGame };
