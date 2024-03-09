@@ -400,6 +400,15 @@ btnHintTranslate.addEventListener('click', () => {
 hintAudio.addEventListener('click', () => {
   audioPlayer.src = `https://github.com/rolling-scopes-school/rss-puzzle-data/raw/main/${levelData.audioExample}`;
   audioPlayer.play();
+  hintAudio.classList.add('hint-box__hint-audio_play');
+  setTimeout(() => {
+    setTimeout(
+      () => {
+        hintAudio.classList.remove('hint-box__hint-audio_play');
+      },
+      audioPlayer.duration * 1000 - 500
+    );
+  }, 500);
 });
 
 export { pageGame };
