@@ -260,7 +260,7 @@ function autoComplete() {
   btnCheck.disabled = true;
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
   const sourceResult = levelData.textExample.split(' ');
-  const result: HTMLElement[] = []; // Здесь вы явно указываете тип
+  const result: HTMLElement[] = [];
 
   letterTrue = true;
   setHintOnOff();
