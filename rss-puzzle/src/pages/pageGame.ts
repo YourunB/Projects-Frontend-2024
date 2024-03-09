@@ -140,13 +140,16 @@ function createAnswers() {
   const arrWords = levelData.textExample.split(' ');
   const allWordsLength = arrWords.reduce((sum, word) => sum + word.length, 0);
 
-  arrWords.sort(() => Math.random() - 0.5);
+  const arrWordsRandom = [...arrWords];
+  arrWordsRandom.sort(() => Math.random() - 0.5);
 
-  for (let i = 0; i < arrWords.length; i += 1) {
+  for (let i = 0; i < arrWordsRandom.length; i += 1) {
     const word = document.createElement('div');
     word.classList.add('game-answers__word');
-    word.textContent = arrWords[i];
-    word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
+    if (arrWordsRandom[i] === arrWords[0]) word.classList.add('game-answers__word_first');
+    if (arrWordsRandom[i] === arrWords[arrWords.length - 1]) word.classList.add('game-answers__word_last');
+    word.textContent = arrWordsRandom[i];
+    word.style.width = `${(100 / allWordsLength) * arrWordsRandom[i].length}%`;
     word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
