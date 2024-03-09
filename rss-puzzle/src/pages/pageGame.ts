@@ -1,5 +1,6 @@
 import '../pages/pageGame.css';
 import '../assets/images/svg/translate.svg';
+import '../assets/images/svg/volume.svg';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -29,6 +30,12 @@ pageGame.append(mainPageGame);
 const gameHint = document.createElement('div');
 gameHint.classList.add('hint-box');
 mainPageGame.append(gameHint);
+
+const hintAudio = document.createElement('img');
+hintAudio.classList.add('hint-box__hint-audio');
+hintAudio.src = 'volume.svg';
+hintAudio.alt = 'Audio';
+gameHint.append(hintAudio);
 
 const hintTranslate = document.createElement('p');
 hintTranslate.classList.add('hint-box__hint-translate');
