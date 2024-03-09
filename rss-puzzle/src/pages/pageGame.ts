@@ -23,6 +23,9 @@ btnHintTranslate.alt = 'translate';
 btnHintTranslate.src = 'translate.svg';
 hintBtns.append(btnHintTranslate);
 
+const audioPlayer = document.createElement('audio');
+pageGame.append(audioPlayer);
+
 const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
@@ -392,6 +395,11 @@ btnHintTranslate.addEventListener('click', () => {
   btnHintTranslate.classList.toggle('hint-btns__btn_checked');
   hintTranslateShow = hintTranslateShow ? false : true;
   setHintOnOff();
+});
+
+hintAudio.addEventListener('click', () => {
+  audioPlayer.src = `https://github.com/rolling-scopes-school/rss-puzzle-data/raw/main/${levelData.audioExample}`;
+  audioPlayer.play();
 });
 
 export { pageGame };
