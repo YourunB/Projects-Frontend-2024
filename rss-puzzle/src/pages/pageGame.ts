@@ -11,6 +11,14 @@ const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
 
+const gameHint = document.createElement('div');
+gameHint.classList.add('hint-box');
+mainPageGame.append(gameHint);
+
+const hintTranslate = document.createElement('p');
+hintTranslate.classList.add('hint-box__hint-translate');
+gameHint.append(hintTranslate);
+
 const gameBox = document.createElement('div');
 gameBox.classList.add('game-box');
 mainPageGame.append(gameBox);
@@ -159,6 +167,8 @@ function createAnswers() {
       movePuzzle(event);
     });
   }
+
+  hintTranslate.textContent = levelData.textExampleTranslate;
 }
 
 function getFile(link: string) {
@@ -213,6 +223,7 @@ function nextWords() {
     currentRound += 1;
   }
   createAnswers();
+  hintTranslate.textContent = levelData.textExampleTranslate;
 }
 
 function autoComplete() {
