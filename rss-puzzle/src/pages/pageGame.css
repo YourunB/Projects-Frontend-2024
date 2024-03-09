@@ -21,6 +21,10 @@
 }
 
 .hint-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .hint-btns__btn {
@@ -45,11 +49,18 @@
   width: 35px;
   height: 35px;
   transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .hint-box__hint-audio_play {
   pointer-events: none;
   animation: play-audio 0.5s infinite;
+}
+
+.hint-box__hint-audio_visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .hint-box__hint-translate {

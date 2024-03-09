@@ -1,6 +1,7 @@
 import '../pages/pageGame.css';
 import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
+import '../assets/images/svg/audio.svg';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -22,6 +23,12 @@ btnHintTranslate.classList.add('hint-btns__btn');
 btnHintTranslate.alt = 'translate';
 btnHintTranslate.src = 'translate.svg';
 hintBtns.append(btnHintTranslate);
+
+const btnHintAudio = document.createElement('img');
+btnHintAudio.classList.add('hint-btns__btn');
+btnHintAudio.alt = 'audio';
+btnHintAudio.src = 'audio.svg';
+hintBtns.append(btnHintAudio);
 
 const audioPlayer = document.createElement('audio');
 pageGame.append(audioPlayer);
@@ -113,6 +120,7 @@ let currentRound = 0;
 let currentWords = 0;
 let letterTrue = false;
 let hintTranslateShow = false;
+let hintAudioShow = false;
 
 function createGame() {
   for (let i = 0; i < 10; i += 1) {
@@ -134,6 +142,10 @@ function setHintOnOff() {
   if (btnHintTranslate.classList.contains('hint-btns__btn_checked') || letterTrue) {
     hintTranslate.classList.add('hint-box__hint-translate_visible');
   } else if (!hintTranslateShow && !letterTrue) hintTranslate.classList.remove('hint-box__hint-translate_visible');
+
+  if (btnHintAudio.classList.contains('hint-btns__btn_checked') || letterTrue) {
+    hintAudio.classList.add('hint-box__hint-audio_visible');
+  } else if (!hintAudioShow && !letterTrue) hintAudio.classList.remove('hint-box__hint-audio_visible');
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
@@ -394,6 +406,12 @@ mainPageGame.addEventListener('dragover', (event) => {
 btnHintTranslate.addEventListener('click', () => {
   btnHintTranslate.classList.toggle('hint-btns__btn_checked');
   hintTranslateShow = hintTranslateShow ? false : true;
+  setHintOnOff();
+});
+
+btnHintAudio.addEventListener('click', () => {
+  btnHintAudio.classList.toggle('hint-btns__btn_checked');
+  hintAudioShow = hintAudioShow ? false : true;
   setHintOnOff();
 });
 
