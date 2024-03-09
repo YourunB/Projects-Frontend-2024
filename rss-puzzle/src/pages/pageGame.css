@@ -17,7 +17,9 @@
   max-width: 1440px;
   width: 100%;
   margin: auto;
-  backdrop-filter: blur(5px);
+  backdrop-fil.hint-btns {
+}
+;
 }
 
 .hint-btns {}

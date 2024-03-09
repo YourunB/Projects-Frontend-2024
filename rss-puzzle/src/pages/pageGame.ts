@@ -101,6 +101,8 @@ let levelData: levelData;
 const currentLevel = 1;
 let currentRound = 0;
 let currentWords = 0;
+let letterTrue = false;
+let hintTranslateShow = false;
 
 function createGame() {
   for (let i = 0; i < 10; i += 1) {
@@ -118,6 +120,12 @@ function clearFields() {
   }
 }
 
+function setHintOnOff() {
+  if (btnHintTranslate.classList.contains('hint-btns__btn_checked') || letterTrue) {
+    hintTranslate.classList.add('hint-box__hint-translate_visible');
+  } else if (!hintTranslateShow && !letterTrue) hintTranslate.classList.remove('hint-box__hint-translate_visible');
+}
+
 function checkField(gameFields: HTMLCollectionOf<Element>) {
   const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const arrWords = [];
@@ -129,15 +137,19 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
     btnCheck.textContent = 'Continue';
     btnCheck.classList.add('controls__btn_true');
     btnContinue.disabled = false;
+    letterTrue = true;
   } else {
     btnCheck.textContent = 'Check';
     btnCheck.classList.remove('controls__btn_true');
     btnContinue.disabled = true;
+    letterTrue = false;
   }
 
   if (levelData.textExample.split(' ').length === arrPuzzles.length) {
     btnCheck.disabled = false;
   } else btnCheck.disabled = true;
+
+  setHintOnOff();
 }
 
 function movePuzzle(event: Event) {
@@ -227,6 +239,8 @@ setTimeout(() => {
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
 function nextWords() {
+  letterTrue = false;
+  setHintOnOff();
   gameFields[currentWords].classList.add('game-box__field_block');
   btnCheck.textContent = 'Check';
   btnCheck.classList.remove('controls__btn_true');
@@ -242,9 +256,13 @@ function nextWords() {
 }
 
 function autoComplete() {
+  btnAutoComplete.disabled = true;
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
   const sourceResult = levelData.textExample.split(' ');
   const result: HTMLElement[] = []; // Здесь вы явно указываете тип
+
+  letterTrue = true;
+  setHintOnOff();
 
   gameFields[currentWords].classList.add('game-box__field_block');
 
@@ -267,6 +285,7 @@ function autoComplete() {
     if (i >= result.length - 1) {
       setTimeout(() => {
         nextWords();
+        if (i === result.length - 1) btnAutoComplete.disabled = false;
       }, i * 200);
     }
   }
@@ -362,7 +381,9 @@ mainPageGame.addEventListener('dragover', (event) => {
 });
 
 btnHintTranslate.addEventListener('click', () => {
-  hintTranslate.classList.toggle('hint-box__hint-translate_visible');
+  btnHintTranslate.classList.toggle('hint-btns__btn_checked');
+  hintTranslateShow = hintTranslateShow ? false : true;
+  setHintOnOff();
 });
 
 export { pageGame };
