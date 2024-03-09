@@ -1,4 +1,5 @@
 import '../pages/pageGame.css';
+import '../assets/images/svg/translate.svg';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -7,9 +8,31 @@ const headerPageGame = document.createElement('header');
 headerPageGame.classList.add('page-game__header');
 pageGame.append(headerPageGame);
 
+const levelsBox = document.createElement('div');
+levelsBox.classList.add('levels-box');
+headerPageGame.append(levelsBox);
+
+const hintBtns = document.createElement('div');
+hintBtns.classList.add('hint-btns');
+headerPageGame.append(hintBtns);
+
+const btnHintTranslate = document.createElement('img');
+btnHintTranslate.classList.add('hint-btns__btn');
+btnHintTranslate.alt = 'translate';
+btnHintTranslate.src = 'translate.svg';
+hintBtns.append(btnHintTranslate);
+
 const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
+
+const gameHint = document.createElement('div');
+gameHint.classList.add('hint-box');
+mainPageGame.append(gameHint);
+
+const hintTranslate = document.createElement('p');
+hintTranslate.classList.add('hint-box__hint-translate');
+gameHint.append(hintTranslate);
 
 const gameBox = document.createElement('div');
 gameBox.classList.add('game-box');
@@ -159,6 +182,8 @@ function createAnswers() {
       movePuzzle(event);
     });
   }
+
+  hintTranslate.textContent = levelData.textExampleTranslate;
 }
 
 function getFile(link: string) {
@@ -213,6 +238,7 @@ function nextWords() {
     currentRound += 1;
   }
   createAnswers();
+  hintTranslate.textContent = levelData.textExampleTranslate;
 }
 
 function autoComplete() {
@@ -333,6 +359,10 @@ mainPageGame.addEventListener('dragover', (event) => {
   }
 
   checkField(gameFields);
+});
+
+btnHintTranslate.addEventListener('click', () => {
+  hintTranslate.classList.toggle('hint-box__hint-translate_visible');
 });
 
 export { pageGame };
