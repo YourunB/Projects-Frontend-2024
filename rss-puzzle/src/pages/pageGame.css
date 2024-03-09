@@ -6,6 +6,11 @@
 
 .page-game__header {
   height: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .page-game__main {
@@ -13,6 +18,31 @@
   width: 100%;
   margin: auto;
   backdrop-filter: blur(5px);
+}
+
+.hint-btns {}
+
+.hint-btns__btn {
+  background: rgb(255, 255, 145);
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.hint-btns__btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.hint-btns__btn:active {
+  transition: 0.2s;
+  transform: scale(0.9);
+}
+
+.hint-btns__btn_checked {
+  background-color: greenyellow;
 }
 
 .hint-box {
@@ -25,6 +55,11 @@
   font-weight: 700;
   margin: 0;
   padding: 0;
+  visibility: hidden;
+}
+
+.hint-box__hint-translate_visible {
+  visibility: visible;
 }
 
 .controls {

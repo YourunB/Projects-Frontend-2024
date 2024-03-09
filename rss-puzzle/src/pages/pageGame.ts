@@ -1,4 +1,5 @@
 import '../pages/pageGame.css';
+import '../assets/images/svg/translate.svg';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -6,6 +7,20 @@ pageGame.classList.add('page-game');
 const headerPageGame = document.createElement('header');
 headerPageGame.classList.add('page-game__header');
 pageGame.append(headerPageGame);
+
+const levelsBox = document.createElement('div');
+levelsBox.classList.add('levels-box');
+headerPageGame.append(levelsBox);
+
+const hintBtns = document.createElement('div');
+hintBtns.classList.add('hint-btns');
+headerPageGame.append(hintBtns);
+
+const btnHintTranslate = document.createElement('img');
+btnHintTranslate.classList.add('hint-btns__btn');
+btnHintTranslate.alt = 'translate';
+btnHintTranslate.src = 'translate.svg';
+hintBtns.append(btnHintTranslate);
 
 const mainPageGame = document.createElement('main');
 mainPageGame.classList.add('page-game__main');
@@ -344,6 +359,10 @@ mainPageGame.addEventListener('dragover', (event) => {
   }
 
   checkField(gameFields);
+});
+
+btnHintTranslate.addEventListener('click', () => {
+  hintTranslate.classList.toggle('hint-box__hint-translate_visible');
 });
 
 export { pageGame };
