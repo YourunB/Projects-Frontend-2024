@@ -55,11 +55,14 @@
   font-weight: 700;
   margin: 0;
   padding: 0;
+  transform: translateX(-3000px);
+  transition: 1s;
   visibility: hidden;
 }
 
 .hint-box__hint-translate_visible {
   visibility: visible;
+  transform: translateX(0);
 }
 
 .controls {
