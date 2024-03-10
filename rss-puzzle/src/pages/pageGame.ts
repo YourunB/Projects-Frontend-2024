@@ -91,36 +91,33 @@ interface levelData {
   wordTranslate: string;
 }
 
+interface roundData {
+  author: string;
+  cutSrc: string;
+  id: string;
+  imageSrc: string;
+  name: string;
+  year: string;
+}
+
 interface data {
   rounds: {
-    levelData: {
-      author: string;
-      cutSrc: string;
-      id: string;
-      imageSrc: string;
-      name: string;
-      year: string;
-    };
-    words: {
-      audioExample: string;
-      id: number;
-      textExample: string;
-      textExampleTranslate: string;
-      word: string;
-      wordTranslate: string;
-    }[];
+    levelData: roundData;
+    words: levelData[];
   }[];
   roundsCount: number;
 }
 
 let arrLevels: data;
 let levelData: levelData;
+let roundData: roundData;
 const currentLevel = 1;
 let currentRound = 0;
 let currentWords = 0;
 let letterTrue = false;
 let hintTranslateShow = false;
 let hintAudioShow = false;
+let topPosition = 0;
 
 function createGame() {
   for (let i = 0; i < 10; i += 1) {
@@ -149,6 +146,7 @@ function setHintOnOff() {
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
+  console.log(roundData);
   const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const arrWords = [];
   for (let i = 0; i < arrPuzzles.length; i += 1) {
@@ -193,31 +191,42 @@ function movePuzzle(event: Event) {
 function createAnswers() {
   btnContinue.disabled = true;
 
+  roundData = arrLevels.rounds[currentRound].levelData;
   levelData = arrLevels.rounds[currentRound].words[currentWords];
   const arrWords = levelData.textExample.split(' ');
   const allWordsLength = arrWords.reduce((sum, word) => sum + word.length, 0);
+  let leftPosition = 0;
 
-  const arrWordsRandom = [...arrWords];
-  arrWordsRandom.sort(() => Math.random() - 0.5);
+  const arrWordsPuzzle = [];
 
-  for (let i = 0; i < arrWordsRandom.length; i += 1) {
+  for (let i = 0; i < arrWords.length; i += 1) {
     const word = document.createElement('div');
     word.classList.add('game-answers__word');
-    if (arrWordsRandom[i] === arrWords[0]) word.classList.add('game-answers__word_first');
-    if (arrWordsRandom[i] === arrWords[arrWords.length - 1]) word.classList.add('game-answers__word_last');
-    word.textContent = arrWordsRandom[i];
-    word.style.width = `${(100 / allWordsLength) * arrWordsRandom[i].length}%`;
+    if (i === 0) word.classList.add('game-answers__word_first');
+    if (i === arrWords.length - 1) word.classList.add('game-answers__word_last');
+    word.textContent = arrWords[i];
+    word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
     word.style.minWidth = 'fit-content';
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
     word.draggable = true;
-    gameAnswers.append(word);
+    leftPosition += Number(word.style.width.slice(0, -1));
+    word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.cutSrc}')`;
+    word.style.backgroundPosition = `${leftPosition}% ${topPosition}%`;
+    arrWordsPuzzle.push(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
     });
   }
 
+  arrWordsPuzzle
+    .sort(() => Math.random() - 0.5)
+    .forEach((puzzle) => {
+      gameAnswers.append(puzzle);
+    });
+
   hintTranslate.textContent = levelData.textExampleTranslate;
+  topPosition += 10;
 }
 
 function getFile(link: string) {
@@ -254,7 +263,6 @@ getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
 
 createGame();
 setTimeout(() => {
-  console.log(arrLevels);
   createAnswers();
 }, 500);
 
@@ -272,6 +280,7 @@ function nextWords() {
     clearFields();
     currentWords = 0;
     currentRound += 1;
+    topPosition = 0;
   }
   createAnswers();
   hintTranslate.textContent = levelData.textExampleTranslate;
