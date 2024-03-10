@@ -2,6 +2,7 @@ import '../pages/pageGame.css';
 import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
+import '../assets/images/svg/picture.svg';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -29,6 +30,12 @@ btnHintAudio.classList.add('hint-btns__btn');
 btnHintAudio.alt = 'audio';
 btnHintAudio.src = 'audio.svg';
 hintBtns.append(btnHintAudio);
+
+const btnHintPicture = document.createElement('img');
+btnHintPicture.classList.add('hint-btns__btn');
+btnHintPicture.alt = 'picture';
+btnHintPicture.src = 'picture.svg';
+hintBtns.append(btnHintPicture);
 
 const audioPlayer = document.createElement('audio');
 pageGame.append(audioPlayer);
