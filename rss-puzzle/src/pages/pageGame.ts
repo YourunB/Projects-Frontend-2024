@@ -291,8 +291,8 @@ const gameFields = pageGame.getElementsByClassName('game-box__field');
 
 function nextWords() {
   letterTrue = false;
-  setHintOnOff();
   gameFields[currentWords].classList.add('game-box__field_block');
+  setHintOnOff();
   btnCheck.textContent = 'Check';
   btnCheck.classList.remove('controls__btn_true');
   btnCheck.disabled = true;
