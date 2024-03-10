@@ -121,10 +121,11 @@ let roundData: roundData;
 const currentLevel = 1;
 let currentRound = 0;
 let currentWords = 0;
+let topPosition = 0;
 let letterTrue = false;
 let hintTranslateShow = false;
 let hintAudioShow = false;
-let topPosition = 0;
+let hintPictureShow = false;
 
 function createGame() {
   for (let i = 0; i < 10; i += 1) {
@@ -150,10 +151,22 @@ function setHintOnOff() {
   if (btnHintAudio.classList.contains('hint-btns__btn_checked') || letterTrue) {
     hintAudio.classList.add('hint-box__hint-audio_visible');
   } else if (!hintAudioShow && !letterTrue) hintAudio.classList.remove('hint-box__hint-audio_visible');
+
+  const puzzles = pageGame.getElementsByClassName('game-answers__word');
+  if (btnHintPicture.classList.contains('hint-btns__btn_checked') || letterTrue) {
+    for (let i = 0; i < puzzles.length; i += 1) {
+      puzzles[i].classList.remove('game-answers__word_hide-image');
+    }
+  } else if (!hintPictureShow && !letterTrue) {
+    for (let i = 0; i < puzzles.length; i += 1) {
+      if (!hintPictureShow && !puzzles[i].parentElement?.classList.contains('game-box__field_block')) {
+        puzzles[i].classList.add('game-answers__word_hide-image');
+      }
+    }
+  }
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
-  console.log(roundData);
   const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const arrWords = [];
   for (let i = 0; i < arrPuzzles.length; i += 1) {
@@ -209,6 +222,7 @@ function createAnswers() {
   for (let i = 0; i < arrWords.length; i += 1) {
     const word = document.createElement('div');
     word.classList.add('game-answers__word');
+    if (!hintPictureShow) word.classList.add('game-answers__word_hide-image');
     if (i === 0) word.classList.add('game-answers__word_first');
     if (i === arrWords.length - 1) word.classList.add('game-answers__word_last');
     word.textContent = arrWords[i];
@@ -443,6 +457,12 @@ hintAudio.addEventListener('click', () => {
       audioPlayer.duration * 1000 - 500
     );
   }, 500);
+});
+
+btnHintPicture.addEventListener('click', () => {
+  btnHintPicture.classList.toggle('hint-btns__btn_checked');
+  hintPictureShow = hintPictureShow ? false : true;
+  setHintOnOff();
 });
 
 export { pageGame };
