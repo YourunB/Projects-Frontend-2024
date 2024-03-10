@@ -168,6 +168,10 @@
   background-repeat: no-repeat;
 }
 
+.game-answers__word_hide-image {
+  background: rgb(243, 235, 226) !important;
+}
+
 .game-answers__word::before {
   content: '';
   position: absolute;
@@ -326,13 +330,13 @@
   }
 
   .game-box {
-    height: 562.50px;
+    height: 562.5px;
   }
 
   .game-box__field,
   .game-answers__word,
   .game-answers {
-    height: 56,25px;
+    height: 56, 25px;
     font-size: 12px;
   }
 
