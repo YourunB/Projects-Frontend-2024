@@ -38,6 +38,12 @@
   width: 100%;
   margin: auto;
   backdrop-filter: blur(5px);
+  transition: 0.48s;
+}
+
+.page-game__main_hide {
+  opacity: 0;
+  transition: 0.48s;
 }
 
 .hint-btns {

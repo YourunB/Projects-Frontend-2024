@@ -389,15 +389,20 @@ function changeLevel() {
 }
 
 function resetGame() {
-  const puzzles = pageGame.getElementsByClassName('game-answers__word');
-  for (let i = puzzles.length - 1; i >= 0; i -= 1) {
-    puzzles[i].remove();
-  }
+  mainPageGame.classList.add('page-game__main_hide');
+  setTimeout(() => {
+    const puzzles = pageGame.getElementsByClassName('game-answers__word');
+    for (let i = puzzles.length - 1; i >= 0; i -= 1) {
+      puzzles[i].remove();
+    }
 
-  const roundOptions = selectRound.getElementsByTagName('option');
-  for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
-    roundOptions[i].remove();
-  }
+    const roundOptions = selectRound.getElementsByTagName('option');
+    for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
+      roundOptions[i].remove();
+    }
+
+    mainPageGame.classList.remove('page-game__main_hide');
+  }, 500);
 }
 
 const gameFields = pageGame.getElementsByClassName('game-box__field');
