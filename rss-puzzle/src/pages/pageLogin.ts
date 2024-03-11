@@ -53,6 +53,32 @@ function login() {
     hintTranslateState: true,
     hintAudioState: true,
     hintPictureState: true,
+    levels: {
+      level1: {
+        rounds: [],
+        total: null,
+      },
+      level2: {
+        rounds: [],
+        total: null,
+      },
+      level3: {
+        rounds: [],
+        total: null,
+      },
+      level4: {
+        rounds: [],
+        total: null,
+      },
+      level5: {
+        rounds: [],
+        total: null,
+      },
+      level6: {
+        rounds: [],
+        total: null,
+      },
+    },
   };
   localStorage.setItem('user', JSON.stringify(data));
   location.hash = '#welcome';

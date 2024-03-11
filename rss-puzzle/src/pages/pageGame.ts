@@ -20,7 +20,9 @@ labelLevel.textContent = 'Level:';
 const labelRound = document.createElement('label');
 labelRound.textContent = 'Round:';
 const selectLevel = document.createElement('select');
+selectLevel.classList.add('select-level');
 const selectRound = document.createElement('select');
+selectRound.classList.add('select-level');
 levelsBox.append(labelLevel, selectLevel, labelRound, selectRound);
 
 for (let i = 0; i < 6; i += 1) {
@@ -310,9 +312,50 @@ function highlighPuzzle() {
 
 createGame();
 
-function startGame() {
-  //currentLevel = 1;
-  //currentRound = 0;
+function loadCompleteLevel() {
+  const data = JSON.parse(localStorage.user);
+
+  for (let i = 6; i >= 1; i -= 1) {
+    const level = `level${i}`;
+    if (i === 6 && data.levels[level].rounds[data.levels[level].rounds.length - 1] === data.levels[level].total - 1) {
+      currentLevel = 1;
+      currentRound = 0;
+      break;
+    }
+    if (data.levels[level].rounds[data.levels[level].rounds.length - 1] === data.levels[level].total - 1) {
+      currentLevel = i + 1;
+      currentRound = 0;
+      break;
+    }
+    if (data.levels[level].total !== null) {
+      currentLevel = i;
+      currentRound = data.levels[level].rounds[data.levels[level].rounds.length - 1] + 1;
+      break;
+    }
+  }
+}
+
+function showSelectLevel() {
+  const optinsSelectLevel = selectLevel.getElementsByTagName('option');
+  for (let i = 0; i < optinsSelectLevel.length; i += 1) {
+    optinsSelectLevel[i].classList.remove('select-level__item_selected');
+    if (Number(optinsSelectLevel[i].value) === currentLevel) {
+      optinsSelectLevel[i].selected = true;
+      optinsSelectLevel[i].classList.add('select-level__item_selected');
+    }
+  }
+
+  const optinsSelectRound = selectRound.getElementsByTagName('option');
+  for (let i = 0; i < optinsSelectRound.length; i += 1) {
+    optinsSelectRound[i].classList.remove('select-level__item_selected');
+    if (Number(optinsSelectRound[i].value) === currentRound) {
+      optinsSelectRound[i].selected = true;
+      optinsSelectRound[i].classList.add('select-level__item_selected');
+    }
+  }
+}
+
+function createLevel() {
   currentWords = 0;
   topPosition = 0;
   letterTrue = false;
@@ -325,28 +368,57 @@ function startGame() {
       const option = document.createElement('option');
       option.textContent = String(i + 1);
       option.value = String(i);
+      option.classList.add('select-level__item');
+      if (Number(option.value) === currentRound) option.selected = true;
       selectRound.append(option);
     }
+
+    showSelectLevel();
   }, 500);
 
   setHintOnOff();
 }
 
-function resetGame() {
-  const roundOptions = selectRound.getElementsByTagName('option');
-  for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
-    roundOptions[i].remove();
-  }
+function startGame() {
+  loadCompleteLevel();
+  createLevel();
+}
 
-  const puzzles = pageGame.getElementsByClassName('game-answers__word');
-  for (let i = puzzles.length - 1; i >= 0; i -= 1) {
-    puzzles[i].remove();
-  }
+function changeLevel() {
+  createLevel();
+}
+
+function resetGame() {
+  mainPageGame.classList.add('page-game__main_hide');
+  setTimeout(() => {
+    const puzzles = pageGame.getElementsByClassName('game-answers__word');
+    for (let i = puzzles.length - 1; i >= 0; i -= 1) {
+      puzzles[i].remove();
+    }
+
+    const roundOptions = selectRound.getElementsByTagName('option');
+    for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
+      roundOptions[i].remove();
+    }
+
+    mainPageGame.classList.remove('page-game__main_hide');
+  }, 500);
 }
 
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
+function saveCompleteLevel() {
+  const data = JSON.parse(localStorage.user);
+  if (data.levels[`level${currentLevel}`].rounds.indexOf(currentRound) === -1) {
+    data.levels[`level${currentLevel}`].total = arrLevels.rounds.length;
+    data.levels[`level${currentLevel}`].rounds.push(currentRound);
+    data.levels[`level${currentLevel}`].rounds.sort((a: number, b: number) => a - b);
+    localStorage.setItem('user', JSON.stringify(data));
+  }
+}
+
 function nextWords() {
+  if (currentRound >= 10) saveCompleteLevel();
   if (currentWords >= 9 && currentRound === arrLevels.rounds.length - 1) {
     if (currentLevel === 6 && currentRound === arrLevels.rounds.length - 1) {
       return;
@@ -354,7 +426,7 @@ function nextWords() {
     currentRound = 0;
     currentLevel += 1;
     resetGame();
-    startGame();
+    changeLevel();
   }
   letterTrue = false;
   gameFields[currentWords].classList.add('game-box__field_block');
@@ -371,6 +443,7 @@ function nextWords() {
   }
   createAnswers();
   hintTranslate.textContent = levelData.textExampleTranslate;
+  showSelectLevel();
 }
 
 function autoComplete() {
@@ -535,9 +608,10 @@ btnHintPicture.addEventListener('click', () => {
 selectLevel.addEventListener('change', () => {
   if (currentLevel !== Number(selectLevel.value)) {
     currentLevel = Number(selectLevel.value);
+    currentRound = 0;
     getFile(currentLevel);
     resetGame();
-    startGame();
+    changeLevel();
   }
 });
 
@@ -545,7 +619,7 @@ selectRound.addEventListener('change', () => {
   if (currentRound !== Number(selectRound.value)) {
     currentRound = Number(selectRound.value);
     resetGame();
-    startGame();
+    changeLevel();
   }
 });
 
