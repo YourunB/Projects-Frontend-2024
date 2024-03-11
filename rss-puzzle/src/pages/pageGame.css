@@ -1,3 +1,12 @@
+select {
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 40px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
 .page-game {
   min-height: calc(100vh - 60px);
   width: 100%;
@@ -11,6 +20,13 @@
   flex-wrap: wrap;
   max-width: 1440px;
   margin: auto;
+}
+
+.levels-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
 
 .page-game__main {
