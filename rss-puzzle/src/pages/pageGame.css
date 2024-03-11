@@ -13,6 +13,13 @@
   margin: auto;
 }
 
+.levels-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
 .page-game__main {
   max-width: 1440px;
   width: 100%;

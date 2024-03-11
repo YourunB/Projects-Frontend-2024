@@ -7,13 +7,28 @@ import '../assets/images/svg/picture.svg';
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
 
-const headerPageGame = document.createElement('header');
+const headerPageGame = document.createElement('section');
 headerPageGame.classList.add('page-game__header');
 pageGame.append(headerPageGame);
 
 const levelsBox = document.createElement('div');
 levelsBox.classList.add('levels-box');
 headerPageGame.append(levelsBox);
+
+const labelLevel = document.createElement('label');
+labelLevel.textContent = 'Level:';
+const labelRound = document.createElement('label');
+labelRound.textContent = 'Round:';
+const selectLevel = document.createElement('select');
+const selectRound = document.createElement('select');
+levelsBox.append(labelLevel, selectLevel, labelRound, selectRound);
+
+for (let i = 0; i < 6; i += 1) {
+  const option = document.createElement('option');
+  option.textContent = String(i + 1);
+  option.value = String(i + 1);
+  selectLevel.append(option);
+}
 
 const hintBtns = document.createElement('div');
 hintBtns.classList.add('hint-btns');
@@ -40,7 +55,7 @@ hintBtns.append(btnHintPicture);
 const audioPlayer = document.createElement('audio');
 pageGame.append(audioPlayer);
 
-const mainPageGame = document.createElement('main');
+const mainPageGame = document.createElement('section');
 mainPageGame.classList.add('page-game__main');
 pageGame.append(mainPageGame);
 
@@ -263,8 +278,8 @@ function createAnswers() {
   topPosition += 10;
 }
 
-function getFile(link: string) {
-  fetch(link)
+function getFile(link: number) {
+  fetch(`lingleo/data/wordCollectionLevel${link}.json`)
     .then((response) => response.json())
     .then((data) => {
       arrLevels = data;
@@ -296,21 +311,33 @@ function highlighPuzzle() {
 createGame();
 
 function startGame() {
-  currentLevel = 1;
-  currentRound = 0;
+  //currentLevel = 1;
+  //currentRound = 0;
   currentWords = 0;
   topPosition = 0;
   letterTrue = false;
 
-  getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
+  getFile(currentLevel);
   setTimeout(() => {
     createAnswers();
+
+    for (let i = 0; i < arrLevels.rounds.length; i += 1) {
+      const option = document.createElement('option');
+      option.textContent = String(i + 1);
+      option.value = String(i);
+      selectRound.append(option);
+    }
   }, 500);
 
   setHintOnOff();
 }
 
 function resetGame() {
+  const roundOptions = selectRound.getElementsByTagName('option');
+  for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
+    roundOptions[i].remove();
+  }
+
   const puzzles = pageGame.getElementsByClassName('game-answers__word');
   for (let i = puzzles.length - 1; i >= 0; i -= 1) {
     puzzles[i].remove();
@@ -494,6 +521,15 @@ hintAudio.addEventListener('click', () => {
 
 btnHintPicture.addEventListener('click', () => {
   changeHintState('hintPictureState');
+});
+
+selectLevel.addEventListener('change', () => {
+  if (currentLevel !== Number(selectLevel.value)) {
+    currentLevel = Number(selectLevel.value);
+    getFile(currentLevel);
+    resetGame();
+    startGame();
+  }
 });
 
 export { pageGame, startGame, resetGame };
