@@ -532,4 +532,12 @@ selectLevel.addEventListener('change', () => {
   }
 });
 
+selectRound.addEventListener('change', () => {
+  if (currentRound !== Number(selectRound.value)) {
+    currentRound = Number(selectRound.value);
+    resetGame();
+    startGame();
+  }
+});
+
 export { pageGame, startGame, resetGame };
