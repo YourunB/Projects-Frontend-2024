@@ -118,7 +118,7 @@ interface data {
 let arrLevels: data;
 let levelData: levelData;
 let roundData: roundData;
-const currentLevel = 1;
+let currentLevel = 1;
 let currentRound = 0;
 let currentWords = 0;
 let topPosition = 0;
@@ -144,16 +144,29 @@ function clearFields() {
 }
 
 function setHintOnOff() {
-  if (btnHintTranslate.classList.contains('hint-btns__btn_checked') || letterTrue) {
+  const data = JSON.parse(localStorage.user);
+  hintTranslateShow = data.hintTranslateState;
+  hintAudioShow = data.hintAudioState;
+  hintPictureShow = data.hintPictureState;
+
+  function setBtnHintOnOff(hint: boolean, btn: HTMLElement) {
+    if (hint) btn.classList.add('hint-btns__btn_checked');
+    else btn.classList.remove('hint-btns__btn_checked');
+  }
+
+  setBtnHintOnOff(hintTranslateShow, btnHintTranslate);
+  if (hintTranslateShow || letterTrue) {
     hintTranslate.classList.add('hint-box__hint-translate_visible');
   } else if (!hintTranslateShow && !letterTrue) hintTranslate.classList.remove('hint-box__hint-translate_visible');
 
-  if (btnHintAudio.classList.contains('hint-btns__btn_checked') || letterTrue) {
+  setBtnHintOnOff(hintAudioShow, btnHintAudio);
+  if (hintAudioShow || letterTrue) {
     hintAudio.classList.add('hint-box__hint-audio_visible');
   } else if (!hintAudioShow && !letterTrue) hintAudio.classList.remove('hint-box__hint-audio_visible');
 
+  setBtnHintOnOff(hintPictureShow, btnHintPicture);
   const puzzles = pageGame.getElementsByClassName('game-answers__word');
-  if (btnHintPicture.classList.contains('hint-btns__btn_checked') || letterTrue) {
+  if (hintPictureShow || letterTrue) {
     for (let i = 0; i < puzzles.length; i += 1) {
       puzzles[i].classList.remove('game-answers__word_hide-image');
     }
@@ -280,12 +293,29 @@ function highlighPuzzle() {
   }, 2000);
 }
 
-getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
-
 createGame();
-setTimeout(() => {
-  createAnswers();
-}, 500);
+
+function startGame() {
+  currentLevel = 1;
+  currentRound = 0;
+  currentWords = 0;
+  topPosition = 0;
+  letterTrue = false;
+
+  getFile(`lingleo/data/wordCollectionLevel${currentLevel}.json`);
+  setTimeout(() => {
+    createAnswers();
+  }, 500);
+
+  setHintOnOff();
+}
+
+function resetGame() {
+  const puzzles = pageGame.getElementsByClassName('game-answers__word');
+  for (let i = puzzles.length - 1; i >= 0; i -= 1) {
+    puzzles[i].remove();
+  }
+}
 
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
@@ -433,16 +463,19 @@ mainPageGame.addEventListener('dragover', (event) => {
   checkField(gameFields);
 });
 
-btnHintTranslate.addEventListener('click', () => {
-  btnHintTranslate.classList.toggle('hint-btns__btn_checked');
-  hintTranslateShow = hintTranslateShow ? false : true;
+function changeHintState(hint: string) {
+  const data = JSON.parse(localStorage.user);
+  data[hint] = data[hint] ? false : true;
+  localStorage.setItem('user', JSON.stringify(data));
   setHintOnOff();
+}
+
+btnHintTranslate.addEventListener('click', () => {
+  changeHintState('hintTranslateState');
 });
 
 btnHintAudio.addEventListener('click', () => {
-  btnHintAudio.classList.toggle('hint-btns__btn_checked');
-  hintAudioShow = hintAudioShow ? false : true;
-  setHintOnOff();
+  changeHintState('hintAudioState');
 });
 
 hintAudio.addEventListener('click', () => {
@@ -454,15 +487,13 @@ hintAudio.addEventListener('click', () => {
       () => {
         hintAudio.classList.remove('hint-box__hint-audio_play');
       },
-      audioPlayer.duration * 1000 - 500
+      audioPlayer.duration * 1000 - 1000
     );
-  }, 500);
+  }, 1000);
 });
 
 btnHintPicture.addEventListener('click', () => {
-  btnHintPicture.classList.toggle('hint-btns__btn_checked');
-  hintPictureShow = hintPictureShow ? false : true;
-  setHintOnOff();
+  changeHintState('hintPictureState');
 });
 
-export { pageGame };
+export { pageGame, startGame, resetGame };

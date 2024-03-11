@@ -50,6 +50,9 @@ function login() {
   const data = {
     firstName: inputFirstName.value,
     lastName: inputLastName.value,
+    hintTranslateState: true,
+    hintAudioState: true,
+    hintPictureState: true,
   };
   localStorage.setItem('user', JSON.stringify(data));
   location.hash = '#welcome';

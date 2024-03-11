@@ -1,6 +1,4 @@
 import '../pages/pageWelcome.css';
-import { btnLogout } from '../components/buttonLogout';
-import { windowConfirm, windowConfirmBtnYes, windowConfirmBtnNo } from '../components/modalConfirm';
 import '../assets/images/puzzle.png';
 import '../assets/images/english.png';
 
@@ -11,15 +9,12 @@ const headerPageWelcome = document.createElement('header');
 headerPageWelcome.classList.add('page-welcome__header');
 pageWelcome.append(headerPageWelcome);
 
-headerPageWelcome.append(btnLogout);
-
 const mainPageWelcome = document.createElement('main');
 mainPageWelcome.classList.add('page-welcome__main');
 pageWelcome.append(mainPageWelcome);
-mainPageWelcome.append(windowConfirm);
 
-const titlePageWelcome = document.createElement('h1');
-titlePageWelcome.textContent = 'RSS Puzzle';
+const titlePageWelcome = document.createElement('h2');
+titlePageWelcome.textContent = 'RSS Puzzle - Learn English Fun';
 mainPageWelcome.append(titlePageWelcome);
 
 const descriptionGame = document.createElement('p');
@@ -75,22 +70,6 @@ imageEnglish.src = 'english.png';
 imageEnglish.alt = 'English';
 imageEnglish.classList.add('wrapper-image__image-english');
 wrapperImage.append(imageEnglish);
-
-btnLogout.addEventListener('click', () => {
-  windowConfirm.classList.add('modal-confirm_show');
-});
-
-windowConfirmBtnYes.addEventListener('click', () => {
-  if (localStorage.user !== undefined) {
-    localStorage.removeItem('user');
-    location.hash = '#login';
-  }
-  windowConfirm.classList.remove('modal-confirm_show');
-});
-
-windowConfirmBtnNo.addEventListener('click', () => {
-  windowConfirm.classList.remove('modal-confirm_show');
-});
 
 btnStart.addEventListener('click', () => {
   location.hash = '#game';

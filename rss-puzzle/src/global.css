@@ -26,6 +26,21 @@ body {
   opacity: 1;
 }
 
+.pages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+  height: 40px;
+  color: white;
+}
+
+.pages-header h1 {
+  margin: 0;
+  padding: 0;
+}
+
 .pages-window_hide {
   transition: 0s;
   opacity: 0;
