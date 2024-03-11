@@ -53,6 +53,14 @@ function login() {
     hintTranslateState: true,
     hintAudioState: true,
     hintPictureState: true,
+    levels: {
+      level1: [],
+      level2: [],
+      level3: [],
+      level4: [],
+      level5: [],
+      level6: [],
+    },
   };
   localStorage.setItem('user', JSON.stringify(data));
   location.hash = '#welcome';

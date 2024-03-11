@@ -346,6 +346,14 @@ function resetGame() {
 
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
+function saveCompleteLevels() {
+  const data = JSON.parse(localStorage.user);
+  if (data.levels[`level${currentLevel}`].indexOf(currentRound) === -1) {
+    data.levels[`level${currentLevel}`].push(currentRound);
+    localStorage.setItem('user', JSON.stringify(data));
+  }
+}
+
 function nextWords() {
   if (currentWords >= 9 && currentRound === arrLevels.rounds.length - 1) {
     if (currentLevel === 6 && currentRound === arrLevels.rounds.length - 1) {
@@ -364,6 +372,7 @@ function nextWords() {
   btnCheck.disabled = true;
   currentWords += 1;
   if (currentWords >= 10) {
+    saveCompleteLevels();
     clearFields();
     currentWords = 0;
     currentRound += 1;
