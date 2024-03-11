@@ -347,6 +347,15 @@ function resetGame() {
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
 function nextWords() {
+  if (currentWords >= 9 && currentRound === arrLevels.rounds.length - 1) {
+    if (currentLevel === 6 && currentRound === arrLevels.rounds.length - 1) {
+      return;
+    }
+    currentRound = 0;
+    currentLevel += 1;
+    resetGame();
+    startGame();
+  }
   letterTrue = false;
   gameFields[currentWords].classList.add('game-box__field_block');
   setHintOnOff();
@@ -394,8 +403,8 @@ function autoComplete() {
     }, i * 200);
     if (i >= result.length - 1) {
       setTimeout(() => {
-        nextWords();
         if (i === result.length - 1) btnAutoComplete.disabled = false;
+        nextWords();
       }, i * 200);
     }
   }
