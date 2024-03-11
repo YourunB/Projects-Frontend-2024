@@ -20,7 +20,9 @@ labelLevel.textContent = 'Level:';
 const labelRound = document.createElement('label');
 labelRound.textContent = 'Round:';
 const selectLevel = document.createElement('select');
+selectLevel.classList.add('select-level');
 const selectRound = document.createElement('select');
+selectRound.classList.add('select-level');
 levelsBox.append(labelLevel, selectLevel, labelRound, selectRound);
 
 for (let i = 0; i < 6; i += 1) {
@@ -336,12 +338,20 @@ function loadCompleteLevel() {
 function showSelectLevel() {
   const optinsSelectLevel = selectLevel.getElementsByTagName('option');
   for (let i = 0; i < optinsSelectLevel.length; i += 1) {
-    if (Number(optinsSelectLevel[i].value) === currentLevel) optinsSelectLevel[i].selected = true;
+    optinsSelectLevel[i].classList.remove('select-level__item_selected');
+    if (Number(optinsSelectLevel[i].value) === currentLevel) {
+      optinsSelectLevel[i].selected = true;
+      optinsSelectLevel[i].classList.add('select-level__item_selected');
+    }
   }
 
   const optinsSelectRound = selectRound.getElementsByTagName('option');
   for (let i = 0; i < optinsSelectRound.length; i += 1) {
-    if (Number(optinsSelectRound[i].value) === currentRound) optinsSelectRound[i].selected = true;
+    optinsSelectRound[i].classList.remove('select-level__item_selected');
+    if (Number(optinsSelectRound[i].value) === currentRound) {
+      optinsSelectRound[i].selected = true;
+      optinsSelectRound[i].classList.add('select-level__item_selected');
+    }
   }
 }
 
@@ -358,6 +368,7 @@ function createLevel() {
       const option = document.createElement('option');
       option.textContent = String(i + 1);
       option.value = String(i);
+      option.classList.add('select-level__item');
       if (Number(option.value) === currentRound) option.selected = true;
       selectRound.append(option);
     }
