@@ -1,5 +1,5 @@
 .page-welcome {
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   height: 35px;
   width: 100%;
   padding: 0;
@@ -26,11 +26,11 @@
   align-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  min-height: calc(100vh - 35px - 20px);
+  min-height: calc(100vh - 80px);
   backdrop-filter: blur(5px);
 }
 
-.page-welcome__main h1 {
+.page-welcome__main h2 {
   width: 100%;
   margin: 0;
   padding: 0;
