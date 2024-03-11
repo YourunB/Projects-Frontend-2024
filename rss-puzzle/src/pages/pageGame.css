@@ -7,8 +7,17 @@
   outline: none;
 }
 
+.select-level__item {
+  background: lightgray;
+}
+
+.select-level__item_completed {
+  background: greenyellow;
+}
+
 .select-level__item_selected {
   background: yellow;
+  font-weight: 700;
 }
 
 .page-game {
