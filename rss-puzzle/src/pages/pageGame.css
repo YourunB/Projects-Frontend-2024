@@ -199,7 +199,11 @@
   cursor: pointer;
   transition: 0.5s;
   opacity: 0;
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  text-shadow:
+    -1px 0 white,
+    0 1px white,
+    1px 0 white,
+    0 -1px white;
   animation: show-puzzle 0.3s linear forwards;
   background-color: rgb(243, 235, 226);
   position: relative;
@@ -207,6 +211,11 @@
   background-size: 1011px 563.5px;
   background-repeat: no-repeat;
   font-size: 22px;
+}
+
+.game-answers__word p {
+  pointer-events: none;
+  transition: 0.5s;
 }
 
 .game-answers__word_hide-image {
@@ -222,6 +231,7 @@
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
   background: white;
+  pointer-events: none;
 }
 
 .game-answers__word__ledge {
@@ -236,6 +246,16 @@
   border-right: solid 1px white;
   border-top: solid 1px white;
   border-bottom: solid 1px white;
+  pointer-events: none;
+}
+
+.game-box_complete .game-answers__word,
+.game-box_complete .game-answers__word__ledge {
+  border: none;
+}
+
+.game-box_complete .game-answers__word p {
+  opacity: 0;
 }
 
 .game-answers__word_first::before {
