@@ -87,6 +87,10 @@ const gameAnswers = document.createElement('div');
 gameAnswers.classList.add('game-answers');
 container.append(gameAnswers);
 
+const infoRound = document.createElement('div');
+infoRound.classList.add('info-round');
+gameAnswers.append(infoRound);
+
 const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
@@ -285,6 +289,8 @@ function createAnswers() {
     });
   }
 
+  infoRound.textContent = `Painting: ${arrLevels.rounds[currentRound].levelData.name}, Year: ${arrLevels.rounds[currentRound].levelData.year}, Author: ${arrLevels.rounds[currentRound].levelData.author}.`;
+
   arrWordsPuzzle
     .sort(() => Math.random() - 0.5)
     .forEach((puzzle) => {
@@ -472,6 +478,7 @@ function nextWords() {
   currentWords += 1;
   if (currentWords >= 10) {
     gameBox.classList.add('game-box_complete');
+    infoRound.classList.add('info-round_show');
     return;
     clearFields();
     currentWords = 0;
