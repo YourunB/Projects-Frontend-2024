@@ -75,13 +75,17 @@ const hintTranslate = document.createElement('p');
 hintTranslate.classList.add('hint-box__hint-translate');
 gameHint.append(hintTranslate);
 
+const container = document.createElement('div');
+container.classList.add('game-container');
+mainPageGame.append(container);
+
 const gameBox = document.createElement('div');
 gameBox.classList.add('game-box');
-mainPageGame.append(gameBox);
+container.append(gameBox);
 
 const gameAnswers = document.createElement('div');
 gameAnswers.classList.add('game-answers');
-mainPageGame.append(gameAnswers);
+container.append(gameAnswers);
 
 const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
@@ -256,14 +260,22 @@ function createAnswers() {
     if (i === 0) word.classList.add('game-answers__word_first');
     if (i === arrWords.length - 1) word.classList.add('game-answers__word_last');
     word.textContent = arrWords[i];
-    word.style.width = `${(100 / allWordsLength) * arrWords[i].length}%`;
-    word.style.minWidth = 'fit-content';
+    word.style.width = `${(1000 / allWordsLength) * arrWords[i].length}px`;
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
     word.draggable = true;
-    leftPosition += Number(word.style.width.slice(0, -1));
     word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.cutSrc}')`;
-    word.style.backgroundPosition = `${leftPosition}% ${topPosition}%`;
+    word.style.backgroundPosition = `${-leftPosition}px ${-topPosition}px`;
+    leftPosition += Number(word.style.width.slice(0, -2));
+
+    if (!word.classList.contains('game-answers__word_last')) {
+      const wordLedge = document.createElement('div');
+      wordLedge.classList.add('game-answers__word__ledge');
+      console.log(word.style.width);
+      wordLedge.style.backgroundPosition = `${-leftPosition}px ${-topPosition - 20.625}px`;
+      word.append(wordLedge);
+    }
+
     arrWordsPuzzle.push(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
@@ -277,7 +289,7 @@ function createAnswers() {
     });
 
   hintTranslate.textContent = levelData.textExampleTranslate;
-  topPosition += 10;
+  topPosition += 56.25;
 }
 
 function getFile(link: number) {
@@ -403,13 +415,20 @@ function changeLevel() {
 
 function resetGame() {
   mainPageGame.classList.add('page-game__main_hide');
+
+  const gameFieldsBlock = gameBox.getElementsByClassName('game-box__field_block');
+  const puzzles = pageGame.getElementsByClassName('game-answers__word');
+  const roundOptions = selectRound.getElementsByTagName('option');
+
   setTimeout(() => {
-    const puzzles = pageGame.getElementsByClassName('game-answers__word');
+    for (let i = 0; i < gameFieldsBlock.length; i += 1) {
+      gameFieldsBlock[i].classList.remove('game-box__field_block');
+    }
+
     for (let i = puzzles.length - 1; i >= 0; i -= 1) {
       puzzles[i].remove();
     }
 
-    const roundOptions = selectRound.getElementsByTagName('option');
     for (let i = roundOptions.length - 1; i >= 0; i -= 1) {
       roundOptions[i].remove();
     }
