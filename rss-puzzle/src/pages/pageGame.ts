@@ -87,6 +87,10 @@ const gameAnswers = document.createElement('div');
 gameAnswers.classList.add('game-answers');
 container.append(gameAnswers);
 
+const infoRound = document.createElement('div');
+infoRound.classList.add('info-round');
+gameAnswers.append(infoRound);
+
 const controlsPageGame = document.createElement('section');
 controlsPageGame.classList.add('controls');
 pageGame.append(controlsPageGame);
@@ -250,7 +254,6 @@ function createAnswers() {
   const arrWords = levelData.textExample.split(' ');
   const allWordsLength = arrWords.reduce((sum, word) => sum + word.length, 0);
   let leftPosition = 0;
-
   const arrWordsPuzzle = [];
 
   for (let i = 0; i < arrWords.length; i += 1) {
@@ -259,7 +262,12 @@ function createAnswers() {
     if (!hintPictureShow) word.classList.add('game-answers__word_hide-image');
     if (i === 0) word.classList.add('game-answers__word_first');
     if (i === arrWords.length - 1) word.classList.add('game-answers__word_last');
-    word.textContent = arrWords[i];
+
+    const wordText = document.createElement('p');
+    wordText.textContent = arrWords[i];
+    wordText.draggable = false;
+    word.append(wordText);
+
     word.style.width = `${(1000 / allWordsLength) * arrWords[i].length}px`;
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
@@ -271,7 +279,6 @@ function createAnswers() {
     if (!word.classList.contains('game-answers__word_last')) {
       const wordLedge = document.createElement('div');
       wordLedge.classList.add('game-answers__word__ledge');
-      console.log(word.style.width);
       wordLedge.style.backgroundPosition = `${-leftPosition}px ${-topPosition - 20.625}px`;
       word.append(wordLedge);
     }
@@ -281,6 +288,8 @@ function createAnswers() {
       movePuzzle(event);
     });
   }
+
+  infoRound.textContent = `Painting: ${arrLevels.rounds[currentRound].levelData.name}, Year: ${arrLevels.rounds[currentRound].levelData.year}, Author: ${arrLevels.rounds[currentRound].levelData.author}.`;
 
   arrWordsPuzzle
     .sort(() => Math.random() - 0.5)
@@ -415,6 +424,8 @@ function changeLevel() {
 
 function resetGame() {
   mainPageGame.classList.add('page-game__main_hide');
+  gameBox.classList.remove('game-box_complete');
+  infoRound.classList.remove('info-round_show');
 
   const gameFieldsBlock = gameBox.getElementsByClassName('game-box__field_block');
   const puzzles = pageGame.getElementsByClassName('game-answers__word');
@@ -468,6 +479,9 @@ function nextWords() {
   btnCheck.disabled = true;
   currentWords += 1;
   if (currentWords >= 10) {
+    gameBox.classList.add('game-box_complete');
+    infoRound.classList.add('info-round_show');
+    return;
     clearFields();
     currentWords = 0;
     currentRound += 1;
@@ -546,8 +560,12 @@ function startMove(event: TouchEvent | MouseEvent) {
 function endMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   targetElement.classList.remove('game-answers__word_move');
-  (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
-  gameAnswers.style.boxShadow = '';
+  if (gameFields[currentWords]) {
+    (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
+  }
+  if (gameAnswers) {
+    gameAnswers.style.boxShadow = '';
+  }
 }
 
 function move(event: TouchEvent | MouseEvent) {
