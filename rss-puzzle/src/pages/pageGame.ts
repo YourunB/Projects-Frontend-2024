@@ -424,6 +424,8 @@ function changeLevel() {
 
 function resetGame() {
   mainPageGame.classList.add('page-game__main_hide');
+  gameBox.classList.remove('game-box_complete');
+  infoRound.classList.remove('info-round_show');
 
   const gameFieldsBlock = gameBox.getElementsByClassName('game-box__field_block');
   const puzzles = pageGame.getElementsByClassName('game-answers__word');
