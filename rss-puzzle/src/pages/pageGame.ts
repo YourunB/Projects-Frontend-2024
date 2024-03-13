@@ -3,9 +3,11 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
+import { resultsWindow } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
+pageGame.append(resultsWindow);
 
 const headerPageGame = document.createElement('section');
 headerPageGame.classList.add('page-game__header');
@@ -101,18 +103,17 @@ btnAutoComplete.classList.add('controls__btn_auto');
 btnAutoComplete.textContent = 'Auto Complete';
 controlsPageGame.append(btnAutoComplete);
 
+const btnResuts = document.createElement('button');
+btnResuts.className = 'controls__btn controls__btn_results controls__btn_hide';
+btnResuts.textContent = 'Results';
+btnResuts.disabled = true;
+controlsPageGame.append(btnResuts);
+
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
 btnCheck.textContent = 'Check';
 btnCheck.disabled = true;
 controlsPageGame.append(btnCheck);
-
-const btnContinue = document.createElement('button');
-btnContinue.classList.add('controls__btn');
-btnContinue.textContent = 'Continue';
-btnContinue.style.display = 'none';
-btnContinue.disabled = true;
-controlsPageGame.append(btnContinue);
 
 interface levelData {
   audioExample: string;
@@ -166,6 +167,11 @@ function clearFields() {
   for (let i = allPuzzles.length - 1; i >= 0; i -= 1) {
     allPuzzles[i].remove();
   }
+
+  const gameFields = gameBox.getElementsByClassName('game-box__field');
+  for (let i = 0; i < gameFields.length; i += 1) {
+    gameFields[i].classList.remove('game-box__field_block');
+  }
 }
 
 function setHintOnOff() {
@@ -204,6 +210,39 @@ function setHintOnOff() {
   }
 }
 
+function saveCompleteLevel() {
+  const data = JSON.parse(localStorage.user);
+  if (data.levels[`level${currentLevel}`].rounds.indexOf(currentRound) === -1) {
+    data.levels[`level${currentLevel}`].total = arrLevels.rounds.length;
+    data.levels[`level${currentLevel}`].rounds.push(currentRound);
+    data.levels[`level${currentLevel}`].rounds.sort((a: number, b: number) => a - b);
+    localStorage.setItem('user', JSON.stringify(data));
+  }
+}
+
+function showFinalImage() {
+  saveCompleteLevel();
+  gameBox.classList.add('game-box_complete');
+  infoRound.classList.add('info-round_show');
+  btnCheck.classList.add('controls__btn_true');
+  btnCheck.textContent = 'Continue';
+  btnCheck.disabled = false;
+  btnAutoComplete.disabled = true;
+  btnResuts.classList.remove('controls__btn_hide');
+  btnResuts.disabled = false;
+}
+
+function hideFinalImage() {
+  gameBox.classList.remove('game-box_complete');
+  infoRound.classList.remove('info-round_show');
+  btnCheck.classList.remove('controls__btn_true');
+  btnCheck.textContent = 'Check';
+  btnCheck.disabled = true;
+  btnAutoComplete.disabled = false;
+  btnResuts.classList.add('controls__btn_hide');
+  btnResuts.disabled = true;
+}
+
 function checkField(gameFields: HTMLCollectionOf<Element>) {
   const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
   const arrWords = [];
@@ -214,12 +253,12 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
   if (levelData.textExample === arrWords.join(' ')) {
     btnCheck.textContent = 'Continue';
     btnCheck.classList.add('controls__btn_true');
-    btnContinue.disabled = false;
     letterTrue = true;
+    gameFields[currentWords].classList.add('game-box__field_block');
+    if (currentWords === 9) showFinalImage();
   } else {
     btnCheck.textContent = 'Check';
     btnCheck.classList.remove('controls__btn_true');
-    btnContinue.disabled = true;
     letterTrue = false;
   }
 
@@ -247,8 +286,6 @@ function movePuzzle(event: Event) {
 }
 
 function createAnswers() {
-  btnContinue.disabled = true;
-
   roundData = arrLevels.rounds[currentRound].levelData;
   levelData = arrLevels.rounds[currentRound].words[currentWords];
   const arrWords = levelData.textExample.split(' ');
@@ -450,46 +487,53 @@ function resetGame() {
 
 const gameFields = pageGame.getElementsByClassName('game-box__field');
 
-function saveCompleteLevel() {
-  const data = JSON.parse(localStorage.user);
-  if (data.levels[`level${currentLevel}`].rounds.indexOf(currentRound) === -1) {
-    data.levels[`level${currentLevel}`].total = arrLevels.rounds.length;
-    data.levels[`level${currentLevel}`].rounds.push(currentRound);
-    data.levels[`level${currentLevel}`].rounds.sort((a: number, b: number) => a - b);
-    localStorage.setItem('user', JSON.stringify(data));
-  }
-}
-
 function nextWords() {
-  if (currentWords >= 9) saveCompleteLevel();
-  if (currentWords >= 9 && currentRound === arrLevels.rounds.length - 1) {
-    if (currentLevel === 6 && currentRound === arrLevels.rounds.length - 1) {
-      return;
+  if (currentWords < 10) {
+    letterTrue = false;
+    gameFields[currentWords].classList.add('game-box__field_block');
+    setHintOnOff();
+    btnCheck.textContent = 'Check';
+    btnCheck.classList.remove('controls__btn_true');
+    btnCheck.disabled = true;
+    currentWords += 1;
+    if (currentWords < 10) {
+      createAnswers();
+      hintTranslate.textContent = levelData.textExampleTranslate;
+      showSelectLevel();
     }
-    currentRound = 0;
-    currentLevel += 1;
-    resetGame();
-    changeLevel();
   }
-  letterTrue = false;
-  gameFields[currentWords].classList.add('game-box__field_block');
-  setHintOnOff();
-  btnCheck.textContent = 'Check';
-  btnCheck.classList.remove('controls__btn_true');
-  btnCheck.disabled = true;
-  currentWords += 1;
-  if (currentWords >= 10) {
-    gameBox.classList.add('game-box_complete');
-    infoRound.classList.add('info-round_show');
+
+  if (currentWords === 10) {
+    showFinalImage();
+    currentWords += 1;
     return;
+  }
+
+  if (currentWords > 10) {
+    hideFinalImage();
     clearFields();
     currentWords = 0;
     currentRound += 1;
     topPosition = 0;
+
+    if (currentLevel !== 6 && currentRound === arrLevels.rounds.length) {
+      currentRound = 0;
+      currentLevel += 1;
+      resetGame();
+      changeLevel();
+    }
+
+    if (currentLevel === 6 && currentRound === arrLevels.rounds.length) {
+      currentRound = 0;
+      currentLevel = 1;
+      resetGame();
+      changeLevel();
+    }
+
+    createAnswers();
+    hintTranslate.textContent = levelData.textExampleTranslate;
+    showSelectLevel();
   }
-  createAnswers();
-  hintTranslate.textContent = levelData.textExampleTranslate;
-  showSelectLevel();
 }
 
 function autoComplete() {
@@ -533,11 +577,6 @@ function autoComplete() {
     gameFields[fieldNumber].classList.remove('game-box__field_complete');
   }, 500);
 }
-
-btnContinue.addEventListener('click', () => {
-  btnContinue.disabled = true;
-  nextWords();
-});
 
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highlighPuzzle();
@@ -671,6 +710,10 @@ selectRound.addEventListener('change', () => {
     resetGame();
     changeLevel();
   }
+});
+
+btnResuts.addEventListener('click', () => {
+  resultsWindow.classList.add('results-window_show');
 });
 
 export { pageGame, startGame, resetGame };
