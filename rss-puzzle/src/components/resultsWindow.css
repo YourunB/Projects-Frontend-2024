@@ -43,10 +43,12 @@
   display: block;
 }
 
-.results-window__panel__button:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+@media (hover:hover) {
+  .results-window__panel__button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .results-window__panel__button:active {
