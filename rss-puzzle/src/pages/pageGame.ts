@@ -3,9 +3,11 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
+import { resultsWindow } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
+pageGame.append(resultsWindow);
 
 const headerPageGame = document.createElement('section');
 headerPageGame.classList.add('page-game__header');
@@ -708,6 +710,10 @@ selectRound.addEventListener('change', () => {
     resetGame();
     changeLevel();
   }
+});
+
+btnResuts.addEventListener('click', () => {
+  resultsWindow.classList.add('results-window_show');
 });
 
 export { pageGame, startGame, resetGame };
