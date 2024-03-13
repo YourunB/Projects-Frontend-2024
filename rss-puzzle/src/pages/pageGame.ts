@@ -103,11 +103,11 @@ btnAutoComplete.classList.add('controls__btn_auto');
 btnAutoComplete.textContent = 'Give Up';
 controlsPageGame.append(btnAutoComplete);
 
-const btnResuts = document.createElement('button');
-btnResuts.className = 'controls__btn controls__btn_results controls__btn_hide';
-btnResuts.textContent = 'Results';
-btnResuts.disabled = true;
-controlsPageGame.append(btnResuts);
+const btnResults = document.createElement('button');
+btnResults.className = 'controls__btn controls__btn_results controls__btn_hide';
+btnResults.textContent = 'Results';
+btnResults.disabled = true;
+controlsPageGame.append(btnResults);
 
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
@@ -235,8 +235,8 @@ function showFinalImage() {
   btnCheck.textContent = 'Continue';
   btnCheck.disabled = false;
   btnAutoComplete.disabled = true;
-  btnResuts.classList.remove('controls__btn_hide');
-  btnResuts.disabled = false;
+  btnResults.classList.remove('controls__btn_hide');
+  btnResults.disabled = false;
 }
 
 function hideFinalImage() {
@@ -246,8 +246,8 @@ function hideFinalImage() {
   btnCheck.textContent = 'Check';
   btnCheck.disabled = true;
   btnAutoComplete.disabled = false;
-  btnResuts.classList.add('controls__btn_hide');
-  btnResuts.disabled = true;
+  btnResults.classList.add('controls__btn_hide');
+  btnResults.disabled = true;
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
@@ -724,7 +724,7 @@ selectRound.addEventListener('change', () => {
   }
 });
 
-btnResuts.addEventListener('click', () => {
+btnResults.addEventListener('click', () => {
   let countKnow = 0;
   let countDontKnow = 0;
   const data = JSON.parse(localStorage.user);
