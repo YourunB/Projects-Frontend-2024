@@ -53,6 +53,7 @@ function login() {
     hintTranslateState: true,
     hintAudioState: true,
     hintPictureState: true,
+    results: [],
     levels: {
       level1: {
         rounds: [],

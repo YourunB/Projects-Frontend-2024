@@ -3,7 +3,7 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
-import { resultsWindow, btnContinueInResults } from '../components/resultsWindow';
+import { resultsWindow, btnContinueInResults, fillPanel } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -100,7 +100,7 @@ pageGame.append(controlsPageGame);
 const btnAutoComplete = document.createElement('button');
 btnAutoComplete.classList.add('controls__btn');
 btnAutoComplete.classList.add('controls__btn_auto');
-btnAutoComplete.textContent = 'Auto Complete';
+btnAutoComplete.textContent = 'Give Up';
 controlsPageGame.append(btnAutoComplete);
 
 const btnResuts = document.createElement('button');
@@ -208,6 +208,13 @@ function setHintOnOff() {
       }
     }
   }
+}
+
+function saveResults(complete: boolean, round: number) {
+  const data = JSON.parse(localStorage.user);
+  if (round === 0) data.results = [];
+  data.results.push([round, complete]);
+  localStorage.setItem('user', JSON.stringify(data));
 }
 
 function saveCompleteLevel() {
@@ -576,11 +583,16 @@ function autoComplete() {
   setTimeout(() => {
     gameFields[fieldNumber].classList.remove('game-box__field_complete');
   }, 500);
+
+  if (currentWords < 10) saveResults(false, currentWords);
 }
 
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highlighPuzzle();
-  if (btnCheck.textContent !== 'Check') nextWords();
+  if (btnCheck.textContent !== 'Check') {
+    if (currentWords < 10) saveResults(true, currentWords);
+    nextWords();
+  }
 });
 
 btnAutoComplete.addEventListener('click', () => {
@@ -713,6 +725,14 @@ selectRound.addEventListener('change', () => {
 });
 
 btnResuts.addEventListener('click', () => {
+  let countKnow = 0;
+  let countDontKnow = 0;
+  const data = JSON.parse(localStorage.user);
+  data.results.forEach((el: string[]) => {
+    el[1] === 'true' ? (countKnow += 1) : (countDontKnow += 1);
+  });
+
+  fillPanel(countKnow, countDontKnow);
   resultsWindow.classList.add('results-window_show');
 });
 
