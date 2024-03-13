@@ -26,6 +26,7 @@
   width: 100%;
   overflow-y: auto;
   min-height: 200px;
+  max-height: 680px;
   padding: 20px;
 }
 
@@ -41,6 +42,31 @@
   box-shadow: 2px 2px 2px 2px rgba(0, 175, 0, 0.3);
   margin: 0 auto;
   display: block;
+}
+
+.results-window__panel__box_sentence {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-sound {
+  width: 35px;
+  height: 35px;
+  transition: 0.5s;
+}
+
+.btn-sound:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.btn-sound:active {
+  transition: 0.2s;
+  transform: scale(0.9);
 }
 
 .results-window__panel__box {

@@ -3,7 +3,7 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
-import { resultsWindow, btnContinueInResults, fillPanel } from '../components/resultsWindow';
+import { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -732,7 +732,13 @@ btnResults.addEventListener('click', () => {
     el[1] === true ? (countKnow += 1) : (countDontKnow += 1);
   });
 
-  fillPanel(countKnow, countDontKnow);
+  for (let i = 0; i < data.results.length; i += 1) {
+    const audioSrc = arrLevels.rounds[currentRound].words[i].audioExample;
+    const sentence = arrLevels.rounds[currentRound].words[i].textExample;
+    addSentenceResult(audioSrc, sentence, data.results[i][1]);
+  }
+
+  addCountsResult(countKnow, countDontKnow);
   resultsWindow.classList.add('results-window_show');
 });
 
