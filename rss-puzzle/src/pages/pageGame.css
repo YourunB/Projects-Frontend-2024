@@ -133,6 +133,7 @@
   border: solid 2px white;
   transition: 0.7s;
   margin: 10px;
+  min-width: 100px;
 }
 
 .controls__btn_auto {
@@ -144,6 +145,16 @@
   border-color: rgb(0, 175, 0);
   background: rgb(0, 175, 0);
   box-shadow: 2px 2px 2px 2px rgba(0, 175, 0, 0.3);
+}
+
+.controls__btn_results {
+  border-color: rgb(255, 166, 0);
+  background: rgb(255, 166, 0);
+  box-shadow: 2px 2px 2px 2px rgba(255, 166, 0, 0.3);
+}
+
+.controls__btn_hide {
+  opacity: 0;
 }
 
 .game-container {
