@@ -51,4 +51,9 @@ function addSentenceResult(audioSrc: string, text: string, know: boolean) {
   know ? knowBox.append(sentence) : dontKnowBox.append(sentence);
 }
 
-export { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult };
+function removeSentenceResult() {
+  const sentence = resultsPanel.getElementsByClassName('results-window__panel__box_sentence');
+  for (let i = sentence.length - 1; i >= 0; i -= 1) sentence[i].remove();
+}
+
+export { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult, removeSentenceResult };

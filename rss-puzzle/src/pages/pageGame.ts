@@ -3,7 +3,13 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
-import { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult } from '../components/resultsWindow';
+import {
+  resultsWindow,
+  btnContinueInResults,
+  addCountsResult,
+  addSentenceResult,
+  removeSentenceResult,
+} from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -745,6 +751,7 @@ btnResults.addEventListener('click', () => {
 btnContinueInResults.addEventListener('click', () => {
   nextWords();
   resultsWindow.classList.remove('results-window_show');
+  removeSentenceResult();
 });
 
 export { pageGame, startGame, resetGame };
