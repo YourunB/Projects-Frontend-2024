@@ -56,4 +56,12 @@ function removeSentenceResult() {
   for (let i = sentence.length - 1; i >= 0; i -= 1) sentence[i].remove();
 }
 
+resultsWindow.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.classList.contains('btn-sound')) {
+    resultAudio.src = `${currentTarget.dataset.audio}`;
+    resultAudio.play();
+  }
+});
+
 export { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult, removeSentenceResult };
