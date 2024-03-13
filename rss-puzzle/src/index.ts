@@ -55,12 +55,7 @@ window.addEventListener('hashchange', () => {
   if (location.hash === '#game' && localStorage.user === undefined) {
     location.hash = '#welcome';
   }
-  if (
-    location.hash !== '#login' &&
-    location.hash !== '#welcome' &&
-    location.hash !== '#game' &&
-    location.hash !== '#results'
-  ) {
+  if (location.hash !== '#login' && location.hash !== '#welcome' && location.hash !== '#game') {
     content.innerHTML = 'This page does not exist!';
   }
   content.classList.add('pages-window_hide');
