@@ -3,7 +3,7 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
-import { resultsWindow } from '../components/resultsWindow';
+import { resultsWindow, btnContinueInResults } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -714,6 +714,11 @@ selectRound.addEventListener('change', () => {
 
 btnResuts.addEventListener('click', () => {
   resultsWindow.classList.add('results-window_show');
+});
+
+btnContinueInResults.addEventListener('click', () => {
+  nextWords();
+  resultsWindow.classList.remove('results-window_show');
 });
 
 export { pageGame, startGame, resetGame };
