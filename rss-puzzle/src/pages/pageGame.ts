@@ -728,8 +728,8 @@ btnResults.addEventListener('click', () => {
   let countKnow = 0;
   let countDontKnow = 0;
   const data = JSON.parse(localStorage.user);
-  data.results.forEach((el: string[]) => {
-    el[1] === 'true' ? (countKnow += 1) : (countDontKnow += 1);
+  data.results.forEach((el: [number, boolean]) => {
+    el[1] === true ? (countKnow += 1) : (countDontKnow += 1);
   });
 
   fillPanel(countKnow, countDontKnow);
