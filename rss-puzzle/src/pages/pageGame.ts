@@ -3,7 +3,7 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
-import { resultsWindow, btnContinueInResults } from '../components/resultsWindow';
+import { resultsWindow, btnContinueInResults, fillPanel } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
 pageGame.classList.add('page-game');
@@ -100,14 +100,14 @@ pageGame.append(controlsPageGame);
 const btnAutoComplete = document.createElement('button');
 btnAutoComplete.classList.add('controls__btn');
 btnAutoComplete.classList.add('controls__btn_auto');
-btnAutoComplete.textContent = 'Auto Complete';
+btnAutoComplete.textContent = 'Give Up';
 controlsPageGame.append(btnAutoComplete);
 
-const btnResuts = document.createElement('button');
-btnResuts.className = 'controls__btn controls__btn_results controls__btn_hide';
-btnResuts.textContent = 'Results';
-btnResuts.disabled = true;
-controlsPageGame.append(btnResuts);
+const btnResults = document.createElement('button');
+btnResults.className = 'controls__btn controls__btn_results controls__btn_hide';
+btnResults.textContent = 'Results';
+btnResults.disabled = true;
+controlsPageGame.append(btnResults);
 
 const btnCheck = document.createElement('button');
 btnCheck.classList.add('controls__btn');
@@ -210,6 +210,13 @@ function setHintOnOff() {
   }
 }
 
+function saveResults(complete: boolean, round: number) {
+  const data = JSON.parse(localStorage.user);
+  if (round === 0) data.results = [];
+  data.results.push([round, complete]);
+  localStorage.setItem('user', JSON.stringify(data));
+}
+
 function saveCompleteLevel() {
   const data = JSON.parse(localStorage.user);
   if (data.levels[`level${currentLevel}`].rounds.indexOf(currentRound) === -1) {
@@ -228,8 +235,8 @@ function showFinalImage() {
   btnCheck.textContent = 'Continue';
   btnCheck.disabled = false;
   btnAutoComplete.disabled = true;
-  btnResuts.classList.remove('controls__btn_hide');
-  btnResuts.disabled = false;
+  btnResults.classList.remove('controls__btn_hide');
+  btnResults.disabled = false;
 }
 
 function hideFinalImage() {
@@ -239,8 +246,8 @@ function hideFinalImage() {
   btnCheck.textContent = 'Check';
   btnCheck.disabled = true;
   btnAutoComplete.disabled = false;
-  btnResuts.classList.add('controls__btn_hide');
-  btnResuts.disabled = true;
+  btnResults.classList.add('controls__btn_hide');
+  btnResults.disabled = true;
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
@@ -576,11 +583,16 @@ function autoComplete() {
   setTimeout(() => {
     gameFields[fieldNumber].classList.remove('game-box__field_complete');
   }, 500);
+
+  if (currentWords < 10) saveResults(false, currentWords);
 }
 
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highlighPuzzle();
-  if (btnCheck.textContent !== 'Check') nextWords();
+  if (btnCheck.textContent !== 'Check') {
+    if (currentWords < 10) saveResults(true, currentWords);
+    nextWords();
+  }
 });
 
 btnAutoComplete.addEventListener('click', () => {
@@ -712,7 +724,15 @@ selectRound.addEventListener('change', () => {
   }
 });
 
-btnResuts.addEventListener('click', () => {
+btnResults.addEventListener('click', () => {
+  let countKnow = 0;
+  let countDontKnow = 0;
+  const data = JSON.parse(localStorage.user);
+  data.results.forEach((el: [number, boolean]) => {
+    el[1] === true ? (countKnow += 1) : (countDontKnow += 1);
+  });
+
+  fillPanel(countKnow, countDontKnow);
   resultsWindow.classList.add('results-window_show');
 });
 

@@ -43,7 +43,23 @@
   display: block;
 }
 
-@media (hover:hover) {
+.results-window__panel__box {
+  min-height: 100px;
+}
+
+.results-window__panel_text span {
+  font-weight: 700;
+}
+
+.results-window__panel_text:nth-of-type(1) span {
+  color: red;
+}
+
+.results-window__panel_text:nth-of-type(2) span {
+  color: rgb(0, 175, 0);
+}
+
+@media (hover: hover) {
   .results-window__panel__button:hover {
     transform: scale(1.1);
     cursor: pointer;
