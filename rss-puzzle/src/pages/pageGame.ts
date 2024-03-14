@@ -322,6 +322,7 @@ function createAnswers() {
     word.style.width = `${(1000 / allWordsLength) * arrWords[i].length}px`;
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
+    word.dataset.position = `${i}`;
     word.draggable = true;
     word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.imageSrc}')`;
     word.style.backgroundPosition = `${-leftPosition}px ${-topPosition}px`;
@@ -554,7 +555,6 @@ function autoComplete() {
   btnAutoComplete.disabled = true;
   btnCheck.disabled = true;
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
-  const sourceResult = levelData.textExample.split(' ');
   const result: HTMLElement[] = [];
 
   letterTrue = true;
@@ -562,16 +562,13 @@ function autoComplete() {
 
   gameFields[currentWords].classList.add('game-box__field_block');
 
-  for (let i = 0; i < sourceResult.length; i += 1) {
-    for (let j = 0; j < currentPuzzles.length; j += 1) {
-      if (
-        sourceResult[i] === currentPuzzles[j].textContent &&
-        (<HTMLElement>currentPuzzles[j]).dataset.field === currentWords.toString()
-      ) {
-        result.push(<HTMLElement>currentPuzzles[j]);
-      }
+  Array.from(currentPuzzles).forEach((puzzle) => {
+    if ((<HTMLElement>puzzle).dataset.field === currentWords.toString()) {
+      result.push(<HTMLElement>puzzle);
     }
-  }
+  });
+
+  result.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
 
   const fieldNumber = currentWords;
   for (let i = 0; i < result.length; i += 1) {
