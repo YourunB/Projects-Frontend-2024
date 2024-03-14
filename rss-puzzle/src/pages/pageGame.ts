@@ -634,6 +634,7 @@ function endMove(event: TouchEvent | MouseEvent) {
   if (gameAnswers) {
     gameAnswers.style.boxShadow = '';
   }
+  checkField(gameFields);
   audioTouch.play();
 }
 
@@ -659,8 +660,6 @@ function move(event: TouchEvent | MouseEvent) {
   } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
     nextElement.before(moveElement);
   }
-
-  checkField(gameFields);
 }
 
 mainPageGame.addEventListener('touchstart', startMove);
@@ -687,8 +686,6 @@ mainPageGame.addEventListener('dragover', (event) => {
   } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
     nextElement.before(moveElement);
   }
-
-  checkField(gameFields);
 });
 
 function changeHintState(hint: string) {
