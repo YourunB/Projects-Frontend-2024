@@ -12,11 +12,11 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-color: #6abdcd;
-  background-image: url('assets/images/background.jpg');
+  background-color: black;
+  background-image: url('assets/images/background.png');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-position: left bottom;
+  background-size: 50vh;
   background-attachment: fixed;
   user-select: none;
 }

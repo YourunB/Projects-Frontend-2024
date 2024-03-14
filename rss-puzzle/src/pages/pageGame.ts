@@ -421,32 +421,32 @@ function loadCompleteLevel() {
 function showSelectLevel() {
   const data = JSON.parse(localStorage.user);
 
-  const optinsSelectLevel = selectLevel.getElementsByTagName('option');
-  for (let i = 0; i < optinsSelectLevel.length; i += 1) {
+  const optionsSelectLevel = selectLevel.getElementsByTagName('option');
+  for (let i = 0; i < optionsSelectLevel.length; i += 1) {
     const level = `level${i + 1}`;
     if (data.levels[level].total === data.levels[level].rounds.length) {
-      optinsSelectLevel[i].classList.add('select-level__item_completed');
+      optionsSelectLevel[i].classList.add('select-level__item_completed');
     } else {
-      optinsSelectLevel[i].classList.remove('select-level__item_completed');
+      optionsSelectLevel[i].classList.remove('select-level__item_completed');
     }
-    optinsSelectLevel[i].classList.remove('select-level__item_selected');
-    if (Number(optinsSelectLevel[i].value) === currentLevel) {
-      optinsSelectLevel[i].selected = true;
-      optinsSelectLevel[i].classList.add('select-level__item_selected');
+    optionsSelectLevel[i].classList.remove('select-level__item_selected');
+    if (Number(optionsSelectLevel[i].value) === currentLevel) {
+      optionsSelectLevel[i].selected = true;
+      optionsSelectLevel[i].classList.add('select-level__item_selected');
     }
   }
 
-  const optinsSelectRound = selectRound.getElementsByTagName('option');
-  for (let i = 0; i < optinsSelectRound.length; i += 1) {
-    optinsSelectRound[i].classList.remove('select-level__item_selected');
+  const optionsSelectRound = selectRound.getElementsByTagName('option');
+  for (let i = 0; i < optionsSelectRound.length; i += 1) {
+    optionsSelectRound[i].classList.remove('select-level__item_selected');
     if (data.levels[`level${currentLevel}`].rounds.indexOf(i) !== -1) {
-      optinsSelectRound[i].classList.add('select-level__item_completed');
+      optionsSelectRound[i].classList.add('select-level__item_completed');
     } else {
-      optinsSelectRound[i].classList.remove('select-level__item_completed');
+      optionsSelectRound[i].classList.remove('select-level__item_completed');
     }
-    if (Number(optinsSelectRound[i].value) === currentRound) {
-      optinsSelectRound[i].selected = true;
-      optinsSelectRound[i].classList.add('select-level__item_selected');
+    if (Number(optionsSelectRound[i].value) === currentRound) {
+      optionsSelectRound[i].selected = true;
+      optionsSelectRound[i].classList.add('select-level__item_selected');
     }
   }
 }
@@ -625,8 +625,8 @@ function startMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   if (targetElement.classList.contains('game-answers__word')) {
     targetElement.classList.add('game-answers__word_move');
-    (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 3px 3px yellow';
-    gameAnswers.style.boxShadow = '0 0 3px 3px yellow';
+    (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 2px 2px white';
+    gameAnswers.style.boxShadow = '0 0 2px 2px white';
   }
 }
 
