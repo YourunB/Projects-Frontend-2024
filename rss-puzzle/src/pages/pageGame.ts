@@ -364,13 +364,14 @@ function getFile(link: number) {
     });
 }
 
-function highlighPuzzle() {
+function highLighPuzzle() {
   const gameFields = pageGame.getElementsByClassName('game-box__field');
-  const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
-  const correctResult = levelData.textExample.split(' ');
+  const allPuzzles = gameFields[currentWords].getElementsByClassName(
+    'game-answers__word'
+  ) as HTMLCollectionOf<HTMLElement>;
 
   for (let i = 0; i < allPuzzles.length; i += 1) {
-    if (correctResult[i] === allPuzzles[i].textContent) {
+    if (allPuzzles[i].dataset.position === i.toString()) {
       allPuzzles[i].classList.add('game-answers__word_true');
     } else {
       allPuzzles[i].classList.add('game-answers__word_false');
@@ -378,7 +379,7 @@ function highlighPuzzle() {
   }
 
   setTimeout(() => {
-    const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+    const allPuzzles = pageGame.getElementsByClassName('game-answers__word') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < allPuzzles.length; i += 1) {
       allPuzzles[i].classList.remove('game-answers__word_true');
       allPuzzles[i].classList.remove('game-answers__word_false');
@@ -595,7 +596,7 @@ function autoComplete() {
 }
 
 btnCheck.addEventListener('click', () => {
-  if (btnCheck.textContent === 'Check') highlighPuzzle();
+  if (btnCheck.textContent === 'Check') highLighPuzzle();
   if (btnCheck.textContent !== 'Check') {
     if (currentWords < 10) saveResults(true, currentWords);
     nextWords();
