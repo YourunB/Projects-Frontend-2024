@@ -11,21 +11,34 @@ const resultsPanel = document.createElement('div');
 resultsPanel.classList.add('results-window__panel');
 resultsWindow.append(resultsPanel);
 
+const painting = document.createElement('img');
+painting.alt = 'Painting';
+painting.classList.add('results-window__panel__painting');
+resultsPanel.append(painting);
+
+const aboutPainting = document.createElement('h3');
+aboutPainting.classList.add('results-window__panel__about-painting');
+resultsPanel.append(aboutPainting);
+
+const wrapperSentences = document.createElement('div');
+wrapperSentences.classList.add('wrapper-sentences');
+resultsPanel.append(wrapperSentences);
+
 const dontKnowText = document.createElement('p');
 dontKnowText.classList.add('results-window__panel_text');
-resultsPanel.append(dontKnowText);
+wrapperSentences.append(dontKnowText);
 
 const dontKnowBox = document.createElement('div');
 dontKnowBox.classList.add('results-window__panel__box');
-resultsPanel.append(dontKnowBox);
+wrapperSentences.append(dontKnowBox);
 
 const knowText = document.createElement('p');
 knowText.classList.add('results-window__panel_text');
-resultsPanel.append(knowText);
+wrapperSentences.append(knowText);
 
 const knowBox = document.createElement('div');
 knowBox.classList.add('results-window__panel__box');
-resultsPanel.append(knowBox);
+wrapperSentences.append(knowBox);
 
 const btnContinueInResults = document.createElement('button');
 btnContinueInResults.textContent = 'Continue';
@@ -64,4 +77,9 @@ resultsWindow.addEventListener('click', (event) => {
   }
 });
 
-export { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult, removeSentenceResult };
+function addPainting(paintingSrc: string, paintingAuthor: string, paintingInfo: string) {
+  painting.src = paintingSrc;
+  aboutPainting.textContent = `${paintingAuthor} - ${paintingInfo}`;
+}
+
+export { resultsWindow, btnContinueInResults, addCountsResult, addSentenceResult, removeSentenceResult, addPainting };
