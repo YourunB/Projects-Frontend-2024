@@ -3,6 +3,8 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
+import '../assets/audio/touch.mp3';
+import '../assets/audio/complete.mp3';
 import {
   resultsWindow,
   btnContinueInResults,
@@ -64,7 +66,11 @@ btnHintPicture.src = 'picture.svg';
 hintBtns.append(btnHintPicture);
 
 const audioPlayer = document.createElement('audio');
-pageGame.append(audioPlayer);
+const audioTouch = document.createElement('audio');
+audioTouch.src = 'touch.mp3';
+const audioComplete = document.createElement('audio');
+audioComplete.src = 'complete.mp3';
+pageGame.append(audioPlayer, audioTouch, audioComplete);
 
 const mainPageGame = document.createElement('section');
 mainPageGame.classList.add('page-game__main');
@@ -275,6 +281,7 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
       btnCheck.classList.add('controls__btn_true');
       letterTrue = true;
       gameFields[currentWords].classList.add('game-box__field_block');
+      audioComplete.play();
       if (currentWords === 9) showFinalImage();
     } else {
       btnCheck.textContent = 'Check';
@@ -341,6 +348,7 @@ function createAnswers() {
     arrWordsPuzzle.push(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
+      audioTouch.play();
     });
   }
 
@@ -582,6 +590,7 @@ function autoComplete() {
     if (i >= result.length - 1) {
       setTimeout(() => {
         if (i === result.length - 1) btnAutoComplete.disabled = false;
+        audioComplete.play();
         nextWords();
       }, i * 200);
     }
@@ -625,6 +634,8 @@ function endMove(event: TouchEvent | MouseEvent) {
   if (gameAnswers) {
     gameAnswers.style.boxShadow = '';
   }
+  checkField(gameFields);
+  audioTouch.play();
 }
 
 function move(event: TouchEvent | MouseEvent) {
@@ -649,8 +660,6 @@ function move(event: TouchEvent | MouseEvent) {
   } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
     nextElement.before(moveElement);
   }
-
-  checkField(gameFields);
 }
 
 mainPageGame.addEventListener('touchstart', startMove);
@@ -677,8 +686,6 @@ mainPageGame.addEventListener('dragover', (event) => {
   } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
     nextElement.before(moveElement);
   }
-
-  checkField(gameFields);
 });
 
 function changeHintState(hint: string) {
