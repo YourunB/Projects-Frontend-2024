@@ -24,7 +24,7 @@ const baseConfig = {
         use: ['html-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif|svg|mp3)$/i,
         type: 'asset/resource',
       },
     ],

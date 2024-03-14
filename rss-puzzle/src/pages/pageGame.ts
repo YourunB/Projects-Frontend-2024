@@ -3,6 +3,8 @@ import '../assets/images/svg/translate.svg';
 import '../assets/images/svg/volume.svg';
 import '../assets/images/svg/audio.svg';
 import '../assets/images/svg/picture.svg';
+import '../assets/audio/touch.mp3';
+import '../assets/audio/complete.mp3';
 import {
   resultsWindow,
   btnContinueInResults,
@@ -64,7 +66,11 @@ btnHintPicture.src = 'picture.svg';
 hintBtns.append(btnHintPicture);
 
 const audioPlayer = document.createElement('audio');
-pageGame.append(audioPlayer);
+const audioTouch = document.createElement('audio');
+audioTouch.src = 'touch.mp3';
+const audioComplete = document.createElement('audio');
+audioComplete.src = 'complete.mp3';
+pageGame.append(audioPlayer, audioTouch, audioComplete);
 
 const mainPageGame = document.createElement('section');
 mainPageGame.classList.add('page-game__main');
