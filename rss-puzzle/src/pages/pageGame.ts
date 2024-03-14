@@ -296,16 +296,15 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
 function movePuzzle(event: Event) {
   const gameFields = document.getElementsByClassName('game-box__field');
   const gameAnswers = document.getElementsByClassName('game-answers');
+  const currentTarget = event.target as HTMLElement;
 
-  if (event.target instanceof HTMLElement && event.target.dataset.complete !== 'true') {
-    if (event.target.dataset.checked === 'false') {
-      event.target.dataset.checked = 'true';
-      gameFields[currentWords].append(event.target as HTMLElement);
-    } else {
-      event.target.dataset.checked = 'false';
-      gameAnswers[0].append(event.target as HTMLElement);
-    }
-  }
+  if (
+    currentTarget.classList.contains('game-answers__word') &&
+    currentTarget.parentElement?.classList.contains('game-answers')
+  ) {
+    gameFields[currentWords].append(currentTarget);
+  } else gameAnswers[0].append(currentTarget);
+
   checkField(gameFields);
 }
 
@@ -330,7 +329,6 @@ function createAnswers() {
     word.append(wordText);
 
     word.style.width = `${(1000 / allWordsLength) * arrWords[i].length}px`;
-    word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
     word.dataset.position = `${i}`;
     word.draggable = true;
