@@ -258,26 +258,29 @@ function hideFinalImage() {
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
-  const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
-  const arrWords = [];
-  for (let i = 0; i < arrPuzzles.length; i += 1) {
-    arrWords.push(arrPuzzles[i].textContent);
-  }
-
-  if (levelData.textExample === arrWords.join(' ')) {
-    btnCheck.textContent = 'Continue';
-    btnCheck.classList.add('controls__btn_true');
-    letterTrue = true;
-    gameFields[currentWords].classList.add('game-box__field_block');
-    if (currentWords === 9) showFinalImage();
-  } else {
-    btnCheck.textContent = 'Check';
-    btnCheck.classList.remove('controls__btn_true');
-    letterTrue = false;
-  }
+  const arrPuzzles = Array.from(
+    gameFields[currentWords].getElementsByClassName('game-answers__word') as HTMLCollectionOf<HTMLElement>
+  );
 
   if (levelData.textExample.split(' ').length === arrPuzzles.length) {
     btnCheck.disabled = false;
+    const arrPuzzlesSort = [...arrPuzzles].sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
+    const arrIsEqual = (arr1: HTMLElement[], arr2: HTMLElement[]) => {
+      for (let i = 0; i < arr1.length; i += 1) if (arr1[i] !== arr2[i]) return false;
+      return true;
+    };
+
+    if (arrIsEqual(arrPuzzles, arrPuzzlesSort)) {
+      btnCheck.textContent = 'Continue';
+      btnCheck.classList.add('controls__btn_true');
+      letterTrue = true;
+      gameFields[currentWords].classList.add('game-box__field_block');
+      if (currentWords === 9) showFinalImage();
+    } else {
+      btnCheck.textContent = 'Check';
+      btnCheck.classList.remove('controls__btn_true');
+      letterTrue = false;
+    }
   } else btnCheck.disabled = true;
 
   setHintOnOff();
