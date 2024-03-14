@@ -19,6 +19,7 @@ body {
   background-size: 50vh;
   background-attachment: fixed;
   user-select: none;
+  animation: chaoticMovement 40s linear infinite;
 }
 
 .pages-window {
@@ -44,4 +45,27 @@ body {
 .pages-window_hide {
   transition: 0s;
   opacity: 0;
+}
+
+@keyframes chaoticMovement {
+  0% { 
+    background-position: left bottom;
+    background-size: 50vh;
+  }
+  25% {
+    background-position: right top;
+    background-size: 25vh;
+  }
+  50% {
+    background-position: left top;
+    background-size: 40vh;
+  }
+  75% {
+    background-position: right bottom;
+    background-size: 30vh;
+  }
+  100% { 
+    background-position: left bottom; 
+    background-size: 50vh;
+  }
 }
