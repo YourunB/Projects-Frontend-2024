@@ -9,6 +9,7 @@ import {
   addCountsResult,
   addSentenceResult,
   removeSentenceResult,
+  addPainting,
 } from '../components/resultsWindow';
 
 const pageGame = document.createElement('section');
@@ -322,7 +323,7 @@ function createAnswers() {
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
     word.draggable = true;
-    word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.cutSrc}')`;
+    word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.imageSrc}')`;
     word.style.backgroundPosition = `${-leftPosition}px ${-topPosition}px`;
     leftPosition += Number(word.style.width.slice(0, -2));
 
@@ -734,16 +735,18 @@ btnResults.addEventListener('click', () => {
   let countKnow = 0;
   let countDontKnow = 0;
   const data = JSON.parse(localStorage.user);
-  data.results.forEach((el: [number, boolean]) => {
-    el[1] === true ? (countKnow += 1) : (countDontKnow += 1);
-  });
 
   for (let i = 0; i < data.results.length; i += 1) {
     const audioSrc = arrLevels.rounds[currentRound].words[i].audioExample;
     const sentence = arrLevels.rounds[currentRound].words[i].textExample;
     addSentenceResult(audioSrc, sentence, data.results[i][1]);
+    data.results[i][1] === true ? (countKnow += 1) : (countDontKnow += 1);
   }
 
+  const paintingSrc = `https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${arrLevels.rounds[currentRound].levelData.cutSrc}`;
+  const paintingInfo = arrLevels.rounds[currentRound].levelData.name;
+  const paintingAuthor = arrLevels.rounds[currentRound].levelData.author;
+  addPainting(paintingSrc, paintingAuthor, paintingInfo);
   addCountsResult(countKnow, countDontKnow);
   resultsWindow.classList.add('results-window_show');
 });
