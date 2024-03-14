@@ -12,13 +12,35 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-color: #6abdcd;
-  background-image: url('assets/images/background.jpg');
+  background-color: black;
+  background-image: url('assets/images/background.png');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-position: left bottom;
+  background-size: 50vh;
   background-attachment: fixed;
   user-select: none;
+  animation: chaoticMovement 40s linear infinite;
+}
+
+.dev-link {
+  display: block;
+  background: white;
+  border-radius: 3px;
+  padding: 20px;
+  font-weight: 700;
+  position: absolute;
+  color: black;
+  text-decoration: inherit;
+  width: 240px;
+  top: 60px;
+  transform: translateX(-300px);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.dev-link_show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .pages-window {
@@ -39,9 +61,77 @@ body {
 .pages-header h1 {
   margin: 0;
   padding: 0;
+  transition: 0.5s;
 }
 
 .pages-window_hide {
   transition: 0s;
   opacity: 0;
 }
+
+@media (hover:hover) {
+  .pages-header h1:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.pages-header h1:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
+.dev-link:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
+@keyframes chaoticMovement {
+  0% { 
+    background-position: left bottom;
+    background-size: 50vh;
+  }
+  25% {
+    background-position: right top;
+    background-size: 25vh;
+  }
+  50% {
+    background-position: left top;
+    background-size: 40vh;
+  }
+  75% {
+    background-position: right bottom;
+    background-size: 30vh;
+  }
+  100% { 
+    background-position: left bottom; 
+    background-size: 50vh;
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-track:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-track:active {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 175, 0, 0.3);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 175, 0, 0.7);
+}
+*::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 175, 0, 1);
+}
+

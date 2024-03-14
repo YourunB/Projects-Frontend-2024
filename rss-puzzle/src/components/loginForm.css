@@ -1,0 +1,70 @@
+.login-form {
+  min-width: 300px;
+  max-width: 400px;
+  background: white;
+  min-height: 200px;
+  padding: 30px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  backdrop-filter: blur(5px);
+}
+
+.login-form input {
+  background: none;
+  color: black;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-bottom: 2px solid black;
+  width: 100%;
+}
+
+.login-form input:invalid {
+  border-bottom: 2px solid rgb(138, 0, 0);
+}
+
+.login-form button {
+  outline: none;
+  padding: 5px;
+  border-radius: 2px;
+  font-weight: 700;
+  color: white;
+  min-width: 100px;
+  border: solid 2px rgb(0, 175, 0);
+  background: rgb(0, 175, 0);
+  box-shadow: 2px 2px 2px 2px rgba(0, 175, 0, 0.3);
+  transition: 0.7s;
+}
+
+.error-validate {
+  color: rgb(138, 0, 0);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 20px;
+}
+
+@media (hover: hover) {
+  .login-form button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.login-form button:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
+.login-form button:disabled {
+  cursor: default;
+  transform: scale(1);
+  border-color: gray;
+  color: gray;
+  box-shadow: none;
+  background: none;
+}
