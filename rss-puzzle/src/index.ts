@@ -6,12 +6,15 @@ import { btnLogout } from './components/buttonLogout';
 import { windowConfirm, windowConfirmBtnYes, windowConfirmBtnNo } from './components/modalConfirm';
 
 const header = document.createElement('header');
+const devLink = document.createElement('a');
+devLink.href = 'https://github.com/yourunb';
+devLink.classList.add('dev-link');
+devLink.target = '_blank';
+devLink.innerHTML = '&copy; Create by Yury Butskevich';
 header.classList.add('pages-header');
 const headetTitle = document.createElement('h1');
 headetTitle.textContent = 'RSS Puzzle';
-header.append(headetTitle);
-header.append(btnLogout);
-header.append(windowConfirm);
+header.append(devLink, headetTitle, btnLogout, windowConfirm);
 document.body.append(header);
 
 const content = document.createElement('main');
@@ -88,4 +91,12 @@ windowConfirmBtnYes.addEventListener('click', () => {
 
 windowConfirmBtnNo.addEventListener('click', () => {
   windowConfirm.classList.remove('modal-confirm_show');
+});
+
+devLink.addEventListener('click', () => {
+  devLink.classList.remove('dev-link_show');
+});
+
+headetTitle.addEventListener('click', () => {
+  devLink.classList.toggle('dev-link_show');
 });

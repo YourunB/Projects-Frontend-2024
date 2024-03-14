@@ -22,6 +22,27 @@ body {
   animation: chaoticMovement 40s linear infinite;
 }
 
+.dev-link {
+  display: block;
+  background: white;
+  border-radius: 3px;
+  padding: 20px;
+  font-weight: 700;
+  position: absolute;
+  color: black;
+  text-decoration: inherit;
+  width: 240px;
+  top: 60px;
+  transform: translateX(-300px);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.dev-link_show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .pages-window {
   transition: 0.5s;
   opacity: 1;
@@ -40,11 +61,29 @@ body {
 .pages-header h1 {
   margin: 0;
   padding: 0;
+  transition: 0.5s;
 }
 
 .pages-window_hide {
   transition: 0s;
   opacity: 0;
+}
+
+@media (hover:hover) {
+  .pages-header h1:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.pages-header h1:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
+.dev-link:active {
+  transform: scale(0.9);
+  transition: 0.2s;
 }
 
 @keyframes chaoticMovement {
