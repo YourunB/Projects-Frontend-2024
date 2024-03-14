@@ -485,9 +485,16 @@ function changeLevel() {
 }
 
 function resetGame() {
+  btnResults.classList.add('controls__btn_hide');
+  resultsWindow.classList.remove('results-window_show');
   mainPageGame.classList.add('page-game__main_hide');
   gameBox.classList.remove('game-box_complete');
   infoRound.classList.remove('info-round_show');
+  btnCheck.textContent = 'Check';
+  btnCheck.classList.remove('controls__btn_true');
+  btnCheck.disabled = true;
+  btnAutoComplete.disabled = false;
+  btnResults.disabled = true;
 
   const gameFieldsBlock = gameBox.getElementsByClassName('game-box__field_block');
   const puzzles = pageGame.getElementsByClassName('game-answers__word');
