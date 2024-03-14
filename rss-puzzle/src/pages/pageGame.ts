@@ -258,26 +258,29 @@ function hideFinalImage() {
 }
 
 function checkField(gameFields: HTMLCollectionOf<Element>) {
-  const arrPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
-  const arrWords = [];
-  for (let i = 0; i < arrPuzzles.length; i += 1) {
-    arrWords.push(arrPuzzles[i].textContent);
-  }
-
-  if (levelData.textExample === arrWords.join(' ')) {
-    btnCheck.textContent = 'Continue';
-    btnCheck.classList.add('controls__btn_true');
-    letterTrue = true;
-    gameFields[currentWords].classList.add('game-box__field_block');
-    if (currentWords === 9) showFinalImage();
-  } else {
-    btnCheck.textContent = 'Check';
-    btnCheck.classList.remove('controls__btn_true');
-    letterTrue = false;
-  }
+  const arrPuzzles = Array.from(
+    gameFields[currentWords].getElementsByClassName('game-answers__word') as HTMLCollectionOf<HTMLElement>
+  );
 
   if (levelData.textExample.split(' ').length === arrPuzzles.length) {
     btnCheck.disabled = false;
+    const arrPuzzlesSort = [...arrPuzzles].sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
+    const arrIsEqual = (arr1: HTMLElement[], arr2: HTMLElement[]) => {
+      for (let i = 0; i < arr1.length; i += 1) if (arr1[i] !== arr2[i]) return false;
+      return true;
+    };
+
+    if (arrIsEqual(arrPuzzles, arrPuzzlesSort)) {
+      btnCheck.textContent = 'Continue';
+      btnCheck.classList.add('controls__btn_true');
+      letterTrue = true;
+      gameFields[currentWords].classList.add('game-box__field_block');
+      if (currentWords === 9) showFinalImage();
+    } else {
+      btnCheck.textContent = 'Check';
+      btnCheck.classList.remove('controls__btn_true');
+      letterTrue = false;
+    }
   } else btnCheck.disabled = true;
 
   setHintOnOff();
@@ -322,6 +325,7 @@ function createAnswers() {
     word.style.width = `${(1000 / allWordsLength) * arrWords[i].length}px`;
     word.dataset.checked = 'false';
     word.dataset.field = `${currentWords}`;
+    word.dataset.position = `${i}`;
     word.draggable = true;
     word.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/rss-puzzle-data/main/images/${roundData.imageSrc}')`;
     word.style.backgroundPosition = `${-leftPosition}px ${-topPosition}px`;
@@ -360,13 +364,14 @@ function getFile(link: number) {
     });
 }
 
-function highlighPuzzle() {
+function highLighPuzzle() {
   const gameFields = pageGame.getElementsByClassName('game-box__field');
-  const allPuzzles = gameFields[currentWords].getElementsByClassName('game-answers__word');
-  const correctResult = levelData.textExample.split(' ');
+  const allPuzzles = gameFields[currentWords].getElementsByClassName(
+    'game-answers__word'
+  ) as HTMLCollectionOf<HTMLElement>;
 
   for (let i = 0; i < allPuzzles.length; i += 1) {
-    if (correctResult[i] === allPuzzles[i].textContent) {
+    if (allPuzzles[i].dataset.position === i.toString()) {
       allPuzzles[i].classList.add('game-answers__word_true');
     } else {
       allPuzzles[i].classList.add('game-answers__word_false');
@@ -374,7 +379,7 @@ function highlighPuzzle() {
   }
 
   setTimeout(() => {
-    const allPuzzles = pageGame.getElementsByClassName('game-answers__word');
+    const allPuzzles = pageGame.getElementsByClassName('game-answers__word') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < allPuzzles.length; i += 1) {
       allPuzzles[i].classList.remove('game-answers__word_true');
       allPuzzles[i].classList.remove('game-answers__word_false');
@@ -554,7 +559,6 @@ function autoComplete() {
   btnAutoComplete.disabled = true;
   btnCheck.disabled = true;
   const currentPuzzles = pageGame.getElementsByClassName('game-answers__word');
-  const sourceResult = levelData.textExample.split(' ');
   const result: HTMLElement[] = [];
 
   letterTrue = true;
@@ -562,16 +566,13 @@ function autoComplete() {
 
   gameFields[currentWords].classList.add('game-box__field_block');
 
-  for (let i = 0; i < sourceResult.length; i += 1) {
-    for (let j = 0; j < currentPuzzles.length; j += 1) {
-      if (
-        sourceResult[i] === currentPuzzles[j].textContent &&
-        (<HTMLElement>currentPuzzles[j]).dataset.field === currentWords.toString()
-      ) {
-        result.push(<HTMLElement>currentPuzzles[j]);
-      }
+  Array.from(currentPuzzles).forEach((puzzle) => {
+    if ((<HTMLElement>puzzle).dataset.field === currentWords.toString()) {
+      result.push(<HTMLElement>puzzle);
     }
-  }
+  });
+
+  result.sort((a, b) => Number(a.dataset.position) - Number(b.dataset.position));
 
   const fieldNumber = currentWords;
   for (let i = 0; i < result.length; i += 1) {
@@ -595,7 +596,7 @@ function autoComplete() {
 }
 
 btnCheck.addEventListener('click', () => {
-  if (btnCheck.textContent === 'Check') highlighPuzzle();
+  if (btnCheck.textContent === 'Check') highLighPuzzle();
   if (btnCheck.textContent !== 'Check') {
     if (currentWords < 10) saveResults(true, currentWords);
     nextWords();
