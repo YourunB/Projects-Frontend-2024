@@ -18,13 +18,21 @@ const content = document.createElement('main');
 content.classList.add('pages-window');
 document.body.append(content);
 
+function showHideBtnLogout() {
+  if (location.hash === '#welcome' || location.hash === '#game') {
+    btnLogout.classList.add('btn-logout_show');
+  } else btnLogout.classList.remove('btn-logout_show');
+}
+
 window.addEventListener('load', () => {
   if (localStorage.user !== undefined) {
     location.hash = '#welcome';
     content.append(pageWelcome);
+    showHideBtnLogout();
   } else {
     location.hash = '#login';
     content.append(pageLogin);
+    showHideBtnLogout();
   }
 });
 
@@ -62,6 +70,7 @@ window.addEventListener('hashchange', () => {
   setTimeout(() => {
     content.classList.remove('pages-window_hide');
   }, 490);
+  showHideBtnLogout();
 });
 
 btnLogout.addEventListener('click', () => {
