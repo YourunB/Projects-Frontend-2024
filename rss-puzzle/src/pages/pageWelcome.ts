@@ -5,11 +5,11 @@ import '../assets/images/english.png';
 const pageWelcome = document.createElement('section');
 pageWelcome.classList.add('page-welcome');
 
-const headerPageWelcome = document.createElement('header');
+const headerPageWelcome = document.createElement('section');
 headerPageWelcome.classList.add('page-welcome__header');
 pageWelcome.append(headerPageWelcome);
 
-const mainPageWelcome = document.createElement('main');
+const mainPageWelcome = document.createElement('section');
 mainPageWelcome.classList.add('page-welcome__main');
 pageWelcome.append(mainPageWelcome);
 
