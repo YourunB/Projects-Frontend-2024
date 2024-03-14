@@ -257,6 +257,7 @@
   0 -1px black;
   pointer-events: none;
   transition: 0.5s;
+  margin-left: 10px;
 }
 
 .game-answers__word_hide-image {
