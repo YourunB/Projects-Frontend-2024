@@ -77,7 +77,7 @@ window.addEventListener('hashchange', () => {
 });
 
 btnLogout.addEventListener('click', () => {
-  windowConfirm.classList.add('modal-confirm_show');
+  windowConfirm.classList.toggle('modal-confirm_show');
 });
 
 windowConfirmBtnYes.addEventListener('click', () => {
