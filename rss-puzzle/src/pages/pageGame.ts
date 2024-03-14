@@ -281,6 +281,7 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
       btnCheck.classList.add('controls__btn_true');
       letterTrue = true;
       gameFields[currentWords].classList.add('game-box__field_block');
+      audioComplete.play();
       if (currentWords === 9) showFinalImage();
     } else {
       btnCheck.textContent = 'Check';
@@ -347,6 +348,7 @@ function createAnswers() {
     arrWordsPuzzle.push(word);
     word.addEventListener('click', (event) => {
       movePuzzle(event);
+      audioTouch.play();
     });
   }
 
@@ -588,6 +590,7 @@ function autoComplete() {
     if (i >= result.length - 1) {
       setTimeout(() => {
         if (i === result.length - 1) btnAutoComplete.disabled = false;
+        audioComplete.play();
         nextWords();
       }, i * 200);
     }
@@ -631,6 +634,7 @@ function endMove(event: TouchEvent | MouseEvent) {
   if (gameAnswers) {
     gameAnswers.style.boxShadow = '';
   }
+  audioTouch.play();
 }
 
 function move(event: TouchEvent | MouseEvent) {
