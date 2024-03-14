@@ -27,7 +27,6 @@
   flex-wrap: wrap;
   gap: 20px;
   min-height: calc(100vh - 80px);
-  backdrop-filter: blur(5px);
 }
 
 .page-welcome__main h2 {
@@ -35,18 +34,6 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  border-radius: 5px;
-  backdrop-filter: blur(5px);
-}
-
-.page-welcome__main p {
-  border-radius: 5px;
-  backdrop-filter: blur(5px);
-}
-
-.image-puzzle {
-  border-radius: 5px;
-  backdrop-filter: blur(5px);
 }
 
 .wrapper-image {
@@ -74,10 +61,12 @@
 }
 
 .welcome-box__text {
-  border: solid 2px white;
-  background: #6abdcd;
+  border-radius: 3px;
+  font-weight: 700;
+  color: black;
+  background: white;
   max-width: 400px;
-  padding: 20px;
+  padding: 40px;
   font-size: 20px;
   text-align: center;
 }
@@ -100,7 +89,7 @@
   font-weight: 700;
   font-size: 20px;
   background: white;
-  color: gray;
+  color: rgb(126, 211, 0);
   border: none;
   transition: 0.7s;
 }
