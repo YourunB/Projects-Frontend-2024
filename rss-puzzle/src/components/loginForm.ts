@@ -1,14 +1,14 @@
 import '../components/loginForm.css';
 
 const formLogin = document.createElement('form');
-formLogin.classList.add('page-login__form');
+formLogin.classList.add('login-form');
 
 const inputFirstName = document.createElement('input');
 inputFirstName.id = 'input-first-name';
 inputFirstName.placeholder = 'First Name';
 inputFirstName.required = true;
 inputFirstName.autocomplete = 'off';
-inputFirstName.pattern = '^[A-Za-z\\-]+$';
+inputFirstName.pattern = '^[A-Z][A-Za-z\\-]*$';
 inputFirstName.minLength = 3;
 inputFirstName.title = 'Enter first name (only latin letters and "-")';
 formLogin.append(inputFirstName);
@@ -22,7 +22,7 @@ inputLastName.id = 'input-last-name';
 inputLastName.placeholder = 'Last Name';
 inputLastName.required = true;
 inputLastName.autocomplete = 'off';
-inputLastName.pattern = '^[A-Za-z\\-]+$';
+inputLastName.pattern = '^[A-Z][A-Za-z\\-]*$';
 inputLastName.minLength = 4;
 inputLastName.title = 'Enter last name (only latin letters and "-")';
 formLogin.append(inputLastName);
@@ -118,6 +118,7 @@ inputLastName?.addEventListener('input', () => {
 btnLogin.addEventListener('click', (event) => {
   event?.preventDefault();
   validateInputs();
+  btnLogin.disabled = true;
 });
 
 export { formLogin };
