@@ -621,9 +621,30 @@ btnAutoComplete.addEventListener('click', () => {
   autoComplete();
 });
 
+let cloneElement: HTMLElement | null = null;
+
+function positionMove(event: TouchEvent | MouseEvent) {
+  if (cloneElement) {
+    if ('touches' in event) {
+      cloneElement.style.left = `${event.touches[0].clientX - cloneElement.getBoundingClientRect().width / 2}px`;
+      cloneElement.style.top = `${event.touches[0].clientY - cloneElement.getBoundingClientRect().height / 2}px`;
+    }
+  }
+}
+
+function createClonePuzzleForMove(element: HTMLElement) {
+  cloneElement = element.cloneNode(true) as HTMLElement;
+  cloneElement.style.position = 'fixed';
+  cloneElement.style.zIndex = '1000';
+  gameAnswers.appendChild(cloneElement);
+}
+
 function startMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   if (targetElement.classList.contains('game-answers__word')) {
+    if ('touches' in event) createClonePuzzleForMove(targetElement);
+    positionMove(event);
+
     targetElement.classList.add('game-answers__word_move');
     (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 2px 2px white';
     gameAnswers.style.boxShadow = '0 0 2px 2px white';
@@ -631,6 +652,7 @@ function startMove(event: TouchEvent | MouseEvent) {
 }
 
 function endMove(event: TouchEvent | MouseEvent) {
+  cloneElement?.remove();
   const targetElement = event.target as HTMLElement;
   targetElement.classList.remove('game-answers__word_move');
   if (gameFields[currentWords]) {
@@ -650,6 +672,8 @@ function move(event: TouchEvent | MouseEvent) {
     'touches' in event
       ? (document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY) as HTMLElement)
       : (event.target as HTMLElement);
+  positionMove(event);
+
   if (!eventElement || !moveElement) return;
   const checkMove =
     (moveElement !== eventElement &&
