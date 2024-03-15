@@ -627,12 +627,22 @@ function startMove(event: TouchEvent | MouseEvent) {
     targetElement.classList.add('game-answers__word_move');
     (gameFields[currentWords] as HTMLElement).style.boxShadow = '0 0 2px 2px white';
     gameAnswers.style.boxShadow = '0 0 2px 2px white';
+
+    if ('touches' in event) {
+      targetElement.classList.add('game-answers__word_touch-move');
+      targetElement.style.left = `${event.touches[0].clientX}px`;
+      targetElement.style.top = `${event.touches[0].clientY}px`;
+    }
   }
 }
 
 function endMove(event: TouchEvent | MouseEvent) {
   const targetElement = event.target as HTMLElement;
   targetElement.classList.remove('game-answers__word_move');
+  targetElement.classList.remove('game-answers__word_touch-move');
+  targetElement.style.left = '0';
+  targetElement.style.top = '0';
+  targetElement.style.transition = 'none';
   if (gameFields[currentWords]) {
     (gameFields[currentWords] as HTMLElement).style.boxShadow = '';
   }
@@ -650,6 +660,13 @@ function move(event: TouchEvent | MouseEvent) {
     'touches' in event
       ? (document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY) as HTMLElement)
       : (event.target as HTMLElement);
+
+  if ([moveElement][0] && 'touches' in event) {
+    const moveElementStyle = ([moveElement][0] as HTMLElement).style;
+    moveElementStyle.left = `${event.touches[0].clientX}px`;
+    moveElementStyle.top = `${event.touches[0].clientY}px`;
+  }
+
   if (!eventElement || !moveElement) return;
   const checkMove =
     (moveElement !== eventElement &&
@@ -660,10 +677,19 @@ function move(event: TouchEvent | MouseEvent) {
 
   if (!checkMove) return;
   const nextElement = eventElement === moveElement.nextElementSibling ? eventElement.nextElementSibling : eventElement;
+  const prevElement =
+    eventElement === moveElement.previousElementSibling ? eventElement.previousElementSibling : eventElement;
   if (nextElement && nextElement.parentNode && !eventElement.classList.contains('game-answers__word')) {
     nextElement.append(moveElement);
   } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
     nextElement.before(moveElement);
+  } else if (
+    !nextElement &&
+    prevElement &&
+    prevElement.parentNode &&
+    eventElement.classList.contains('game-answers__word')
+  ) {
+    prevElement.after(moveElement);
   }
 }
 
@@ -673,25 +699,7 @@ mainPageGame.addEventListener('touchmove', move);
 
 mainPageGame.addEventListener('dragstart', startMove);
 mainPageGame.addEventListener('dragend', endMove);
-mainPageGame.addEventListener('dragover', (event) => {
-  event.preventDefault();
-  const [moveElement] = mainPageGame.getElementsByClassName('game-answers__word_move');
-  const eventElement = event.target as HTMLElement;
-  const checkMove =
-    (moveElement !== eventElement &&
-      eventElement.classList.contains('game-box__field') &&
-      eventElement.dataset.field === String(currentWords)) ||
-    eventElement.classList.contains('game-answers') ||
-    eventElement.classList.contains('game-answers__word');
-
-  if (!checkMove) return;
-  const nextElement = eventElement === moveElement.nextElementSibling ? eventElement.nextElementSibling : eventElement;
-  if (nextElement && nextElement.parentNode && !eventElement.classList.contains('game-answers__word')) {
-    nextElement.append(moveElement);
-  } else if (nextElement && nextElement.parentNode && eventElement.classList.contains('game-answers__word')) {
-    nextElement.before(moveElement);
-  }
-});
+mainPageGame.addEventListener('dragover', move);
 
 function changeHintState(hint: string) {
   const data = JSON.parse(localStorage.user);

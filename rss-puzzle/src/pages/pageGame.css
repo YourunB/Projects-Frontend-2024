@@ -251,10 +251,10 @@
 .game-answers__word p {
   color: white;
   text-shadow:
-  -1px 0 black,
-  0 1px black,
-  1px 0 black,
-  0 -1px black;
+    -1px 0 black,
+    0 1px black,
+    1px 0 black,
+    0 -1px black;
   pointer-events: none;
   transition: 0.5s;
   margin-left: 10px;
@@ -358,8 +358,6 @@
   border-color: red;
 }
 
-.game-answers__word_move {}
-
 @media (hover: hover) {
   .game-answers__word:hover {
     transform: scale(1.03);
@@ -410,6 +408,16 @@
   transform: scale(0.9);
   transition: 0.2s;
   cursor: default;
+}
+
+.game-answers__word_move {
+  opacity: 0.8 !important;
+}
+
+.game-answers__word_touch-move {
+  transition: none;
+  position: fixed;
+  z-index: 1000 !important;
 }
 
 @keyframes show-puzzle {
