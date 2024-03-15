@@ -411,13 +411,13 @@
 }
 
 .game-answers__word_move {
-  opacity: 0.5 !important;
+  opacity: 0.8 !important;
 }
 
 .game-answers__word_touch-move {
   transition: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 1000 !important;
 }
 
 @keyframes show-puzzle {
