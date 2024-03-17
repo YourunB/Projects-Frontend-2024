@@ -69,6 +69,33 @@ body {
   opacity: 0;
 }
 
+.error {
+  color: red;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error span {
+  color: white;
+  background: linear-gradient(
+    to right,
+    white 20%,
+    red 70%,
+    white 80%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 500% auto;
+  animation: text-shine 5s ease-in-out infinite alternate;
+}
+
 @media (hover: hover) {
   .pages-header h1:hover {
     transform: scale(1.05);
@@ -106,6 +133,15 @@ body {
   100% {
     background-position: left bottom;
     background-size: 50vh;
+  }
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 

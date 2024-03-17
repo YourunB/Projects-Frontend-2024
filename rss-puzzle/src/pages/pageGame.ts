@@ -281,6 +281,7 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
       btnCheck.classList.add('controls__btn_true');
       letterTrue = true;
       gameFields[currentWords].classList.add('game-box__field_block');
+      btnAutoComplete.disabled = true;
       audioComplete.play();
       if (currentWords === 9) showFinalImage();
     } else {
@@ -614,6 +615,7 @@ btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent !== 'Check') {
     if (currentWords < 10) saveResults(true, currentWords);
     nextWords();
+    btnAutoComplete.disabled = false;
   }
 });
 
