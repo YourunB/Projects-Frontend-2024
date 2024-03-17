@@ -67,7 +67,7 @@ window.addEventListener('hashchange', () => {
     location.hash = '#welcome';
   }
   if (location.hash !== '#login' && location.hash !== '#welcome' && location.hash !== '#game') {
-    content.innerHTML = 'This page does not exist!';
+    content.innerHTML = '<p class="error">Error 404:&nbsp;<span>This page does not exist.</span><p>';
   }
   content.classList.add('pages-window_hide');
   setTimeout(() => {
