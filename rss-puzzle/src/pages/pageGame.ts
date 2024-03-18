@@ -165,6 +165,7 @@ let letterTrue = false;
 let hintTranslateShow = false;
 let hintAudioShow = false;
 let hintPictureShow = false;
+let succesCompleteRound = false;
 
 function createGame() {
   for (let i = 0; i < 10; i += 1) {
@@ -277,6 +278,7 @@ function checkField(gameFields: HTMLCollectionOf<Element>) {
     };
 
     if (arrIsEqual(arrPuzzles, arrPuzzlesSort)) {
+      succesCompleteRound = true;
       btnCheck.textContent = 'Continue';
       btnCheck.classList.add('controls__btn_true');
       letterTrue = true;
@@ -595,9 +597,12 @@ function autoComplete() {
     }, i * 200);
     if (i >= result.length - 1) {
       setTimeout(() => {
-        if (i === result.length - 1) btnAutoComplete.disabled = false;
-        audioComplete.play();
-        nextWords();
+        if (i === result.length - 1) {
+          btnCheck.textContent = 'Continue';
+          btnCheck.classList.add('controls__btn_true');
+          btnCheck.disabled = false;
+          audioComplete.play();
+        }
       }, i * 200);
     }
   }
@@ -607,13 +612,13 @@ function autoComplete() {
     gameFields[fieldNumber].classList.remove('game-box__field_complete');
   }, 500);
 
-  if (currentWords < 10) saveResults(false, currentWords);
+  succesCompleteRound = false;
 }
 
 btnCheck.addEventListener('click', () => {
   if (btnCheck.textContent === 'Check') highLighPuzzle();
   if (btnCheck.textContent !== 'Check') {
-    if (currentWords < 10) saveResults(true, currentWords);
+    if (currentWords < 10) saveResults(succesCompleteRound, currentWords);
     nextWords();
     btnAutoComplete.disabled = false;
   }
