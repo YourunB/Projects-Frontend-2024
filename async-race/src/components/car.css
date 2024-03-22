@@ -1,10 +1,49 @@
 .car-box {
+  position: relative;
   width: 100%;
+  border-bottom: dashed 2px white;
 }
 
 .car-box__header {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   align-items: center;
+}
+
+.car-image {
+  position: absolute;
+  left: 70px;
+  bottom: -25px;
+  width: 80px;
+}
+
+.car-image svg {
+  width: 100%;
+}
+
+.car-box__btn,
+.car-box__header__btn {
+  background: none;
+  color: white;
+  outline: none;
+  border: solid 2px white;
+  border-radius: 2px;
+  padding: 5px 5px;
+  transition: 0.5s;
+  margin: 5px;
+}
+
+@media (hover: hover) {
+  .car-box__btn:hover,
+  .car-box__header__btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  .car-box__btn:hover:active,
+  .car-box__header__btn:active {
+    cursor: pointer;
+    transition: 0.2s;
+    transform: scale(0.9);
+  }
 }
