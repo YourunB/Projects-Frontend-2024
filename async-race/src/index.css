@@ -11,6 +11,20 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-  
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
+  min-height: 100vh;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  padding: 10px;
 }

@@ -1,1 +1,14 @@
-.winnersPage {}
+.winners-page {
+  background: yellow;
+  width: 100%;
+  min-height:  calc(100vh - 70px);
+  transition: 0.5s;
+}
+
+.winners-page_hide {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(0);
+}

@@ -1,4 +1,4 @@
-import 'header.css';
+import './header.css';
 
 const header = document.createElement('header');
 header.classList.add('header');
