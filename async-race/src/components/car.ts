@@ -42,8 +42,8 @@ export function createCarBox() {
 
   const btnA = document.createElement('button');
   const btnB = document.createElement('button');
-  btnA.classList.add('car-box__btn');
-  btnB.classList.add('car-box__btn');
+  btnA.className = 'car-box__btn btn-a';
+  btnB.className = 'car-box__btn btn-b';
   btnA.textContent = 'A';
   btnB.textContent = 'B';
 

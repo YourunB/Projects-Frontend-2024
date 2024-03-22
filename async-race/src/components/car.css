@@ -33,7 +33,11 @@
   margin: 5px;
 }
 
-.car-box__btn:nth-of-type(2),
+.btn-a {
+  border-color: greenyellow;
+}
+
+.btn-b,
 .car-box__header__btn:nth-of-type(2) {
   border-color: red;
 }
@@ -51,4 +55,10 @@
     transition: 0.2s;
     transform: scale(0.9);
   }
+}
+
+.car-box__btn:disabled {
+  color: gray;
+  border-color: gray;
+  pointer-events: none;
 }
