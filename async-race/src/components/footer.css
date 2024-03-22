@@ -17,7 +17,7 @@
   min-width: 100px;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .footer__btn:hover {
     cursor: pointer;
     transform: scale(1.1);

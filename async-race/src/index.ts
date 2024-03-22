@@ -1,9 +1,9 @@
 import './index.css';
 import { header, btnToGarage, btnToWinners } from './components/header';
-import { footer, btnPrev, btnNext } from './components/footer';
-import { garagePage } from './pages/garagePage';
+import { footer } from './components/footer';
+import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
-import { getCars } from './components/api';
+import { totalСars, getCars } from './components/api';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -11,10 +11,13 @@ document.body.append(app);
 
 const main = document.createElement('main');
 main.classList.add('main');
-app.append(main);main.append(garagePage);
+app.append(main);
+main.append(garagePage);
 main.append(winnersPage);
 
 app.append(header, main, footer);
+
+const pageNum = 1;
 
 btnToGarage.addEventListener('click', () => {
   winnersPage.classList.add('winners-page_hide');
@@ -26,4 +29,9 @@ btnToWinners.addEventListener('click', () => {
   winnersPage.classList.remove('winners-page_hide');
 });
 
-console.log(getCars(1, 4));
+async function createGarage() {
+  await getCars(pageNum, 4);
+  createPage(pageNum, totalСars);
+}
+
+createGarage();

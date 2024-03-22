@@ -28,4 +28,5 @@ body {
   position: relative;
   width: 100%;
   padding: 10px;
+  min-height: calc(100vh - 120px);
 }
