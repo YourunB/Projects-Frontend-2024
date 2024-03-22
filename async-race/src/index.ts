@@ -3,6 +3,7 @@ import { header, btnToGarage, btnToWinners } from './components/header';
 import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
+import { createCarBox } from './components/car';
 import { totalСars, getCars } from './components/api';
 
 const app = document.createElement('div');
@@ -29,9 +30,17 @@ btnToWinners.addEventListener('click', () => {
   winnersPage.classList.remove('winners-page_hide');
 });
 
+async function createCar() {
+  const newCar = createCarBox();
+
+  const pageBox = garagePage.getElementsByClassName('garage-page__content') as HTMLCollectionOf<Element>;
+  pageBox[pageBox.length - 1].append(newCar);
+}
+
 async function createGarage() {
   await getCars(pageNum, 4);
   createPage(pageNum, totalСars);
+  createCar();
 }
 
 createGarage();

@@ -1,0 +1,10 @@
+.car-box {
+  width: 100%;
+}
+
+.car-box__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
