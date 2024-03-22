@@ -1,12 +1,12 @@
-.header {
+.footer {
   height: 50px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 10px 10px 0 10px;
+  padding: 0 10px 10px 10px;
 }
 
-.header__btn {
+.footer__btn {
   background: none;
   color: white;
   outline: none;
@@ -18,12 +18,12 @@
 }
 
 @media (hover:hover) {
-  .header__btn:hover {
+  .footer__btn:hover {
     cursor: pointer;
     transform: scale(1.1);
   }
 
-  .header__btn:active {
+  .footer__btn:active {
     cursor: pointer;
     transition: 0.2s;
     transform: scale(0.9);

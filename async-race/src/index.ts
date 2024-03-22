@@ -1,5 +1,6 @@
 import './index.css';
 import { header, btnToGarage, btnToWinners } from './components/header';
+import { footer, btnPrev, btnNext } from './components/footer';
 import { garagePage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { getCars } from './components/api';
@@ -7,13 +8,13 @@ import { getCars } from './components/api';
 const app = document.createElement('div');
 app.classList.add('container');
 document.body.append(app);
-app.append(header);
 
 const main = document.createElement('main');
 main.classList.add('main');
-app.append(main);
-main.append(garagePage);
+app.append(main);main.append(garagePage);
 main.append(winnersPage);
+
+app.append(header, main, footer);
 
 btnToGarage.addEventListener('click', () => {
   winnersPage.classList.add('winners-page_hide');
