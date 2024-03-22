@@ -33,6 +33,11 @@
   margin: 5px;
 }
 
+.car-box__btn:nth-of-type(2),
+.car-box__header__btn:nth-of-type(2) {
+  border-color: red;
+}
+
 @media (hover: hover) {
   .car-box__btn:hover,
   .car-box__header__btn:hover {
