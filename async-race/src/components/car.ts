@@ -18,7 +18,7 @@ export function createCarImage(color = 'white') {
   return car;
 }
 
-export function createCarBox() {
+export function createCarBox(name: string, color: string, id: number) {
   const carBox = document.createElement('div');
   carBox.classList.add('car-box');
 
@@ -29,14 +29,16 @@ export function createCarBox() {
   const btnSelect = document.createElement('button');
   btnSelect.classList.add('car-box__header__btn');
   btnSelect.textContent = 'Select';
+  btnSelect.dataset.id = `${id}`;
 
   const btnRemove = document.createElement('button');
   btnRemove.classList.add('car-box__header__btn');
   btnRemove.textContent = 'Remove';
+  btnRemove.dataset.id = `${id}`;
 
   const carName = document.createElement('p');
   carName.classList.add('car-box__header__car');
-  carName.textContent = 'BMW';
+  carName.textContent = name;
 
   carBoxHeader.append(btnSelect, btnRemove, carName);
 
@@ -46,8 +48,10 @@ export function createCarBox() {
   btnB.className = 'car-box__btn btn-b';
   btnA.textContent = 'A';
   btnB.textContent = 'B';
+  btnA.dataset.id = `${id}`;
+  btnB.dataset.id = `${id}`;
 
-  const car = createCarImage();
+  const car = createCarImage(color);
 
   carBox.append(btnA, btnB, car);
 

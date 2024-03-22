@@ -6,6 +6,14 @@ import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
 import { totalСars, getCars } from './components/api';
 
+interface Car {
+  name: string;
+  color: string;
+  id: string;
+}
+
+type CarsArray = Car[];
+
 const app = document.createElement('div');
 app.classList.add('container');
 document.body.append(app);
@@ -30,17 +38,21 @@ btnToWinners.addEventListener('click', () => {
   winnersPage.classList.remove('winners-page_hide');
 });
 
-async function createCar() {
-  const newCar = createCarBox();
+async function createCar(name: string = '', color: string = 'white', id: number) {
+  const newCar = createCarBox(name, color, id);
 
   const pageBox = garagePage.getElementsByClassName('garage-page__content') as HTMLCollectionOf<Element>;
   pageBox[pageBox.length - 1].append(newCar);
 }
 
 async function createGarage() {
-  await getCars(pageNum, 4);
+  let cars: CarsArray | undefined = await getCars(pageNum, 4);
   createPage(pageNum, totalСars);
-  createCar();
+
+  if (!cars) cars = [];
+  for (let i = 0; i < cars.length; i += 1) {
+    createCar(cars[i]?.name, cars[i]?.color, Number(cars[i]?.id));
+  }
 }
 
 createGarage();
