@@ -5,7 +5,15 @@ import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
 import { clearFields } from './components/utils';
-import { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi } from './components/api';
+import {
+  totalСars,
+  getCarsApi,
+  createCarApi,
+  removeCarApi,
+  selectCarApi,
+  updateCarApi,
+  startApi,
+} from './components/api';
 import {
   formCreateCar,
   inputCreateNameCar,
@@ -82,6 +90,10 @@ async function createCar(name: string = '', color: string = 'white', id: number)
     if (currentTarget.tagName === 'BUTTON') {
       if (currentTarget.textContent === 'Remove') removeCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
+      if (currentTarget.textContent === 'A') {
+        const res = startApi(Number(currentTarget.dataset.id));
+        console.log(res);
+      }
     }
   });
 
