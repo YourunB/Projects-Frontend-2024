@@ -12,7 +12,7 @@ import {
   removeCarApi,
   selectCarApi,
   updateCarApi,
-  startApi,
+  startCarApi,
 } from './components/api';
 import {
   formCreateCar,
@@ -91,7 +91,7 @@ async function createCar(name: string = '', color: string = 'white', id: number)
       if (currentTarget.textContent === 'Remove') removeCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'A') {
-        const res = startApi(Number(currentTarget.dataset.id));
+        const res = startCarApi(Number(currentTarget.dataset.id));
         console.log(res);
       }
     }
