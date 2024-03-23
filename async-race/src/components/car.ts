@@ -22,6 +22,7 @@ export function createCarBox(name: string, color: string, id: number) {
   const carBox = document.createElement('div');
   carBox.classList.add('car-box');
   carBox.dataset.id = `${id}`;
+  carBox.id = `${id}`;
 
   const carBoxHeader = document.createElement('div');
   carBoxHeader.classList.add('car-box__header');

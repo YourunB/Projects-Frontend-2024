@@ -4,7 +4,7 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
-import { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi } from './components/api';
+import { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi } from './components/api';
 import {
   formCreateCar,
   inputCreateNameCar,
@@ -68,6 +68,7 @@ async function selectCar(id: number) {
     color: 'black',
   };
   inputUpdateNameCar.value = currentCar.name;
+  inputUpdateNameCar.dataset.id = `${id}`;
   inputUpdateColorCar.value = currentCar.color;
   boxUpdate.classList.remove('form-create-wrapper_disable');
   console.log(currentCar);
@@ -97,7 +98,20 @@ async function createGarage() {
   }
 }
 
+function updatePage() {
+  const pageContent = garagePage.getElementsByClassName('garage-page__content');
+  for (let i = pageContent.length - 1; i >= 0; i -= 1) {
+    pageContent[i].remove();
+  }
+  createGarage();
+}
+
 createGarage();
+
+function clearField() {
+  const inputs = garagePage.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i += 1) inputs[i].value = '';
+}
 
 btnCreateCar.addEventListener('click', () => {
   const newId = cars?.map((car) => Number(car.id)) || [0];
@@ -107,5 +121,17 @@ btnCreateCar.addEventListener('click', () => {
     id: Math.max(...newId) + 1,
   };
   createCarApi(objNewCar);
-  createCar(objNewCar.name, objNewCar.color, objNewCar.id);
+  updatePage();
+  clearField();
+});
+
+btnUpdateCar.addEventListener('click', () => {
+  const objUpdateCar = {
+    name: inputUpdateNameCar.value,
+    color: inputUpdateColorCar.value,
+  };
+  updateCarApi(objUpdateCar, Number(inputUpdateNameCar.dataset.id));
+  updatePage();
+  clearField();
+  boxUpdate.classList.add('form-create-wrapper_disable');
 });

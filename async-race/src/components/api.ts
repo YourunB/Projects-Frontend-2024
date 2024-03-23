@@ -33,4 +33,14 @@ async function selectCarApi(id: number) {
   return result;
 }
 
-export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi };
+async function updateCarApi(updateCar: object, id: number) {
+  await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updateCar),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi };
