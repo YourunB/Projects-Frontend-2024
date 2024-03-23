@@ -5,6 +5,7 @@ import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
 import { totalСars, getCars } from './components/api';
+import { formCreateCar } from './components/formCreate';
 
 interface Car {
   name: string;
@@ -25,6 +26,7 @@ main.append(garagePage);
 main.append(winnersPage);
 
 app.append(header, main, footer);
+garagePage.append(formCreateCar);
 
 const pageNum = 1;
 

@@ -1,0 +1,56 @@
+.form-create {}
+
+.form-create-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-create-wrapper_disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.form-create__input-text {
+  outline: none;
+  font-weight: 700;
+  background: none;
+  border: none;
+  color: white;
+  border-bottom: solid 2px white;
+}
+
+.form-create__input-color {
+  outline: none;
+  background: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.form-create__btn {
+  background: none;
+  color: white;
+  border: solid 2px white;
+  outline: none;
+  min-width: 80px;
+  transition: 0.5s;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.form-create__btn-race {
+  border-color: greenyellow;
+}
+
+@media (hover: hover) {
+  .form-create__btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  .form-create__btn:hover {
+    transition: 0.2;
+    transform: scale(0.9);
+  }
+}
