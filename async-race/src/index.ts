@@ -4,8 +4,17 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
-import { totalСars, getCarsApi, createCarApi, removeCarApi } from './components/api';
-import { formCreateCar, inputCreateNameCar, inputCreateColorCar, btnCreateCar } from './components/formCreate';
+import { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi } from './components/api';
+import {
+  formCreateCar,
+  inputCreateNameCar,
+  inputCreateColorCar,
+  btnCreateCar,
+  boxUpdate,
+  inputUpdateNameCar,
+  inputUpdateColorCar,
+  btnUpdateCar,
+} from './components/formCreate';
 
 interface Car {
   name: string;
@@ -53,12 +62,24 @@ function removeCar(id: number) {
   }
 }
 
+async function selectCar(id: number) {
+  const currentCar = (await selectCarApi(id)) || {
+    name: '',
+    color: 'black',
+  };
+  inputUpdateNameCar.value = currentCar.name;
+  inputUpdateColorCar.value = currentCar.color;
+  boxUpdate.classList.remove('form-create-wrapper_disable');
+  console.log(currentCar);
+}
+
 async function createCar(name: string = '', color: string = 'white', id: number) {
   const newCar = await createCarBox(name, color, id);
   newCar.addEventListener('click', (event) => {
     const currentTarget = event.target as HTMLElement;
-    if (currentTarget.tagName === 'BUTTON' && currentTarget.textContent === 'Remove') {
-      removeCar(Number(currentTarget.dataset.id));
+    if (currentTarget.tagName === 'BUTTON') {
+      if (currentTarget.textContent === 'Remove') removeCar(Number(currentTarget.dataset.id));
+      if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
     }
   });
 

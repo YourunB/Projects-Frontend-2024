@@ -25,4 +25,12 @@ async function removeCarApi(id: number) {
   });
 }
 
-export { totalСars, getCarsApi, createCarApi, removeCarApi };
+async function selectCarApi(id: number) {
+  let result = undefined;
+  await fetch(`http://127.0.0.1:3000/garage/${id}`, { method: 'GET' }).then((response) => {
+    result = response.json();
+  });
+  return result;
+}
+
+export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi };
