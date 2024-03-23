@@ -53,4 +53,4 @@ boxControls.append(btnRace, btnReset, btnGenerateCars);
 
 formCreateCar.append(boxCreate, boxUpdate, boxControls);
 
-export { formCreateCar };
+export { formCreateCar, inputCreateNameCar, inputCreateColorCar, btnCreateCar };

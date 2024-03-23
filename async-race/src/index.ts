@@ -4,8 +4,8 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
-import { totalСars, getCars } from './components/api';
-import { formCreateCar } from './components/formCreate';
+import { totalСars, getCarsApi, createCarApi } from './components/api';
+import { formCreateCar, inputCreateNameCar, inputCreateColorCar, btnCreateCar } from './components/formCreate';
 
 interface Car {
   name: string;
@@ -29,6 +29,7 @@ app.append(header, main, footer);
 garagePage.append(formCreateCar);
 
 const pageNum = 1;
+let cars: CarsArray | undefined = [];
 
 btnToGarage.addEventListener('click', () => {
   winnersPage.classList.add('winners-page_hide');
@@ -48,7 +49,7 @@ async function createCar(name: string = '', color: string = 'white', id: number)
 }
 
 async function createGarage() {
-  let cars: CarsArray | undefined = await getCars(pageNum, 4);
+  cars = await getCarsApi(pageNum);
   createPage(pageNum, totalСars);
 
   if (!cars) cars = [];
@@ -58,3 +59,14 @@ async function createGarage() {
 }
 
 createGarage();
+
+btnCreateCar.addEventListener('click', () => {
+  const newId = cars?.map((car) => Number(car.id)) || [0];
+  const objNewCar = {
+    name: inputCreateNameCar.value,
+    color: inputCreateColorCar.value,
+    id: Math.max(...newId) + 1,
+  };
+  createCarApi(objNewCar);
+  createCar(objNewCar.name, objNewCar.color, objNewCar.id);
+});
