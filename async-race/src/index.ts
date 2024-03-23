@@ -4,6 +4,7 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
+import { clearFields } from './components/utils';
 import { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi } from './components/api';
 import {
   formCreateCar,
@@ -108,30 +109,26 @@ function updatePage() {
 
 createGarage();
 
-function clearField() {
-  const inputs = garagePage.getElementsByTagName('input');
-  for (let i = 0; i < inputs.length; i += 1) inputs[i].value = '';
-}
-
-btnCreateCar.addEventListener('click', () => {
+btnCreateCar.addEventListener('click', async () => {
   const newId = cars?.map((car) => Number(car.id)) || [0];
   const objNewCar = {
     name: inputCreateNameCar.value,
     color: inputCreateColorCar.value,
     id: Math.max(...newId) + 1,
   };
-  createCarApi(objNewCar);
+  await createCarApi(objNewCar);
   updatePage();
-  clearField();
+  clearFields(garagePage);
+  boxUpdate.classList.add('form-create-wrapper_disable');
 });
 
-btnUpdateCar.addEventListener('click', () => {
+btnUpdateCar.addEventListener('click', async () => {
   const objUpdateCar = {
     name: inputUpdateNameCar.value,
     color: inputUpdateColorCar.value,
   };
-  updateCarApi(objUpdateCar, Number(inputUpdateNameCar.dataset.id));
+  await updateCarApi(objUpdateCar, Number(inputUpdateNameCar.dataset.id));
   updatePage();
-  clearField();
+  clearFields(garagePage);
   boxUpdate.classList.add('form-create-wrapper_disable');
 });
