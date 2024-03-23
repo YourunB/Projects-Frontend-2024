@@ -1,6 +1,6 @@
 let totalСars = 0;
 
-async function getCarsApi(page: number, total = 7) {
+async function getCarsApi(page: number, total = 1000) {
   let result = undefined;
   await fetch(`http://127.0.0.1:3000/garage?_page=${page}&_limit=${total}`, { method: 'GET' }).then((response) => {
     totalСars = Number(response.headers.get('X-Total-count'));
@@ -19,4 +19,10 @@ async function createCarApi(newCar: object) {
   });
 }
 
-export { totalСars, getCarsApi, createCarApi };
+async function removeCarApi(id: number) {
+  await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+export { totalСars, getCarsApi, createCarApi, removeCarApi };

@@ -4,7 +4,7 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
-import { totalСars, getCarsApi, createCarApi } from './components/api';
+import { totalСars, getCarsApi, createCarApi, removeCarApi } from './components/api';
 import { formCreateCar, inputCreateNameCar, inputCreateColorCar, btnCreateCar } from './components/formCreate';
 
 interface Car {
@@ -41,8 +41,26 @@ btnToWinners.addEventListener('click', () => {
   winnersPage.classList.remove('winners-page_hide');
 });
 
+function removeCar(id: number) {
+  removeCarApi(id);
+  const deleteCar = document.getElementsByClassName('car-box');
+  for (let i = 0; i < deleteCar.length; i += 1) {
+    const carElement = deleteCar[i] as HTMLElement;
+    if (carElement.dataset.id === id.toString()) {
+      carElement.remove();
+      return;
+    }
+  }
+}
+
 async function createCar(name: string = '', color: string = 'white', id: number) {
-  const newCar = createCarBox(name, color, id);
+  const newCar = await createCarBox(name, color, id);
+  newCar.addEventListener('click', (event) => {
+    const currentTarget = event.target as HTMLElement;
+    if (currentTarget.tagName === 'BUTTON' && currentTarget.textContent === 'Remove') {
+      removeCar(Number(currentTarget.dataset.id));
+    }
+  });
 
   const pageBox = garagePage.getElementsByClassName('garage-page__content') as HTMLCollectionOf<Element>;
   pageBox[pageBox.length - 1].append(newCar);
