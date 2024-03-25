@@ -29,3 +29,8 @@
     transform: scale(0.9);
   }
 }
+
+.footer__btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

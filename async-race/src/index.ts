@@ -5,15 +5,7 @@ import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
 import { clearFields } from './components/utils';
-import {
-  totalСars,
-  getCarsApi,
-  createCarApi,
-  removeCarApi,
-  selectCarApi,
-  updateCarApi,
-  startCarApi,
-} from './components/api';
+import { getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi } from './components/api';
 import {
   formCreateCar,
   inputCreateNameCar,
@@ -24,19 +16,6 @@ import {
   inputUpdateColorCar,
   btnUpdateCar,
 } from './components/formCreate';
-
-interface Car {
-  name: string;
-  color: string;
-  id: string;
-}
-
-interface CarCharacter {
-  velocity: number;
-  distance: number;
-}
-
-type CarsArray = Car[];
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -51,7 +30,23 @@ main.append(winnersPage);
 app.append(header, main, footer);
 garagePage.append(formCreateCar);
 
-const pageNum = 1;
+interface Car {
+  name: string;
+  color: string;
+  id: string;
+}
+
+interface CarCharacter {
+  velocity: number;
+  distance: number;
+}
+
+type CarsArray = Car[];
+
+const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
+const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
+
+let pageNum = 1;
 let cars: CarsArray | undefined = [];
 
 btnToGarage.addEventListener('click', () => {
@@ -67,15 +62,7 @@ btnToWinners.addEventListener('click', () => {
 function removeCar(id: number) {
   removeCarApi(id);
   clearFields(garagePage);
-  boxUpdate.classList.add('form-create-wrapper_disable');
-  const deleteCar = document.getElementsByClassName('car-box');
-  for (let i = 0; i < deleteCar.length; i += 1) {
-    const carElement = deleteCar[i] as HTMLElement;
-    if (carElement.dataset.id === id.toString()) {
-      carElement.remove();
-      return;
-    }
-  }
+  updatePage();
 }
 
 async function selectCar(id: number) {
@@ -90,9 +77,17 @@ async function selectCar(id: number) {
   console.log(currentCar);
 }
 
-async function startCar(perentElement: HTMLElement, carId: number) {
+function getCarBoxElements(perentElement: HTMLElement) {
   const [carElement] = perentElement.getElementsByTagName('svg');
-  const carSize = carElement.getBoundingClientRect().width;
+  const [btnA] = perentElement.getElementsByClassName('btn-a') as HTMLCollectionOf<HTMLButtonElement>;
+  const [btnB] = perentElement.getElementsByClassName('btn-a') as HTMLCollectionOf<HTMLButtonElement>;
+  return [carElement, btnA, btnB];
+}
+
+async function startCar(perentElement: HTMLElement, carId: number) {
+  const arrCarElements = getCarBoxElements(perentElement);
+  if (arrCarElements[1] instanceof HTMLButtonElement) arrCarElements[1].disabled = true;
+  const carSize = arrCarElements[0].getBoundingClientRect().width;
   const trackDistance = perentElement.getBoundingClientRect().width - carSize * 2;
   const data = await startCarApi(carId);
   if (!data) return;
@@ -104,7 +99,7 @@ async function startCar(perentElement: HTMLElement, carId: number) {
     const timerId = setInterval(() => {
       if (move >= trackDistance) clearInterval(timerId);
       move += (trackDistance / time) * 10;
-      carElement.style.transform = `translateX(${move}px)`;
+      arrCarElements[0].style.transform = `translateX(${move}px)`;
     }, 10);
   }
 
@@ -130,14 +125,37 @@ async function createCar(name: string = '', color: string = 'white', id: number)
 }
 
 async function createGarage() {
-  cars = await getCarsApi(pageNum);
-  createPage(pageNum, totalСars);
-
+  cars = await getCarsApi();
   if (!cars) cars = [];
-  for (let i = 0; i < cars.length; i += 1) {
+  const startIndex = pageNum === 1 ? 0 : (pageNum - 1) * 7;
+  console.log(startIndex);
+  const endIndex = pageNum * 7;
+
+  if (endIndex < cars.length) btnNext.disabled = false;
+  else btnNext.disabled = true;
+  if (endIndex > 7) btnPrev.disabled = false;
+  else btnPrev.disabled = true;
+
+  createPage(pageNum, cars.length);
+  for (let i = startIndex; i < cars.length && i < endIndex; i += 1) {
     createCar(cars[i]?.name, cars[i]?.color, Number(cars[i]?.id));
   }
 }
+
+btnNext.addEventListener('click', () => {
+  pageNum += 1;
+  const [currentGarageBox] = garagePage.getElementsByClassName('garage-page__content');
+  currentGarageBox.remove();
+  createGarage();
+});
+
+btnPrev.addEventListener('click', () => {
+  pageNum -= 1;
+  const [currentGarageBox] = garagePage.getElementsByClassName('garage-page__content');
+  currentGarageBox.remove();
+  createGarage();
+});
+
 
 function updatePage() {
   const pageContent = garagePage.getElementsByClassName('garage-page__content');
