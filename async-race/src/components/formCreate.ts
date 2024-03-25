@@ -60,9 +60,11 @@ export {
   inputCreateColorCar,
   btnCreateCar,
   boxUpdate,
+  boxCreate,
   inputUpdateNameCar,
   inputUpdateColorCar,
   btnUpdateCar,
   btnRace,
   btnReset,
+  btnGenerateCars,
 };

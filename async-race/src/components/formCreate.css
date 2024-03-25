@@ -1,6 +1,11 @@
 .form-create {
 }
 
+.form-create_disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .form-create-wrapper {
   display: flex;
   flex-wrap: wrap;

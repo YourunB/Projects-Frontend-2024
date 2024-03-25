@@ -4,7 +4,7 @@ import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
-import { clearFields } from './components/utils';
+import { clearFields, generateCarColor, generateCarName } from './components/utils';
 import {
   getCarsApi,
   createCarApi,
@@ -26,6 +26,7 @@ import {
   btnUpdateCar,
   btnRace,
   btnReset,
+  btnGenerateCars,
 } from './components/formCreate';
 
 const app = document.createElement('div');
@@ -204,6 +205,11 @@ async function createGarage() {
   for (let i = startIndex; i < cars.length && i < endIndex; i += 1) {
     createCar(cars[i]?.name, cars[i]?.color, Number(cars[i]?.id));
   }
+
+  setTimeout(() => {
+    formCreateCar.classList.remove('form-create_disable');
+    btnRace.disabled = false;
+  }, 500);
 }
 
 function resetRace() {
@@ -223,14 +229,15 @@ function resetRace() {
 }
 
 async function updatePage() {
-  resetRace();
+  btnNext.disabled = true;
+  btnPrev.disabled = true;
+  btnReset.disabled = true;
+  boxUpdate.classList.add('form-create-wrapper_disable');
+  formCreateCar.classList.add('form-create_disable');
 
   const [pageContent] = garagePage.getElementsByClassName('garage-page__content');
   await pageContent.remove();
   createGarage();
-
-  btnReset.disabled = true;
-  btnRace.disabled = false;
 }
 
 createGarage();
@@ -246,16 +253,16 @@ btnPrev.addEventListener('click', () => {
 });
 
 btnCreateCar.addEventListener('click', async () => {
-  const newId = cars?.map((car) => Number(car.id)) || [0];
+  const getId = cars?.map((car) => Number(car.id)) || [0];
+  const newId = Math.max(...getId) + 1;
   const objNewCar = {
     name: inputCreateNameCar.value,
     color: inputCreateColorCar.value,
-    id: Math.max(...newId) + 1,
+    id: newId,
   };
   await createCarApi(objNewCar);
   updatePage();
   clearFields(garagePage);
-  boxUpdate.classList.add('form-create-wrapper_disable');
 });
 
 btnUpdateCar.addEventListener('click', async () => {
@@ -266,7 +273,6 @@ btnUpdateCar.addEventListener('click', async () => {
   await updateCarApi(objUpdateCar, Number(inputUpdateNameCar.dataset.id));
   updatePage();
   clearFields(garagePage);
-  boxUpdate.classList.add('form-create-wrapper_disable');
 });
 
 btnRace.addEventListener('click', () => {
@@ -281,4 +287,18 @@ btnRace.addEventListener('click', () => {
 btnReset.addEventListener('click', () => {
   btnReset.disabled = true;
   resetRace();
+});
+
+btnGenerateCars.addEventListener('click', async () => {
+  const getId = cars?.map((car) => Number(car.id)) || [0];
+  let newId = Math.max(...getId) + 1;
+  for (let i = 0; i < 100; i += 1) {
+    const objNewCar = {
+      name: generateCarName(),
+      color: generateCarColor(),
+      id: (newId += 1),
+    };
+    await createCarApi(objNewCar);
+  }
+  updatePage();
 });
