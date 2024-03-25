@@ -55,3 +55,9 @@
     transform: scale(0.9);
   }
 }
+
+.form-create__btn:disabled {
+  pointer-events: none;
+  border-color: white;
+  opacity: 0.5;
+}

@@ -42,6 +42,7 @@ btnRace.textContent = 'Race';
 const btnReset = document.createElement('button');
 btnReset.className = 'form-create__btn form-create__btn-race';
 btnReset.textContent = 'Reset';
+btnReset.disabled = true;
 
 const btnGenerateCars = document.createElement('button');
 btnGenerateCars.classList.add('form-create__btn');
