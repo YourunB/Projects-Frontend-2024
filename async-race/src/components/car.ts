@@ -50,6 +50,7 @@ export function createCarBox(name: string, color: string, id: number) {
   btnB.className = 'car-box__btn btn-b';
   btnA.textContent = 'A';
   btnB.textContent = 'B';
+  btnB.disabled = true;
   btnA.dataset.id = `${id}`;
   btnB.dataset.id = `${id}`;
 

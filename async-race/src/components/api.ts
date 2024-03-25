@@ -68,13 +68,4 @@ function carEngineApi(id: number) {
     .catch(() => {});
 }
 
-export {
-  getCarsApi,
-  createCarApi,
-  removeCarApi,
-  selectCarApi,
-  updateCarApi,
-  startCarApi,
-  stopCarApi,
-  carEngineApi,
-};
+export { getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi, stopCarApi, carEngineApi };

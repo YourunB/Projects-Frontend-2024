@@ -58,7 +58,8 @@
   }
 }
 
-.car-box__btn:disabled {
+.car-box__btn:disabled,
+.car-box__header__btn:disabled {
   color: gray;
   border-color: gray;
   pointer-events: none;

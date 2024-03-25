@@ -52,6 +52,14 @@ interface CarCharacter {
 
 type CarsArray = Car[];
 
+interface CarBoxElements {
+  carSVG: SVGElement;
+  btnA: HTMLButtonElement;
+  btnB: HTMLButtonElement;
+  btnSelect: HTMLButtonElement;
+  btnRemove: HTMLButtonElement;
+}
+
 const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
 const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
 
@@ -83,42 +91,53 @@ async function selectCar(id: number) {
   inputUpdateNameCar.dataset.id = `${id}`;
   inputUpdateColorCar.value = currentCar.color;
   boxUpdate.classList.remove('form-create-wrapper_disable');
-  console.log(currentCar);
 }
 
 function getCarBoxElements(perentElement: HTMLElement) {
-  const [carElement] = perentElement.getElementsByTagName('svg');
-  const [btnA] = perentElement.getElementsByClassName('btn-a') as HTMLCollectionOf<HTMLButtonElement>;
-  const [btnB] = perentElement.getElementsByClassName('btn-b') as HTMLCollectionOf<HTMLButtonElement>;
-  return [carElement, btnA, btnB];
+  return {
+    carSVG: perentElement.getElementsByTagName('svg')[0] as SVGElement,
+    btnA: perentElement.getElementsByClassName('btn-a')[0] as HTMLButtonElement,
+    btnB: perentElement.getElementsByClassName('btn-b')[0] as HTMLButtonElement,
+    btnSelect: perentElement.getElementsByClassName('car-box__header__btn')[0] as HTMLButtonElement,
+    btnRemove: perentElement.getElementsByClassName('car-box__header__btn')[1] as HTMLButtonElement,
+  };
 }
 
 async function startCar(perentElement: HTMLElement, carId: number) {
-  const arrCarElements = getCarBoxElements(perentElement);
-  if (arrCarElements[1] instanceof HTMLButtonElement) arrCarElements[1].disabled = true;
-  const carSize = arrCarElements[0].getBoundingClientRect().width;
+  const carBoxElements = getCarBoxElements(perentElement);
+  carBoxElements.btnA.disabled = true;
+  const carSize = carBoxElements.carSVG.getBoundingClientRect().width;
   const trackDistance = perentElement.getBoundingClientRect().width - carSize * 2;
   const data = await startCarApi(carId);
   if (!data) return;
   const carData = data as CarCharacter;
   const time = Number(carData.distance) / Number(carData.velocity);
+
   let move: number = 0;
   function driveCar() {
     const timerId = setInterval(() => {
       if (move >= trackDistance) clearInterval(timerId);
       move += (trackDistance / time) * 10;
-      arrCarElements[0].style.transform = `translateX(${move}px)`;
+      carBoxElements.carSVG.style.transform = `translateX(${move}px)`;
     }, 10);
     carEngineApi(carId).then((drive) => {
       if (!drive.success) clearInterval(timerId);
     });
-    arrCarElements[2].addEventListener('click', () => {
-      clearInterval(timerId);
-      arrCarElements[0].style.transform = '';
+    carBoxElements.btnB.addEventListener('click', () => {
+      stopCar(carId, timerId, carBoxElements);
     });
   }
 
+  carBoxElements.btnB.disabled = false;
   window.requestAnimationFrame(driveCar);
+}
+
+async function stopCar(carId: number, timerId: NodeJS.Timer, carBoxElements: CarBoxElements) {
+  carBoxElements.btnB.disabled = true;
+  await stopCarApi(carId);
+  clearInterval(timerId);
+  carBoxElements.carSVG.style.transform = '';
+  carBoxElements.btnA.disabled = false;
 }
 
 async function createCar(name: string = '', color: string = 'white', id: number) {
