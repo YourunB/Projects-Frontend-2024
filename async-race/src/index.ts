@@ -59,8 +59,8 @@ btnToWinners.addEventListener('click', () => {
   winnersPage.classList.remove('winners-page_hide');
 });
 
-function removeCar(id: number) {
-  removeCarApi(id);
+async function removeCar(id: number) {
+  await removeCarApi(id);
   clearFields(garagePage);
   updatePage();
 }
@@ -128,8 +128,12 @@ async function createGarage() {
   cars = await getCarsApi();
   if (!cars) cars = [];
   const startIndex = pageNum === 1 ? 0 : (pageNum - 1) * 7;
-  console.log(startIndex);
   const endIndex = pageNum * 7;
+  if (cars.length <= startIndex && pageNum > 1) {
+    pageNum -= 1;
+    createGarage();
+    return;
+  }
 
   if (endIndex < cars.length) btnNext.disabled = false;
   else btnNext.disabled = true;
@@ -142,26 +146,25 @@ async function createGarage() {
   }
 }
 
-btnNext.addEventListener('click', () => {
-  pageNum += 1;
+function changePage() {
   const [currentGarageBox] = garagePage.getElementsByClassName('garage-page__content');
   currentGarageBox.remove();
   createGarage();
+}
+
+btnNext.addEventListener('click', () => {
+  pageNum += 1;
+  changePage();
 });
 
 btnPrev.addEventListener('click', () => {
   pageNum -= 1;
-  const [currentGarageBox] = garagePage.getElementsByClassName('garage-page__content');
-  currentGarageBox.remove();
-  createGarage();
+  changePage();
 });
 
-
 function updatePage() {
-  const pageContent = garagePage.getElementsByClassName('garage-page__content');
-  for (let i = pageContent.length - 1; i >= 0; i -= 1) {
-    pageContent[i].remove();
-  }
+  const [pageContent] = garagePage.getElementsByClassName('garage-page__content');
+  pageContent.remove();
   createGarage();
 }
 

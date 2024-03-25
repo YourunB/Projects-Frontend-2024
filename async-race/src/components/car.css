@@ -12,6 +12,7 @@
 
 .car-image {
   position: absolute;
+  z-index: -10;
   left: 70px;
   bottom: -25px;
   width: 80px;
