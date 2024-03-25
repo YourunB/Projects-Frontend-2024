@@ -60,7 +60,14 @@
     "no-duplicate-imports": "error",
     "prefer-exponentiation-operator": "error",
     "no-plusplus": "error",
-    "no-use-before-define": "error",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": true,
+        "variables": true
+      }
+    ],
     "no-nested-ternary": "error",
     "nonblock-statement-body-position": ["error", "beside"],
     "space-infix-ops": "error",
