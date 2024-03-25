@@ -62,4 +62,6 @@ export {
   inputUpdateNameCar,
   inputUpdateColorCar,
   btnUpdateCar,
+  btnRace,
+  btnReset,
 };

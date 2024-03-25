@@ -24,6 +24,8 @@ import {
   inputUpdateNameCar,
   inputUpdateColorCar,
   btnUpdateCar,
+  btnRace,
+  //btnReset,
 } from './components/formCreate';
 
 const app = document.createElement('div');
@@ -226,4 +228,12 @@ btnUpdateCar.addEventListener('click', async () => {
   updatePage();
   clearFields(garagePage);
   boxUpdate.classList.add('form-create-wrapper_disable');
+});
+
+btnRace.addEventListener('click', () => {
+  const cars = garagePage.getElementsByClassName('car-image');
+  for (let i = 0; i < cars.length; i += 1) {
+    const perentElement = cars[i].parentElement;
+    if (perentElement) startCar(perentElement, Number(perentElement.dataset.id));
+  }
 });
