@@ -5,7 +5,15 @@ import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { createCarBox } from './components/car';
 import { clearFields } from './components/utils';
-import { getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi } from './components/api';
+import {
+  getCarsApi,
+  createCarApi,
+  removeCarApi,
+  selectCarApi,
+  updateCarApi,
+  startCarApi,
+  carEngineApi,
+} from './components/api';
 import {
   formCreateCar,
   inputCreateNameCar,
@@ -80,7 +88,7 @@ async function selectCar(id: number) {
 function getCarBoxElements(perentElement: HTMLElement) {
   const [carElement] = perentElement.getElementsByTagName('svg');
   const [btnA] = perentElement.getElementsByClassName('btn-a') as HTMLCollectionOf<HTMLButtonElement>;
-  const [btnB] = perentElement.getElementsByClassName('btn-a') as HTMLCollectionOf<HTMLButtonElement>;
+  const [btnB] = perentElement.getElementsByClassName('btn-b') as HTMLCollectionOf<HTMLButtonElement>;
   return [carElement, btnA, btnB];
 }
 
@@ -93,7 +101,6 @@ async function startCar(perentElement: HTMLElement, carId: number) {
   if (!data) return;
   const carData = data as CarCharacter;
   const time = Number(carData.distance) / Number(carData.velocity);
-
   let move: number = 0;
   function driveCar() {
     const timerId = setInterval(() => {
@@ -101,6 +108,13 @@ async function startCar(perentElement: HTMLElement, carId: number) {
       move += (trackDistance / time) * 10;
       arrCarElements[0].style.transform = `translateX(${move}px)`;
     }, 10);
+    carEngineApi(carId).then((drive) => {
+      if (!drive.success) clearInterval(timerId);
+    });
+    arrCarElements[2].addEventListener('click', () => {
+      clearInterval(timerId);
+      arrCarElements[0].style.transform = '';
+    });
   }
 
   window.requestAnimationFrame(driveCar);

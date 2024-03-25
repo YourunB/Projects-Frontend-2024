@@ -51,4 +51,16 @@ async function startCarApi(id: number) {
   return result;
 }
 
-export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi };
+function carEngineApi(id: number) {
+  return fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
+    .then((result) => {
+      if (result.status !== 200) {
+        return { success: false };
+      } else {
+        return result.json().then((json) => ({ ...json }));
+      }
+    })
+    .catch(() => {});
+}
+
+export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi, carEngineApi };
