@@ -31,6 +31,11 @@ interface Car {
   id: string;
 }
 
+interface CarCharacter {
+  velocity: number;
+  distance: number;
+}
+
 type CarsArray = Car[];
 
 const app = document.createElement('div');
@@ -61,6 +66,8 @@ btnToWinners.addEventListener('click', () => {
 
 function removeCar(id: number) {
   removeCarApi(id);
+  clearFields(garagePage);
+  boxUpdate.classList.add('form-create-wrapper_disable');
   const deleteCar = document.getElementsByClassName('car-box');
   for (let i = 0; i < deleteCar.length; i += 1) {
     const carElement = deleteCar[i] as HTMLElement;
@@ -83,16 +90,37 @@ async function selectCar(id: number) {
   console.log(currentCar);
 }
 
+async function startCar(perentElement: HTMLElement, carId: number) {
+  const [carElement] = perentElement.getElementsByTagName('svg');
+  const carSize = carElement.getBoundingClientRect().width;
+  const trackDistance = perentElement.getBoundingClientRect().width - carSize * 2;
+  const data = await startCarApi(carId);
+  if (!data) return;
+  const carData = data as CarCharacter;
+  const time = Number(carData.distance) / Number(carData.velocity);
+
+  let move: number = 0;
+  function driveCar() {
+    const timerId = setInterval(() => {
+      if (move >= trackDistance) clearInterval(timerId);
+      move += (trackDistance / time) * 10;
+      carElement.style.transform = `translateX(${move}px)`;
+    }, 10);
+  }
+
+  window.requestAnimationFrame(driveCar);
+}
+
 async function createCar(name: string = '', color: string = 'white', id: number) {
   const newCar = await createCarBox(name, color, id);
   newCar.addEventListener('click', (event) => {
     const currentTarget = event.target as HTMLElement;
+    const perentElement = event.currentTarget as HTMLElement;
     if (currentTarget.tagName === 'BUTTON') {
       if (currentTarget.textContent === 'Remove') removeCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'A') {
-        const res = startCarApi(Number(currentTarget.dataset.id));
-        console.log(res);
+        startCar(perentElement, Number(currentTarget.dataset.id));
       }
     }
   });

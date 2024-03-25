@@ -13,6 +13,9 @@ async function createCarApi(newCar: object) {
   await fetch('http://127.0.0.1:3000/garage', {
     method: 'POST',
     body: JSON.stringify(newCar),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }
 
@@ -34,6 +37,9 @@ async function updateCarApi(updateCar: object, id: number) {
   await fetch(`http://127.0.0.1:3000/garage/${id}`, {
     method: 'PUT',
     body: JSON.stringify(updateCar),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }
 
