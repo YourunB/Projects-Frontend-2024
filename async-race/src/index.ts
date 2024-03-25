@@ -12,6 +12,7 @@ import {
   selectCarApi,
   updateCarApi,
   startCarApi,
+  stopCarApi,
   carEngineApi,
 } from './components/api';
 import {

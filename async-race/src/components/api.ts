@@ -1,9 +1,6 @@
-let totalСars = 0;
-
 async function getCarsApi() {
   let result = undefined;
   await fetch('http://127.0.0.1:3000/garage', { method: 'GET' }).then((response) => {
-    totalСars = Number(response.headers.get('X-Total-count'));
     result = response.json();
   });
   return result;
@@ -51,6 +48,14 @@ async function startCarApi(id: number) {
   return result;
 }
 
+async function stopCarApi(id: number) {
+  let result = undefined;
+  await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=stopped`, { method: 'PATCH' }).then((response) => {
+    result = response.json();
+  });
+  return result;
+}
+
 function carEngineApi(id: number) {
   return fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
     .then((result) => {
@@ -63,4 +68,13 @@ function carEngineApi(id: number) {
     .catch(() => {});
 }
 
-export { totalСars, getCarsApi, createCarApi, removeCarApi, selectCarApi, updateCarApi, startCarApi, carEngineApi };
+export {
+  getCarsApi,
+  createCarApi,
+  removeCarApi,
+  selectCarApi,
+  updateCarApi,
+  startCarApi,
+  stopCarApi,
+  carEngineApi,
+};
