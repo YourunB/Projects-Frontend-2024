@@ -1,10 +1,13 @@
 .car-box {
   position: relative;
   width: 100%;
-  border-bottom: dashed 2px white;
+  background-image: url('../assets/images/road.jpg');
+  background-size: contain;
 }
 
 .car-box__header {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -12,7 +15,7 @@
 
 .car-image {
   position: absolute;
-  z-index: -10;
+  z-index: 0;
   left: 70px;
   bottom: -25px;
   width: 80px;
