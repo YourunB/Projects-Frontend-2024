@@ -142,15 +142,13 @@ async function startCar(perentElement: HTMLElement, carId: number) {
 
 function checkCarPosition() {
   const cars = garagePage.getElementsByClassName('car-image') as HTMLCollectionOf<HTMLElement>;
-  setInterval(() => {
-    for (let i = 0; i < cars.length; i += 1) {
-      if (cars[i].style.transform !== '') {
-        btnRace.disabled = true;
-        return;
-      }
+  for (let i = 0; i < cars.length; i += 1) {
+    if (cars[i].style.transform !== '') {
+      btnRace.disabled = true;
+      return;
     }
-    btnRace.disabled = false;
-  }, 500);
+  }
+  btnRace.disabled = false;
 }
 
 async function stopCar(carId: number, carBoxElements: CarBoxElements, timerId?: number) {
@@ -208,33 +206,11 @@ async function createGarage() {
   }
 }
 
-function changePage() {
-  const [currentGarageBox] = garagePage.getElementsByClassName('garage-page__content');
-  currentGarageBox.remove();
-  createGarage();
-}
-
-btnNext.addEventListener('click', () => {
-  pageNum += 1;
-  changePage();
-});
-
-btnPrev.addEventListener('click', () => {
-  pageNum -= 1;
-  changePage();
-});
-
-async function updatePage() {
-  const [pageContent] = garagePage.getElementsByClassName('garage-page__content');
-  await pageContent.remove();
-  createGarage();
-}
-
-createGarage();
-
 function resetRace() {
-  carsTimersId.forEach((timerId) => clearInterval(timerId));
-  carsTimersId.length = 0;
+  if (carsTimersId.length > 0) {
+    carsTimersId.forEach((timerId) => clearInterval(timerId));
+    carsTimersId.length = 0;
+  }
 
   const cars = garagePage.getElementsByClassName('car-image') as HTMLCollectionOf<HTMLElement>;
   for (let i = 0; i < cars.length; i += 1) {
@@ -245,6 +221,29 @@ function resetRace() {
     }
   }
 }
+
+async function updatePage() {
+  resetRace();
+
+  const [pageContent] = garagePage.getElementsByClassName('garage-page__content');
+  await pageContent.remove();
+  createGarage();
+
+  btnReset.disabled = true;
+  btnRace.disabled = false;
+}
+
+createGarage();
+
+btnNext.addEventListener('click', () => {
+  pageNum += 1;
+  updatePage();
+});
+
+btnPrev.addEventListener('click', () => {
+  pageNum -= 1;
+  updatePage();
+});
 
 btnCreateCar.addEventListener('click', async () => {
   const newId = cars?.map((car) => Number(car.id)) || [0];
