@@ -6,9 +6,9 @@ table.classList.add('table-winners');
 const tableHead = document.createElement('thead');
 tableHead.innerHTML = '<tr><th>Number</th><th>Car</th><th>Name</th><th>Wins</th><th>Best time(sec)</th><tr>';
 
-table.append(tableHead);
-
 const tableBody = document.createElement('tbody');
+
+table.append(tableHead, tableBody);
 
 function createTableRow(i: number, color: string, name: string, wins: number, time: number) {
   const tr = document.createElement('tr');

@@ -77,6 +77,7 @@ type WinnersArray = Winner[];
 const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
 const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
 
+let winner: boolean = false;
 let pageNum: number = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
@@ -167,29 +168,30 @@ function checkCarPosition() {
   btnRace.disabled = false;
 }
 
-let winner = false;
-function finishCar(carId: number, timeRace: number) {
+async function finishCar(carId: number, timeRace: number) {
   let save = false;
   if (!winner && carId) {
-    arrWinners?.forEach((winner) => {
+    arrWinners?.forEach(async (winner) => {
       if (Number(winner.id) === carId) {
         save = true;
-        updateWinnerApi(
+        await updateWinnerApi(
           {
             wins: winner.wins + 1,
             time: timeRace < winner.time ? timeRace : winner.time,
           },
           carId
         );
+        updateWinnersTable();
         return;
       }
     });
     if (!save) {
-      saveWinnerApi({
+      await saveWinnerApi({
         id: carId,
         wins: 1,
         time: timeRace,
       });
+      updateWinnersTable();
     }
 
     winner = true;
@@ -297,17 +299,20 @@ async function createWinnersArr() {
   let winners: WinnersArray | undefined = [];
   winners = await getWinnersApi();
   if (!winners) winners = [];
-
+  arrWinners.length = 0;
   winners.forEach((winner) => {
     cars?.forEach((car) => {
       if (winner.id === car.id) arrWinners.push({ ...winner, ...car });
     });
   });
-  addWinnersToTable();
+}
+
+async function clearTableWinners() {
+  const rows = tableBody.getElementsByTagName('tr');
+  Array.from(rows).forEach((row) => row.remove());
 }
 
 function addWinnersToTable() {
-  table.append(tableBody);
   for (let i = 0; i < arrWinners.length; i += 1) {
     tableBody.append(
       createTableRow(i + 1, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
@@ -315,8 +320,19 @@ function addWinnersToTable() {
   }
 }
 
-createGarage();
-createWinnersArr();
+async function updateWinnersTable() {
+  await clearTableWinners();
+  await createWinnersArr();
+  addWinnersToTable();
+}
+
+async function startApp() {
+  await createGarage();
+  await createWinnersArr();
+  addWinnersToTable();
+}
+
+startApp();
 
 btnNext.addEventListener('click', () => {
   pageNum += 1;
@@ -354,6 +370,7 @@ btnUpdateCar.addEventListener('click', async () => {
 });
 
 btnRace.addEventListener('click', () => {
+  winner = false;
   btnRace.disabled = true;
   const cars = garagePage.getElementsByClassName('car-image') as HTMLCollectionOf<HTMLElement>;
   for (let i = 0; i < cars.length; i += 1) {
