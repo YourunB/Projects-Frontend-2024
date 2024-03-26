@@ -1,8 +1,13 @@
 .table-winners {
   border-collapse: collapse;
+  max-width: 500px;
+  width: 100%;
 }
 
-th {
+th,
+td {
   border: solid 1px white;
   padding: 5px;
+  text-align: center;
+  vertical-align: middle;
 }

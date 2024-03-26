@@ -3,7 +3,7 @@ import { header, btnToGarage, btnToWinners } from './components/header';
 import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
-import { table } from './components/tableWinners';
+import { table, tableBody, createTableRow } from './components/tableWinners';
 import { createCarBox } from './components/car';
 import { clearFields, generateCarColor, generateCarName } from './components/utils';
 import { overlay, openModal } from './components/modalWindow';
@@ -273,7 +273,7 @@ async function updatePage() {
   createGarage();
 }
 
-async function createWinners() {
+async function createWinnersArr() {
   let winners: WinnersArray | undefined = [];
   winners = await getWinnersApi();
   if (!winners) winners = [];
@@ -283,10 +283,20 @@ async function createWinners() {
       if (winner.id === car.id) arrWinners.push({ ...winner, ...car });
     });
   });
+  addWinnersToTable();
+}
+
+function addWinnersToTable() {
+  table.append(tableBody);
+  for (let i = 0; i < arrWinners.length; i += 1) {
+    tableBody.append(
+      createTableRow(i, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
+    );
+  }
 }
 
 createGarage();
-createWinners();
+createWinnersArr();
 
 btnNext.addEventListener('click', () => {
   pageNum += 1;
