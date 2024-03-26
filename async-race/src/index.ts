@@ -122,15 +122,18 @@ async function startCar(perentElement: HTMLElement, carId: number) {
       if (move >= trackDistance) {
         clearInterval(timerId);
         btnReset.disabled = false;
+        finishCar(carId, (time / 1000).toFixed(2));
       }
       move += (trackDistance / time) * 10;
       carBoxElements.carImage.style.transform = `translateX(${move}px)`;
     }, 10);
     carEngineApi(carId).then((drive) => {
       if (!drive.success) clearInterval(timerId);
+      finishCar(carId, 'broke');
     });
     carBoxElements.btnB.addEventListener('click', () => {
       stopCar(carId, carBoxElements, Number(timerId));
+      finishCar(carId, 'broke');
     });
     carsTimersId.push(Number(timerId));
   }
@@ -148,6 +151,19 @@ function checkCarPosition() {
     }
   }
   btnRace.disabled = false;
+}
+
+let winner = false;
+function finishCar(carId: number, time: string) {
+  if (!winner && carId && time !== 'broke') {
+    winner = true;
+    cars?.forEach((car) => {
+      if (Number(car.id) === carId) {
+        openModal('Congratulations', `Car ${car.name} is win! Time: ${time}`);
+      }
+    });
+  }
+  console.log(carId, time);
 }
 
 async function stopCar(carId: number, carBoxElements: CarBoxElements, timerId?: number) {
