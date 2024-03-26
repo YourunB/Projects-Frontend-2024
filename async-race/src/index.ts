@@ -30,7 +30,7 @@ import {
   btnReset,
   btnGenerateCars,
 } from './components/formCreate';
-import { getWinnersApi } from './components/apiWinners';
+import { getWinnersApi, saveWinnerApi } from './components/apiWinners';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -170,16 +170,20 @@ function checkCarPosition() {
 }
 
 let winner = false;
-function finishCar(carId: number, time: string) {
-  if (!winner && carId && time !== 'broke') {
+function finishCar(carId: number, timeRace: string) {
+  if (!winner && carId && timeRace !== 'broke') {
     winner = true;
     cars?.forEach((car) => {
       if (Number(car.id) === carId) {
-        openModal('Congratulations', `Car ${car.name} is win! Time: ${time}`);
+        openModal('Congratulations', `Car ${car.name} is win! Time: ${timeRace}`);
+        saveWinnerApi({
+          id: car.id,
+          wins: 1,
+          time: timeRace,
+        });
       }
     });
   }
-  console.log(carId, time);
 }
 
 async function stopCar(carId: number, carBoxElements: CarBoxElements, timerId?: number) {
@@ -290,7 +294,7 @@ function addWinnersToTable() {
   table.append(tableBody);
   for (let i = 0; i < arrWinners.length; i += 1) {
     tableBody.append(
-      createTableRow(i, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
+      createTableRow(i + 1, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
     );
   }
 }
