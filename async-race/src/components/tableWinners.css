@@ -1,0 +1,8 @@
+.table-winners {
+  border-collapse: collapse;
+}
+
+th {
+  border: solid 1px white;
+  padding: 5px;
+}

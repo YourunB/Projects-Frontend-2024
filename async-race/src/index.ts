@@ -3,8 +3,10 @@ import { header, btnToGarage, btnToWinners } from './components/header';
 import { footer } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
+import { table } from './components/tableWinners';
 import { createCarBox } from './components/car';
 import { clearFields, generateCarColor, generateCarName } from './components/utils';
+import { overlay, openModal } from './components/modalWindow';
 import {
   getCarsApi,
   createCarApi,
@@ -28,7 +30,7 @@ import {
   btnReset,
   btnGenerateCars,
 } from './components/formCreate';
-import { overlay, openModal } from './components/modalWindow';
+import { getWinnersApi } from './components/apiWinners';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -39,6 +41,7 @@ main.classList.add('main');
 app.append(header, main, footer, overlay);
 main.append(garagePage, winnersPage);
 garagePage.append(formCreateCar);
+winnersPage.append(table);
 
 interface Car {
   name: string;
@@ -64,8 +67,10 @@ interface CarBoxElements {
 const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
 const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
 
-let pageNum = 1;
+let pageNum: number = 1;
 let cars: CarsArray | undefined = [];
+//let openWinnersPage: boolean = false;
+//let pageWinnerNum = 1;
 
 btnToGarage.addEventListener('click', () => {
   winnersPage.classList.add('winners-page_hide');
@@ -257,7 +262,13 @@ async function updatePage() {
   createGarage();
 }
 
+async function createWinners() {
+  const winners = await getWinnersApi();
+  console.log(winners);
+}
+
 createGarage();
+createWinners();
 
 btnNext.addEventListener('click', () => {
   pageNum += 1;

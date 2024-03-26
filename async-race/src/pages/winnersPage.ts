@@ -3,4 +3,12 @@ import './winnersPage.css';
 const winnersPage = document.createElement('section');
 winnersPage.className = 'winners-page winners-page_hide';
 
-export { winnersPage };
+const winnersPageTitle = document.createElement('h3');
+winnersPageTitle.classList.add('winners-page__title');
+
+const winnersPageNum = document.createElement('h3');
+winnersPageNum.classList.add('winners-page__num');
+
+winnersPage.append(winnersPageTitle, winnersPageNum);
+
+export { winnersPage, winnersPageTitle, winnersPageNum };
