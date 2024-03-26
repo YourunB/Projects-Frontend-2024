@@ -1,6 +1,6 @@
 import './index.css';
 import { header, btnToGarage, btnToWinners } from './components/header';
-import { footer } from './components/footer';
+import { footer, btnPrev, btnNext, toogleFooterBtns } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { table, tableBody, createTableRow } from './components/tableWinners';
@@ -74,25 +74,12 @@ interface Winner {
 
 type WinnersArray = Winner[];
 
-const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
-const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
-
 let winner: boolean = false;
 let pageNum: number = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
 //let openWinnersPage: boolean = false;
 //let pageWinnerNum = 1;
-
-btnToGarage.addEventListener('click', () => {
-  winnersPage.classList.add('winners-page_hide');
-  garagePage.classList.remove('garage-page_hide');
-});
-
-btnToWinners.addEventListener('click', () => {
-  garagePage.classList.add('garage-page_hide');
-  winnersPage.classList.remove('winners-page_hide');
-});
 
 async function removeCar(id: number) {
   await removeCarApi(id);
@@ -397,4 +384,16 @@ btnGenerateCars.addEventListener('click', async () => {
     await createCarApi(objNewCar);
   }
   updatePage();
+});
+
+btnToGarage.addEventListener('click', () => {
+  toogleFooterBtns();
+  winnersPage.classList.add('winners-page_hide');
+  garagePage.classList.remove('garage-page_hide');
+});
+
+btnToWinners.addEventListener('click', () => {
+  toogleFooterBtns();
+  garagePage.classList.add('garage-page_hide');
+  winnersPage.classList.remove('winners-page_hide');
 });

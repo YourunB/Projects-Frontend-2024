@@ -17,6 +17,10 @@
   min-width: 100px;
 }
 
+.footer__btn_hide {
+  display: none;
+}
+
 @media (hover: hover) {
   .footer__btn:hover {
     cursor: pointer;
