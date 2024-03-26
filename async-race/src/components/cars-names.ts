@@ -47,6 +47,8 @@ const carsBrands: string[] = [
   'Saturn',
   'Pontiac',
   'Oldsmobile',
+  'Geely',
+  'Chery',
 ];
 
 const carsModels: string[] = [
@@ -98,6 +100,8 @@ const carsModels: string[] = [
   'Vue',
   'G6',
   'Alero',
+  'Atlas',
+  'X5',
 ];
 
 export { carsBrands, carsModels };
