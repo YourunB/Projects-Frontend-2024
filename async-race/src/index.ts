@@ -64,11 +64,22 @@ interface CarBoxElements {
   btnRemove: HTMLButtonElement;
 }
 
+interface Winner {
+  name: string;
+  color: string;
+  wins: number;
+  time: number;
+  id: string;
+}
+
+type WinnersArray = Winner[];
+
 const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
 const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
 
 let pageNum: number = 1;
 let cars: CarsArray | undefined = [];
+const arrWinners: WinnersArray = [];
 //let openWinnersPage: boolean = false;
 //let pageWinnerNum = 1;
 
@@ -263,8 +274,15 @@ async function updatePage() {
 }
 
 async function createWinners() {
-  const winners = await getWinnersApi();
-  console.log(winners);
+  let winners: WinnersArray | undefined = [];
+  winners = await getWinnersApi();
+  if (!winners) winners = [];
+
+  winners.forEach((winner) => {
+    cars?.forEach((car) => {
+      if (winner.id === car.id) arrWinners.push({ ...winner, ...car });
+    });
+  });
 }
 
 createGarage();
