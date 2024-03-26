@@ -2,7 +2,7 @@ import './index.css';
 import { header, btnToGarage, btnToWinners } from './components/header';
 import { footer, btnPrev, btnNext, btnNextWinners, btnPrevWinners, toogleFooterBtns } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
-import { winnersPage } from './pages/winnersPage';
+import { winnersPage, winnersPageTitle, winnersPageNum } from './pages/winnersPage';
 import { table, tableBody, createTableRow } from './components/tableWinners';
 import { createCarBox } from './components/car';
 import { clearFields, generateCarColor, generateCarName } from './components/utils';
@@ -317,6 +317,9 @@ function addWinnersToTable() {
       createTableRow(i + 1, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
     );
   }
+
+  winnersPageTitle.textContent = `Winners (${arrWinners.length})`;
+  winnersPageNum.textContent = `Page #${pageNumWinners}`;
 }
 
 async function updateWinnersTable() {
