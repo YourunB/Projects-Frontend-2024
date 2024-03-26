@@ -28,6 +28,6 @@ function toogleFooterBtns() {
   btnPrev.classList.toggle('footer__btn_hide');
 }
 
-footer.append(btnPrev, btnNext, btnNextWinners, btnPrevWinners);
+footer.append(btnPrev, btnNext, btnPrevWinners, btnNextWinners);
 
-export { footer, btnPrev, btnNext, btnNextWinners, btnPrevWinners, toogleFooterBtns };
+export { footer, btnPrev, btnNext, btnPrevWinners, btnNextWinners, toogleFooterBtns };

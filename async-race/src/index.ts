@@ -1,6 +1,6 @@
 import './index.css';
 import { header, btnToGarage, btnToWinners } from './components/header';
-import { footer, btnPrev, btnNext, toogleFooterBtns } from './components/footer';
+import { footer, btnPrev, btnNext, btnNextWinners, btnPrevWinners, toogleFooterBtns } from './components/footer';
 import { garagePage, createPage } from './pages/garagePage';
 import { winnersPage } from './pages/winnersPage';
 import { table, tableBody, createTableRow } from './components/tableWinners';
@@ -76,6 +76,7 @@ type WinnersArray = Winner[];
 
 let winner: boolean = false;
 let pageNum: number = 1;
+let pageNumWinners: number = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
 
@@ -298,7 +299,20 @@ async function clearTableWinners() {
 }
 
 function addWinnersToTable() {
-  for (let i = 0; i < arrWinners.length; i += 1) {
+  const startIndex = pageNumWinners === 1 ? 0 : (pageNumWinners - 1) * 10;
+  const endIndex = pageNumWinners * 10;
+  if (arrWinners.length <= startIndex && pageNumWinners > 1) {
+    pageNumWinners -= 1;
+    addWinnersToTable();
+    return;
+  }
+
+  if (endIndex < arrWinners.length) btnNextWinners.disabled = false;
+  else btnNextWinners.disabled = true;
+  if (endIndex > 10) btnPrevWinners.disabled = false;
+  else btnPrevWinners.disabled = true;
+
+  for (let i = startIndex; i < arrWinners.length && i < endIndex; i += 1) {
     tableBody.append(
       createTableRow(i + 1, arrWinners[i].color, arrWinners[i].name, arrWinners[i].wins, arrWinners[i].time)
     );
@@ -327,6 +341,18 @@ btnNext.addEventListener('click', () => {
 btnPrev.addEventListener('click', () => {
   pageNum -= 1;
   updatePage();
+});
+
+btnNextWinners.addEventListener('click', async () => {
+  pageNumWinners += 1;
+  await clearTableWinners();
+  addWinnersToTable();
+});
+
+btnPrevWinners.addEventListener('click', async () => {
+  pageNumWinners -= 1;
+  await clearTableWinners();
+  addWinnersToTable();
 });
 
 btnCreateCar.addEventListener('click', async () => {

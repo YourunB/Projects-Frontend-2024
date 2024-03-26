@@ -18,7 +18,7 @@ export function createCarImage(color = 'white') {
   return car;
 }
 
-export function createCarBox(name: string, color: string, id: number) {
+export async function createCarBox(name: string, color: string, id: number) {
   const carBox = document.createElement('div');
   carBox.classList.add('car-box');
   carBox.dataset.id = `${id}`;
