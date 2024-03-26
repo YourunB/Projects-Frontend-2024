@@ -28,6 +28,7 @@ import {
   btnReset,
   btnGenerateCars,
 } from './components/formCreate';
+import { overlay, openModal } from './components/modalWindow';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -35,11 +36,8 @@ document.body.append(app);
 
 const main = document.createElement('main');
 main.classList.add('main');
-app.append(main);
-main.append(garagePage);
-main.append(winnersPage);
-
-app.append(header, main, footer);
+app.append(header, main, footer, overlay);
+main.append(garagePage, winnersPage);
 garagePage.append(formCreateCar);
 
 interface Car {
@@ -173,7 +171,10 @@ async function createCar(name: string = '', color: string = 'white', id: number)
     const currentTarget = event.target as HTMLElement;
     const perentElement = event.currentTarget as HTMLElement;
     if (currentTarget.tagName === 'BUTTON') {
-      if (currentTarget.textContent === 'Remove') removeCar(Number(currentTarget.dataset.id));
+      if (currentTarget.textContent === 'Remove') {
+        openModal('Info', 'You have deleted the car');
+        removeCar(Number(currentTarget.dataset.id));
+      }
       if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'A') {
         startCar(perentElement, Number(currentTarget.dataset.id));
@@ -253,6 +254,7 @@ btnPrev.addEventListener('click', () => {
 });
 
 btnCreateCar.addEventListener('click', async () => {
+  openModal('Info', 'You have added new car');
   const getId = cars?.map((car) => Number(car.id)) || [0];
   const newId = Math.max(...getId) + 1;
   const objNewCar = {
@@ -266,6 +268,7 @@ btnCreateCar.addEventListener('click', async () => {
 });
 
 btnUpdateCar.addEventListener('click', async () => {
+  openModal('Info', 'You have updated car details');
   const objUpdateCar = {
     name: inputUpdateNameCar.value,
     color: inputUpdateColorCar.value,
@@ -290,6 +293,7 @@ btnReset.addEventListener('click', () => {
 });
 
 btnGenerateCars.addEventListener('click', async () => {
+  openModal('Info', 'You have added 100 new cars');
   const getId = cars?.map((car) => Number(car.id)) || [0];
   let newId = Math.max(...getId) + 1;
   for (let i = 0; i < 100; i += 1) {
