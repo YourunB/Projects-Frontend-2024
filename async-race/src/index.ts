@@ -78,8 +78,6 @@ let winner: boolean = false;
 let pageNum: number = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
-//let openWinnersPage: boolean = false;
-//let pageWinnerNum = 1;
 
 async function removeCar(id: number) {
   await removeCarApi(id);
