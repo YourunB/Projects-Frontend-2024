@@ -30,7 +30,7 @@ import {
   btnReset,
   btnGenerateCars,
 } from './components/formCreate';
-import { getWinnersApi, saveWinnerApi } from './components/apiWinners';
+import { getWinnersApi, saveWinnerApi, updateWinnerApi } from './components/apiWinners';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -138,18 +138,16 @@ async function startCar(perentElement: HTMLElement, carId: number) {
       if (move >= trackDistance) {
         clearInterval(timerId);
         btnReset.disabled = false;
-        finishCar(carId, (time / 1000).toFixed(2));
+        finishCar(carId, Number((time / 1000).toFixed(2)));
       }
       move += (trackDistance / time) * 10;
       carBoxElements.carImage.style.transform = `translateX(${move}px)`;
     }, 10);
     carEngineApi(carId).then((drive) => {
       if (!drive.success) clearInterval(timerId);
-      finishCar(carId, 'broke');
     });
     carBoxElements.btnB.addEventListener('click', () => {
       stopCar(carId, carBoxElements, Number(timerId));
-      finishCar(carId, 'broke');
     });
     carsTimersId.push(Number(timerId));
   }
@@ -170,18 +168,36 @@ function checkCarPosition() {
 }
 
 let winner = false;
-function finishCar(carId: number, timeRace: string) {
-  if (!winner && carId && timeRace !== 'broke') {
+function finishCar(carId: number, timeRace: number) {
+  let save = false;
+  if (!winner && carId) {
+    arrWinners?.forEach((winner) => {
+      if (Number(winner.id) === carId) {
+        save = true;
+        updateWinnerApi(
+          {
+            wins: winner.wins + 1,
+            time: timeRace < winner.time ? timeRace : winner.time,
+          },
+          carId
+        );
+        return;
+      }
+    });
+    if (!save) {
+      saveWinnerApi({
+        id: carId,
+        wins: 1,
+        time: timeRace,
+      });
+    }
+
     winner = true;
     cars?.forEach((car) => {
       if (Number(car.id) === carId) {
-        openModal('Congratulations', `Car ${car.name} is win! Time: ${timeRace}`);
-        saveWinnerApi({
-          id: car.id,
-          wins: 1,
-          time: timeRace,
-        });
+        openModal('Congratulations', `Car ${car.name} is WIN! Time: ${timeRace} sec.`);
       }
+      return;
     });
   }
 }

@@ -16,4 +16,14 @@ async function saveWinnerApi(newWinner: object) {
   });
 }
 
-export { getWinnersApi, saveWinnerApi };
+async function updateWinnerApi(updateWinner: object, id: number) {
+  await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updateWinner),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+export { getWinnersApi, saveWinnerApi, updateWinnerApi };
