@@ -26,4 +26,10 @@ async function updateWinnerApi(updateWinner: object, id: number) {
   });
 }
 
-export { getWinnersApi, saveWinnerApi, updateWinnerApi };
+async function removeWinnerApi(id: number) {
+  await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+    method: 'DELETE',
+  });
+}
+
+export { getWinnersApi, saveWinnerApi, updateWinnerApi, removeWinnerApi };

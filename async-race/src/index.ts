@@ -30,7 +30,7 @@ import {
   btnReset,
   btnGenerateCars,
 } from './components/formCreate';
-import { getWinnersApi, saveWinnerApi, updateWinnerApi } from './components/apiWinners';
+import { getWinnersApi, saveWinnerApi, updateWinnerApi, removeWinnerApi } from './components/apiWinners';
 
 const app = document.createElement('div');
 app.classList.add('container');
@@ -82,8 +82,10 @@ const arrWinners: WinnersArray = [];
 
 async function removeCar(id: number) {
   await removeCarApi(id);
+  await removeWinnerApi(id);
   clearFields(garagePage);
   updatePage();
+  updateWinnersTable();
 }
 
 async function selectCar(id: number) {
@@ -277,7 +279,7 @@ async function updatePage() {
   formCreateCar.classList.add('form-create_disable');
 
   const [pageContent] = garagePage.getElementsByClassName('garage-page__content');
-  await pageContent.remove();
+  pageContent.remove();
   createGarage();
 }
 

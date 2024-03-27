@@ -56,7 +56,7 @@ async function stopCarApi(id: number) {
   return result;
 }
 
-function carEngineApi(id: number) {
+async function carEngineApi(id: number) {
   return fetch(`http://127.0.0.1:3000/engine?id=${id}&status=drive`, { method: 'PATCH' })
     .then((result) => {
       if (result.status !== 200) {
