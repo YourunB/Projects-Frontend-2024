@@ -49,12 +49,12 @@ interface Car {
   id: string;
 }
 
+type CarsArray = Car[];
+
 interface CarCharacter {
   velocity: number;
   distance: number;
 }
-
-type CarsArray = Car[];
 
 interface CarBoxElements {
   carImage: HTMLElement;
@@ -79,6 +79,10 @@ let pageNum: number = 1;
 let pageNumWinners: number = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
+
+let sortWinner: string = 'no';
+const btnSortWin = document.getElementById('btn-sort-win') as HTMLElement;
+const btnSortTime = document.getElementById('btn-sort-time') as HTMLElement;
 
 async function removeCar(id: number) {
   await removeCarApi(id);
@@ -283,6 +287,27 @@ async function updatePage() {
   createGarage();
 }
 
+async function sortWinners() {
+  switch (sortWinner) {
+    case 'no':
+      break;
+    case 'winDown':
+      arrWinners.sort((a, b) => b.wins - a.wins);
+      break;
+    case 'winUp':
+      arrWinners.sort((a, b) => a.wins - b.wins);
+      break;
+    case 'timeDown':
+      arrWinners.sort((a, b) => b.time - a.time);
+      break;
+    case 'timeUp':
+      arrWinners.sort((a, b) => a.time - b.time);
+      break;
+    default:
+      break;
+  }
+}
+
 async function createWinnersArr() {
   let winners: WinnersArray | undefined = [];
   winners = await getWinnersApi();
@@ -293,6 +318,7 @@ async function createWinnersArr() {
       if (winner.id === car.id) arrWinners.push({ ...winner, ...car });
     });
   });
+  sortWinners();
 }
 
 async function clearTableWinners() {
@@ -358,6 +384,42 @@ btnPrevWinners.addEventListener('click', async () => {
   pageNumWinners -= 1;
   await clearTableWinners();
   addWinnersToTable();
+});
+
+btnSortWin.addEventListener('click', () => {
+  switch (sortWinner) {
+    case 'no':
+      sortWinner = 'winDown';
+      btnSortWin.innerHTML = 'Wins&#8595;';
+      break;
+    case 'winDown':
+      sortWinner = 'winUp';
+      btnSortWin.innerHTML = 'Wins&#8593;';
+      break;
+    default:
+      sortWinner = 'no';
+      btnSortWin.innerHTML = 'Wins';
+  }
+  btnSortTime.innerHTML = 'Best time(sec)';
+  updateWinnersTable();
+});
+
+btnSortTime.addEventListener('click', () => {
+  switch (sortWinner) {
+    case 'no':
+      sortWinner = 'timeDown';
+      btnSortTime.innerHTML = 'Best time(sec)&#8595;';
+      break;
+    case 'timeDown':
+      sortWinner = 'timeUp';
+      btnSortTime.innerHTML = 'Best time(sec)&#8593;';
+      break;
+    default:
+      sortWinner = 'no';
+      btnSortTime.innerHTML = 'Best time(sec)';
+  }
+  btnSortWin.innerHTML = 'Wins';
+  updateWinnersTable();
 });
 
 btnCreateCar.addEventListener('click', async () => {

@@ -16,3 +16,28 @@ th {
   background: white;
   color: black;
 }
+
+.btn-sort {
+  color: rgb(0, 80, 0);
+  transition: 0.5s;
+}
+
+.btn-sort-win {
+  min-width: 70px;
+}
+
+.btn-sort-time {
+  min-width: 156px;
+}
+
+@media (hover: hover) {
+  .btn-sort:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.btn-sort:active {
+  transition: 0.2s;
+  transform: scale(0.9);
+}
