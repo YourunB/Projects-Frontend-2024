@@ -7,6 +7,18 @@
   background-size: contain;
 }
 
+.car-box::after {
+  content: '';
+  background-image: url('../assets/images/flag.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+}
+
 .car-box__header {
   position: relative;
   z-index: 10;
