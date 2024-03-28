@@ -29,6 +29,7 @@ import {
   btnRace,
   btnReset,
   btnGenerateCars,
+  boxCreate,
 } from './components/formCreate';
 import { getWinnersApi, saveWinnerApi, updateWinnerApi, removeWinnerApi } from './components/apiWinners';
 
@@ -158,6 +159,8 @@ function checkCarPosition() {
     }
   }
   btnRace.disabled = false;
+  btnReset.disabled = true;
+  unblockBtnsInRace();
 }
 
 async function finishCar(carId: number, timeRace: number) {
@@ -223,6 +226,7 @@ async function createCar(name: string = '', color: string = 'white', id: number)
       }
       if (currentTarget.textContent === 'Select') selectCar(Number(currentTarget.dataset.id));
       if (currentTarget.textContent === 'A') {
+        blockBtnsInRace();
         startCar(perentElement, Number(currentTarget.dataset.id));
       }
     }
@@ -350,6 +354,26 @@ function addWinnersToTable() {
   winnersPageNum.textContent = `Page #${pageNumWinners}`;
 }
 
+function blockBtnsInRace() {
+  btnGenerateCars.disabled = true;
+  btnNext.disabled = true;
+  btnPrev.disabled = true;
+  boxUpdate.classList.add('form-create-wrapper_disable');
+  boxCreate.classList.add('form-create-wrapper_disable');
+  const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
+  Array.from(carBtns).forEach((btn) => (btn.disabled = true));
+}
+
+function unblockBtnsInRace() {
+  btnGenerateCars.disabled = false;
+  btnNext.disabled = false;
+  btnPrev.disabled = false;
+  if (inputUpdateNameCar.value.length > 0) boxUpdate.classList.remove('form-create-wrapper_disable');
+  boxCreate.classList.remove('form-create-wrapper_disable');
+  const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
+  Array.from(carBtns).forEach((btn) => (btn.disabled = false));
+}
+
 async function updateWinnersTable() {
   await clearTableWinners();
   await createWinnersArr();
@@ -448,6 +472,7 @@ btnUpdateCar.addEventListener('click', async () => {
 });
 
 btnRace.addEventListener('click', () => {
+  blockBtnsInRace();
   winner = false;
   btnRace.disabled = true;
   const cars = garagePage.getElementsByClassName('car-image') as HTMLCollectionOf<HTMLElement>;
