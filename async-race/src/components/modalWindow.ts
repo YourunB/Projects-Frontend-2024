@@ -29,10 +29,6 @@ function openModal(title: string, msg: string) {
   overlay.classList.add('overlay_show');
 }
 
-overlay.addEventListener('click', () => {
-  closeModal();
-});
-
 btnModal.addEventListener('click', () => {
   closeModal();
 });
