@@ -4,6 +4,12 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 0 10px 10px 10px;
+  transition: 0.2s;
+}
+
+.footer_disable {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .footer__btn {

@@ -356,8 +356,7 @@ function addWinnersToTable() {
 
 function blockBtnsInRace() {
   btnGenerateCars.disabled = true;
-  btnNext.disabled = true;
-  btnPrev.disabled = true;
+  footer.classList.add('footer_disable');
   boxUpdate.classList.add('form-create-wrapper_disable');
   boxCreate.classList.add('form-create-wrapper_disable');
   const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
@@ -366,8 +365,7 @@ function blockBtnsInRace() {
 
 function unblockBtnsInRace() {
   btnGenerateCars.disabled = false;
-  btnNext.disabled = false;
-  btnPrev.disabled = false;
+  footer.classList.remove('footer_disable');
   if (inputUpdateNameCar.value.length > 0) boxUpdate.classList.remove('form-create-wrapper_disable');
   boxCreate.classList.remove('form-create-wrapper_disable');
   const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
