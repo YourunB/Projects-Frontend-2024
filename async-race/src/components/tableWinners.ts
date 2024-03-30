@@ -5,7 +5,7 @@ table.classList.add('table-winners');
 
 const tableHead = document.createElement('thead');
 tableHead.innerHTML =
-  '<tr><th>Number</th><th>Car</th><th>Name</th><th class="btn-sort btn-sort-win" id="btn-sort-win">Wins</th><th class="btn-sort btn-sort-time" id="btn-sort-time">Best time(sec)</th><tr>';
+  '<tr><th>№</th><th>Car</th><th>Name</th><th class="btn-sort btn-sort-win" id="btn-sort-win">Wins</th><th class="btn-sort btn-sort-time" id="btn-sort-time">Best time(sec)</th><tr>';
 
 const tableBody = document.createElement('tbody');
 

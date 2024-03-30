@@ -294,7 +294,7 @@ async function updatePage() {
   createGarage();
 }
 
-async function sortWinners() {
+function sortWinners() {
   switch (sortWinner) {
     case 'no':
       break;
@@ -381,7 +381,7 @@ function unblockBtnsInRace() {
 async function updateWinnersTable() {
   await clearTableWinners();
   await createWinnersArr();
-  addWinnersToTable();
+  setTimeout(() => addWinnersToTable(), 500);
 }
 
 async function startApp() {
@@ -414,7 +414,17 @@ btnPrevWinners.addEventListener('click', async () => {
   addWinnersToTable();
 });
 
+function blockSortBtns() {
+  btnSortWin.classList.add('btn-sort_disable');
+  btnSortTime.classList.add('btn-sort_disable');
+  setTimeout(() => {
+    btnSortWin.classList.remove('btn-sort_disable');
+    btnSortTime.classList.remove('btn-sort_disable');
+  }, 750);
+}
+
 btnSortWin.addEventListener('click', () => {
+  blockSortBtns();
   switch (sortWinner) {
     case 'no':
       sortWinner = 'winDown';
@@ -433,6 +443,7 @@ btnSortWin.addEventListener('click', () => {
 });
 
 btnSortTime.addEventListener('click', () => {
+  blockSortBtns();
   switch (sortWinner) {
     case 'no':
       sortWinner = 'timeDown';
