@@ -128,8 +128,8 @@ async function startCar(perentElement: HTMLElement, carId: number) {
 
   let move: number = 0;
   function driveCar() {
-    const timerId = setInterval(() => {
-      if (move >= trackDistance) {
+    let timerId: NodeJS.Timer | undefined = setInterval(() => {
+      if (move >= trackDistance && timerId) {
         clearInterval(timerId);
         btnReset.disabled = false;
         finishCar(carId, Number((time / 1000).toFixed(2)));
@@ -138,10 +138,13 @@ async function startCar(perentElement: HTMLElement, carId: number) {
       carBoxElements.carImage.style.transform = `translateX(${move}px)`;
     }, 10);
     carEngineApi(carId).then((drive) => {
-      if (!drive.success) clearInterval(timerId);
+      if (!drive.success && timerId) clearInterval(timerId);
     });
     carBoxElements.btnB.addEventListener('click', () => {
-      stopCar(carId, carBoxElements, Number(timerId));
+      if (timerId) {
+        stopCar(carId, carBoxElements, Number(timerId));
+        timerId = undefined;
+      }
     });
     carsTimersId.push(Number(timerId));
   }
@@ -355,8 +358,10 @@ function addWinnersToTable() {
 }
 
 function blockBtnsInRace() {
+  btnRace.disabled = true;
   btnGenerateCars.disabled = true;
-  footer.classList.add('footer_disable');
+  btnNext.classList.add('footer__btn_disable');
+  btnPrev.classList.add('footer__btn_disable');
   boxUpdate.classList.add('form-create-wrapper_disable');
   boxCreate.classList.add('form-create-wrapper_disable');
   const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
@@ -365,7 +370,8 @@ function blockBtnsInRace() {
 
 function unblockBtnsInRace() {
   btnGenerateCars.disabled = false;
-  footer.classList.remove('footer_disable');
+  btnNext.classList.remove('footer__btn_disable');
+  btnPrev.classList.remove('footer__btn_disable');
   if (inputUpdateNameCar.value.length > 0) boxUpdate.classList.remove('form-create-wrapper_disable');
   boxCreate.classList.remove('form-create-wrapper_disable');
   const carBtns = garagePage.getElementsByClassName('car-box__header__btn') as HTMLCollectionOf<HTMLButtonElement>;
