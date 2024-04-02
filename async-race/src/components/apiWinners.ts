@@ -1,8 +1,12 @@
 async function getWinnersApi() {
   let result = undefined;
-  await fetch('http://127.0.0.1:3000/winners', { method: 'GET' }).then((response) => {
-    result = response.json();
-  });
+  await fetch('http://127.0.0.1:3000/winners', { method: 'GET' })
+    .then((response) => {
+      result = response.json();
+    })
+    .catch(() => {
+      console.log('No connection to winners in API');
+    });
   return result;
 }
 
@@ -13,6 +17,8 @@ async function saveWinnerApi(newWinner: object) {
     headers: {
       'Content-Type': 'application/json',
     },
+  }).catch(() => {
+    console.log('No connection to save winner in API');
   });
 }
 
@@ -23,12 +29,16 @@ async function updateWinnerApi(updateWinner: object, id: number) {
     headers: {
       'Content-Type': 'application/json',
     },
+  }).catch(() => {
+    console.log('No connection to update winner in API');
   });
 }
 
 async function removeWinnerApi(id: number) {
   await fetch(`http://127.0.0.1:3000/winners/${id}`, {
     method: 'DELETE',
+  }).catch(() => {
+    console.log('No connection to remove winner in API');
   });
 }
 
