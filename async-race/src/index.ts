@@ -52,11 +52,6 @@ interface Car {
 
 type CarsArray = Car[];
 
-interface CarCharacter {
-  velocity: number;
-  distance: number;
-}
-
 interface CarBoxElements {
   carImage: HTMLElement;
   btnA: HTMLButtonElement;
@@ -123,9 +118,7 @@ async function startCar(perentElement: HTMLElement, carId: number) {
   const trackDistance = perentElement.getBoundingClientRect().width - carSize * 2;
   const data = await startCarApi(carId);
   if (!data) return;
-  let carData: CarCharacter;
-  if ('distance' in data && 'velocity' in data) carData = data;
-  else return;
+  const carData = data;
 
   const time = Number(carData.distance) / Number(carData.velocity);
 

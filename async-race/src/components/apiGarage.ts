@@ -54,16 +54,14 @@ async function updateCarApi(updateCar: object, id: number) {
   });
 }
 
-async function startCarApi(id: number) {
-  let result = undefined;
-  await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=started`, { method: 'PATCH' })
-    .then((response) => {
-      result = response.json();
-    })
-    .catch(() => {
-      console.log('No connection to start car in API');
-    });
-  return result;
+async function startCarApi(id: number): Promise<{ velocity: number; distance: number }> {
+  try {
+    const response = await fetch(`http://127.0.0.1:3000/engine?id=${id}&status=started`, { method: 'PATCH' });
+    return response.json();
+  } catch {
+    console.log('No connection to start car in API');
+    return { velocity: 0, distance: 0 };
+  }
 }
 
 async function stopCarApi(id: number) {
