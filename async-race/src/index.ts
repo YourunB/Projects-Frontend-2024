@@ -75,9 +75,9 @@ interface Winner {
 
 type WinnersArray = Winner[];
 
-let winner: boolean = false;
-let pageNum: number = 1;
-let pageNumWinners: number = 1;
+let winner = false;
+let pageNum = 1;
+let pageNumWinners = 1;
 let cars: CarsArray | undefined = [];
 const arrWinners: WinnersArray = [];
 
@@ -123,7 +123,10 @@ async function startCar(perentElement: HTMLElement, carId: number) {
   const trackDistance = perentElement.getBoundingClientRect().width - carSize * 2;
   const data = await startCarApi(carId);
   if (!data) return;
-  const carData = data as CarCharacter;
+  let carData: CarCharacter;
+  if ('distance' in data && 'velocity' in data) carData = data;
+  else return;
+
   const time = Number(carData.distance) / Number(carData.velocity);
 
   let move: number = 0;
