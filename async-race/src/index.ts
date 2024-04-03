@@ -90,7 +90,7 @@ async function removeCar(id: number) {
   await removeWinnerApi(id);
   clearFields(garagePage);
   updatePage();
-  updateWinnersTable();
+  sequentialUpdateWinnersTable();
 }
 
 async function selectCar(id: number) {
@@ -182,7 +182,6 @@ async function finishCar(carId: number, timeRace: number) {
           },
           carId
         );
-        updateWinnersTable();
         return;
       }
     });
@@ -192,8 +191,9 @@ async function finishCar(carId: number, timeRace: number) {
         wins: 1,
         time: timeRace,
       });
-      updateWinnersTable();
     }
+
+    sequentialUpdateWinnersTable();
 
     winner = true;
     cars?.forEach((car) => {
@@ -381,10 +381,16 @@ function unblockBtnsInRace() {
   Array.from(carBtns).forEach((btn) => (btn.disabled = false));
 }
 
-async function updateWinnersTable() {
+let queue: Promise<void> = Promise.resolve();
+
+async function updateWinnersTable(): Promise<void> {
   await clearTableWinners();
   await createWinnersArr();
-  setTimeout(() => addWinnersToTable(), 500);
+  addWinnersToTable();
+}
+
+function sequentialUpdateWinnersTable(): void {
+  queue = queue.then(() => updateWinnersTable());
 }
 
 async function startApp() {
@@ -442,7 +448,7 @@ btnSortWin.addEventListener('click', () => {
       btnSortWin.innerHTML = 'Wins';
   }
   btnSortTime.innerHTML = 'Best time(sec)';
-  updateWinnersTable();
+  sequentialUpdateWinnersTable();
 });
 
 btnSortTime.addEventListener('click', () => {
@@ -461,7 +467,7 @@ btnSortTime.addEventListener('click', () => {
       btnSortTime.innerHTML = 'Best time(sec)';
   }
   btnSortWin.innerHTML = 'Wins';
-  updateWinnersTable();
+  sequentialUpdateWinnersTable();
 });
 
 btnCreateCar.addEventListener('click', async () => {
