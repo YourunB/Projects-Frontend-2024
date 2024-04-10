@@ -1,8 +1,4 @@
 import './index.sass';
-import { header } from './components/header';
-import { footer } from './components/footer';
+import { pageChat } from './pages/pageChat';
 
-const main = document.createElement('main');
-main.classList.add('main');
-
-document.body.append(header, main, footer);
+document.body.append(pageChat);
