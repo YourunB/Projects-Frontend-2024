@@ -26,3 +26,29 @@ a
 .main
   max-width: 1440px
   padding: 10px
+
+.error
+  position: fixed
+  z-index: 100
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  text-align: center
+  font-weight: 700
+  font-size: 25px
+  color: white
+
+.error span
+  color: white
+  background: linear-gradient(to right, white 20%, red 70%, white 80%)
+  background-clip: text
+  -webkit-text-fill-color: transparent
+  -webkit-background-clip: text
+  background-size: 500% auto
+  animation: text-shine 5s ease-in-out infinite alternate
+
+@keyframes text-shine
+  0%
+    background-position: 0% 50%
+  100%
+    background-position: 100% 50%
