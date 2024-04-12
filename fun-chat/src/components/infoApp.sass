@@ -1,0 +1,89 @@
+.info-app
+  position: fixed
+  z-index: 100
+  left: 0
+  top: 0
+  width: 100%
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  text-align: center
+  color: white
+  transition: 0.5s
+  backdrop-filter: blur(10px)
+  transform: scale(0)
+
+.info-app_show
+  transform: scale(1)
+
+.info-app__box
+  border: solid 2px white
+  max-width: 600px
+  padding: 20px
+  width: 100%
+  min-height: 200px
+  background-color: #74EBD5
+  background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.1)
+  border-radius: 10px
+
+.dev-link
+  font-weight: 700
+  background: linear-gradient(to right,#ffffff 25%, #bd84ff 50%, #80ffe8 60%)
+  background-clip: text
+  -webkit-text-fill-color: transparent
+  -webkit-background-clip: text
+  background-size: 500% auto
+  animation: text-shine 5s ease-in-out infinite alternate
+  transition: 0.7s
+
+.info
+  position: absolute
+  left: 0px
+  bottom: 20px
+  width: 40px
+  filter: invert(1)
+  transition: 0.7s
+  animation: ring 2s infinite ease-in-out
+
+.info-app__box__btn
+  background: white
+  width: 60px
+  height: 60px
+  border: none
+  border-radius: 50%
+  font-weight: 700
+  color: #9FACE6
+  outline: none
+  transition: 0.7s
+
+@media (hover:hover)
+  .info-app__box__btn:hover
+    cursor: pointer
+    box-shadow: 0 0 5px 5px #9FACE6
+    transform: scale(1.1)
+
+  .info:hover
+    cursor: pointer
+    animation: none
+    transform: scale(1.1)
+
+.info-app__box__btn:active,
+.info:active
+  transition: 0.2s
+  transform: scale(0.9)
+
+@keyframes ring
+  0%
+    rotate: 10deg
+  50%
+    rotate: -10deg
+  100%
+    rotate: 10deg
+
+@keyframes text-shine
+  0% 
+    background-position: 0% 50%
+  100% 
+    background-position: 100% 50%

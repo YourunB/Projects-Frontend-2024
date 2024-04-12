@@ -3,30 +3,3 @@
   display: flex
   justify-content: center
   align-items: center
-
-.info
-  position: absolute
-  left: 0px
-  bottom: 20px
-  width: 60px
-  filter: invert(1)
-  transition: 0.7s
-  animation: ring 2s infinite ease-in-out
-
-@media (hover:hover)
-  .info:hover
-    animation: none
-    transform: scale(1.1)
-    cursor: pointer
-
-.info:active
-  transition: 0.2s
-  transform: scale(0.9)
-
-@keyframes ring
-  0%
-    rotate: 10deg
-  50%
-    rotate: -10deg
-  100%
-    rotate: 10deg
