@@ -58,9 +58,11 @@ inputName.addEventListener('input', () => {
     let msgErr = '';
     if (inputName.value.length < 3) msgErr = '- min length: 3</br>';
     if (inputName.value.length > 0) {
-      if (inputName.value[0] !== inputName.value[0].toUpperCase()) msgErr += '- first letter is capitalized</br>';
+      if (inputName.value[0] !== inputName.value[0].toUpperCase() || !/^[A-Z]/.test(inputName.value)) {
+        msgErr += '- first letter is capitalized</br>';
+      }
     }
-    if (/[а-яёА-ЯЁ]/.test(inputName.value)) msgErr += '- only Latin letters';
+    if (!/^[A-Z][A-Za-z\\-]*$/.test(inputName.value)) msgErr += '- only Latin letters or "-"';
     nameErr.innerHTML = msgErr;
   }
   checkValidate();

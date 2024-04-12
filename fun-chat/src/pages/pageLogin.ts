@@ -13,7 +13,24 @@ pageLogin.append(formLogin, btnInfo, infoApp);
 btnLogin.addEventListener('click', (event) => {
   event.preventDefault();
   const id = uuidv4();
-  apiAuthorization(id, inputName.value, inputPass.value);
+  apiAuthorization(id, inputName.value, inputPass.value).then((data: unknown) => {
+    if (typeof data === 'string') {
+      const obj = JSON.parse(data);
+      console.log(obj);
+      if (obj.type !== 'ERROR') {
+        addUserToSessionStorage(obj.id, obj.payload.user.login);
+        location.hash = '#chat';
+      }
+    }
+  });
 });
+
+function addUserToSessionStorage(uId: string, uName: string) {
+  const data = {
+    id: uId,
+    name: uName,
+  };
+  sessionStorage.setItem('user', JSON.stringify(data));
+}
 
 export { pageLogin };
