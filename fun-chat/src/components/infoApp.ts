@@ -5,10 +5,12 @@ infoApp.classList.add('info-app');
 infoApp.id = 'window-info';
 infoApp.innerHTML = `
   <div class="info-app__box">
-    <h3>Funny Chat</h3>
-    <p>The application is designed to demonstrate the Fun Chat task as part of the RSSchool JS/FE 2024 course</p><p>Users and messages are deleted once a day</p>
-    <p>App created by <a class="dev-link" href="https://github.com/yourunb" target="_blank">Yury Butskevich</a></p>
-    <button class="info-app__box__btn" id="btn-close-info">OK</button>
+    <div class="info-app__box-wrapper">
+      <h3>Funny Chat</h3>
+      <p>The application is designed to demonstrate the Fun Chat task as part of the RSSchool JS/FE 2024 course</p><p>Users and messages are deleted once a day</p>
+      <p>App created by <a class="dev-link" href="https://github.com/yourunb" target="_blank">Yury Butskevich</a></p>
+      <button class="info-app__box__btn" id="btn-close-info">OK</button>
+    </div>
   </div>
 `;
 
