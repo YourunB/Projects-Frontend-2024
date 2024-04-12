@@ -2,9 +2,58 @@
   position: relative
   border-radius: 10px
   min-height: 200px
-  min-width: 300px
+  max-width: 340px
+  width: 100%
+  padding: 20px
   background: white
+  color: gray
   box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.1)
+
+.form-login__input
+  width: 100%
+  border: none
+  outline: none
+  border-bottom: solid 2px gray
+  font-weight: 700
+  color: #768be7
+  transition: 0.3s
+
+.form-login__input_validate:invalid
+  border-bottom: solid 2px #ac0000
+
+.form-login__input:valid
+  border-bottom: solid 2px green
+
+.form-login__err
+  min-height: 18px
+  color: #ac0000
+  margin: 0 0 10px 0
+
+.form-login__btn
+  display: block
+  margin: auto
+  background-color: #74EBD5
+  background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
+  border: none
+  border-radius: 3px
+  width: 100px
+  font-weight: 700
+  color: white
+  height: 30px
+  transition: 0.7s
+
+@media (hover:hover)
+  .form-login__btn:hover
+    cursor: pointer
+    transform: scale(1.1)
+
+.form-login__btn:active
+  transition: 0.2s
+  transform: scale(0.9)
+
+.form-login__btn:disabled
+  pointer-events: none
+  background: gray
 
 .form-login:after
   content: ''
