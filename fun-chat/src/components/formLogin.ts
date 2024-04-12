@@ -80,4 +80,4 @@ inputPass.addEventListener('input', () => {
   checkValidate();
 });
 
-export { formLogin };
+export { formLogin, btnLogin, inputName, inputPass };
