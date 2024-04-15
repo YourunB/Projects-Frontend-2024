@@ -3,6 +3,7 @@
   padding: 10px
   display: flex
   align-items: center
+  justify-content: space-between
   gap: 10px
   height: 80px
 
@@ -12,3 +13,27 @@
 
 .header__logo
   width: 50px
+
+.header__btn
+  background: white
+  border: none
+  border-radius: 3px
+  width: 100px
+  font-weight: 700
+  color: #9FACE6
+  height: 30px
+  transition: 0.7s
+  
+.header-logo-box
+  display: flex
+  align-items: center
+  gap: 10px
+
+@media (hover:hover)
+  .header__btn:hover
+    cursor: pointer
+    transform: scale(1.1)
+
+.header__btn:active
+  transition: 0.2s
+  transform: scale(0.9)
