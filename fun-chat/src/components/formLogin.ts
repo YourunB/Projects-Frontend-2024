@@ -51,7 +51,7 @@ function checkValidate() {
   else btnLogin.disabled = true;
 }
 
-inputName.addEventListener('input', () => {
+function checkInputName() {
   inputName.classList.add('form-login__input_validate');
   if (inputName.validity.valid) nameErr.textContent = '';
   if (!inputName.validity.valid) {
@@ -65,10 +65,9 @@ inputName.addEventListener('input', () => {
     if (!/^[A-Z][A-Za-z\\-]*$/.test(inputName.value)) msgErr += '- only Latin letters or "-"';
     nameErr.innerHTML = msgErr;
   }
-  checkValidate();
-});
+}
 
-inputPass.addEventListener('input', () => {
+function checkInputPass() {
   inputPass.classList.add('form-login__input_validate');
   if (inputPass.validity.valid) passErr.textContent = '';
   if (!inputPass.validity.valid) {
@@ -79,7 +78,24 @@ inputPass.addEventListener('input', () => {
     if (!/[0-9]/.test(inputPass.value)) msgErr += '- need number</br>';
     passErr.innerHTML = msgErr;
   }
+}
+
+inputName.addEventListener('input', () => {
+  checkInputName();
   checkValidate();
+});
+
+inputPass.addEventListener('input', () => {
+  checkInputPass();
+  checkValidate();
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    checkInputPass();
+    checkInputName();
+    checkValidate();
+  }
 });
 
 export { formLogin, btnLogin, inputName, inputPass };

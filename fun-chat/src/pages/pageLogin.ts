@@ -11,8 +11,15 @@ pageLogin.classList.add('page-login__main');
 
 pageLogin.append(formLogin, btnInfo, infoApp, modalWindow);
 
-btnLogin.addEventListener('click', (event) => {
-  event.preventDefault();
+function addUserToSessionStorage(uId: string, uName: string) {
+  const data = {
+    id: uId,
+    name: uName,
+  };
+  sessionStorage.setItem('user', JSON.stringify(data));
+}
+
+function openChat() {
   const id = uuidv4();
   apiAuthorization(id, inputName.value, inputPass.value).then((data: unknown) => {
     if (typeof data === 'string') {
@@ -29,14 +36,11 @@ btnLogin.addEventListener('click', (event) => {
       }
     }
   });
-});
-
-function addUserToSessionStorage(uId: string, uName: string) {
-  const data = {
-    id: uId,
-    name: uName,
-  };
-  sessionStorage.setItem('user', JSON.stringify(data));
 }
+
+btnLogin.addEventListener('click', (event) => {
+  event.preventDefault();
+  if (btnLogin.disabled === false) openChat();
+});
 
 export { pageLogin };
