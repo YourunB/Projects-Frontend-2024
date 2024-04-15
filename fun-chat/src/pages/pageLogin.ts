@@ -11,10 +11,11 @@ pageLogin.classList.add('page-login__main');
 
 pageLogin.append(formLogin, btnInfo, infoApp, modalWindow);
 
-function addUserToSessionStorage(uId: string, uName: string) {
+function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
   const data = {
     id: uId,
     name: uName,
+    pass: uPass,
   };
   sessionStorage.setItem('user', JSON.stringify(data));
 }
@@ -26,7 +27,7 @@ function openChat() {
       const obj = JSON.parse(data);
       console.log(obj);
       if (obj.type !== 'ERROR') {
-        addUserToSessionStorage(obj.id, obj.payload.user.login);
+        addUserToSessionStorage(obj.id, obj.payload.user.login, inputPass.value);
         location.hash = '#chat';
       }
       if (obj.type === 'ERROR') {

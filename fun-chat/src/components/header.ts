@@ -26,4 +26,4 @@ btnLogOut.textContent = 'LogOut';
 headerLogoBox.append(headerTitle, headerLogo);
 header.append(headerLogoBox, headerUser, btnLogOut);
 
-export { header, headerUser };
+export { header, headerUser, btnLogOut };
