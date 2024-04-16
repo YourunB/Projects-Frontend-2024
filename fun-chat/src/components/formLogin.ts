@@ -80,6 +80,14 @@ function checkInputPass() {
   }
 }
 
+function clearInputs() {
+  btnLogin.disabled = true;
+  inputName.value = '';
+  inputName.classList.remove('form-login__input_validate');
+  inputPass.value = '';
+  inputPass.classList.remove('form-login__input_validate');
+}
+
 inputName.addEventListener('input', () => {
   checkInputName();
   checkValidate();
@@ -98,4 +106,4 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-export { formLogin, btnLogin, inputName, inputPass };
+export { formLogin, btnLogin, inputName, inputPass, clearInputs };
