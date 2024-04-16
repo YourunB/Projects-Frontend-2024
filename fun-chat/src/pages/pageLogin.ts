@@ -29,6 +29,7 @@ function openChat() {
       if (obj.type !== 'ERROR') {
         addUserToSessionStorage(obj.id, obj.payload.user.login, inputPass.value);
         location.hash = '#chat';
+        clearInputs();
       }
       if (obj.type === 'ERROR') {
         modalWindow.classList.add('modal_show');
@@ -39,9 +40,27 @@ function openChat() {
   });
 }
 
+function clearInputs() {
+  btnLogin.disabled = true;
+  inputName.value = '';
+  inputName.classList.remove('form-login__input_validate');
+  inputPass.value = '';
+  inputPass.classList.remove('form-login__input_validate');
+}
+
 btnLogin.addEventListener('click', (event) => {
   event.preventDefault();
-  if (btnLogin.disabled === false) openChat();
+  if (btnLogin.disabled === false) {
+    openChat();
+  }
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    if (btnLogin.disabled === false) {
+      openChat();
+    }
+  }
 });
 
 export { pageLogin };
