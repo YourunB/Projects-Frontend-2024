@@ -3,6 +3,7 @@ import { apiAuthorization, apiLogOut } from '../components/apiChat';
 import { header, headerUser, btnLogOut } from '../components/header';
 import { footer } from '../components/footer';
 import { modalWindow, modalFormText, modalFormTitle } from '../components/modalWindow';
+import { chat } from '../components/chat';
 
 const pageChat = document.createElement('div');
 pageChat.classList.add('page-chat');
@@ -10,8 +11,8 @@ pageChat.classList.add('page-chat');
 const mainPageChat = document.createElement('main');
 mainPageChat.classList.add('page-chat__main');
 
-console.log(modalWindow);
-pageChat.append(header, mainPageChat, modalWindow, footer);
+pageChat.append(header, mainPageChat, footer);
+mainPageChat.append(chat);
 
 function setUserNameToHeader() {
   if (sessionStorage.user !== undefined) {

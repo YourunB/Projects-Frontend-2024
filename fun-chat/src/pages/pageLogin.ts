@@ -10,7 +10,7 @@ import { setUserNameToHeader } from './pageChat';
 const pageLogin = document.createElement('main');
 pageLogin.classList.add('page-login__main');
 
-pageLogin.append(formLogin, btnInfo, infoApp, modalWindow);
+pageLogin.append(formLogin, btnInfo, infoApp);
 
 function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
   const data = {
