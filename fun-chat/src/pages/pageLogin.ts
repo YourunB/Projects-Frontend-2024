@@ -5,6 +5,7 @@ import { infoApp, btnInfo } from '../components/infoApp';
 import { apiAuthorization } from '../components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 import { modalWindow, modalFormText, modalFormTitle } from '../components/modalWindow';
+import { setUserNameToHeader } from './pageChat';
 
 const pageLogin = document.createElement('main');
 pageLogin.classList.add('page-login__main');
@@ -30,6 +31,7 @@ function openChat() {
         addUserToSessionStorage(obj.id, obj.payload.user.login, inputPass.value);
         location.hash = '#chat';
         clearInputs();
+        setUserNameToHeader();
       }
       if (obj.type === 'ERROR') {
         modalWindow.classList.add('modal_show');

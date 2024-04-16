@@ -1,16 +1,21 @@
 import './index.sass';
 import { pageChat } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
+import { modalWindow } from './components/modalWindow';
+
+const page = document.createElement('div');
+page.classList.add('page');
+document.body.append(page, modalWindow);
 
 function openPage() {
-  document.body.innerHTML = '';
+  page.innerHTML = '';
   if (sessionStorage.user === undefined) {
     location.hash = '#login';
-    document.body.append(pageLogin);
+    page.append(pageLogin);
     return;
   } else {
     location.hash = '#chat';
-    document.body.append(pageChat);
+    page.append(pageChat);
     return;
   }
 }
