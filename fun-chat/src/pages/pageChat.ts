@@ -1,5 +1,5 @@
 import './pageChat.sass';
-import { header, headerUser, btnLogOut } from '../components/header';
+import { header, headerUser } from '../components/header';
 import { footer } from '../components/footer';
 import { chat } from '../components/chat';
 
@@ -20,9 +20,5 @@ function setUserNameToHeader() {
 }
 
 setUserNameToHeader();
-
-btnLogOut.addEventListener('click', () => {
-  console.log('btn');
-});
 
 export { pageChat, setUserNameToHeader };

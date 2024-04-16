@@ -1,14 +1,17 @@
 import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
+import { btnLogOut } from './components/header';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
-import { socket, apiAuthorization } from './components/apiChat';
+import { socket, apiLogIn, apiLogOut } from './components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 
 const page = document.createElement('div');
 page.classList.add('page');
 document.body.append(page, modalWindow);
+
+let pass = '';
 
 function openPage() {
   page.innerHTML = '';
@@ -40,7 +43,8 @@ function showMessage(title = 'ERROR', text = 'Error in WebSocket') {
 
 function openChat() {
   const id = uuidv4();
-  apiAuthorization(id, inputName.value, inputPass.value);
+  apiLogIn(id, inputName.value, inputPass.value);
+  pass = inputPass.value;
 }
 
 socket.addEventListener('message', (msg) => {
@@ -55,6 +59,9 @@ socket.addEventListener('message', (msg) => {
       setUserNameToHeader();
       location.hash = '#chat';
       break;
+    case 'USER_LOGOUT':
+      sessionStorage.removeItem('user');
+      location.hash = '#login';
   }
 });
 
@@ -62,17 +69,6 @@ socket.addEventListener('error', (err) => {
   console.log('Error:', err);
   showMessage();
 });
-
-/*
-function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
-  const data = {
-    id: uId,
-    name: uName,
-    pass: uPass,
-  };
-  sessionStorage.setItem('user', JSON.stringify(data));
-}
-*/
 
 btnLogin.addEventListener('click', (event) => {
   event.preventDefault();
@@ -82,9 +78,16 @@ btnLogin.addEventListener('click', (event) => {
   }
 });
 
+btnLogOut.addEventListener('click', () => {
+  if (sessionStorage.user !== undefined) {
+    const data = JSON.parse(sessionStorage.user);
+    apiLogOut(data.id, data.name, pass);
+  }
+});
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    if (btnLogin.disabled === false) {
+    if (btnLogin.disabled === false && location.hash === '#login') {
       openChat();
       clearInputs();
     }

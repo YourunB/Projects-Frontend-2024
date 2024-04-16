@@ -1,6 +1,6 @@
 const socket = new WebSocket('ws://127.0.0.1:4000/');
 
-function apiAuthorization(uid: string, name: string, pass: string) {
+function apiLogIn(uid: string, name: string, pass: string) {
   const data = {
     id: uid,
     type: 'USER_LOGIN',
@@ -28,4 +28,4 @@ function apiLogOut(uid: string, name: string, pass: string) {
   socket.send(JSON.stringify(data));
 }
 
-export { socket, apiAuthorization, apiLogOut };
+export { socket, apiLogIn, apiLogOut };
