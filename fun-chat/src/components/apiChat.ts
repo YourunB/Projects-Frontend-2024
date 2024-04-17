@@ -28,4 +28,22 @@ function apiLogOut(uid: string, name: string, pass: string) {
   socket.send(JSON.stringify(data));
 }
 
-export { socket, apiLogIn, apiLogOut };
+function apiGetActiveUsers(uid: string) {
+  const data = {
+    id: uid,
+    type: 'USER_ACTIVE',
+    payload: null,
+  };
+  socket.send(JSON.stringify(data));
+}
+
+function apiGetInactiveUsers(uid: string) {
+  const data = {
+    id: uid,
+    type: 'USER_INACTIVE',
+    payload: null,
+  };
+  socket.send(JSON.stringify(data));
+}
+
+export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers };

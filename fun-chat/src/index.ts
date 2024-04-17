@@ -2,16 +2,17 @@ import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
 import { btnLogOut } from './components/header';
+import { addUserToChat, chatUsersBoxActive, chatUsersBoxInactive } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
-import { socket, apiLogIn, apiLogOut } from './components/apiChat';
+import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers } from './components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 
 const page = document.createElement('div');
 page.classList.add('page');
 document.body.append(page, modalWindow);
 
-let pass = '';
+let passTemp = '';
 
 function openPage() {
   page.innerHTML = '';
@@ -26,11 +27,11 @@ function openPage() {
   }
 }
 
-function addUserToSessionStorage(uId: string, uName: string) {
+function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
   const data = {
     id: uId,
     name: uName,
-    //pass: uPass,
+    pass: uPass,
   };
   sessionStorage.setItem('user', JSON.stringify(data));
 }
@@ -44,7 +45,20 @@ function showMessage(title = 'ERROR', text = 'Error in WebSocket') {
 function openChat() {
   const id = uuidv4();
   apiLogIn(id, inputName.value, inputPass.value);
-  pass = inputPass.value;
+  passTemp = inputPass.value;
+}
+
+function updateChatUsers() {
+  const id = uuidv4();
+  apiGetActiveUsers(id);
+  apiGetInactiveUsers(id);
+}
+
+if (location.hash === '#chat' && sessionStorage.user !== undefined) {
+  setTimeout(() => {
+    const data = JSON.parse(sessionStorage.user);
+    apiLogIn(data.id, data.name, data.pass);
+  }, 500);
 }
 
 socket.addEventListener('message', (msg) => {
@@ -55,13 +69,32 @@ socket.addEventListener('message', (msg) => {
       showMessage(data.type, data.payload.error);
       break;
     case 'USER_LOGIN':
-      addUserToSessionStorage(data.id, data.payload.user.login);
+      if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
       setUserNameToHeader();
       location.hash = '#chat';
       break;
     case 'USER_LOGOUT':
       sessionStorage.removeItem('user');
       location.hash = '#login';
+      break;
+    case 'USER_ACTIVE':
+      chatUsersBoxActive.innerHTML = '';
+      for (let i = 0; i < data.payload.users.length; i += 1) {
+        addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+      }
+      break;
+    case 'USER_INACTIVE':
+      chatUsersBoxInactive.innerHTML = '';
+      for (let i = 0; i < data.payload.users.length; i += 1) {
+        addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+      }
+      break;
+    case 'USER_EXTERNAL_LOGIN':
+      updateChatUsers();
+      break;
+    case 'USER_EXTERNAL_LOGOUT':
+      updateChatUsers();
+      break;
   }
 });
 
@@ -75,13 +108,14 @@ btnLogin.addEventListener('click', (event) => {
   if (btnLogin.disabled === false) {
     openChat();
     clearInputs();
+    updateChatUsers();
   }
 });
 
 btnLogOut.addEventListener('click', () => {
   if (sessionStorage.user !== undefined) {
     const data = JSON.parse(sessionStorage.user);
-    apiLogOut(data.id, data.name, pass);
+    apiLogOut(data.id, data.name, data.pass);
   }
 });
 
@@ -90,6 +124,7 @@ window.addEventListener('keydown', (event) => {
     if (btnLogin.disabled === false && location.hash === '#login') {
       openChat();
       clearInputs();
+      updateChatUsers();
     }
   }
 });
