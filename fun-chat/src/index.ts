@@ -13,6 +13,7 @@ page.classList.add('page');
 document.body.append(page, modalWindow);
 
 let passTemp = '';
+let loginTemp = '';
 
 function openPage() {
   page.innerHTML = '';
@@ -69,6 +70,7 @@ socket.addEventListener('message', (msg) => {
       showMessage(data.type, data.payload.error);
       break;
     case 'USER_LOGIN':
+      loginTemp = data.payload.user.login;
       if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
       setUserNameToHeader();
       location.hash = '#chat';
@@ -80,13 +82,17 @@ socket.addEventListener('message', (msg) => {
     case 'USER_ACTIVE':
       chatUsersBoxActive.innerHTML = '';
       for (let i = 0; i < data.payload.users.length; i += 1) {
-        addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+        if (loginTemp !== data.payload.users[i].login) {
+          addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+        }
       }
       break;
     case 'USER_INACTIVE':
       chatUsersBoxInactive.innerHTML = '';
       for (let i = 0; i < data.payload.users.length; i += 1) {
-        addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+        if (loginTemp !== data.payload.users[i].login) {
+          addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+        }
       }
       break;
     case 'USER_EXTERNAL_LOGIN':
