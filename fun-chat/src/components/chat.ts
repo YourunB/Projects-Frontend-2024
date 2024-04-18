@@ -50,14 +50,27 @@ function searchUser(value = '') {
   }
 }
 
-function updateCurrentUser(login: string, isLogined: string) {
-  currentUser.textContent = login;
-  if (isLogined === 'true') {
-    currentUserStatus.textContent = 'online';
-    currentUserStatus.classList.remove('chat__messages__header__status_offline');
-  } else {
-    currentUserStatus.textContent = 'offline';
-    currentUserStatus.classList.add('chat__messages__header__status_offline');
+function updateCurrentUser(login: string, isLogined: string, state = 'add') {
+  if (state === 'add') {
+    currentUser.textContent = login;
+    if (isLogined === 'true') {
+      currentUserStatus.textContent = 'online';
+      currentUserStatus.classList.remove('chat__messages__header__status_offline');
+    } else {
+      currentUserStatus.textContent = 'offline';
+      currentUserStatus.classList.add('chat__messages__header__status_offline');
+    }
+  }
+  if (state === 'update') {
+    if (currentUser.textContent === login) {
+      if (isLogined === 'true') {
+        currentUserStatus.textContent = 'online';
+        currentUserStatus.classList.remove('chat__messages__header__status_offline');
+      } else {
+        currentUserStatus.textContent = 'offline';
+        currentUserStatus.classList.add('chat__messages__header__status_offline');
+      }
+    }
   }
 }
 

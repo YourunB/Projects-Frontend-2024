@@ -9,7 +9,6 @@ import {
   chatSearch,
   searchUser,
   chatUsersBox,
-  currentUser,
   updateCurrentUser,
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
@@ -109,9 +108,11 @@ socket.addEventListener('message', (msg) => {
       break;
     case 'USER_EXTERNAL_LOGIN':
       updateChatUsers();
+      updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
       break;
     case 'USER_EXTERNAL_LOGOUT':
       updateChatUsers();
+      updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
       break;
   }
 });
@@ -124,9 +125,7 @@ socket.addEventListener('error', (err) => {
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
   if (currentTarget.classList.contains('chat__users__user')) {
-    const login = (currentUser.textContent = currentTarget.dataset.login || '');
-    const isLogined = currentTarget.dataset.isLogined || '';
-    updateCurrentUser(login, isLogined);
+    updateCurrentUser(currentTarget.dataset.login || '', currentTarget.dataset.isLogined || '');
   }
 });
 
