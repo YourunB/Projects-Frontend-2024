@@ -38,9 +38,16 @@ btnSendMessage.textContent = 'Send';
 btnSendMessage.disabled = true;
 btnSendMessage.classList.add('chat__messages__footer__btn');
 
+const contextMenu = document.createElement('div');
+contextMenu.classList.add('context-menu');
+contextMenu.innerHTML = `
+  <p>Edit</p>
+  <p>Delete</p>
+`;
+
 chatMessagesBoxHeader.append(checkedUser, checkedUserStatus);
 chatMessagesBoxFooter.append(inputMessage, btnSendMessage);
-chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter);
+chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter, contextMenu);
 chatUsersBox.append(chatSearch);
 chat.append(chatUsersBox, chatMessagesBox);
 
@@ -151,6 +158,7 @@ export {
   btnSendMessage,
   inputMessage,
   chatMessagesBoxMain,
+  contextMenu,
   addUserToChat,
   updateCurrentUser,
   searchUser,

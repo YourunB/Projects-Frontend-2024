@@ -15,6 +15,7 @@ import {
   inputMessage,
   updateMessagesInChat,
   chatMessagesBoxMain,
+  contextMenu,
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
@@ -231,8 +232,23 @@ chatMessagesBoxMain.addEventListener('click', () => {
   readMessages();
 });
 
-chatMessagesBoxMain.addEventListener('mousewheel', () => {
-  readMessages();
+document.body.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.classList.contains('msg')) {
+    const posTop = currentTarget.getBoundingClientRect().top;
+    const posLeft = currentTarget.getBoundingClientRect().left;
+    contextMenu.style.top = `${posTop}px`;
+    contextMenu.style.left = `${posLeft}px`;
+    contextMenu.classList.add('context-menu_show');
+  } else contextMenu.classList.remove('context-menu_show');
+});
+
+window.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.classList.contains('msg')) {
+    contextMenu.classList.add('context-menu_show');
+  } else contextMenu.classList.remove('context-menu_show');
 });
 
 window.addEventListener('keydown', (event) => {
