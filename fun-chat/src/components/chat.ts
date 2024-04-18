@@ -10,8 +10,22 @@ const chatSearch = document.createElement('input');
 chatSearch.classList.add('chat__search');
 chatSearch.placeholder = 'Search';
 
+const chatMessagesBox = document.createElement('div');
+chatMessagesBox.classList.add('chat__messages');
+
+const chatMessagesBoxHeader = document.createElement('div');
+chatMessagesBoxHeader.classList.add('chat__messages__header');
+
+const currentUser = document.createElement('p');
+currentUser.classList.add('chat__messages__header__user');
+
+const currentUserStatus = document.createElement('p');
+currentUserStatus.classList.add('chat__messages__header__status');
+
+chatMessagesBoxHeader.append(currentUser, currentUserStatus);
+chatMessagesBox.append(chatMessagesBoxHeader);
 chatUsersBox.append(chatSearch);
-chat.append(chatUsersBox);
+chat.append(chatUsersBox, chatMessagesBox);
 
 const chatUsersBoxActive = document.createElement('div');
 const chatUsersBoxInactive = document.createElement('div');
@@ -36,8 +50,30 @@ function searchUser(value = '') {
   }
 }
 
+function updateCurrentUser(login: string, isLogined: string) {
+  currentUser.textContent = login;
+  if (isLogined === 'true') {
+    currentUserStatus.textContent = 'online';
+    currentUserStatus.classList.remove('chat__messages__header__status_offline');
+  } else {
+    currentUserStatus.textContent = 'offline';
+    currentUserStatus.classList.add('chat__messages__header__status_offline');
+  }
+}
+
 chatSearch.addEventListener('input', () => {
   searchUser(chatSearch.value);
 });
 
-export { chat, chatUsersBox, addUserToChat, chatUsersBoxActive, chatUsersBoxInactive, chatSearch, searchUser };
+export {
+  chat,
+  chatUsersBox,
+  addUserToChat,
+  chatUsersBoxActive,
+  chatUsersBoxInactive,
+  chatSearch,
+  searchUser,
+  currentUser,
+  currentUserStatus,
+  updateCurrentUser,
+};

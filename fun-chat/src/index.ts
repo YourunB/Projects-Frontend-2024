@@ -2,7 +2,16 @@ import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
 import { btnLogOut } from './components/header';
-import { addUserToChat, chatUsersBoxActive, chatUsersBoxInactive, chatSearch, searchUser } from './components/chat';
+import {
+  addUserToChat,
+  chatUsersBoxActive,
+  chatUsersBoxInactive,
+  chatSearch,
+  searchUser,
+  chatUsersBox,
+  currentUser,
+  updateCurrentUser,
+} from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
 import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers } from './components/apiChat';
@@ -110,6 +119,15 @@ socket.addEventListener('message', (msg) => {
 socket.addEventListener('error', (err) => {
   console.log('Error:', err);
   showMessage();
+});
+
+chatUsersBox.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.classList.contains('chat__users__user')) {
+    const login = (currentUser.textContent = currentTarget.dataset.login || '');
+    const isLogined = currentTarget.dataset.isLogined || '';
+    updateCurrentUser(login, isLogined);
+  }
 });
 
 btnLogin.addEventListener('click', (event) => {
