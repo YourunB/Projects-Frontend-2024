@@ -22,8 +22,25 @@ currentUser.classList.add('chat__messages__header__user');
 const currentUserStatus = document.createElement('p');
 currentUserStatus.classList.add('chat__messages__header__status');
 
+const chatMessagesBoxMain = document.createElement('div');
+chatMessagesBoxMain.classList.add('chat__messages__main');
+
+const chatMessagesBoxFooter = document.createElement('div');
+chatMessagesBoxFooter.classList.add('chat__messages__footer');
+chatMessagesBoxFooter.classList.add('chat__messages__footer_block');
+
+const inputMessage = document.createElement('input');
+inputMessage.placeholder = 'Message';
+inputMessage.classList.add('chat__messages__footer__input');
+
+const btnSendMessage = document.createElement('button');
+btnSendMessage.textContent = 'Send';
+btnSendMessage.disabled = true;
+btnSendMessage.classList.add('chat__messages__footer__btn');
+
 chatMessagesBoxHeader.append(currentUser, currentUserStatus);
-chatMessagesBox.append(chatMessagesBoxHeader);
+chatMessagesBoxFooter.append(inputMessage, btnSendMessage);
+chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter);
 chatUsersBox.append(chatSearch);
 chat.append(chatUsersBox, chatMessagesBox);
 
@@ -72,10 +89,16 @@ function updateCurrentUser(login: string, isLogined: string, state = 'add') {
       }
     }
   }
+  if (currentUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
 
 chatSearch.addEventListener('input', () => {
   searchUser(chatSearch.value);
+});
+
+inputMessage.addEventListener('input', () => {
+  if (inputMessage.value.length > 0) btnSendMessage.disabled = false;
+  else btnSendMessage.disabled = true;
 });
 
 export {
