@@ -16,11 +16,11 @@ chatMessagesBox.classList.add('chat__messages');
 const chatMessagesBoxHeader = document.createElement('div');
 chatMessagesBoxHeader.classList.add('chat__messages__header');
 
-const currentUser = document.createElement('p');
-currentUser.classList.add('chat__messages__header__user');
+const checkedUser = document.createElement('p');
+checkedUser.classList.add('chat__messages__header__user');
 
-const currentUserStatus = document.createElement('p');
-currentUserStatus.classList.add('chat__messages__header__status');
+const checkedUserStatus = document.createElement('p');
+checkedUserStatus.classList.add('chat__messages__header__status');
 
 const chatMessagesBoxMain = document.createElement('div');
 chatMessagesBoxMain.classList.add('chat__messages__main');
@@ -38,7 +38,7 @@ btnSendMessage.textContent = 'Send';
 btnSendMessage.disabled = true;
 btnSendMessage.classList.add('chat__messages__footer__btn');
 
-chatMessagesBoxHeader.append(currentUser, currentUserStatus);
+chatMessagesBoxHeader.append(checkedUser, checkedUserStatus);
 chatMessagesBoxFooter.append(inputMessage, btnSendMessage);
 chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter);
 chatUsersBox.append(chatSearch);
@@ -69,27 +69,27 @@ function searchUser(value = '') {
 
 function updateCurrentUser(login: string, isLogined: string, state = 'add') {
   if (state === 'add') {
-    currentUser.textContent = login;
+    checkedUser.textContent = login;
     if (isLogined === 'true') {
-      currentUserStatus.textContent = 'online';
-      currentUserStatus.classList.remove('chat__messages__header__status_offline');
+      checkedUserStatus.textContent = 'online';
+      checkedUserStatus.classList.remove('chat__messages__header__status_offline');
     } else {
-      currentUserStatus.textContent = 'offline';
-      currentUserStatus.classList.add('chat__messages__header__status_offline');
+      checkedUserStatus.textContent = 'offline';
+      checkedUserStatus.classList.add('chat__messages__header__status_offline');
     }
   }
   if (state === 'update') {
-    if (currentUser.textContent === login) {
+    if (checkedUser.textContent === login) {
       if (isLogined === 'true') {
-        currentUserStatus.textContent = 'online';
-        currentUserStatus.classList.remove('chat__messages__header__status_offline');
+        checkedUserStatus.textContent = 'online';
+        checkedUserStatus.classList.remove('chat__messages__header__status_offline');
       } else {
-        currentUserStatus.textContent = 'offline';
-        currentUserStatus.classList.add('chat__messages__header__status_offline');
+        checkedUserStatus.textContent = 'offline';
+        checkedUserStatus.classList.add('chat__messages__header__status_offline');
       }
     }
   }
-  if (currentUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
+  if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
 
 chatSearch.addEventListener('input', () => {
@@ -104,12 +104,14 @@ inputMessage.addEventListener('input', () => {
 export {
   chat,
   chatUsersBox,
-  addUserToChat,
   chatUsersBoxActive,
   chatUsersBoxInactive,
   chatSearch,
-  searchUser,
-  currentUser,
-  currentUserStatus,
+  checkedUser,
+  checkedUserStatus,
+  btnSendMessage,
+  inputMessage,
+  addUserToChat,
   updateCurrentUser,
+  searchUser,
 };

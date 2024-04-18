@@ -10,10 +10,13 @@ import {
   searchUser,
   chatUsersBox,
   updateCurrentUser,
+  btnSendMessage,
+  checkedUser,
+  inputMessage,
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
-import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers } from './components/apiChat';
+import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg } from './components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 
 const page = document.createElement('div');
@@ -143,6 +146,12 @@ btnLogOut.addEventListener('click', () => {
     const data = JSON.parse(sessionStorage.user);
     apiLogOut(data.id, data.name, data.pass);
   }
+});
+
+btnSendMessage.addEventListener('click', () => {
+  const id = uuidv4();
+  const login = checkedUser.textContent ? checkedUser.textContent : '';
+  apiSendMsg(id, login, inputMessage.value);
 });
 
 window.addEventListener('keydown', (event) => {

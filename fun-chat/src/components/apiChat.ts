@@ -46,4 +46,18 @@ function apiGetInactiveUsers(uid: string) {
   socket.send(JSON.stringify(data));
 }
 
-export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers };
+function apiSendMsg(uid: string, login: string, msg: string) {
+  const data = {
+    id: uid,
+    type: 'MSG_SEND',
+    payload: {
+      message: {
+        to: login,
+        text: msg,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
+export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg };
