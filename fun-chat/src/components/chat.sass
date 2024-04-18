@@ -80,6 +80,15 @@
 .logined-false
   color: red
 
+.line-read
+  height: 30px
+  width: 100%
+  border-bottom: solid 1px #9FACE6
+  display: flex
+  justify-content: center
+  align-items: flex-end
+  color: #9FACE6
+
 .msg-you
   padding: 5px
   width: 100%
@@ -99,6 +108,7 @@
   color: white
   background-color: #74EBD5
   background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2)
 
 .msg__head
   padding: 0 0 5px 0
@@ -109,17 +119,16 @@
 .msg__main
   background: white
   border-radius: 5px
-  padding: 5px
-  min-height: 50px
-  display: flex
-  flex-wrap: wrap
-  align-items: center
+  padding: 15px 5px
   color: gray
+  overflow-x: auto
+  overflow-wrap: break-word
 
 .msg__footer
   padding: 5px 0 0 0
   font-size: 12px
-  text-align: right
+  display: flex
+  justify-content: space-between
 
 @media (hover:hover)
   .chat__users__user:hover

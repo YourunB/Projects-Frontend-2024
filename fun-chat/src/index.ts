@@ -26,6 +26,7 @@ import {
   apiGetInactiveUsers,
   apiSendMsg,
   apiGetMsgsHistory,
+  apiSetReadMsg,
 } from './components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -87,6 +88,31 @@ if (location.hash === '#chat' && sessionStorage.user !== undefined) {
 socket.addEventListener('message', (msg) => {
   const data = JSON.parse(msg.data);
   const arrMsgs = data.payload.messages;
+  const id = uuidv4();
+
+  function updateMessages() {
+    chatMessagesBoxMain.innerHTML = '';
+    for (let i = 0; i < arrMsgs.length; i += 1) {
+      const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+      const you = loginTemp === arrMsgs[i].from;
+      const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
+      let status = '';
+      if (you && arrMsgs[i].status.isReaded) status = 'read';
+      else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
+      else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
+      updateMessagesInChat(
+        arrMsgs[i].from,
+        time,
+        arrMsgs[i].text,
+        status,
+        edited,
+        you,
+        arrMsgs[i].id,
+        arrMsgs[i].status.isReaded
+      );
+    }
+  }
+
   console.log(data);
   switch (data.type) {
     case 'ERROR':
@@ -129,19 +155,39 @@ socket.addEventListener('message', (msg) => {
       updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
       break;
     case 'MSG_FROM_USER':
-      chatMessagesBoxMain.innerHTML = '';
-      for (let i = 0; i < arrMsgs.length; i += 1) {
-        const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
-        const you = loginTemp === arrMsgs[i].from;
-        let status = '';
-        if (you && arrMsgs[i].isReaded) status = 'read';
-        else if (you && arrMsgs[i].isDelivered) status = 'delivered';
-        else status = 'not delivered';
-        updateMessagesInChat(arrMsgs[i].from, time, arrMsgs[i].text, status, you);
-      }
+      updateMessages();
+      break;
+    case 'MSG_DELIVER':
+      updateMessages();
+      break;
+    case 'MSG_SEND':
+      apiGetMsgsHistory(id, checkedUser.textContent || '');
+      break;
+    case 'MSG_READ':
+      apiGetMsgsHistory(id, checkedUser.textContent || '');
       break;
   }
 });
+
+function sendMessage() {
+  const id = uuidv4();
+  const login = checkedUser.textContent ? checkedUser.textContent : '';
+  apiSendMsg(id, login, inputMessage.value);
+  btnSendMessage.disabled = true;
+  inputMessage.value = '';
+  readMessages();
+}
+
+function readMessages() {
+  if (chatMessagesBoxMain.getElementsByClassName('line-read').length !== 0) {
+    const allMsgs = chatMessagesBoxMain.getElementsByClassName('msg') as HTMLCollectionOf<HTMLElement>;
+    for (let i = 0; i < allMsgs.length; i += 1) {
+      if (allMsgs[i].dataset.forYou === 'true') {
+        apiSetReadMsg(allMsgs[i].dataset.id || '');
+      }
+    }
+  }
+}
 
 socket.addEventListener('error', (err) => {
   console.log('Error:', err);
@@ -178,9 +224,15 @@ btnLogOut.addEventListener('click', () => {
 });
 
 btnSendMessage.addEventListener('click', () => {
-  const id = uuidv4();
-  const login = checkedUser.textContent ? checkedUser.textContent : '';
-  apiSendMsg(id, login, inputMessage.value);
+  sendMessage();
+});
+
+chatMessagesBoxMain.addEventListener('click', () => {
+  readMessages();
+});
+
+chatMessagesBoxMain.addEventListener('mousewheel', () => {
+  readMessages();
 });
 
 window.addEventListener('keydown', (event) => {
@@ -189,6 +241,10 @@ window.addEventListener('keydown', (event) => {
       openChat();
       clearInputs();
       updateChatUsers();
+      return;
+    }
+    if (btnSendMessage.disabled === false && location.hash === '#chat') {
+      sendMessage();
     }
   }
 });

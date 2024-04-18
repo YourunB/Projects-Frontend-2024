@@ -60,6 +60,19 @@ function apiSendMsg(uid: string, login: string, msg: string) {
   socket.send(JSON.stringify(data));
 }
 
+function apiSetReadMsg(idMsg: string) {
+  const data = {
+    id: null,
+    type: 'MSG_READ',
+    payload: {
+      message: {
+        id: idMsg,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
 function apiGetMsgsHistory(uid: string, userLogin: string) {
   const data = {
     id: uid,
@@ -73,4 +86,13 @@ function apiGetMsgsHistory(uid: string, userLogin: string) {
   socket.send(JSON.stringify(data));
 }
 
-export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg, apiGetMsgsHistory };
+export {
+  socket,
+  apiLogIn,
+  apiLogOut,
+  apiGetActiveUsers,
+  apiGetInactiveUsers,
+  apiSendMsg,
+  apiGetMsgsHistory,
+  apiSetReadMsg,
+};

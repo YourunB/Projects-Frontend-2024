@@ -92,21 +92,43 @@ function updateCurrentUser(login: string, isLogined: string, state = 'add') {
   if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
 
-function updateMessagesInChat(login = 'you', time: string, text: string, status: string, you: boolean) {
+function updateMessagesInChat(
+  login: string,
+  time: string,
+  text: string,
+  status: string,
+  edited: string,
+  you: boolean,
+  id: string,
+  read = false
+) {
+  let msgForYou = false;
+
+  const lineRead = document.createElement('div');
+  lineRead.classList.add('line-read');
+  lineRead.textContent = 'new messages';
+
   const msg = document.createElement('div');
   if (you) msg.classList.add('msg-you');
-  else msg.classList.add('msg-for-you');
+  else {
+    msg.classList.add('msg-for-you');
+    msgForYou = true;
+  }
+
   msg.innerHTML = `
-    <div class="msg">
+    <div class="msg" data-id="${id}" data-for-you="${msgForYou}">
       <div class="msg__head">
-        <span>${login}</span><span>${time}</span>
+        <span>${you ? 'you' : login}</span><span>${time}</span>
       </div>
       <div class="msg__main">${text}</div>
-      <div class="msg__footer">${status}</div>
+      <div class="msg__footer"><span>${edited}</span><span>${status}</span></div>
     </div>
   `;
+  if (!read && msgForYou && chatMessagesBoxMain.getElementsByClassName('line-read').length === 0) {
+    chatMessagesBoxMain.append(lineRead);
+  }
   chatMessagesBoxMain.append(msg);
-  chatMessagesBoxMain.scrollTo(0, chatMessagesBoxMain.getBoundingClientRect().height);
+  chatMessagesBoxMain.scrollTo(0, chatMessagesBoxMain.scrollHeight);
 }
 
 chatSearch.addEventListener('input', () => {
