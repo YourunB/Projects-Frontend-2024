@@ -16,7 +16,15 @@ import {
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
-import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg } from './components/apiChat';
+import {
+  socket,
+  apiLogIn,
+  apiLogOut,
+  apiGetActiveUsers,
+  apiGetInactiveUsers,
+  apiSendMsg,
+  apiGetMsgsHistory,
+} from './components/apiChat';
 import { v4 as uuidv4 } from 'uuid';
 
 const page = document.createElement('div');
@@ -128,7 +136,12 @@ socket.addEventListener('error', (err) => {
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
   if (currentTarget.classList.contains('chat__users__user')) {
-    updateCurrentUser(currentTarget.dataset.login || '', currentTarget.dataset.isLogined || '');
+    const login = currentTarget.dataset.login || '';
+    const isLogined = currentTarget.dataset.isLogined || '';
+    const id = uuidv4();
+    updateCurrentUser(login, isLogined);
+    console.log(id, login);
+    apiGetMsgsHistory(id, login);
   }
 });
 

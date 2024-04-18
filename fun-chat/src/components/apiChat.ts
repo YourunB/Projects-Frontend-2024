@@ -60,4 +60,17 @@ function apiSendMsg(uid: string, login: string, msg: string) {
   socket.send(JSON.stringify(data));
 }
 
-export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg };
+function apiGetMsgsHistory(uid: string, userLogin: string) {
+  const data = {
+    id: uid,
+    type: 'MSG_FROM_USER',
+    payload: {
+      user: {
+        login: userLogin,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
+export { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers, apiSendMsg, apiGetMsgsHistory };
