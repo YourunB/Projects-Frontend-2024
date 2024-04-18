@@ -41,8 +41,8 @@ btnSendMessage.classList.add('chat__messages__footer__btn');
 const contextMenu = document.createElement('div');
 contextMenu.classList.add('context-menu');
 contextMenu.innerHTML = `
-  <p>Edit</p>
-  <p>Delete</p>
+  <p class="context-menu__item">Edit</p>
+  <p class="context-menu__item">Delete</p>
 `;
 
 chatMessagesBoxHeader.append(checkedUser, checkedUserStatus);
