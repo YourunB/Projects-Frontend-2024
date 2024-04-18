@@ -232,23 +232,26 @@ chatMessagesBoxMain.addEventListener('click', () => {
   readMessages();
 });
 
-document.body.addEventListener('click', (event) => {
-  const currentTarget = event.target as HTMLElement;
-  if (currentTarget.classList.contains('msg')) {
-    const posTop = currentTarget.getBoundingClientRect().top;
-    const posLeft = currentTarget.getBoundingClientRect().left;
+function openHideContextMenu(msgElement: HTMLElement) {
+  if (msgElement.classList.contains('msg')) {
+    const posTop = msgElement.getBoundingClientRect().top;
+    const posLeft = msgElement.getBoundingClientRect().left;
     contextMenu.style.top = `${posTop}px`;
     contextMenu.style.left = `${posLeft}px`;
     contextMenu.classList.add('context-menu_show');
   } else contextMenu.classList.remove('context-menu_show');
+}
+
+document.body.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  openHideContextMenu(currentTarget);
 });
 
-window.addEventListener('contextmenu', (event) => {
+document.body.addEventListener('contextmenu', (event) => {
   event.preventDefault();
+  console.log(event.target);
   const currentTarget = event.target as HTMLElement;
-  if (currentTarget.classList.contains('msg')) {
-    contextMenu.classList.add('context-menu_show');
-  } else contextMenu.classList.remove('context-menu_show');
+  openHideContextMenu(currentTarget);
 });
 
 window.addEventListener('keydown', (event) => {
