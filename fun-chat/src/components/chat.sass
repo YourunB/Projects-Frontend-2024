@@ -120,6 +120,7 @@
   background-color: #74EBD5
   background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
   box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2)
+  transition: 0.5s
 
 .msg__head
   padding: 0 0 5px 0
@@ -133,6 +134,7 @@
   padding: 15px 5px
   color: gray
   overflow-wrap: break-word
+  transition: 0.5s
 
 .msg__footer
   padding: 5px 0 0 0
@@ -144,6 +146,14 @@
   .chat__users__user:hover
     background-color: #74EBD5
     background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
+
+  .msg:hover
+    cursor: pointer
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.4)
+
+  .msg:hover .msg__main
+    background: rgba(128,128,128, 0.8)
+    color: white
 
 .chat__users__user:active
   transition: 0.2s
