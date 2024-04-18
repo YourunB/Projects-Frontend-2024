@@ -10,11 +10,13 @@
   border-bottom: solid 2px gray
   background: none
   outline: none
-  padding: 5px
+  padding: 3px
 
 .chat__users__user
   color: white
   margin: 5px 0
+  cursor: pointer
+  transition: 0.5s
 
 .chat__users__user_hide
   display: none
@@ -24,3 +26,11 @@
 
 .logined-false
   color: red
+
+@media (hover:hover)
+  .chat__users__user:hover
+    transform: scale(1.02)
+
+.chat__users__user:active
+  transition: 0.2s
+  transform: scale(0.95)
