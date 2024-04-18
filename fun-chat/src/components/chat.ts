@@ -92,6 +92,23 @@ function updateCurrentUser(login: string, isLogined: string, state = 'add') {
   if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
 
+function updateMessagesInChat(login = 'you', time: string, text: string, status: string, you: boolean) {
+  const msg = document.createElement('div');
+  if (you) msg.classList.add('msg-you');
+  else msg.classList.add('msg-for-you');
+  msg.innerHTML = `
+    <div class="msg">
+      <div class="msg__head">
+        <span>${login}</span><span>${time}</span>
+      </div>
+      <div class="msg__main">${text}</div>
+      <div class="msg__footer">${status}</div>
+    </div>
+  `;
+  chatMessagesBoxMain.append(msg);
+  chatMessagesBoxMain.scrollTo(0, chatMessagesBoxMain.getBoundingClientRect().height);
+}
+
 chatSearch.addEventListener('input', () => {
   searchUser(chatSearch.value);
 });
@@ -111,7 +128,9 @@ export {
   checkedUserStatus,
   btnSendMessage,
   inputMessage,
+  chatMessagesBoxMain,
   addUserToChat,
   updateCurrentUser,
   searchUser,
+  updateMessagesInChat,
 };

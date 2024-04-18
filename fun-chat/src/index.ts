@@ -13,6 +13,8 @@ import {
   btnSendMessage,
   checkedUser,
   inputMessage,
+  updateMessagesInChat,
+  chatMessagesBoxMain,
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
@@ -84,6 +86,7 @@ if (location.hash === '#chat' && sessionStorage.user !== undefined) {
 
 socket.addEventListener('message', (msg) => {
   const data = JSON.parse(msg.data);
+  const arrMsgs = data.payload.messages;
   console.log(data);
   switch (data.type) {
     case 'ERROR':
@@ -125,6 +128,18 @@ socket.addEventListener('message', (msg) => {
       updateChatUsers();
       updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
       break;
+    case 'MSG_FROM_USER':
+      chatMessagesBoxMain.innerHTML = '';
+      for (let i = 0; i < arrMsgs.length; i += 1) {
+        const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+        const you = loginTemp === arrMsgs[i].from;
+        let status = '';
+        if (you && arrMsgs[i].isReaded) status = 'read';
+        else if (you && arrMsgs[i].isDelivered) status = 'delivered';
+        else status = 'not delivered';
+        updateMessagesInChat(arrMsgs[i].from, time, arrMsgs[i].text, status, you);
+      }
+      break;
   }
 });
 
@@ -158,6 +173,7 @@ btnLogOut.addEventListener('click', () => {
   if (sessionStorage.user !== undefined) {
     const data = JSON.parse(sessionStorage.user);
     apiLogOut(data.id, data.name, data.pass);
+    chatMessagesBoxMain.innerHTML = '';
   }
 });
 

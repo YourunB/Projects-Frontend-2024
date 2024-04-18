@@ -10,13 +10,13 @@
 
 .chat__messages
   width: 100%
-  background: white
+  background: rgba(255, 255, 255, 0.8)
 
 .chat__messages__header
   padding: 0 10px
   width: 100%
   height: 60px
-  border-bottom: solid 1px black
+  border-bottom: solid 1px gray
   display: flex
   justify-content: space-evenly
   align-items: center
@@ -33,12 +33,13 @@
 
 .chat__messages__main
   height: calc(100vh - 180px - 120px)
+  overflow-y: auto
 
 .chat__messages__footer
   padding: 0 10px
   width: 100%
   height: 60px
-  border-top: solid 1px black
+  border-top: solid 1px gray
   display: flex
   align-items: center
   gap: 10px
@@ -54,6 +55,8 @@
   outline: none
   border: none
   border-bottom: solid 2px gray
+  background: none
+  font-weight: 700
 
 .chat__search
   border: none
@@ -76,6 +79,47 @@
 
 .logined-false
   color: red
+
+.msg-you
+  padding: 5px
+  width: 100%
+  display: flex
+  justify-content: flex-end
+
+.msg-for-you
+  padding: 5px
+  width: 100%
+  display: flex
+  justify-content: flex-start
+  
+.msg
+  width: 60%
+  border-radius: 5px
+  padding: 5px
+  color: white
+  background-color: #74EBD5
+  background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)
+
+.msg__head
+  padding: 0 0 5px 0
+  font-size: 12px
+  display: flex
+  justify-content: space-around
+
+.msg__main
+  background: white
+  border-radius: 5px
+  padding: 5px
+  min-height: 50px
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  color: gray
+
+.msg__footer
+  padding: 5px 0 0 0
+  font-size: 12px
+  text-align: right
 
 @media (hover:hover)
   .chat__users__user:hover

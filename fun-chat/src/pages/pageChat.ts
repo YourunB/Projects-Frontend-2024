@@ -15,7 +15,7 @@ mainPageChat.append(chat);
 function setUserNameToHeader() {
   if (sessionStorage.user !== undefined) {
     const data = JSON.parse(sessionStorage.user);
-    headerUser.innerHTML = `<span>User: </span>${data.name}`;
+    headerUser.innerHTML = `<span>You: </span>${data.name}`;
   }
 }
 
