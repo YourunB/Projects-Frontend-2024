@@ -40,4 +40,4 @@ chatSearch.addEventListener('input', () => {
   searchUser(chatSearch.value);
 });
 
-export { chat, chatUsersBox, addUserToChat, chatUsersBoxActive, chatUsersBoxInactive };
+export { chat, chatUsersBox, addUserToChat, chatUsersBoxActive, chatUsersBoxInactive, chatSearch, searchUser };

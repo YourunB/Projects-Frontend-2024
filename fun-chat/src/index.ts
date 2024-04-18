@@ -2,7 +2,7 @@ import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
 import { btnLogOut } from './components/header';
-import { addUserToChat, chatUsersBoxActive, chatUsersBoxInactive } from './components/chat';
+import { addUserToChat, chatUsersBoxActive, chatUsersBoxInactive, chatSearch, searchUser } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
 import { socket, apiLogIn, apiLogOut, apiGetActiveUsers, apiGetInactiveUsers } from './components/apiChat';
@@ -59,6 +59,7 @@ if (location.hash === '#chat' && sessionStorage.user !== undefined) {
   setTimeout(() => {
     const data = JSON.parse(sessionStorage.user);
     apiLogIn(data.id, data.name, data.pass);
+    updateChatUsers();
   }, 500);
 }
 
@@ -85,6 +86,7 @@ socket.addEventListener('message', (msg) => {
         if (loginTemp !== data.payload.users[i].login) {
           addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
         }
+        if (chatSearch.value.length > 0) searchUser(chatSearch.value);
       }
       break;
     case 'USER_INACTIVE':
@@ -93,6 +95,7 @@ socket.addEventListener('message', (msg) => {
         if (loginTemp !== data.payload.users[i].login) {
           addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
         }
+        if (chatSearch.value.length > 0) searchUser(chatSearch.value);
       }
       break;
     case 'USER_EXTERNAL_LOGIN':
