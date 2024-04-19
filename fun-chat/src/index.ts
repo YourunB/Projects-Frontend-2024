@@ -247,6 +247,10 @@ chatMessagesBoxMain.addEventListener('click', () => {
   readMessages();
 });
 
+chatMessagesBoxMain.addEventListener('wheel', () => {
+  readMessages();
+});
+
 function openHideContextMenu(msgElement: HTMLElement) {
   if (msgElement.classList.contains('msg')) {
     const posTop = msgElement.getBoundingClientRect().top;
