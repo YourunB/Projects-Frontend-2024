@@ -30,11 +30,12 @@ import {
   apiGetMsgsHistory,
   apiSetReadMsg,
 } from './components/apiChat';
+import { infoApp, btnInfo } from './components/infoApp';
 import { v4 as uuidv4 } from 'uuid';
 
 const page = document.createElement('div');
 page.classList.add('page');
-document.body.append(page, modalWindow);
+document.body.append(page, modalWindow, btnInfo, infoApp);
 
 let passTemp = '';
 let loginTemp = '';

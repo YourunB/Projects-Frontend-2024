@@ -18,7 +18,7 @@ footerSchoolLink.prepend(footerSchoolLogo);
 const footerDevLink = document.createElement('a');
 footerDevLink.href = 'https://github.com/yourunb';
 footerDevLink.classList.add('footer__developer');
-footerDevLink.innerHTML = '&copy; Yury Butskevich';
+footerDevLink.innerHTML = 'Yury Butskevich';
 
 const footerYear = document.createElement('p');
 footerYear.classList.add('footer__year');
