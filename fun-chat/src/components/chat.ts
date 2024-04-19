@@ -135,7 +135,23 @@ function updateMessagesInChat(
     chatMessagesBoxMain.append(lineRead);
   }
   chatMessagesBoxMain.append(msg);
-  chatMessagesBoxMain.scrollTo(0, chatMessagesBoxMain.scrollHeight);
+}
+
+function scrollToMsgs() {
+  const checkReadLine = chatMessagesBoxMain.getElementsByClassName('line-read') as HTMLCollectionOf<HTMLElement>;
+  if (checkReadLine.length > 0) {
+    chatMessagesBoxMain.scrollTo({
+      top: checkReadLine[0].offsetTop - 150,
+      left: 0,
+      behavior: 'smooth',
+    });
+  } else {
+    chatMessagesBoxMain.scrollTo({
+      top: chatMessagesBoxMain.scrollHeight,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
 }
 
 chatSearch.addEventListener('input', () => {
@@ -163,4 +179,5 @@ export {
   updateCurrentUser,
   searchUser,
   updateMessagesInChat,
+  scrollToMsgs,
 };

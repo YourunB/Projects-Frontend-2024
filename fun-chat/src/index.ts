@@ -16,6 +16,7 @@ import {
   updateMessagesInChat,
   chatMessagesBoxMain,
   contextMenu,
+  scrollToMsgs,
 } from './components/chat';
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
@@ -118,6 +119,8 @@ socket.addEventListener('message', (msg) => {
         arrMsgs[i].status.isReaded
       );
     }
+
+    scrollToMsgs();
 
     const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < usersCounts.length; i += 1) {
