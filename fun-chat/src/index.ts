@@ -92,11 +92,17 @@ socket.addEventListener('message', (msg) => {
   const id = uuidv4();
 
   function updateMessages() {
+    let userUnread = '';
+    let countUnread = 0;
     chatMessagesBoxMain.innerHTML = '';
     for (let i = 0; i < arrMsgs.length; i += 1) {
       const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
       const you = loginTemp === arrMsgs[i].from;
       const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
+      userUnread = arrMsgs[i].from;
+      if (!arrMsgs[i].status.isReaded) {
+        countUnread += 1;
+      }
       let status = '';
       if (you && arrMsgs[i].status.isReaded) status = 'read';
       else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
@@ -111,6 +117,13 @@ socket.addEventListener('message', (msg) => {
         arrMsgs[i].id,
         arrMsgs[i].status.isReaded
       );
+    }
+
+    const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
+    for (let i = 0; i < usersCounts.length; i += 1) {
+      if (usersCounts[i].dataset.login === userUnread) {
+        usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
+      }
     }
   }
 
@@ -202,7 +215,6 @@ chatUsersBox.addEventListener('click', (event) => {
     const isLogined = currentTarget.dataset.isLogined || '';
     const id = uuidv4();
     updateCurrentUser(login, isLogined);
-    console.log(id, login);
     apiGetMsgsHistory(id, login);
   }
 });
@@ -249,7 +261,6 @@ document.body.addEventListener('click', (event) => {
 
 document.body.addEventListener('contextmenu', (event) => {
   event.preventDefault();
-  console.log(event.target);
   const currentTarget = event.target as HTMLElement;
   openHideContextMenu(currentTarget);
 });

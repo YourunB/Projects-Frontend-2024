@@ -58,7 +58,7 @@ chatUsersBox.append(chatUsersBoxActive, chatUsersBoxInactive);
 function addUserToChat(userName: string, isLogined: boolean) {
   const user = document.createElement('p');
   user.classList.add('chat__users__user');
-  user.innerHTML = `<span class="logined-${isLogined}">&#9679;</span> ${userName}`;
+  user.innerHTML = `<span class="logined-${isLogined}">&#9679;</span> ${userName} <span class="count-msgs" data-login="${userName}"></span>`;
   user.dataset.login = `${userName}`;
   user.dataset.isLogined = `${isLogined}`;
   if (isLogined) chatUsersBoxActive.append(user);
