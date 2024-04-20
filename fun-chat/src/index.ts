@@ -85,6 +85,10 @@ function updateChatUsers() {
 
 socket.onclose = () => {
   showMessage('Warning', 'WebSocket closed');
+  if (sessionStorage.user !== undefined) {
+    sessionStorage.removeItem('user');
+    location.hash = '#login';
+  }
 };
 
 socket.onerror = () => {
