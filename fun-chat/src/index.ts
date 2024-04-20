@@ -262,6 +262,7 @@ chatUsersBox.addEventListener('click', (event) => {
     const id = uuidv4();
     updateCurrentUser(login, isLogined);
     apiGetMsgsHistory(id, login);
+    chatUsersBox.classList.remove('chat__users_show');
   }
 });
 

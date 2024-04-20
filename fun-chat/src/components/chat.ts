@@ -169,6 +169,10 @@ inputMessage.addEventListener('input', () => {
   else btnSendMessage.disabled = true;
 });
 
+btnMenuUsers.addEventListener('click', () => {
+  chatUsersBox.classList.toggle('chat__users_show');
+});
+
 export {
   chat,
   chatUsersBox,
