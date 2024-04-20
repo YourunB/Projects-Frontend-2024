@@ -189,6 +189,9 @@ socket.addEventListener('message', (msg) => {
     case 'MSG_EDIT':
       apiGetMsgsHistory(id, checkedUser.textContent || '');
       break;
+    case 'MSG_DELETE':
+      apiGetMsgsHistory(id, checkedUser.textContent || '');
+      break;
   }
 });
 
@@ -286,8 +289,11 @@ contextMenu.addEventListener('click', (event) => {
     inputMessage.dataset.edit = 'true';
     inputMessage.value = contextMenu.dataset.msgText || '';
     btnSendMessage.disabled = false;
-  } else {
-    alert('Delete');
+  }
+  if (currentTarget.textContent === 'Delete') {
+    const id = uuidv4();
+    apiDeleteMsg(id, contextMenu.dataset.msgId || '');
+    clearInput();
   }
 });
 
