@@ -73,6 +73,20 @@ function apiSetReadMsg(idMsg: string) {
   socket.send(JSON.stringify(data));
 }
 
+function apiEditMsg(uid: string, idMsg: string, msg: string) {
+  const data = {
+    id: uid,
+    type: 'MSG_EDIT',
+    payload: {
+      message: {
+        id: idMsg,
+        text: msg,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
 function apiGetMsgsHistory(uid: string, userLogin: string) {
   const data = {
     id: uid,
@@ -95,4 +109,5 @@ export {
   apiSendMsg,
   apiGetMsgsHistory,
   apiSetReadMsg,
+  apiEditMsg,
 };

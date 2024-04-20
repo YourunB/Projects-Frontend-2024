@@ -31,6 +31,7 @@ chatMessagesBoxFooter.classList.add('chat__messages__footer_block');
 
 const inputMessage = document.createElement('input');
 inputMessage.placeholder = 'Message';
+inputMessage.dataset.edit = 'false';
 inputMessage.classList.add('chat__messages__footer__input');
 
 const btnSendMessage = document.createElement('button');
@@ -123,7 +124,7 @@ function updateMessagesInChat(
   }
 
   msg.innerHTML = `
-    <div class="msg" data-id="${id}" data-for-you="${msgForYou}">
+    <div class="msg" data-id="${id}" data-text="${text}" data-for-you="${msgForYou}">
       <div class="msg__head">
         <span>${you ? 'you' : login}</span><span>${time}</span>
       </div>

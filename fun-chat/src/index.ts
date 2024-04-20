@@ -29,6 +29,7 @@ import {
   apiSendMsg,
   apiGetMsgsHistory,
   apiSetReadMsg,
+  apiEditMsg,
 } from './components/apiChat';
 import { infoApp, btnInfo } from './components/infoApp';
 import { v4 as uuidv4 } from 'uuid';
@@ -184,16 +185,30 @@ socket.addEventListener('message', (msg) => {
     case 'MSG_READ':
       apiGetMsgsHistory(id, checkedUser.textContent || '');
       break;
+    case 'MSG_EDIT':
+      apiGetMsgsHistory(id, checkedUser.textContent || '');
+      break;
   }
 });
 
-function sendMessage() {
-  const id = uuidv4();
-  const login = checkedUser.textContent ? checkedUser.textContent : '';
-  apiSendMsg(id, login, inputMessage.value);
+function clearInput() {
   btnSendMessage.disabled = true;
   inputMessage.value = '';
-  readMessages();
+  inputMessage.dataset.edit = 'false';
+}
+
+function sendMessage() {
+  const id = uuidv4();
+  if (inputMessage.dataset.edit === 'false') {
+    const login = checkedUser.textContent ? checkedUser.textContent : '';
+    apiSendMsg(id, login, inputMessage.value);
+    clearInput();
+    readMessages();
+  }
+  if (inputMessage.dataset.edit === 'true') {
+    apiEditMsg(id, contextMenu.dataset.msgId || '', inputMessage.value);
+    clearInput();
+  }
 }
 
 function readMessages() {
@@ -205,6 +220,18 @@ function readMessages() {
       }
     }
   }
+}
+
+function openHideContextMenu(msgElement: HTMLElement) {
+  if (msgElement.classList.contains('msg')) {
+    const posTop = msgElement.getBoundingClientRect().top;
+    const posLeft = msgElement.getBoundingClientRect().left;
+    contextMenu.style.top = `${posTop}px`;
+    contextMenu.style.left = `${posLeft}px`;
+    contextMenu.classList.add('context-menu_show');
+    contextMenu.dataset.msgId = msgElement.dataset.id;
+    contextMenu.dataset.msgText = msgElement.dataset.text;
+  } else contextMenu.classList.remove('context-menu_show');
 }
 
 socket.addEventListener('error', (err) => {
@@ -252,15 +279,16 @@ chatMessagesBoxMain.addEventListener('wheel', () => {
   readMessages();
 });
 
-function openHideContextMenu(msgElement: HTMLElement) {
-  if (msgElement.classList.contains('msg')) {
-    const posTop = msgElement.getBoundingClientRect().top;
-    const posLeft = msgElement.getBoundingClientRect().left;
-    contextMenu.style.top = `${posTop}px`;
-    contextMenu.style.left = `${posLeft}px`;
-    contextMenu.classList.add('context-menu_show');
-  } else contextMenu.classList.remove('context-menu_show');
-}
+contextMenu.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.textContent === 'Edit') {
+    inputMessage.dataset.edit = 'true';
+    inputMessage.value = contextMenu.dataset.msgText || '';
+    btnSendMessage.disabled = false;
+  } else {
+    alert('Delete');
+  }
+});
 
 document.body.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
