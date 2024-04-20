@@ -21,7 +21,6 @@ import {
 import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
 import {
-  socket,
   apiLogIn,
   apiLogOut,
   apiGetActiveUsers,
@@ -34,6 +33,8 @@ import {
 } from './components/apiChat';
 import { infoApp, btnInfo } from './components/infoApp';
 import { v4 as uuidv4 } from 'uuid';
+
+let socket = new WebSocket('ws://127.0.0.1:4000/');
 
 const page = document.createElement('div');
 page.classList.add('page');
@@ -64,7 +65,7 @@ function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
   sessionStorage.setItem('user', JSON.stringify(data));
 }
 
-function showMessage(title = 'ERROR', text = 'Error in WebSocket') {
+function showMessage(title = 'ERROR', text = 'Error in WebSocket. Trying to repeat') {
   modalWindow.classList.add('modal_show');
   modalFormTitle.textContent = title;
   modalFormText.textContent = text;
@@ -82,15 +83,26 @@ function updateChatUsers() {
   apiGetInactiveUsers(id);
 }
 
-if (location.hash === '#chat' && sessionStorage.user !== undefined) {
-  setTimeout(() => {
-    const data = JSON.parse(sessionStorage.user);
-    apiLogIn(data.id, data.name, data.pass);
-    updateChatUsers();
-  }, 500);
-}
+socket.onclose = () => {
+  showMessage('Warning', 'WebSocket closed');
+};
 
-socket.addEventListener('message', (msg) => {
+socket.onerror = () => {
+  showMessage();
+  socket = new WebSocket('ws://127.0.0.1:4000/');
+};
+
+socket.onopen = () => {
+  if (location.hash === '#chat' && sessionStorage.user !== undefined) {
+    setTimeout(() => {
+      const data = JSON.parse(sessionStorage.user);
+      apiLogIn(data.id, data.name, data.pass);
+      updateChatUsers();
+    }, 500);
+  }
+};
+
+socket.onmessage = (msg) => {
   const data = JSON.parse(msg.data);
   const arrMsgs = data.payload.messages;
   const id = uuidv4();
@@ -193,7 +205,7 @@ socket.addEventListener('message', (msg) => {
       apiGetMsgsHistory(id, checkedUser.textContent || '');
       break;
   }
-});
+};
 
 function clearInput() {
   btnSendMessage.disabled = true;
@@ -237,11 +249,6 @@ function openHideContextMenu(msgElement: HTMLElement) {
     contextMenu.dataset.msgText = msgElement.dataset.text;
   } else contextMenu.classList.remove('context-menu_show');
 }
-
-socket.addEventListener('error', (err) => {
-  console.log('Error:', err);
-  showMessage();
-});
 
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
@@ -330,4 +337,4 @@ window.addEventListener('hashchange', () => {
   openPage();
 });
 
-export { openChat };
+export { openChat, socket };
