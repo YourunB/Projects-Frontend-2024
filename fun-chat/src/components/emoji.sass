@@ -1,0 +1,38 @@
+.emoji
+  position: relative
+
+.emoji-btn
+  cursor: pointer
+
+.emoji-box
+  position: absolute
+  z-index: -10
+  opacity: 0
+  top: -190px
+  border-radius: 10px
+  padding: 5px
+  right: 0
+  width: 140px
+  text-align: center
+  height: 180px
+  background: white
+  overflow-y: auto
+  transition: 0.5s
+
+.emoji-box_show
+  z-index: 10
+  opacity: 1
+
+.emoji-box__item
+  display: inline-block
+  transition: 0.5s
+
+@media (hover:hover)
+  .emoji-box__item:hover
+    cursor: pointer
+    transform: scale(1.1)
+
+.emoji-box__item:active,
+.emoji-btn:active
+  transition: 0.2s
+  transform: scale(0.9)

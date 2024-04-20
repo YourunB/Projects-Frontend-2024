@@ -1,5 +1,6 @@
 import './chat.sass';
 import '../assets/images/svg/users.svg';
+import { emoji, emojiBox } from './emoji';
 
 const chat = document.createElement('div');
 chat.classList.add('chat');
@@ -52,7 +53,7 @@ contextMenu.innerHTML = `
 `;
 
 chatMessagesBoxHeader.append(checkedUser, checkedUserStatus, btnMenuUsers);
-chatMessagesBoxFooter.append(inputMessage, btnSendMessage);
+chatMessagesBoxFooter.append(inputMessage, emoji, btnSendMessage);
 chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter, contextMenu);
 chatUsersBox.append(chatSearch);
 chat.append(chatUsersBox, chatMessagesBox);
@@ -160,17 +161,29 @@ function scrollToMsgs() {
   }
 }
 
+function checkInput() {
+  if (inputMessage.value.length > 0 && inputMessage.value.trim() !== '') btnSendMessage.disabled = false;
+  else btnSendMessage.disabled = true;
+}
+
 chatSearch.addEventListener('input', () => {
   searchUser(chatSearch.value);
 });
 
 inputMessage.addEventListener('input', () => {
-  if (inputMessage.value.length > 0) btnSendMessage.disabled = false;
-  else btnSendMessage.disabled = true;
+  checkInput();
 });
 
 btnMenuUsers.addEventListener('click', () => {
   chatUsersBox.classList.toggle('chat__users_show');
+});
+
+emojiBox.addEventListener('click', (event) => {
+  const currentTarget = event.target as HTMLElement;
+  if (currentTarget.classList.contains('emoji-box__item')) {
+    inputMessage.value += currentTarget.textContent;
+    checkInput();
+  }
 });
 
 export {
