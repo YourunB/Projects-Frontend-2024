@@ -1,4 +1,5 @@
 import './chat.sass';
+import '../assets/images/svg/users.svg';
 
 const chat = document.createElement('div');
 chat.classList.add('chat');
@@ -21,6 +22,10 @@ checkedUser.classList.add('chat__messages__header__user');
 
 const checkedUserStatus = document.createElement('p');
 checkedUserStatus.classList.add('chat__messages__header__status');
+
+const btnMenuUsers = document.createElement('img');
+btnMenuUsers.classList.add('chat__messages__header__btn');
+btnMenuUsers.src = 'users.svg';
 
 const chatMessagesBoxMain = document.createElement('div');
 chatMessagesBoxMain.classList.add('chat__messages__main');
@@ -46,7 +51,7 @@ contextMenu.innerHTML = `
   <p class="context-menu__item">Delete</p>
 `;
 
-chatMessagesBoxHeader.append(checkedUser, checkedUserStatus);
+chatMessagesBoxHeader.append(checkedUser, checkedUserStatus, btnMenuUsers);
 chatMessagesBoxFooter.append(inputMessage, btnSendMessage);
 chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesBoxFooter, contextMenu);
 chatUsersBox.append(chatSearch);

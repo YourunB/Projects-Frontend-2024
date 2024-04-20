@@ -9,7 +9,6 @@
 
 .chat__users
   padding: 5px
-  max-width: 300px
   width: 100%
   height: 100%
   overflow-y: auto
@@ -18,6 +17,7 @@
   width: 100%
 
 .chat__messages__header
+  position: relative
   padding: 0 10px
   width: 100%
   height: 60px
@@ -36,6 +36,13 @@
 
 .chat__messages__header__status_offline
   color: #921717
+
+.chat__messages__header__btn
+  position: absolute
+  right: 10px
+  width: 40px
+  filter: invert(1)
+  transition: 0.5s
 
 .count-msgs
   display: inline-block
@@ -208,11 +215,13 @@
   .msg-you .msg:hover .msg__main
     background: rgba(128,128,128, 0.8)
 
-  .chat__messages__footer__btn:hover
+  .chat__messages__footer__btn:hover,
+  .chat__messages__header__btn:hover
     cursor: pointer
     transform: scale(1.1)
 
-.chat__messages__footer__btn:active
+.chat__messages__footer__btn:active,
+.chat__messages__header__btn:active
   transition: 0.2s
   transform: scale(0.9)
 
@@ -225,3 +234,20 @@
   pointer-events: none
   opacity: 0.5
   color: gray
+
+@media (max-width: 768px)
+  .chat
+    position: relative
+    border-left: 10px solid rgba(128,128,128, 0)
+    display: block
+
+  .chat__users
+    position: absolute
+    background: rgba(128,128,128, 0.8)
+    border-radius: 10px
+    width: calc(100% + 20px)
+    left: -10px
+    top: 0
+  
+  .chat__search
+    width: calc(100% - 70px)
