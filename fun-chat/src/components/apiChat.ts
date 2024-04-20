@@ -87,6 +87,19 @@ function apiEditMsg(uid: string, idMsg: string, msg: string) {
   socket.send(JSON.stringify(data));
 }
 
+function apiDeleteMsg(uid: string, idMsg: string) {
+  const data = {
+    id: uid,
+    type: 'MSG_DELETE',
+    payload: {
+      message: {
+        id: idMsg,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
 function apiGetMsgsHistory(uid: string, userLogin: string) {
   const data = {
     id: uid,
@@ -110,4 +123,5 @@ export {
   apiGetMsgsHistory,
   apiSetReadMsg,
   apiEditMsg,
+  apiDeleteMsg,
 };

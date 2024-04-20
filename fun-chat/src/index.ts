@@ -30,6 +30,7 @@ import {
   apiGetMsgsHistory,
   apiSetReadMsg,
   apiEditMsg,
+  apiDeleteMsg,
 } from './components/apiChat';
 import { infoApp, btnInfo } from './components/infoApp';
 import { v4 as uuidv4 } from 'uuid';
