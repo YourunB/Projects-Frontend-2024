@@ -119,7 +119,6 @@ function connectSocket() {
       }
     }
 
-    console.log(data);
     switch (data.type) {
       case 'ERROR':
         showMessage(data.type, data.payload.error);
