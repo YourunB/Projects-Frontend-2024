@@ -2,6 +2,7 @@ import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
 import { pageLogin } from './pages/pageLogin';
 import { btnLogOut } from './components/header';
+import { loading } from './components/loading';
 import {
   addUserToChat,
   chatUsersBoxActive,
@@ -34,14 +35,152 @@ import {
 import { infoApp, btnInfo } from './components/infoApp';
 import { v4 as uuidv4 } from 'uuid';
 
-let socket = new WebSocket('ws://127.0.0.1:4000/');
+let socket: WebSocket;
 
 const page = document.createElement('div');
 page.classList.add('page');
-document.body.append(page, modalWindow, btnInfo, infoApp);
+document.body.append(loading, page, modalWindow, btnInfo, infoApp);
 
 let passTemp = '';
 let loginTemp = '';
+
+connectSocket();
+function connectSocket() {
+  socket = new WebSocket('ws://127.0.0.1:4000/');
+
+  socket.onclose = () => {
+    showMessage('Warning', 'WebSocket closed');
+    if (sessionStorage.user !== undefined) {
+      sessionStorage.removeItem('user');
+      location.hash = '#login';
+    }
+    connectSocket();
+    loading.classList.remove('loading_hide');
+  };
+
+  socket.onerror = () => {
+    showMessage();
+    connectSocket();
+    loading.classList.remove('loading_hide');
+  };
+
+  socket.onopen = () => {
+    if (location.hash === '#chat' && sessionStorage.user !== undefined) {
+      setTimeout(() => {
+        const data = JSON.parse(sessionStorage.user);
+        apiLogIn(data.id, data.name, data.pass);
+        updateChatUsers();
+      }, 500);
+    }
+    modalWindow.classList.remove('modal_show');
+    loading.classList.add('loading_hide');
+  };
+
+  socket.onmessage = (msg) => {
+    const data = JSON.parse(msg.data);
+    const arrMsgs = data.payload.messages;
+    const id = uuidv4();
+
+    function updateMessages() {
+      let userUnread = '';
+      let countUnread = 0;
+      chatMessagesBoxMain.innerHTML = '';
+      for (let i = 0; i < arrMsgs.length; i += 1) {
+        const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+        const you = loginTemp === arrMsgs[i].from;
+        const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
+        userUnread = arrMsgs[i].from;
+        if (!arrMsgs[i].status.isReaded) {
+          countUnread += 1;
+        }
+        let status = '';
+        if (you && arrMsgs[i].status.isReaded) status = 'read';
+        else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
+        else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
+        updateMessagesInChat(
+          arrMsgs[i].from,
+          time,
+          arrMsgs[i].text,
+          status,
+          edited,
+          you,
+          arrMsgs[i].id,
+          arrMsgs[i].status.isReaded
+        );
+      }
+
+      scrollToMsgs();
+
+      const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
+      for (let i = 0; i < usersCounts.length; i += 1) {
+        if (usersCounts[i].dataset.login === userUnread) {
+          usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
+        }
+      }
+    }
+
+    console.log(data);
+    switch (data.type) {
+      case 'ERROR':
+        showMessage(data.type, data.payload.error);
+        break;
+      case 'USER_LOGIN':
+        loginTemp = data.payload.user.login;
+        if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
+        setUserNameToHeader();
+        location.hash = '#chat';
+        break;
+      case 'USER_LOGOUT':
+        sessionStorage.removeItem('user');
+        location.hash = '#login';
+        break;
+      case 'USER_ACTIVE':
+        chatUsersBoxActive.innerHTML = '';
+        for (let i = 0; i < data.payload.users.length; i += 1) {
+          if (loginTemp !== data.payload.users[i].login) {
+            addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+          }
+          if (chatSearch.value.length > 0) searchUser(chatSearch.value);
+        }
+        break;
+      case 'USER_INACTIVE':
+        chatUsersBoxInactive.innerHTML = '';
+        for (let i = 0; i < data.payload.users.length; i += 1) {
+          if (loginTemp !== data.payload.users[i].login) {
+            addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
+          }
+          if (chatSearch.value.length > 0) searchUser(chatSearch.value);
+        }
+        break;
+      case 'USER_EXTERNAL_LOGIN':
+        updateChatUsers();
+        updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
+        break;
+      case 'USER_EXTERNAL_LOGOUT':
+        updateChatUsers();
+        updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
+        break;
+      case 'MSG_FROM_USER':
+        updateMessages();
+        break;
+      case 'MSG_DELIVER':
+        updateMessages();
+        break;
+      case 'MSG_SEND':
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
+        break;
+      case 'MSG_READ':
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
+        break;
+      case 'MSG_EDIT':
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
+        break;
+      case 'MSG_DELETE':
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
+        break;
+    }
+  };
+}
 
 function openPage() {
   page.innerHTML = '';
@@ -82,134 +221,6 @@ function updateChatUsers() {
   apiGetActiveUsers(id);
   apiGetInactiveUsers(id);
 }
-
-socket.onclose = () => {
-  showMessage('Warning', 'WebSocket closed');
-  if (sessionStorage.user !== undefined) {
-    sessionStorage.removeItem('user');
-    location.hash = '#login';
-  }
-};
-
-socket.onerror = () => {
-  showMessage();
-  socket = new WebSocket('ws://127.0.0.1:4000/');
-};
-
-socket.onopen = () => {
-  if (location.hash === '#chat' && sessionStorage.user !== undefined) {
-    setTimeout(() => {
-      const data = JSON.parse(sessionStorage.user);
-      apiLogIn(data.id, data.name, data.pass);
-      updateChatUsers();
-    }, 500);
-  }
-};
-
-socket.onmessage = (msg) => {
-  const data = JSON.parse(msg.data);
-  const arrMsgs = data.payload.messages;
-  const id = uuidv4();
-
-  function updateMessages() {
-    let userUnread = '';
-    let countUnread = 0;
-    chatMessagesBoxMain.innerHTML = '';
-    for (let i = 0; i < arrMsgs.length; i += 1) {
-      const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
-      const you = loginTemp === arrMsgs[i].from;
-      const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
-      userUnread = arrMsgs[i].from;
-      if (!arrMsgs[i].status.isReaded) {
-        countUnread += 1;
-      }
-      let status = '';
-      if (you && arrMsgs[i].status.isReaded) status = 'read';
-      else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
-      else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
-      updateMessagesInChat(
-        arrMsgs[i].from,
-        time,
-        arrMsgs[i].text,
-        status,
-        edited,
-        you,
-        arrMsgs[i].id,
-        arrMsgs[i].status.isReaded
-      );
-    }
-
-    scrollToMsgs();
-
-    const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
-    for (let i = 0; i < usersCounts.length; i += 1) {
-      if (usersCounts[i].dataset.login === userUnread) {
-        usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
-      }
-    }
-  }
-
-  console.log(data);
-  switch (data.type) {
-    case 'ERROR':
-      showMessage(data.type, data.payload.error);
-      break;
-    case 'USER_LOGIN':
-      loginTemp = data.payload.user.login;
-      if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
-      setUserNameToHeader();
-      location.hash = '#chat';
-      break;
-    case 'USER_LOGOUT':
-      sessionStorage.removeItem('user');
-      location.hash = '#login';
-      break;
-    case 'USER_ACTIVE':
-      chatUsersBoxActive.innerHTML = '';
-      for (let i = 0; i < data.payload.users.length; i += 1) {
-        if (loginTemp !== data.payload.users[i].login) {
-          addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
-        }
-        if (chatSearch.value.length > 0) searchUser(chatSearch.value);
-      }
-      break;
-    case 'USER_INACTIVE':
-      chatUsersBoxInactive.innerHTML = '';
-      for (let i = 0; i < data.payload.users.length; i += 1) {
-        if (loginTemp !== data.payload.users[i].login) {
-          addUserToChat(data.payload.users[i].login, data.payload.users[i].isLogined);
-        }
-        if (chatSearch.value.length > 0) searchUser(chatSearch.value);
-      }
-      break;
-    case 'USER_EXTERNAL_LOGIN':
-      updateChatUsers();
-      updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
-      break;
-    case 'USER_EXTERNAL_LOGOUT':
-      updateChatUsers();
-      updateCurrentUser(data.payload.user.login, data.payload.user.isLogined, 'update');
-      break;
-    case 'MSG_FROM_USER':
-      updateMessages();
-      break;
-    case 'MSG_DELIVER':
-      updateMessages();
-      break;
-    case 'MSG_SEND':
-      apiGetMsgsHistory(id, checkedUser.textContent || '');
-      break;
-    case 'MSG_READ':
-      apiGetMsgsHistory(id, checkedUser.textContent || '');
-      break;
-    case 'MSG_EDIT':
-      apiGetMsgsHistory(id, checkedUser.textContent || '');
-      break;
-    case 'MSG_DELETE':
-      apiGetMsgsHistory(id, checkedUser.textContent || '');
-      break;
-  }
-};
 
 function clearInput() {
   btnSendMessage.disabled = true;
