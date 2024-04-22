@@ -88,23 +88,12 @@ function connectSocket() {
 
     function updateMessages() {
       if (arrMsgs) {
-        console.log(arrMsgs);
         let userUnread = '';
         let countUnread = 0;
         for (let i = 0; i < arrMsgs.length; i += 1) {
           userUnread = arrMsgs[i].from;
           if (!arrMsgs[i].status.isReaded) countUnread += 1;
-        }
-        const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
-        for (let i = 0; i < usersCounts.length; i += 1) {
-          if (usersCounts[i].dataset.login === userUnread) {
-            usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
-          }
-        }
 
-        console.log(arrMsgs);
-        for (let i = 0; i < arrMsgs.length; i += 1) {
-          console.log((arrMsgs[i].from === checkedUser.textContent, arrMsgs[i].to === loginTemp));
           if (
             (arrMsgs[i].from === loginTemp && arrMsgs[i].to === checkedUser.textContent) ||
             (arrMsgs[i].to === loginTemp && arrMsgs[i].from === checkedUser.textContent)
@@ -129,6 +118,12 @@ function connectSocket() {
             );
           }
         }
+        const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
+        for (let i = 0; i < usersCounts.length; i += 1) {
+          if (usersCounts[i].dataset.login === userUnread) {
+            usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
+          }
+        }
 
         scrollToMsgs();
       }
@@ -143,7 +138,6 @@ function connectSocket() {
 
     switch (data.type) {
       case 'ERROR':
-        console.log(data);
         showMessage(data.type, data.payload.error);
         break;
       case 'USER_LOGIN':
