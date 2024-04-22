@@ -86,43 +86,45 @@ function connectSocket() {
     const id = uuidv4();
 
     function updateMessages() {
-      let userUnread = '';
-      let countUnread = 0;
-      chatMessagesBoxMain.innerHTML = '';
-      for (let i = 0; i < arrMsgs.length; i += 1) {
-        const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
-        const you = loginTemp === arrMsgs[i].from;
-        const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
-        userUnread = arrMsgs[i].from;
-        if (!arrMsgs[i].status.isReaded) {
-          countUnread += 1;
+      if (arrMsgs) {
+        let userUnread = '';
+        let countUnread = 0;
+        chatMessagesBoxMain.innerHTML = '';
+        for (let i = 0; i < arrMsgs.length; i += 1) {
+          const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+          const you = loginTemp === arrMsgs[i].from;
+          const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
+          userUnread = arrMsgs[i].from;
+          if (!arrMsgs[i].status.isReaded) {
+            countUnread += 1;
+          }
+          let status = '';
+          if (you && arrMsgs[i].status.isReaded) status = 'read';
+          else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
+          else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
+          updateMessagesInChat(
+            arrMsgs[i].from,
+            time,
+            arrMsgs[i].text,
+            status,
+            edited,
+            you,
+            arrMsgs[i].id,
+            arrMsgs[i].status.isReaded
+          );
         }
-        let status = '';
-        if (you && arrMsgs[i].status.isReaded) status = 'read';
-        else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
-        else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
-        updateMessagesInChat(
-          arrMsgs[i].from,
-          time,
-          arrMsgs[i].text,
-          status,
-          edited,
-          you,
-          arrMsgs[i].id,
-          arrMsgs[i].status.isReaded
-        );
-      }
 
-      scrollToMsgs();
+        scrollToMsgs();
 
-      const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
-      for (let i = 0; i < usersCounts.length; i += 1) {
-        if (usersCounts[i].dataset.login === userUnread) {
-          usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
+        const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
+        for (let i = 0; i < usersCounts.length; i += 1) {
+          if (usersCounts[i].dataset.login === userUnread) {
+            usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
+          }
         }
       }
     }
-
+    console.log(data);
     switch (data.type) {
       case 'ERROR':
         showMessage(data.type, data.payload.error);

@@ -60,6 +60,19 @@ function apiSendMsg(uid: string, login: string, msg: string) {
   socket.send(JSON.stringify(data));
 }
 
+function apiSetDeliverMsg() {
+  const data = {
+    id: null,
+    type: 'MSG_DELIVER',
+    payload: {
+      message: {
+        isDelivered: true,
+      },
+    },
+  };
+  socket.send(JSON.stringify(data));
+}
+
 function apiSetReadMsg(idMsg: string) {
   const data = {
     id: null,
@@ -121,6 +134,7 @@ export {
   apiGetInactiveUsers,
   apiSendMsg,
   apiGetMsgsHistory,
+  apiSetDeliverMsg,
   apiSetReadMsg,
   apiEditMsg,
   apiDeleteMsg,
