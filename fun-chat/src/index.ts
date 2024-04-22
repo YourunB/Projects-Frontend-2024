@@ -1,5 +1,6 @@
 import './index.sass';
 import { pageChat, setUserNameToHeader } from './pages/pageChat';
+import './assets/audio/msg.mp3';
 import { pageLogin } from './pages/pageLogin';
 import { btnLogOut } from './components/header';
 import { loading } from './components/loading';
@@ -40,6 +41,9 @@ let socket: WebSocket;
 const page = document.createElement('div');
 page.classList.add('page');
 document.body.append(loading, page, modalWindow, btnInfo, infoApp);
+
+const soundMsg = document.createElement('audio');
+soundMsg.src = 'msg.mp3';
 
 let passTemp = '';
 let loginTemp = '';
@@ -167,15 +171,18 @@ function connectSocket() {
         break;
       case 'MSG_SEND':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
+        soundMsg.play();
         break;
       case 'MSG_READ':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
         break;
       case 'MSG_EDIT':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
+        soundMsg.play();
         break;
       case 'MSG_DELETE':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
+        soundMsg.play();
         break;
     }
   };
@@ -228,17 +235,19 @@ function clearInput() {
 }
 
 function sendMessage() {
-  const id = uuidv4();
-  if (inputMessage.dataset.edit === 'false') {
-    const login = checkedUser.textContent ? checkedUser.textContent : '';
-    apiSendMsg(id, login, inputMessage.value);
-    clearInput();
-    readMessages();
-  }
-  if (inputMessage.dataset.edit === 'true') {
-    apiEditMsg(id, contextMenu.dataset.msgId || '', inputMessage.value);
-    clearInput();
-  }
+  readMessages();
+  setTimeout(() => {
+    const id = uuidv4();
+    if (inputMessage.dataset.edit === 'false') {
+      const login = checkedUser.textContent ? checkedUser.textContent : '';
+      apiSendMsg(id, login, inputMessage.value);
+      clearInput();
+    }
+    if (inputMessage.dataset.edit === 'true') {
+      apiEditMsg(id, contextMenu.dataset.msgId || '', inputMessage.value);
+      clearInput();
+    }
+  }, 100);
 }
 
 function readMessages() {
