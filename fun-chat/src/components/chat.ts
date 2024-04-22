@@ -81,27 +81,14 @@ function searchUser(value = '') {
   }
 }
 
-function updateCurrentUser(login: string, isLogined: string, state = 'add') {
-  if (state === 'add') {
-    checkedUser.textContent = login;
-    if (isLogined === 'true') {
-      checkedUserStatus.textContent = 'online';
-      checkedUserStatus.classList.remove('chat__messages__header__status_offline');
-    } else {
-      checkedUserStatus.textContent = 'offline';
-      checkedUserStatus.classList.add('chat__messages__header__status_offline');
-    }
-  }
-  if (state === 'update') {
-    if (checkedUser.textContent === login) {
-      if (isLogined === 'true') {
-        checkedUserStatus.textContent = 'online';
-        checkedUserStatus.classList.remove('chat__messages__header__status_offline');
-      } else {
-        checkedUserStatus.textContent = 'offline';
-        checkedUserStatus.classList.add('chat__messages__header__status_offline');
-      }
-    }
+function updateCurrentUser(login: string, isLogined: string, state = 'update') {
+  if (state === 'add') checkedUser.textContent = login;
+  if (isLogined) {
+    checkedUserStatus.textContent = 'online';
+    checkedUserStatus.classList.remove('chat__messages__header__status_offline');
+  } else {
+    checkedUserStatus.textContent = 'offline';
+    checkedUserStatus.classList.add('chat__messages__header__status_offline');
   }
   if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
