@@ -60,13 +60,16 @@ function apiSendMsg(uid: string, login: string, msg: string) {
   socket.send(JSON.stringify(data));
 }
 
-function apiSetDeliverMsg() {
+function apiSetDeliverMsg(idMsg: string) {
   const data = {
     id: null,
     type: 'MSG_DELIVER',
     payload: {
       message: {
-        isDelivered: true,
+        id: idMsg,
+        status: {
+          isDelivered: true,
+        },
       },
     },
   };

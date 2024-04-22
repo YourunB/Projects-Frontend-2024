@@ -28,6 +28,7 @@ import {
   apiGetActiveUsers,
   apiGetInactiveUsers,
   apiSendMsg,
+  apiSetDeliverMsg,
   apiGetMsgsHistory,
   apiSetReadMsg,
   apiEditMsg,
@@ -95,9 +96,7 @@ function connectSocket() {
           const you = loginTemp === arrMsgs[i].from;
           const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
           userUnread = arrMsgs[i].from;
-          if (!arrMsgs[i].status.isReaded) {
-            countUnread += 1;
-          }
+          if (!arrMsgs[i].status.isReaded) countUnread += 1;
           let status = '';
           if (you && arrMsgs[i].status.isReaded) status = 'read';
           else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
@@ -124,7 +123,7 @@ function connectSocket() {
         }
       }
     }
-    console.log(data);
+
     switch (data.type) {
       case 'ERROR':
         showMessage(data.type, data.payload.error);
@@ -169,7 +168,7 @@ function connectSocket() {
         updateMessages();
         break;
       case 'MSG_DELIVER':
-        updateMessages();
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
         break;
       case 'MSG_SEND':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
@@ -275,6 +274,14 @@ function openHideContextMenu(msgElement: HTMLElement) {
   } else contextMenu.classList.remove('context-menu_show');
 }
 
+function deliverMsgs() {
+  const allMsgs = chatMessagesBoxMain.getElementsByClassName('msg') as HTMLCollectionOf<HTMLElement>;
+  for (let i = 0; i < allMsgs.length; i += 1) {
+    const msgState = allMsgs[i].getElementsByClassName('msg__footer__delivered')[0] as HTMLElement;
+    if (msgState.textContent === 'not delivered') apiSetDeliverMsg(allMsgs[i].dataset.id || '');
+  }
+}
+
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
   if (currentTarget.classList.contains('chat__users__user')) {
@@ -284,6 +291,9 @@ chatUsersBox.addEventListener('click', (event) => {
     updateCurrentUser(login, isLogined);
     apiGetMsgsHistory(id, login);
     chatUsersBox.classList.remove('chat__users_show');
+    setTimeout(() => {
+      deliverMsgs();
+    }, 250);
   }
 });
 

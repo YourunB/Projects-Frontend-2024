@@ -135,7 +135,7 @@ function updateMessagesInChat(
         <span>${you ? 'you' : login}</span><span>${time}</span>
       </div>
       <div class="msg__main">${text}</div>
-      <div class="msg__footer"><span>${edited}</span><span>${status}</span></div>
+      <div class="msg__footer"><span>${edited}</span><span class="msg__footer__delivered">${status}</span></div>
     </div>
   `;
   if (!read && msgForYou && chatMessagesBoxMain.getElementsByClassName('line-read').length === 0) {
