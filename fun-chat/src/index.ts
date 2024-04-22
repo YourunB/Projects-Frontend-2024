@@ -28,7 +28,7 @@ import {
   apiGetActiveUsers,
   apiGetInactiveUsers,
   apiSendMsg,
-  apiSetDeliverMsg,
+  //apiSetDeliverMsg,
   apiGetMsgsHistory,
   apiSetReadMsg,
   apiEditMsg,
@@ -88,44 +88,62 @@ function connectSocket() {
 
     function updateMessages() {
       if (arrMsgs) {
+        console.log(arrMsgs);
         let userUnread = '';
         let countUnread = 0;
-        chatMessagesBoxMain.innerHTML = '';
         for (let i = 0; i < arrMsgs.length; i += 1) {
-          const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
-          const you = loginTemp === arrMsgs[i].from;
-          const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
           userUnread = arrMsgs[i].from;
           if (!arrMsgs[i].status.isReaded) countUnread += 1;
-          let status = '';
-          if (you && arrMsgs[i].status.isReaded) status = 'read';
-          else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
-          else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
-          updateMessagesInChat(
-            arrMsgs[i].from,
-            time,
-            arrMsgs[i].text,
-            status,
-            edited,
-            you,
-            arrMsgs[i].id,
-            arrMsgs[i].status.isReaded
-          );
         }
-
-        scrollToMsgs();
-
         const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
         for (let i = 0; i < usersCounts.length; i += 1) {
           if (usersCounts[i].dataset.login === userUnread) {
             usersCounts[i].textContent = countUnread > 0 ? String(countUnread) : '';
           }
         }
+
+        console.log(arrMsgs);
+        for (let i = 0; i < arrMsgs.length; i += 1) {
+          console.log((arrMsgs[i].from === checkedUser.textContent, arrMsgs[i].to === loginTemp));
+          if (
+            (arrMsgs[i].from === loginTemp && arrMsgs[i].to === checkedUser.textContent) ||
+            (arrMsgs[i].to === loginTemp && arrMsgs[i].from === checkedUser.textContent)
+          ) {
+            if (i == 0) chatMessagesBoxMain.innerHTML = '';
+            const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+            const you = loginTemp === arrMsgs[i].from;
+            const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
+            let status = '';
+            if (you && arrMsgs[i].status.isReaded) status = 'read';
+            else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
+            else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
+            updateMessagesInChat(
+              arrMsgs[i].from,
+              time,
+              arrMsgs[i].text,
+              status,
+              edited,
+              you,
+              arrMsgs[i].id,
+              arrMsgs[i].status.isReaded
+            );
+          }
+        }
+
+        scrollToMsgs();
+      }
+    }
+
+    function checkAllMsgs() {
+      const users = chatUsersBox.getElementsByClassName('chat__users__user') as HTMLCollectionOf<HTMLAreaElement>;
+      for (let i = 0; i < users.length; i += 1) {
+        apiGetMsgsHistory(id, users[i].dataset.login || '');
       }
     }
 
     switch (data.type) {
       case 'ERROR':
+        console.log(data);
         showMessage(data.type, data.payload.error);
         break;
       case 'USER_LOGIN':
@@ -133,6 +151,7 @@ function connectSocket() {
         if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
         setUserNameToHeader();
         location.hash = '#chat';
+        checkAllMsgs();
         break;
       case 'USER_LOGOUT':
         sessionStorage.removeItem('user');
@@ -168,22 +187,19 @@ function connectSocket() {
         updateMessages();
         break;
       case 'MSG_DELIVER':
-        apiGetMsgsHistory(id, checkedUser.textContent || '');
+        checkAllMsgs();
         break;
       case 'MSG_SEND':
-        apiGetMsgsHistory(id, checkedUser.textContent || '');
-        soundMsg.play();
+        checkAllMsgs();
         break;
       case 'MSG_READ':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
         break;
       case 'MSG_EDIT':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
-        soundMsg.play();
         break;
       case 'MSG_DELETE':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
-        soundMsg.play();
         break;
     }
   };
@@ -274,14 +290,6 @@ function openHideContextMenu(msgElement: HTMLElement) {
   } else contextMenu.classList.remove('context-menu_show');
 }
 
-function deliverMsgs() {
-  const allMsgs = chatMessagesBoxMain.getElementsByClassName('msg') as HTMLCollectionOf<HTMLElement>;
-  for (let i = 0; i < allMsgs.length; i += 1) {
-    const msgState = allMsgs[i].getElementsByClassName('msg__footer__delivered')[0] as HTMLElement;
-    if (msgState.textContent === 'not delivered') apiSetDeliverMsg(allMsgs[i].dataset.id || '');
-  }
-}
-
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
   if (currentTarget.classList.contains('chat__users__user')) {
@@ -291,9 +299,6 @@ chatUsersBox.addEventListener('click', (event) => {
     updateCurrentUser(login, isLogined);
     apiGetMsgsHistory(id, login);
     chatUsersBox.classList.remove('chat__users_show');
-    setTimeout(() => {
-      deliverMsgs();
-    }, 250);
   }
 });
 
@@ -316,6 +321,7 @@ btnLogOut.addEventListener('click', () => {
 
 btnSendMessage.addEventListener('click', () => {
   sendMessage();
+  soundMsg.play();
 });
 
 chatMessagesBoxMain.addEventListener('click', () => {
