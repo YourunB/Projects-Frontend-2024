@@ -286,8 +286,9 @@ function openHideContextMenu(msgElement: HTMLElement) {
 chatUsersBox.addEventListener('click', (event) => {
   const currentTarget = event.target as HTMLElement;
   if (currentTarget.classList.contains('chat__users__user')) {
+    chatMessagesBoxMain.innerHTML = '';
     const login = currentTarget.dataset.login || '';
-    const isLogined = currentTarget.dataset.isLogined || '';
+    const isLogined = Boolean(currentTarget.dataset.isLogined);
     const id = uuidv4();
     updateCurrentUser(login, isLogined, 'add');
     apiGetMsgsHistory(id, login);

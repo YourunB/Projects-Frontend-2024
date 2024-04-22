@@ -81,16 +81,18 @@ function searchUser(value = '') {
   }
 }
 
-function updateCurrentUser(login: string, isLogined: string, state = 'update') {
+function updateCurrentUser(login: string, isLogined: boolean, state = 'update') {
   if (state === 'add') checkedUser.textContent = login;
-  if (isLogined) {
-    checkedUserStatus.textContent = 'online';
-    checkedUserStatus.classList.remove('chat__messages__header__status_offline');
-  } else {
-    checkedUserStatus.textContent = 'offline';
-    checkedUserStatus.classList.add('chat__messages__header__status_offline');
+  if (checkedUser.textContent === login) {
+    if (isLogined) {
+      checkedUserStatus.textContent = 'online';
+      checkedUserStatus.classList.remove('chat__messages__header__status_offline');
+    } else {
+      checkedUserStatus.textContent = 'offline';
+      checkedUserStatus.classList.add('chat__messages__header__status_offline');
+    }
+    if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
   }
-  if (checkedUser.textContent !== '') chatMessagesBoxFooter.classList.remove('chat__messages__footer_block');
 }
 
 function updateMessagesInChat(
