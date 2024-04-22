@@ -28,7 +28,6 @@ import {
   apiGetActiveUsers,
   apiGetInactiveUsers,
   apiSendMsg,
-  //apiSetDeliverMsg,
   apiGetMsgsHistory,
   apiSetReadMsg,
   apiEditMsg,
@@ -180,11 +179,11 @@ function connectSocket() {
       case 'MSG_FROM_USER':
         updateMessages();
         break;
-      case 'MSG_DELIVER':
-        checkAllMsgs();
-        break;
       case 'MSG_SEND':
         checkAllMsgs();
+        break;
+      case 'MSG_DELIVER':
+        apiGetMsgsHistory(id, checkedUser.textContent || '');
         break;
       case 'MSG_READ':
         apiGetMsgsHistory(id, checkedUser.textContent || '');
