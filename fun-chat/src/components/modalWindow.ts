@@ -36,4 +36,10 @@ modalWindow.addEventListener('click', () => {
   closeModal();
 });
 
-export { modalWindow, modalFormTitle, modalFormText };
+function showMessage(title = 'ERROR', text = 'Error in WebSocket. Trying to repeat') {
+  modalWindow.classList.add('modal_show');
+  modalFormTitle.textContent = title;
+  modalFormText.textContent = text;
+}
+
+export { modalWindow, modalFormTitle, modalFormText, showMessage };

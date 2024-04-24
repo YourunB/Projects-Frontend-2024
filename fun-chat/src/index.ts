@@ -20,7 +20,7 @@ import {
   contextMenu,
   scrollToMsgs,
 } from './components/chat';
-import { modalFormTitle, modalWindow, modalFormText } from './components/modalWindow';
+import { modalWindow, showMessage } from './components/modalWindow';
 import { btnLogin, inputName, inputPass, clearInputs } from './components/formLogin';
 import {
   apiLogIn,
@@ -136,7 +136,7 @@ function connectSocket() {
 
     switch (data.type) {
       case 'ERROR':
-        showMessage(data.type, data.payload.error);
+        showMessage('Info', data.payload.error);
         break;
       case 'USER_LOGIN':
         loginTemp = data.payload.user.login;
@@ -217,12 +217,6 @@ function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
     pass: uPass,
   };
   sessionStorage.setItem('user', JSON.stringify(data));
-}
-
-function showMessage(title = 'ERROR', text = 'Error in WebSocket. Trying to repeat') {
-  modalWindow.classList.add('modal_show');
-  modalFormTitle.textContent = title;
-  modalFormText.textContent = text;
 }
 
 function openChat() {
