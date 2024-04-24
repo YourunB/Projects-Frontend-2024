@@ -352,7 +352,12 @@ window.addEventListener('keydown', (event) => {
       updateChatUsers();
       return;
     }
-    if (btnSendMessage.disabled === false && location.hash === '#chat') {
+    if (
+      btnSendMessage.disabled === false &&
+      location.hash === '#chat' &&
+      !modalWindow.classList.contains('modal_show') &&
+      loading.classList.contains('loading_hide')
+    ) {
       sendMessage();
     }
   }
