@@ -54,10 +54,6 @@ function connectSocket() {
 
   socket.onclose = () => {
     showMessage('Warning', 'WebSocket closed');
-    if (sessionStorage.user !== undefined) {
-      sessionStorage.removeItem('user');
-      location.hash = '#login';
-    }
     connectSocket();
     loading.classList.remove('loading_hide');
   };
@@ -87,10 +83,6 @@ function connectSocket() {
 
     function updateMessages() {
       if (arrMsgs) {
-        if (arrMsgs.length === 0) {
-          chatMessagesBoxMain.innerHTML = '... starting a dialogue with the user ...';
-          return;
-        }
         let userUnread = '';
         let countUnread = 0;
         for (let i = 0; i < arrMsgs.length; i += 1) {
@@ -101,7 +93,7 @@ function connectSocket() {
             (arrMsgs[i].from === loginTemp && arrMsgs[i].to === checkedUser.textContent) ||
             (arrMsgs[i].to === loginTemp && arrMsgs[i].from === checkedUser.textContent)
           ) {
-            if (i == 0) chatMessagesBoxMain.innerHTML = '';
+            if (i === 0) chatMessagesBoxMain.innerHTML = '';
             const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
             const you = loginTemp === arrMsgs[i].from;
             const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
@@ -129,6 +121,9 @@ function connectSocket() {
         }
 
         scrollToMsgs();
+
+        const msgs = chatMessagesBoxMain.getElementsByClassName('msg');
+        if (msgs.length === 0) chatMessagesBoxMain.innerHTML = '... starting a dialogue with the user ...';
       }
     }
 
