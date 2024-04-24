@@ -30,6 +30,7 @@ btnMenuUsers.src = 'users.svg';
 
 const chatMessagesBoxMain = document.createElement('div');
 chatMessagesBoxMain.classList.add('chat__messages__main');
+chatMessagesBoxMain.textContent = '... choose user ...';
 
 const chatMessagesBoxFooter = document.createElement('div');
 chatMessagesBoxFooter.classList.add('chat__messages__footer');

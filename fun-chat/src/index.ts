@@ -88,7 +88,7 @@ function connectSocket() {
     function updateMessages() {
       if (arrMsgs) {
         if (arrMsgs.length === 0) {
-          chatMessagesBoxMain.innerHTML = '...starting a dialogue with the user...';
+          chatMessagesBoxMain.innerHTML = '... starting a dialogue with the user ...';
           return;
         }
         let userUnread = '';
