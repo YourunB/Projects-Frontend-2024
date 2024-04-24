@@ -136,7 +136,7 @@ function connectSocket() {
 
     switch (data.type) {
       case 'ERROR':
-        showMessage('Info', data.payload.error);
+        showMessage(data.type, data.payload.error);
         break;
       case 'USER_LOGIN':
         loginTemp = data.payload.user.login;
