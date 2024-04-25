@@ -82,10 +82,10 @@ function searchUser(value = '') {
   }
 }
 
-function updateCurrentUser(login: string, isLogined: boolean, state = 'update') {
+function updateCurrentUser(login: string, isLogined: string | undefined, state = 'update') {
   if (state === 'add') checkedUser.textContent = login;
   if (checkedUser.textContent === login) {
-    if (isLogined) {
+    if (isLogined && isLogined === 'true') {
       checkedUserStatus.textContent = 'online';
       checkedUserStatus.classList.remove('chat__messages__header__status_offline');
     } else {

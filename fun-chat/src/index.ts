@@ -169,11 +169,11 @@ function connectSocket() {
         break;
       case 'USER_EXTERNAL_LOGIN':
         updateChatUsers();
-        updateCurrentUser(data.payload.user.login, data.payload.user.isLogined);
+        updateCurrentUser(data.payload.user.login, String(data.payload.user.isLogined));
         break;
       case 'USER_EXTERNAL_LOGOUT':
         updateChatUsers();
-        updateCurrentUser(data.payload.user.login, data.payload.user.isLogined);
+        updateCurrentUser(data.payload.user.login, String(data.payload.user.isLogined));
         break;
       case 'MSG_FROM_USER':
         updateMessages();
@@ -281,9 +281,8 @@ chatUsersBox.addEventListener('click', (event) => {
   if (currentTarget.classList.contains('chat__users__user')) {
     chatMessagesBoxMain.innerHTML = '';
     const login = currentTarget.dataset.login || '';
-    const isLogined = Boolean(currentTarget.dataset.isLogined);
     const id = uuidv4();
-    updateCurrentUser(login, isLogined, 'add');
+    updateCurrentUser(login, String(currentTarget.dataset.isLogined), 'add');
     apiGetMsgsHistory(id, login);
     chatUsersBox.classList.remove('chat__users_show');
   }
