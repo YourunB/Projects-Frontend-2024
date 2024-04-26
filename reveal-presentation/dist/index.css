@@ -1,0 +1,19 @@
+.slides__slide1 .main-img {
+  max-width: 600px;
+  border-radius: 50%;
+  animation: img-rotate 8s linear infinite;
+}
+
+.slides__slide1 p,
+span {
+  color: #00D8FF;
+}
+
+@keyframes img-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
