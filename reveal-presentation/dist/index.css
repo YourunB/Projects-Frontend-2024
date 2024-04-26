@@ -4,9 +4,25 @@
   animation: img-rotate 8s linear infinite;
 }
 
-.slides__slide1 p,
+.slides__slide1 h3,
 span {
   color: #00D8FF;
+}
+
+.box-images {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.box-images img {
+  max-height: 400px;
+}
+
+.box-vs {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
 @keyframes img-rotate {
