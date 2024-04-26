@@ -142,7 +142,7 @@ function connectSocket() {
         break;
       case 'USER_LOGIN':
         loginTemp = data.payload.user.login;
-        if (sessionStorage.user === undefined) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
+        if (!sessionStorage.user) addUserToSessionStorage(data.id, data.payload.user.login, passTemp);
         setUserNameToHeader();
         location.hash = '#chat';
         checkAllMsgs();
@@ -205,11 +205,10 @@ function openPage() {
     location.hash = '#login';
     page.append(pageLogin);
     return;
-  } else {
-    location.hash = '#chat';
-    page.append(pageChat);
-    return;
   }
+  location.hash = '#chat';
+  page.append(pageChat);
+  return;
 }
 
 function addUserToSessionStorage(uId: string, uName: string, uPass: string) {
