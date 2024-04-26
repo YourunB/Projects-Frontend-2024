@@ -97,10 +97,12 @@ function connectSocket() {
             const timeMsg = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
             const youMsg = loginTemp === arrMsgs[i].from;
             const editedMsg = arrMsgs[i].status.isEdited ? 'edited' : '';
-            let statusMsg = '';
-            if (youMsg && arrMsgs[i].status.isReaded) statusMsg = 'read';
-            else if (youMsg && arrMsgs[i].status.isDelivered) statusMsg = 'delivered';
-            else if (youMsg && !arrMsgs[i].status.isEdited) statusMsg = 'not delivered';
+            const statusMsg = (() => {
+              if (youMsg && arrMsgs[i].status.isReade) return 'read';
+              if (youMsg && arrMsgs[i].status.isDelivered) return 'delivered';
+              if (youMsg && !arrMsgs[i].status.isEdited) return 'not delivered';
+              return '';
+            })();
             updateMessagesInChat({
               login: arrMsgs[i].from,
               time: timeMsg,
