@@ -59,6 +59,17 @@ chatMessagesBox.append(chatMessagesBoxHeader, chatMessagesBoxMain, chatMessagesB
 chatUsersBox.append(chatSearch);
 chat.append(chatUsersBox, chatMessagesBox);
 
+interface Msg {
+  login: string;
+  time: string;
+  text: string;
+  status: string;
+  edited: string;
+  you: boolean;
+  id: string;
+  read: boolean;
+}
+
 const chatUsersBoxActive = document.createElement('div');
 const chatUsersBoxInactive = document.createElement('div');
 chatUsersBox.append(chatUsersBoxActive, chatUsersBoxInactive);
@@ -96,16 +107,7 @@ function updateCurrentUser(login: string, isLogined: string | undefined, state =
   }
 }
 
-function updateMessagesInChat(
-  login: string,
-  time: string,
-  text: string,
-  status: string,
-  edited: string,
-  you: boolean,
-  id: string,
-  read = false
-) {
+function updateMessagesInChat(objMsg: Msg) {
   let msgForYou = false;
 
   const lineRead = document.createElement('div');
@@ -113,22 +115,22 @@ function updateMessagesInChat(
   lineRead.textContent = 'new messages';
 
   const msg = document.createElement('div');
-  if (you) msg.classList.add('msg-you');
+  if (objMsg.you) msg.classList.add('msg-you');
   else {
     msg.classList.add('msg-for-you');
     msgForYou = true;
   }
 
   msg.innerHTML = `
-    <div class="msg" data-id="${id}" data-text="${text}" data-for-you="${msgForYou}">
+    <div class="msg" data-id="${objMsg.id}" data-text="${objMsg.text}" data-for-you="${msgForYou}">
       <div class="msg__head">
-        <span>${you ? 'you' : login}</span><span>${time}</span>
+        <span>${objMsg.you ? 'you' : objMsg.login}</span><span>${objMsg.time}</span>
       </div>
-      <div class="msg__main">${text}</div>
-      <div class="msg__footer"><span>${edited}</span><span>${status}</span></div>
+      <div class="msg__main">${objMsg.text}</div>
+      <div class="msg__footer"><span>${objMsg.edited}</span><span>${objMsg.status}</span></div>
     </div>
   `;
-  if (!read && msgForYou && chatMessagesBoxMain.getElementsByClassName('line-read').length === 0) {
+  if (!objMsg.read && msgForYou && chatMessagesBoxMain.getElementsByClassName('line-read').length === 0) {
     chatMessagesBoxMain.append(lineRead);
   }
   chatMessagesBoxMain.append(msg);

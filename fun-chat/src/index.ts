@@ -94,23 +94,23 @@ function connectSocket() {
             (arrMsgs[i].to === loginTemp && arrMsgs[i].from === checkedUser.textContent)
           ) {
             if (i === 0) chatMessagesBoxMain.innerHTML = '';
-            const time = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
-            const you = loginTemp === arrMsgs[i].from;
-            const edited = arrMsgs[i].status.isEdited ? 'edited' : '';
-            let status = '';
-            if (you && arrMsgs[i].status.isReaded) status = 'read';
-            else if (you && arrMsgs[i].status.isDelivered) status = 'delivered';
-            else if (you && !arrMsgs[i].status.isEdited) status = 'not delivered';
-            updateMessagesInChat(
-              arrMsgs[i].from,
-              time,
-              arrMsgs[i].text,
-              status,
-              edited,
-              you,
-              arrMsgs[i].id,
-              arrMsgs[i].status.isReaded
-            );
+            const timeMsg = new Date(arrMsgs[i].datetime).toString().slice(4, 24);
+            const youMsg = loginTemp === arrMsgs[i].from;
+            const editedMsg = arrMsgs[i].status.isEdited ? 'edited' : '';
+            let statusMsg = '';
+            if (youMsg && arrMsgs[i].status.isReaded) statusMsg = 'read';
+            else if (youMsg && arrMsgs[i].status.isDelivered) statusMsg = 'delivered';
+            else if (youMsg && !arrMsgs[i].status.isEdited) statusMsg = 'not delivered';
+            updateMessagesInChat({
+              login: arrMsgs[i].from,
+              time: timeMsg,
+              text: arrMsgs[i].text,
+              status: statusMsg,
+              edited: editedMsg,
+              you: youMsg,
+              id: arrMsgs[i].id,
+              read: arrMsgs[i].status.isReaded,
+            });
           }
         }
         const usersCounts = chatUsersBox.getElementsByClassName('count-msgs') as HTMLCollectionOf<HTMLElement>;
