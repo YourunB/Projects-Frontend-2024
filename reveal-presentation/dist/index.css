@@ -25,6 +25,19 @@ span {
   gap: 20px;
 }
 
+.blue {
+  color: #4285F4;
+}
+.red {
+  color: #EA4335;
+}
+.orange {
+  color: #FBBC05;
+}
+.green {
+  color: #34A853;
+}
+
 @keyframes img-rotate {
   0% {
     transform: rotate(0deg);
