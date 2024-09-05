@@ -1,0 +1,52 @@
+.slides__slide1 .main-img {
+  max-width: 600px;
+  border-radius: 50%;
+  animation: img-rotate 8s linear infinite;
+}
+
+.slides__slide1 h3,
+span {
+  color: #00D8FF;
+}
+
+.box-images {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.box-images img {
+  max-height: 400px;
+}
+
+.box-vs {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.blue {
+  color: #4285F4;
+}
+.red {
+  color: #EA4335;
+}
+.orange {
+  color: #FBBC05;
+}
+.green {
+  color: #34A853;
+}
+
+.slides__slide12 img {
+  max-width: 600px;
+}
+
+@keyframes img-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
